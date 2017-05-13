@@ -73,6 +73,7 @@ private:
     ScopedPointer<Label> generalNotesLabel;
     ScopedPointer<TextButton> grabTimeButton;
     ScopedPointer<Label> versionNumberLabel;
+    ScopedPointer<Label> theLyonsDenSoftware;
 
 
     //==============================================================================
