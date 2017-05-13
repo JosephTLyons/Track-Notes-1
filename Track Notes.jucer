@@ -2,14 +2,16 @@
 
 <JUCERPROJECT id="Tq7idA" name="Track Notes" displaySplashScreen="1" reportAppUsage="1"
               splashScreenColour="Dark" projectType="audioplug" version="1.0.0"
-              bundleIdentifier="com.yourcompany.TrackNotes" includeBinaryInAppConfig="1"
+              bundleIdentifier="com.TheLyonsDen.TrackNotes" includeBinaryInAppConfig="1"
               buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" buildStandalone="1" enableIAA="0" pluginName="Track Notes"
-              pluginDesc="Track Notes" pluginManufacturer="yourcompany" pluginManufacturerCode="Manu"
+              pluginDesc="A simple plugin to hold your session and track notes."
+              pluginManufacturer="Lyons Den" pluginManufacturerCode="Manu"
               pluginCode="Tq7i" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="TrackNotesAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.TrackNotes"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1">
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1"
+              companyEmail="JosephTLyons@gmail.com" companyName="TheLyonsDen">
   <MAINGROUP id="t5b0Im" name="Track Notes">
     <GROUP id="{38239DC4-010A-CAC1-0DF6-E5D31B4A25BE}" name="Source">
       <FILE id="lwE8m3" name="PluginProcessor.h" compile="0" resource="0"

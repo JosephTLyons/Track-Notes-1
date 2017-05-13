@@ -58,6 +58,11 @@ private:
     //[/UserVariables]
 
     //==============================================================================
+    ScopedPointer<Label> trackNotes;
+    ScopedPointer<TextEditor> textEditor;
+    ScopedPointer<TextEditor> textEditor2;
+    ScopedPointer<TextEditor> textEditor3;
+    ScopedPointer<TextEditor> textEditor4;
 
 
     //==============================================================================
