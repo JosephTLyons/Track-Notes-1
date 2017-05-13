@@ -61,11 +61,11 @@ private:
 
     //==============================================================================
     ScopedPointer<Label> trackNotesLabel;
-    ScopedPointer<TextEditor> textEditor;
-    ScopedPointer<TextEditor> textEditor2;
+    ScopedPointer<TextEditor> performersNameEditor;
+    ScopedPointer<TextEditor> instrumentPlayedEditor;
     ScopedPointer<TextEditor> textEditor4;
     ScopedPointer<Label> performersNameLabel;
-    ScopedPointer<TextEditor> textEditor3;
+    ScopedPointer<TextEditor> microphonesUsedEditor;
     ScopedPointer<Label> instrumentPlayedLabel;
     ScopedPointer<Label> microphonesUsedLabel;
     ScopedPointer<Label> generalNotesLabel;

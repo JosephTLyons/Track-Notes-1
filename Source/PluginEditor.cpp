@@ -43,29 +43,29 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
     trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (textEditor = new TextEditor ("new text editor"));
-    textEditor->setMultiLine (false);
-    textEditor->setReturnKeyStartsNewLine (false);
-    textEditor->setReadOnly (false);
-    textEditor->setScrollbarsShown (true);
-    textEditor->setCaretVisible (true);
-    textEditor->setPopupMenuEnabled (true);
-    textEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    textEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
-    textEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
-    textEditor->setText (String());
+    addAndMakeVisible (performersNameEditor = new TextEditor ("performersNameEditor"));
+    performersNameEditor->setMultiLine (false);
+    performersNameEditor->setReturnKeyStartsNewLine (false);
+    performersNameEditor->setReadOnly (false);
+    performersNameEditor->setScrollbarsShown (true);
+    performersNameEditor->setCaretVisible (true);
+    performersNameEditor->setPopupMenuEnabled (true);
+    performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    performersNameEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
+    performersNameEditor->setText (String());
 
-    addAndMakeVisible (textEditor2 = new TextEditor ("new text editor"));
-    textEditor2->setMultiLine (false);
-    textEditor2->setReturnKeyStartsNewLine (false);
-    textEditor2->setReadOnly (false);
-    textEditor2->setScrollbarsShown (true);
-    textEditor2->setCaretVisible (true);
-    textEditor2->setPopupMenuEnabled (true);
-    textEditor2->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    textEditor2->setColour (TextEditor::highlightColourId, Colour (0xff686868));
-    textEditor2->setColour (TextEditor::outlineColourId, Colour (0xff686868));
-    textEditor2->setText (String());
+    addAndMakeVisible (instrumentPlayedEditor = new TextEditor ("instrumentPlayedEditor"));
+    instrumentPlayedEditor->setMultiLine (false);
+    instrumentPlayedEditor->setReturnKeyStartsNewLine (false);
+    instrumentPlayedEditor->setReadOnly (false);
+    instrumentPlayedEditor->setScrollbarsShown (true);
+    instrumentPlayedEditor->setCaretVisible (true);
+    instrumentPlayedEditor->setPopupMenuEnabled (true);
+    instrumentPlayedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
+    instrumentPlayedEditor->setText (String());
 
     addAndMakeVisible (textEditor4 = new TextEditor ("new text editor"));
     textEditor4->setMultiLine (true);
@@ -87,17 +87,17 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameLabel->setColour (TextEditor::textColourId, Colours::black);
     performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (textEditor3 = new TextEditor ("new text editor"));
-    textEditor3->setMultiLine (false);
-    textEditor3->setReturnKeyStartsNewLine (false);
-    textEditor3->setReadOnly (false);
-    textEditor3->setScrollbarsShown (true);
-    textEditor3->setCaretVisible (true);
-    textEditor3->setPopupMenuEnabled (true);
-    textEditor3->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    textEditor3->setColour (TextEditor::highlightColourId, Colour (0xff686868));
-    textEditor3->setColour (TextEditor::outlineColourId, Colour (0xff686868));
-    textEditor3->setText (String());
+    addAndMakeVisible (microphonesUsedEditor = new TextEditor ("microphonesUsedEditor"));
+    microphonesUsedEditor->setMultiLine (false);
+    microphonesUsedEditor->setReturnKeyStartsNewLine (false);
+    microphonesUsedEditor->setReadOnly (false);
+    microphonesUsedEditor->setScrollbarsShown (true);
+    microphonesUsedEditor->setCaretVisible (true);
+    microphonesUsedEditor->setPopupMenuEnabled (true);
+    microphonesUsedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
+    microphonesUsedEditor->setText (String());
 
     addAndMakeVisible (instrumentPlayedLabel = new Label ("instrumentPlayedLabel",
                                                           TRANS("Instrument Played:")));
@@ -145,11 +145,11 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     //[/Destructor_pre]
 
     trackNotesLabel = nullptr;
-    textEditor = nullptr;
-    textEditor2 = nullptr;
+    performersNameEditor = nullptr;
+    instrumentPlayedEditor = nullptr;
     textEditor4 = nullptr;
     performersNameLabel = nullptr;
-    textEditor3 = nullptr;
+    microphonesUsedEditor = nullptr;
     instrumentPlayedLabel = nullptr;
     microphonesUsedLabel = nullptr;
     generalNotesLabel = nullptr;
@@ -178,11 +178,11 @@ void TrackNotesAudioProcessorEditor::resized()
     //[/UserPreResize]
 
     trackNotesLabel->setBounds (0, 0, 500, 50);
-    textEditor->setBounds (250, 50, 250, 30);
-    textEditor2->setBounds (250, 85, 250, 30);
+    performersNameEditor->setBounds (250, 50, 250, 30);
+    instrumentPlayedEditor->setBounds (250, 85, 250, 30);
     textEditor4->setBounds (0, 190, 500, 230);
     performersNameLabel->setBounds (0, 50, 250, 30);
-    textEditor3->setBounds (250, 120, 250, 30);
+    microphonesUsedEditor->setBounds (250, 120, 250, 30);
     instrumentPlayedLabel->setBounds (0, 85, 250, 30);
     microphonesUsedLabel->setBounds (0, 120, 250, 30);
     generalNotesLabel->setBounds (0, 155, 250, 30);
@@ -233,11 +233,11 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
          justification="12"/>
-  <TEXTEDITOR name="new text editor" id="13c8f94f4dbdbdb0" memberName="textEditor"
+  <TEXTEDITOR name="performersNameEditor" id="13c8f94f4dbdbdb0" memberName="performersNameEditor"
               virtualName="" explicitFocusOrder="0" pos="250 50 250 30" bkgcol="ff686868"
               hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="new text editor" id="271d4ec88d19c39d" memberName="textEditor2"
+  <TEXTEDITOR name="instrumentPlayedEditor" id="271d4ec88d19c39d" memberName="instrumentPlayedEditor"
               virtualName="" explicitFocusOrder="0" pos="250 85 250 30" bkgcol="ff686868"
               hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
@@ -250,7 +250,7 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="22" kerning="0" bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="new text editor" id="2a589f1f2773c14f" memberName="textEditor3"
+  <TEXTEDITOR name="microphonesUsedEditor" id="2a589f1f2773c14f" memberName="microphonesUsedEditor"
               virtualName="" explicitFocusOrder="0" pos="250 120 250 30" bkgcol="ff686868"
               hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
