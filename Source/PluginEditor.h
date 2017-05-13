@@ -56,6 +56,7 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
     TrackNotesAudioProcessor& processor;
+    int fontSize;
 
     //[/UserVariables]
 
@@ -63,7 +64,7 @@ private:
     ScopedPointer<Label> trackNotesLabel;
     ScopedPointer<TextEditor> performersNameEditor;
     ScopedPointer<TextEditor> instrumentPlayedEditor;
-    ScopedPointer<TextEditor> textEditor4;
+    ScopedPointer<TextEditor> generalNotesEditor;
     ScopedPointer<Label> performersNameLabel;
     ScopedPointer<TextEditor> microphonesUsedEditor;
     ScopedPointer<Label> instrumentPlayedLabel;

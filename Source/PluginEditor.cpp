@@ -67,17 +67,17 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     instrumentPlayedEditor->setText (String());
 
-    addAndMakeVisible (textEditor4 = new TextEditor ("new text editor"));
-    textEditor4->setMultiLine (true);
-    textEditor4->setReturnKeyStartsNewLine (true);
-    textEditor4->setReadOnly (false);
-    textEditor4->setScrollbarsShown (true);
-    textEditor4->setCaretVisible (true);
-    textEditor4->setPopupMenuEnabled (true);
-    textEditor4->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    textEditor4->setColour (TextEditor::highlightColourId, Colour (0xff7f8081));
-    textEditor4->setColour (TextEditor::outlineColourId, Colour (0xff686868));
-    textEditor4->setText (String());
+    addAndMakeVisible (generalNotesEditor = new TextEditor ("new text editor"));
+    generalNotesEditor->setMultiLine (true);
+    generalNotesEditor->setReturnKeyStartsNewLine (true);
+    generalNotesEditor->setReadOnly (false);
+    generalNotesEditor->setScrollbarsShown (true);
+    generalNotesEditor->setCaretVisible (true);
+    generalNotesEditor->setPopupMenuEnabled (true);
+    generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    generalNotesEditor->setColour (TextEditor::highlightColourId, Colour (0xff7f8081));
+    generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
+    generalNotesEditor->setText (String());
 
     addAndMakeVisible (performersNameLabel = new Label ("performersNameLabel",
                                                         TRANS("Performer\'s Name:")));
@@ -132,10 +132,18 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 500);
+    setSize (500, 450);
 
 
     //[Constructor] You can add your own custom stuff here..
+
+    fontSize = 20;
+
+    performersNameEditor->setFont(fontSize);
+    instrumentPlayedEditor->setFont(fontSize);
+    microphonesUsedEditor->setFont(fontSize);
+    generalNotesEditor->setFont(fontSize);
+
     //[/Constructor]
 }
 
@@ -147,7 +155,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     trackNotesLabel = nullptr;
     performersNameEditor = nullptr;
     instrumentPlayedEditor = nullptr;
-    textEditor4 = nullptr;
+    generalNotesEditor = nullptr;
     performersNameLabel = nullptr;
     microphonesUsedEditor = nullptr;
     instrumentPlayedLabel = nullptr;
@@ -180,7 +188,7 @@ void TrackNotesAudioProcessorEditor::resized()
     trackNotesLabel->setBounds (0, 0, 500, 50);
     performersNameEditor->setBounds (250, 50, 250, 30);
     instrumentPlayedEditor->setBounds (250, 85, 250, 30);
-    textEditor4->setBounds (0, 190, 500, 230);
+    generalNotesEditor->setBounds (0, 190, 500, 230);
     performersNameLabel->setBounds (0, 50, 250, 30);
     microphonesUsedEditor->setBounds (250, 120, 250, 30);
     instrumentPlayedLabel->setBounds (0, 85, 250, 30);
@@ -225,7 +233,7 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="500" initialHeight="500">
+                 fixedSize="1" initialWidth="500" initialHeight="450">
   <BACKGROUND backgroundColour="ff2a2a2a"/>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
@@ -241,7 +249,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="250 85 250 30" bkgcol="ff686868"
               hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="new text editor" id="769d422c67fe7990" memberName="textEditor4"
+  <TEXTEDITOR name="new text editor" id="769d422c67fe7990" memberName="generalNotesEditor"
               virtualName="" explicitFocusOrder="0" pos="0 190 500 230" bkgcol="ff686868"
               hilitecol="ff7f8081" outlinecol="ff686868" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
