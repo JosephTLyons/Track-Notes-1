@@ -210,7 +210,7 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedLabel->setBounds (0, 120, 218, 30);
     generalNotesLabel->setBounds (0, 185, 250, 30);
     grabTimeButton->setBounds (218, 185, 282, 30);
-    versionNumberLabel->setBounds (0, 450, 150, 30);
+    versionNumberLabel->setBounds (0, 450, 128, 30);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -320,7 +320,7 @@ BEGIN_JUCER_METADATA
               buttonText="Grab Playhead Time" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 450 150 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 450 128 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>
