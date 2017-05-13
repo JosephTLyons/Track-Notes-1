@@ -34,7 +34,8 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor
+class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor,
+                                        public ButtonListener
 {
 public:
     //==============================================================================
@@ -47,6 +48,7 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
@@ -58,11 +60,16 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Label> trackNotes;
+    ScopedPointer<Label> trackNotesLabel;
     ScopedPointer<TextEditor> textEditor;
     ScopedPointer<TextEditor> textEditor2;
-    ScopedPointer<TextEditor> textEditor3;
     ScopedPointer<TextEditor> textEditor4;
+    ScopedPointer<Label> performersNameLabel;
+    ScopedPointer<TextEditor> textEditor3;
+    ScopedPointer<Label> instrumentPlayedLabel;
+    ScopedPointer<Label> microphonesUsedLabel;
+    ScopedPointer<Label> generalNotesLabel;
+    ScopedPointer<TextButton> grabTimeButton;
 
 
     //==============================================================================

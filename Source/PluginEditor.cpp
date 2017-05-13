@@ -34,13 +34,14 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (trackNotes = new Label ("trackNotesLabel",
-                                               TRANS("Track Notes")));
-    trackNotes->setFont (Font (48.70f, Font::plain).withTypefaceStyle ("Regular"));
-    trackNotes->setJustificationType (Justification::centredTop);
-    trackNotes->setEditable (false, false, false);
-    trackNotes->setColour (TextEditor::textColourId, Colours::black);
-    trackNotes->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    addAndMakeVisible (trackNotesLabel = new Label ("trackNotesLabel",
+                                                    TRANS("Track Notes")));
+    trackNotesLabel->setFont (Font ("Arial", 48.70f, Font::plain).withTypefaceStyle ("Regular"));
+    trackNotesLabel->setJustificationType (Justification::centredTop);
+    trackNotesLabel->setEditable (false, false, false);
+    trackNotesLabel->setColour (Label::textColourId, Colours::white);
+    trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
+    trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (textEditor = new TextEditor ("new text editor"));
     textEditor->setMultiLine (false);
@@ -49,6 +50,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     textEditor->setScrollbarsShown (true);
     textEditor->setCaretVisible (true);
     textEditor->setPopupMenuEnabled (true);
+    textEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    textEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    textEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     textEditor->setText (String());
 
     addAndMakeVisible (textEditor2 = new TextEditor ("new text editor"));
@@ -58,7 +62,30 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     textEditor2->setScrollbarsShown (true);
     textEditor2->setCaretVisible (true);
     textEditor2->setPopupMenuEnabled (true);
+    textEditor2->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    textEditor2->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    textEditor2->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     textEditor2->setText (String());
+
+    addAndMakeVisible (textEditor4 = new TextEditor ("new text editor"));
+    textEditor4->setMultiLine (true);
+    textEditor4->setReturnKeyStartsNewLine (true);
+    textEditor4->setReadOnly (false);
+    textEditor4->setScrollbarsShown (true);
+    textEditor4->setCaretVisible (true);
+    textEditor4->setPopupMenuEnabled (true);
+    textEditor4->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    textEditor4->setColour (TextEditor::highlightColourId, Colour (0xff7f8081));
+    textEditor4->setColour (TextEditor::outlineColourId, Colour (0xff686868));
+    textEditor4->setText (String());
+
+    addAndMakeVisible (performersNameLabel = new Label ("performersNameLabel",
+                                                        TRANS("Performer\'s Name:")));
+    performersNameLabel->setFont (Font ("Arial", 22.00f, Font::plain).withTypefaceStyle ("Regular"));
+    performersNameLabel->setJustificationType (Justification::centredLeft);
+    performersNameLabel->setEditable (false, false, false);
+    performersNameLabel->setColour (TextEditor::textColourId, Colours::black);
+    performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (textEditor3 = new TextEditor ("new text editor"));
     textEditor3->setMultiLine (false);
@@ -67,22 +94,45 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     textEditor3->setScrollbarsShown (true);
     textEditor3->setCaretVisible (true);
     textEditor3->setPopupMenuEnabled (true);
+    textEditor3->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
+    textEditor3->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    textEditor3->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     textEditor3->setText (String());
 
-    addAndMakeVisible (textEditor4 = new TextEditor ("new text editor"));
-    textEditor4->setMultiLine (false);
-    textEditor4->setReturnKeyStartsNewLine (false);
-    textEditor4->setReadOnly (false);
-    textEditor4->setScrollbarsShown (true);
-    textEditor4->setCaretVisible (true);
-    textEditor4->setPopupMenuEnabled (true);
-    textEditor4->setText (String());
+    addAndMakeVisible (instrumentPlayedLabel = new Label ("instrumentPlayedLabel",
+                                                          TRANS("Instrument Played:")));
+    instrumentPlayedLabel->setFont (Font ("Arial", 22.00f, Font::plain).withTypefaceStyle ("Regular"));
+    instrumentPlayedLabel->setJustificationType (Justification::centredLeft);
+    instrumentPlayedLabel->setEditable (false, false, false);
+    instrumentPlayedLabel->setColour (TextEditor::textColourId, Colours::black);
+    instrumentPlayedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (microphonesUsedLabel = new Label ("microphonesUsedLabel",
+                                                         TRANS("Microphone(s) Used:")));
+    microphonesUsedLabel->setFont (Font ("Arial", 22.00f, Font::plain).withTypefaceStyle ("Regular"));
+    microphonesUsedLabel->setJustificationType (Justification::centredLeft);
+    microphonesUsedLabel->setEditable (false, false, false);
+    microphonesUsedLabel->setColour (TextEditor::textColourId, Colours::black);
+    microphonesUsedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (generalNotesLabel = new Label ("generalNotesLabel",
+                                                      TRANS("General Notes:")));
+    generalNotesLabel->setFont (Font ("Arial", 22.00f, Font::plain).withTypefaceStyle ("Regular"));
+    generalNotesLabel->setJustificationType (Justification::centredLeft);
+    generalNotesLabel->setEditable (false, false, false);
+    generalNotesLabel->setColour (TextEditor::textColourId, Colours::black);
+    generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (grabTimeButton = new TextButton ("grabTimeButton"));
+    grabTimeButton->setButtonText (TRANS("Grab Playhead Time"));
+    grabTimeButton->addListener (this);
+    grabTimeButton->setColour (TextButton::buttonColourId, Colour (0xff4f4d4d));
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (400, 400);
+    setSize (500, 500);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -94,11 +144,16 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
-    trackNotes = nullptr;
+    trackNotesLabel = nullptr;
     textEditor = nullptr;
     textEditor2 = nullptr;
-    textEditor3 = nullptr;
     textEditor4 = nullptr;
+    performersNameLabel = nullptr;
+    textEditor3 = nullptr;
+    instrumentPlayedLabel = nullptr;
+    microphonesUsedLabel = nullptr;
+    generalNotesLabel = nullptr;
+    grabTimeButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -122,13 +177,33 @@ void TrackNotesAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    trackNotes->setBounds (0, 0, 400, 56);
-    textEditor->setBounds (200, 96, 200, 48);
-    textEditor2->setBounds (200, 152, 200, 48);
-    textEditor3->setBounds (200, 208, 200, 48);
-    textEditor4->setBounds (0, 264, 400, 128);
+    trackNotesLabel->setBounds (0, 0, 500, 50);
+    textEditor->setBounds (250, 50, 250, 30);
+    textEditor2->setBounds (250, 85, 250, 30);
+    textEditor4->setBounds (0, 190, 500, 230);
+    performersNameLabel->setBounds (0, 50, 250, 30);
+    textEditor3->setBounds (250, 120, 250, 30);
+    instrumentPlayedLabel->setBounds (0, 85, 250, 30);
+    microphonesUsedLabel->setBounds (0, 120, 250, 30);
+    generalNotesLabel->setBounds (0, 155, 250, 30);
+    grabTimeButton->setBounds (250, 155, 250, 30);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
+}
+
+void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == grabTimeButton)
+    {
+        //[UserButtonCode_grabTimeButton] -- add your button handler code here..
+        //[/UserButtonCode_grabTimeButton]
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
 }
 
 
@@ -150,30 +225,54 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="400" initialHeight="400">
+                 fixedSize="1" initialWidth="500" initialHeight="500">
   <BACKGROUND backgroundColour="ff2a2a2a"/>
-  <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotes"
-         virtualName="" explicitFocusOrder="0" pos="0 0 400 56" edTextCol="ff000000"
-         edBkgCol="0" labelText="Track Notes" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+  <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Track Notes" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
          justification="12"/>
   <TEXTEDITOR name="new text editor" id="13c8f94f4dbdbdb0" memberName="textEditor"
-              virtualName="" explicitFocusOrder="0" pos="200 96 200 48" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="250 50 250 30" bkgcol="ff686868"
+              hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
+              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="271d4ec88d19c39d" memberName="textEditor2"
-              virtualName="" explicitFocusOrder="0" pos="200 152 200 48" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="new text editor" id="922d9385abd5851a" memberName="textEditor3"
-              virtualName="" explicitFocusOrder="0" pos="200 208 200 48" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="250 85 250 30" bkgcol="ff686868"
+              hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
+              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="769d422c67fe7990" memberName="textEditor4"
-              virtualName="" explicitFocusOrder="0" pos="0 264 400 128" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="0 190 500 230" bkgcol="ff686868"
+              hilitecol="ff7f8081" outlinecol="ff686868" initialText="" multiline="1"
+              retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
+  <LABEL name="performersNameLabel" id="aaab96b158ed2434" memberName="performersNameLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 50 250 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="22" kerning="0" bold="0" italic="0" justification="33"/>
+  <TEXTEDITOR name="new text editor" id="2a589f1f2773c14f" memberName="textEditor3"
+              virtualName="" explicitFocusOrder="0" pos="250 120 250 30" bkgcol="ff686868"
+              hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
+              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
+  <LABEL name="instrumentPlayedLabel" id="959979cf5ec73f4b" memberName="instrumentPlayedLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 85 250 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Instrument Played:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="22" kerning="0" bold="0" italic="0" justification="33"/>
+  <LABEL name="microphonesUsedLabel" id="e982a8bc73696a9b" memberName="microphonesUsedLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 120 250 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Microphone(s) Used:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="22" kerning="0" bold="0" italic="0" justification="33"/>
+  <LABEL name="generalNotesLabel" id="358938facaa251fc" memberName="generalNotesLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 155 250 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="22" kerning="0" bold="0" italic="0" justification="33"/>
+  <TEXTBUTTON name="grabTimeButton" id="2d604f6be40451a7" memberName="grabTimeButton"
+              virtualName="" explicitFocusOrder="0" pos="250 155 250 30" bgColOff="ff4f4d4d"
+              buttonText="Grab Playhead Time" connectedEdges="0" needsCallback="1"
+              radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
