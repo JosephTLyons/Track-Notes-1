@@ -51,7 +51,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setCaretVisible (true);
     performersNameEditor->setPopupMenuEnabled (true);
     performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    performersNameEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     performersNameEditor->setText (String());
 
@@ -63,7 +63,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setCaretVisible (true);
     instrumentPlayedEditor->setPopupMenuEnabled (true);
     instrumentPlayedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     instrumentPlayedEditor->setText (String());
 
@@ -75,7 +75,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesEditor->setCaretVisible (true);
     generalNotesEditor->setPopupMenuEnabled (true);
     generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    generalNotesEditor->setColour (TextEditor::highlightColourId, Colour (0xff7f8081));
+    generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     generalNotesEditor->setText (String());
 
@@ -95,7 +95,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedEditor->setCaretVisible (true);
     microphonesUsedEditor->setPopupMenuEnabled (true);
     microphonesUsedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff686868));
-    microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colour (0xff686868));
+    microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff686868));
     microphonesUsedEditor->setText (String());
 
@@ -223,27 +223,28 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == grabTimeButton)
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
-        
-//        juce::AudioPlayHead::CurrentPositionInfo stuff;
-//        
-//        AudioPlayHead::getCurrentPosition(<#juce::AudioPlayHead::CurrentPositionInfo &result#>)
-        
-        // Get Playhead seconds
-        // Convert seconds to minutes and seconds
-        
-        int minutes = 2;
-        int seconds = 13;
-        
+
+//        AudioPlayHead::CurrentPositionInfo playHeadPosition;
+//        AudioPlayHead::getCurrentPosition(playHeadPosition);
+        int minutes = 0;
+        int seconds = 0;
+
+        //seconds = playHeadPosition.timeInSeconds;
+
         String temp = generalNotesEditor->getText();
         temp += "\n@";
         temp += minutes;
         temp += ":";
         temp += seconds;
         temp += " - ";
-        
+
         generalNotesEditor->setText(temp);
-        
-        
+
+        // Put editor into focus and then move caret to end,
+        // Which is where new time has been inserted
+        generalNotesEditor->grabKeyboardFocus();
+        generalNotesEditor->moveCaretToEnd();
+
         //[/UserButtonCode_grabTimeButton]
     }
 
@@ -280,15 +281,15 @@ BEGIN_JUCER_METADATA
          justification="12"/>
   <TEXTEDITOR name="performersNameEditor" id="13c8f94f4dbdbdb0" memberName="performersNameEditor"
               virtualName="" explicitFocusOrder="0" pos="250 50 250 30" bkgcol="ff686868"
-              hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
+              hilitecol="ff000000" outlinecol="ff686868" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="instrumentPlayedEditor" id="271d4ec88d19c39d" memberName="instrumentPlayedEditor"
               virtualName="" explicitFocusOrder="0" pos="250 85 250 30" bkgcol="ff686868"
-              hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="0"
+              hilitecol="ff000000" outlinecol="ff686868" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="769d422c67fe7990" memberName="generalNotesEditor"
               virtualName="" explicitFocusOrder="0" pos="0 220 500 230" bkgcol="ff686868"
-              hilitecol="ff7f8081" outlinecol="ff686868" initialText="" multiline="1"
+              hilitecol="ff000000" outlinecol="ff686868" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="performersNameLabel" id="aaab96b158ed2434" memberName="performersNameLabel"
          virtualName="" explicitFocusOrder="0" pos="0 50 250 30" edTextCol="ff000000"
@@ -297,7 +298,7 @@ BEGIN_JUCER_METADATA
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <TEXTEDITOR name="microphonesUsedEditor" id="2a589f1f2773c14f" memberName="microphonesUsedEditor"
               virtualName="" explicitFocusOrder="0" pos="250 120 250 60" bkgcol="ff686868"
-              hilitecol="ff686868" outlinecol="ff686868" initialText="" multiline="1"
+              hilitecol="ff000000" outlinecol="ff686868" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="instrumentPlayedLabel" id="959979cf5ec73f4b" memberName="instrumentPlayedLabel"
          virtualName="" explicitFocusOrder="0" pos="0 85 250 30" edTextCol="ff000000"
