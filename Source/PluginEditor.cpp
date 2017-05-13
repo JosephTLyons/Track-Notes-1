@@ -234,12 +234,13 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
 
-//        AudioPlayHead::CurrentPositionInfo playHeadPosition;
-//        AudioPlayHead::getCurrentPosition(playHeadPosition);
-        int minutes = 0;
-        int seconds = 0;
-
-        //seconds = playHeadPosition.timeInSeconds;
+        AudioPlayHead::CurrentPositionInfo playHeadPosition;
+        //AudioPlayHead::getCurrentPosition(playHeadPosition);
+        
+//        double totalSeconds = playHeadPosition.timeInSeconds;
+        
+        int minutes = (int) playHeadPosition.timeInSeconds;
+        int seconds = (int) playHeadPosition.timeInSeconds;
 
         String temp = generalNotesEditor->getText();
         temp += "\n@";
