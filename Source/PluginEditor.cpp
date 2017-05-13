@@ -223,6 +223,27 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == grabTimeButton)
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
+        
+//        juce::AudioPlayHead::CurrentPositionInfo stuff;
+//        
+//        AudioPlayHead::getCurrentPosition(<#juce::AudioPlayHead::CurrentPositionInfo &result#>)
+        
+        // Get Playhead seconds
+        // Convert seconds to minutes and seconds
+        
+        int minutes = 2;
+        int seconds = 13;
+        
+        String temp = generalNotesEditor->getText();
+        temp += "\n@";
+        temp += minutes;
+        temp += ":";
+        temp += seconds;
+        temp += " - ";
+        
+        generalNotesEditor->setText(temp);
+        
+        
         //[/UserButtonCode_grabTimeButton]
     }
 
