@@ -7,5 +7,5 @@ A simple plugin to hold your session and track notes.
 * Test other DAWs
 * Save info
 * Recall info
-* Graphics overhaul
+* Graphics overhaul - revise separation line?
 * User picked fonts and font sizes?

@@ -131,7 +131,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (versionNumberLabel = new Label ("versionNumberLabel",
                                                        String()));
     versionNumberLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    versionNumberLabel->setJustificationType (Justification::centredLeft);
+    versionNumberLabel->setJustificationType (Justification::centredRight);
     versionNumberLabel->setEditable (false, false, false);
     versionNumberLabel->setColour (TextEditor::textColourId, Colours::black);
     versionNumberLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
@@ -139,7 +139,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (theLyonsDenSoftware = new Label ("theLyonsDenSoftware",
                                                         TRANS("The Lyons\' Den Software")));
     theLyonsDenSoftware->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    theLyonsDenSoftware->setJustificationType (Justification::centredRight);
+    theLyonsDenSoftware->setJustificationType (Justification::centredLeft);
     theLyonsDenSoftware->setEditable (false, false, false);
     theLyonsDenSoftware->setColour (TextEditor::textColourId, Colours::black);
     theLyonsDenSoftware->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
@@ -223,8 +223,8 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
     generalNotesLabel->setBounds (0, 165, 218, 30);
     grabTimeButton->setBounds (218, 165, 282, 30);
-    versionNumberLabel->setBounds (0, 470, 250, 30);
-    theLyonsDenSoftware->setBounds (250, 470, 250, 30);
+    versionNumberLabel->setBounds (250, 470, 250, 30);
+    theLyonsDenSoftware->setBounds (0, 470, 250, 30);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -364,15 +364,15 @@ BEGIN_JUCER_METADATA
               buttonText="Grab Playhead Time" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 470 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="250 470 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         kerning="0" bold="0" italic="0" justification="33"/>
+         kerning="0" bold="0" italic="0" justification="34"/>
   <LABEL name="theLyonsDenSoftware" id="d0cfddad51f6f3" memberName="theLyonsDenSoftware"
-         virtualName="" explicitFocusOrder="0" pos="250 470 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 470 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="The Lyons' Den Software" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" kerning="0" bold="0" italic="0" justification="34"/>
+         fontsize="15" kerning="0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
