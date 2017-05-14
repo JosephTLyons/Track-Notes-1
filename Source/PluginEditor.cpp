@@ -166,6 +166,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     versionNumberLabelString += ProjectInfo::versionString;
     versionNumberLabel->setText(versionNumberLabelString, dontSendNotification);
 
+    // Get array of fonts on user's system
+    Font::findFonts(usersFontsResults);
+
     //[/Constructor]
 }
 
@@ -198,12 +201,12 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colour (0xff2a2a2a));
+    g.fillAll (Colour (0xff373737));
 
     //[UserPaint] Add your own custom painting code here..
 
     g.setColour(Colours::white);
-    g.setOpacity(0.2);
+    g.setOpacity(0.3);
     g.drawLine(30, 50, 470, 50, 1);
 
     //[/UserPaint]
@@ -317,7 +320,7 @@ BEGIN_JUCER_METADATA
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="500" initialHeight="500">
-  <BACKGROUND backgroundColour="ff2a2a2a"/>
+  <BACKGROUND backgroundColour="ff373737"/>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Track Notes" editableSingleClick="0"
