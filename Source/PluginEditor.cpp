@@ -233,19 +233,48 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == grabTimeButton)
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
-
-        AudioPlayHead::CurrentPositionInfo playHeadPosition;
-        //AudioPlayHead::getCurrentPosition(playHeadPosition);
         
-//        double totalSeconds = playHeadPosition.timeInSeconds;
+        // Make pointer
+        AudioProcessor *audioProcessorPtr = getAudioProcessor();
         
-        int minutes = (int) playHeadPosition.timeInSeconds;
-        int seconds = (int) playHeadPosition.timeInSeconds;
+        // Make struct
+        AudioPlayHead::CurrentPositionInfo positionInformation;
+        
+        // Pass struct and fill it
+        audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
+        
+        // Convert time into minutes and seconds;
+        int totalSeconds = positionInformation.timeInSeconds;
+        int hours   = totalSeconds / 3600;
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
 
         String temp = generalNotesEditor->getText();
+        
+        // Format and build timecode
         temp += "\n@";
+        
+        if(hours < 10)
+        {
+            temp += "0";
+        }
+        
+        temp += hours;
+        temp += ":";
+        
+        if(minutes < 10)
+        {
+            temp += "0";
+        }
+        
         temp += minutes;
         temp += ":";
+        
+        if(seconds < 10)
+        {
+            temp += "0";
+        }
+        
         temp += seconds;
         temp += " - ";
 
