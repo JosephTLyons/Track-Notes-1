@@ -203,7 +203,8 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
     //[UserPaint] Add your own custom painting code here..
 
     g.setColour(Colours::white);
-    g.drawLine(25, 50, 475, 50, 1);
+    g.setOpacity(0.2);
+    g.drawLine(30, 50, 470, 50, 1);
 
     //[/UserPaint]
 }
