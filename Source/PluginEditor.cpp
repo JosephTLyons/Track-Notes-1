@@ -252,7 +252,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         String temp = generalNotesEditor->getText();
         
         // Format and build timecode
-        temp += "\n@";
+        temp += "\n@ ";
         
         if(hours < 10)
         {
