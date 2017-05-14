@@ -201,6 +201,10 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
     g.fillAll (Colour (0xff2a2a2a));
 
     //[UserPaint] Add your own custom painting code here..
+
+    g.setColour(Colours::white);
+    g.drawLine(25, 50, 475, 50, 1);
+
     //[/UserPaint]
 }
 
@@ -210,15 +214,15 @@ void TrackNotesAudioProcessorEditor::resized()
     //[/UserPreResize]
 
     trackNotesLabel->setBounds (0, 0, 500, 50);
-    performersNameEditor->setBounds (218, 50, 282, 30);
-    instrumentPlayedEditor->setBounds (218, 85, 282, 30);
-    generalNotesEditor->setBounds (0, 190, 500, 280);
-    performersNameLabel->setBounds (0, 50, 218, 30);
-    microphonesUsedEditor->setBounds (218, 120, 282, 30);
-    instrumentPlayedLabel->setBounds (0, 85, 218, 30);
-    microphonesUsedLabel->setBounds (0, 120, 218, 30);
-    generalNotesLabel->setBounds (0, 155, 250, 30);
-    grabTimeButton->setBounds (218, 155, 282, 30);
+    performersNameEditor->setBounds (218, 60, 282, 30);
+    instrumentPlayedEditor->setBounds (218, 95, 282, 30);
+    generalNotesEditor->setBounds (0, 200, 500, 270);
+    performersNameLabel->setBounds (0, 60, 218, 30);
+    microphonesUsedEditor->setBounds (218, 130, 282, 30);
+    instrumentPlayedLabel->setBounds (0, 95, 218, 30);
+    microphonesUsedLabel->setBounds (0, 130, 218, 30);
+    generalNotesLabel->setBounds (0, 165, 218, 30);
+    grabTimeButton->setBounds (218, 165, 282, 30);
     versionNumberLabel->setBounds (0, 470, 250, 30);
     theLyonsDenSoftware->setBounds (250, 470, 250, 30);
     //[UserResized] Add your own custom resize handling here..
@@ -320,43 +324,43 @@ BEGIN_JUCER_METADATA
          fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
          justification="12"/>
   <TEXTEDITOR name="performersNameEditor" id="13c8f94f4dbdbdb0" memberName="performersNameEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 50 282 30" bkgcol="ff565454"
+              virtualName="" explicitFocusOrder="0" pos="218 60 282 30" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="instrumentPlayedEditor" id="271d4ec88d19c39d" memberName="instrumentPlayedEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 85 282 30" bkgcol="ff565454"
+              virtualName="" explicitFocusOrder="0" pos="218 95 282 30" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="769d422c67fe7990" memberName="generalNotesEditor"
-              virtualName="" explicitFocusOrder="0" pos="0 190 500 280" bkgcol="ff565454"
+              virtualName="" explicitFocusOrder="0" pos="0 200 500 270" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="performersNameLabel" id="aaab96b158ed2434" memberName="performersNameLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 50 218 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 60 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <TEXTEDITOR name="microphonesUsedEditor" id="2a589f1f2773c14f" memberName="microphonesUsedEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 120 282 30" bkgcol="ff565454"
+              virtualName="" explicitFocusOrder="0" pos="218 130 282 30" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="instrumentPlayedLabel" id="959979cf5ec73f4b" memberName="instrumentPlayedLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 85 218 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 95 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Instrument Played:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="microphonesUsedLabel" id="e982a8bc73696a9b" memberName="microphonesUsedLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 120 218 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 130 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Microphone(s) Used:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="generalNotesLabel" id="358938facaa251fc" memberName="generalNotesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 155 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 165 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="grabTimeButton" id="2d604f6be40451a7" memberName="grabTimeButton"
-              virtualName="" explicitFocusOrder="0" pos="218 155 282 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="218 165 282 30" bgColOff="ff393939"
               buttonText="Grab Playhead Time" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"

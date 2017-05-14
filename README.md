@@ -8,5 +8,4 @@ A simple plugin to hold your session and track notes.
 * Save info
 * Recall info
 * Graphics overhaul
-* A line (fading on ends) to separate title from rest of plugin
 * User picked fonts and font sizes?
