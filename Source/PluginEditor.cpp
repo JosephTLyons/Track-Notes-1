@@ -88,8 +88,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (microphonesUsedEditor = new TextEditor ("microphonesUsedEditor"));
-    microphonesUsedEditor->setMultiLine (true);
-    microphonesUsedEditor->setReturnKeyStartsNewLine (true);
+    microphonesUsedEditor->setMultiLine (false);
+    microphonesUsedEditor->setReturnKeyStartsNewLine (false);
     microphonesUsedEditor->setReadOnly (false);
     microphonesUsedEditor->setScrollbarsShown (true);
     microphonesUsedEditor->setCaretVisible (true);
@@ -148,7 +148,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 480);
+    setSize (500, 500);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -212,15 +212,15 @@ void TrackNotesAudioProcessorEditor::resized()
     trackNotesLabel->setBounds (0, 0, 500, 50);
     performersNameEditor->setBounds (218, 50, 282, 30);
     instrumentPlayedEditor->setBounds (218, 85, 282, 30);
-    generalNotesEditor->setBounds (0, 220, 500, 230);
+    generalNotesEditor->setBounds (0, 190, 500, 280);
     performersNameLabel->setBounds (0, 50, 218, 30);
-    microphonesUsedEditor->setBounds (218, 120, 282, 60);
+    microphonesUsedEditor->setBounds (218, 120, 282, 30);
     instrumentPlayedLabel->setBounds (0, 85, 218, 30);
     microphonesUsedLabel->setBounds (0, 120, 218, 30);
-    generalNotesLabel->setBounds (0, 185, 250, 30);
-    grabTimeButton->setBounds (218, 185, 282, 30);
-    versionNumberLabel->setBounds (0, 450, 250, 30);
-    theLyonsDenSoftware->setBounds (250, 450, 250, 30);
+    generalNotesLabel->setBounds (0, 155, 250, 30);
+    grabTimeButton->setBounds (218, 155, 282, 30);
+    versionNumberLabel->setBounds (0, 470, 250, 30);
+    theLyonsDenSoftware->setBounds (250, 470, 250, 30);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -233,48 +233,48 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == grabTimeButton)
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
-        
+
         // Make pointer
         AudioProcessor *audioProcessorPtr = getAudioProcessor();
-        
+
         // Make struct
         AudioPlayHead::CurrentPositionInfo positionInformation;
-        
+
         // Pass struct and fill it
         audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
-        
+
         // Convert time into minutes and seconds;
         int totalSeconds = positionInformation.timeInSeconds;
-        int hours   = totalSeconds / 3600;
-        int minutes = totalSeconds / 60;
-        int seconds = totalSeconds % 60;
+        int hours        = totalSeconds / 3600;
+        int minutes      = totalSeconds / 60;
+        int seconds      = totalSeconds % 60;
 
         String temp = generalNotesEditor->getText();
-        
+
         // Format and build timecode
         temp += "\n@ ";
-        
+
         if(hours < 10)
         {
             temp += "0";
         }
-        
+
         temp += hours;
         temp += ":";
-        
+
         if(minutes < 10)
         {
             temp += "0";
         }
-        
+
         temp += minutes;
         temp += ":";
-        
+
         if(seconds < 10)
         {
             temp += "0";
         }
-        
+
         temp += seconds;
         temp += " - ";
 
@@ -311,7 +311,7 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="500" initialHeight="480">
+                 fixedSize="1" initialWidth="500" initialHeight="500">
   <BACKGROUND backgroundColour="ff2a2a2a"/>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
@@ -328,7 +328,7 @@ BEGIN_JUCER_METADATA
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
               retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="new text editor" id="769d422c67fe7990" memberName="generalNotesEditor"
-              virtualName="" explicitFocusOrder="0" pos="0 220 500 230" bkgcol="ff565454"
+              virtualName="" explicitFocusOrder="0" pos="0 190 500 280" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="performersNameLabel" id="aaab96b158ed2434" memberName="performersNameLabel"
@@ -337,9 +337,9 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <TEXTEDITOR name="microphonesUsedEditor" id="2a589f1f2773c14f" memberName="microphonesUsedEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 120 282 60" bkgcol="ff565454"
-              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
-              retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
+              virtualName="" explicitFocusOrder="0" pos="218 120 282 30" bkgcol="ff565454"
+              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
+              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="instrumentPlayedLabel" id="959979cf5ec73f4b" memberName="instrumentPlayedLabel"
          virtualName="" explicitFocusOrder="0" pos="0 85 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Instrument Played:" editableSingleClick="0"
@@ -351,21 +351,21 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="generalNotesLabel" id="358938facaa251fc" memberName="generalNotesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 185 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 155 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="grabTimeButton" id="2d604f6be40451a7" memberName="grabTimeButton"
-              virtualName="" explicitFocusOrder="0" pos="218 185 282 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="218 155 282 30" bgColOff="ff393939"
               buttonText="Grab Playhead Time" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 450 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 470 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="theLyonsDenSoftware" id="d0cfddad51f6f3" memberName="theLyonsDenSoftware"
-         virtualName="" explicitFocusOrder="0" pos="250 450 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="250 470 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="The Lyons' Den Software" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" kerning="0" bold="0" italic="0" justification="34"/>
