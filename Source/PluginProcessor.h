@@ -55,7 +55,13 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    String *performersNameString = new String ();
+    String *instrumentPlayedString = new String ();
+    String *microphonesUsedString = new String ();
+    String *generalNotesString = new String ();
+    
 private:
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TrackNotesAudioProcessor)
 };

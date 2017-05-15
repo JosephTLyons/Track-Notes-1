@@ -153,6 +153,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     //[Constructor] You can add your own custom stuff here..
 
+    performersNameEditor->setText(*p.performersNameString);
+    instrumentPlayedEditor->setText(*p.instrumentPlayedString);
+    microphonesUsedEditor->setText(*p.microphonesUsedString);
+    generalNotesEditor->setText(*p.generalNotesString);
+    
     // Set up text editor font sizes
     fontSize = 20;
     performersNameEditor->setFont(fontSize);
@@ -168,7 +173,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
-    
+
     // Turn off button for standalone, since the code it calls will crash the application
     if(AudioProcessor::wrapperType_Standalone)
     {
@@ -247,7 +252,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == grabTimeButton)
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
-        
+
         // Make pointer
         AudioProcessor *audioProcessorPtr = getAudioProcessor();
 
