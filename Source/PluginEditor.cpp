@@ -168,6 +168,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
+    
+    // Turn off button for standalone, since the code it calls will crash the application
+    if(AudioProcessor::wrapperType_Standalone)
+    {
+        grabTimeButton->setEnabled(false);
+    }
 
     //[/Constructor]
 }
@@ -241,7 +247,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == grabTimeButton)
     {
         //[UserButtonCode_grabTimeButton] -- add your button handler code here..
-
+        
         // Make pointer
         AudioProcessor *audioProcessorPtr = getAudioProcessor();
 
