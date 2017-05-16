@@ -34,10 +34,10 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Link String pointers between processor and editor class by pointing each one to the same string
-    p.performersNameString   = &textForPerformersNameEditor;
-    p.instrumentPlayedString = &textForInstrumentPlayedEditor;
-    p.microphonesUsedString  = &textForMicrophonesUsedEditor;
-    p.generalNotesString     = &textForGeneralNotesEditor;
+    p.performersNameString   = textForPerformersNameEditor   = new String;
+    p.instrumentPlayedString = textForInstrumentPlayedEditor = new String;
+    p.microphonesUsedString  = textForMicrophonesUsedEditor  = new String;
+    p.generalNotesString     = textForGeneralNotesEditor     = new String;
 
     addAndMakeVisible (performersNameEditor = new TextEditor ("performersNameEditor"));
     performersNameEditor->setMultiLine (false);
@@ -49,7 +49,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    performersNameEditor->setText (textForPerformersNameEditor);
+    performersNameEditor->setText (*textForPerformersNameEditor);
     performersNameEditor->addListener(this);
 
     addAndMakeVisible (instrumentPlayedEditor = new TextEditor ("instrumentPlayedEditor"));
@@ -62,7 +62,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    instrumentPlayedEditor->setText (textForInstrumentPlayedEditor);
+    instrumentPlayedEditor->setText (*textForInstrumentPlayedEditor);
     instrumentPlayedEditor->addListener(this);
 
     addAndMakeVisible (microphonesUsedEditor = new TextEditor ("microphonesUsedEditor"));
@@ -75,7 +75,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    microphonesUsedEditor->setText (textForMicrophonesUsedEditor);
+    microphonesUsedEditor->setText (*textForMicrophonesUsedEditor);
     microphonesUsedEditor->addListener(this);
 
     addAndMakeVisible (generalNotesEditor = new TextEditor ("generalNotesEditor"));
@@ -88,7 +88,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    generalNotesEditor->setText (textForGeneralNotesEditor);
+    generalNotesEditor->setText (*textForGeneralNotesEditor);
     generalNotesEditor->addListener(this);
 
     //[/Constructor_pre]
@@ -205,6 +205,17 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 
 
     //[Destructor]. You can add your own custom destruction code here..
+    
+    delete textForPerformersNameEditor;
+    delete textForInstrumentPlayedEditor;
+    delete textForMicrophonesUsedEditor;
+    delete textForGeneralNotesEditor;
+    
+    textForPerformersNameEditor = nullptr;
+    textForInstrumentPlayedEditor = nullptr;
+    textForMicrophonesUsedEditor = nullptr;
+    textForGeneralNotesEditor = nullptr;
+    
     //[/Destructor]
 }
 
@@ -321,10 +332,13 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 void TrackNotesAudioProcessorEditor::textEditorTextChanged(juce::TextEditor &textEditor)
 {
-    textForPerformersNameEditor   = performersNameEditor->getText();
-    textForInstrumentPlayedEditor = instrumentPlayedEditor->getText();
-    textForMicrophonesUsedEditor  = microphonesUsedEditor->getText();
-    textForGeneralNotesEditor     = generalNotesEditor->getText();
+    *textForPerformersNameEditor   = performersNameEditor->getText();
+    *textForInstrumentPlayedEditor = instrumentPlayedEditor->getText();
+    *textForMicrophonesUsedEditor  = microphonesUsedEditor->getText();
+    *textForGeneralNotesEditor     = generalNotesEditor->getText();
+    
+//    microphonesUsedEditor->setText(textForMicrophonesUsedEditor);
+//    generalNotesEditor->setText(textForGeneralNotesEditor);
 }
 
 //[/MiscUserCode]

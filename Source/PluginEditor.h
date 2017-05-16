@@ -64,10 +64,10 @@ private:
     int fontSize;
     Array<Font> usersFontsResults;
 
-    String textForPerformersNameEditor;
-    String textForInstrumentPlayedEditor;
-    String textForMicrophonesUsedEditor;
-    String textForGeneralNotesEditor;
+    String *textForPerformersNameEditor;
+    String *textForInstrumentPlayedEditor;
+    String *textForMicrophonesUsedEditor;
+    String *textForGeneralNotesEditor;
 
     ScopedPointer<TextEditor> performersNameEditor;
     ScopedPointer<TextEditor> instrumentPlayedEditor;

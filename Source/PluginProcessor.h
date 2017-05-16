@@ -55,10 +55,10 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    ScopedPointer<String> performersNameString;
-    ScopedPointer<String> instrumentPlayedString;
-    ScopedPointer<String> microphonesUsedString;
-    ScopedPointer<String> generalNotesString;
+    String *performersNameString;
+    String *instrumentPlayedString;
+    String *microphonesUsedString;
+    String *generalNotesString;
     
 private:
     
