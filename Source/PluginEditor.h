@@ -72,7 +72,7 @@ private:
     ScopedPointer<Label> instrumentPlayedLabel;
     ScopedPointer<Label> microphonesUsedLabel;
     ScopedPointer<Label> generalNotesLabel;
-    ScopedPointer<TextButton> grabTimeButton;
+    ScopedPointer<TextButton> insertTimeStampButton;
     ScopedPointer<Label> versionNumberLabel;
     ScopedPointer<Label> theLyonsDenSoftware;
 

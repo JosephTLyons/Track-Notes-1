@@ -10,6 +10,7 @@ A simple plugin to hold your session and track notes.
 * Garageband playhead info for time grab
 * Test other DAWs
 * Graphics overhaul - revise separation line?
+* Turn off Insert Timestamp button for standalone (doesn't really matter since I wont put out a standalone version)
 
 Future features (after v1.0.0 release)
 * Ability to load images
