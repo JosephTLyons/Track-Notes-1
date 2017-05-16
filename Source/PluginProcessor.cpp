@@ -166,10 +166,10 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     XmlElement xml ("MYPLUGINSETTINGS");
     
     // add some attributes to it..
-    xml.setAttribute ("performersName", *performersNameString);
-    xml.setAttribute ("instrumentPlayed", *instrumentPlayedString);
-    xml.setAttribute ("microphonesUsed", *microphonesUsedString);
-    xml.setAttribute ("generalNotes", *generalNotesString);
+    xml.setAttribute ("performersName", performersNameEditorPtr->getText());
+    xml.setAttribute ("instrumentPlayed", instrumentPlayedEditorPtr->getText());
+    xml.setAttribute ("microphonesUsed", microphonesUsedEditorPtr->getText());
+    xml.setAttribute ("generalNotes", generalNotesEditorPtr->getText());
     
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
@@ -202,10 +202,10 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
         {
             // ok, now pull our strings
             
-            *performersNameString = xmlState->getStringAttribute("performersName", *performersNameString);
-            *instrumentPlayedString = xmlState->getStringAttribute("instrumentPlayed", *instrumentPlayedString);
-            *microphonesUsedString = xmlState->getStringAttribute("microphonesUsed", *microphonesUsedString);
-            *generalNotesString = xmlState->getStringAttribute("generalNotes", *generalNotesString);
+//            *performersNameEditorPtr->setText(xmlState->getStringAttribute("performersName", *performersNameEditorPtr-getT);)
+//            *instrumentPlayedEditorPtr = xmlState->getStringAttribute("instrumentPlayed", *instrumentPlayedEditorPtr);
+//            *microphonesUsedString = xmlState->getStringAttribute("microphonesUsed", *microphonesUsedString);
+//            *generalNotesString = xmlState->getStringAttribute("generalNotes", *generalNotesString);
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)
