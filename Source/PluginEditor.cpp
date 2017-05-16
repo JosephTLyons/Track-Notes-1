@@ -32,17 +32,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
-    //[/Constructor_pre]
-
-    addAndMakeVisible (trackNotesLabel = new Label ("trackNotesLabel",
-                                                    TRANS("Track Notes")));
-    trackNotesLabel->setFont (Font ("Arial", 48.70f, Font::plain).withTypefaceStyle ("Regular"));
-    trackNotesLabel->setJustificationType (Justification::centredTop);
-    trackNotesLabel->setEditable (false, false, false);
-    trackNotesLabel->setColour (Label::textColourId, Colours::white);
-    trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
-    trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
+    
     addAndMakeVisible (performersNameEditor = new TextEditor ("performersNameEditor"));
     performersNameEditor->setMultiLine (false);
     performersNameEditor->setReturnKeyStartsNewLine (false);
@@ -54,7 +44,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
     performersNameEditor->setText (String());
-
+    
     addAndMakeVisible (instrumentPlayedEditor = new TextEditor ("instrumentPlayedEditor"));
     instrumentPlayedEditor->setMultiLine (false);
     instrumentPlayedEditor->setReturnKeyStartsNewLine (false);
@@ -66,27 +56,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
     instrumentPlayedEditor->setText (String());
-
-    addAndMakeVisible (generalNotesEditor = new TextEditor ("generalNotesEditor"));
-    generalNotesEditor->setMultiLine (true);
-    generalNotesEditor->setReturnKeyStartsNewLine (true);
-    generalNotesEditor->setReadOnly (false);
-    generalNotesEditor->setScrollbarsShown (true);
-    generalNotesEditor->setCaretVisible (true);
-    generalNotesEditor->setPopupMenuEnabled (true);
-    generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
-    generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    generalNotesEditor->setText (String());
-
-    addAndMakeVisible (performersNameLabel = new Label ("performersNameLabel",
-                                                        TRANS("Performer\'s Name:")));
-    performersNameLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    performersNameLabel->setJustificationType (Justification::centredLeft);
-    performersNameLabel->setEditable (false, false, false);
-    performersNameLabel->setColour (TextEditor::textColourId, Colours::black);
-    performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
+    
     addAndMakeVisible (microphonesUsedEditor = new TextEditor ("microphonesUsedEditor"));
     microphonesUsedEditor->setMultiLine (false);
     microphonesUsedEditor->setReturnKeyStartsNewLine (false);
@@ -98,6 +68,37 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
     microphonesUsedEditor->setText (String());
+    
+    addAndMakeVisible (generalNotesEditor = new TextEditor ("generalNotesEditor"));
+    generalNotesEditor->setMultiLine (true);
+    generalNotesEditor->setReturnKeyStartsNewLine (true);
+    generalNotesEditor->setReadOnly (false);
+    generalNotesEditor->setScrollbarsShown (true);
+    generalNotesEditor->setCaretVisible (true);
+    generalNotesEditor->setPopupMenuEnabled (true);
+    generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
+    generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    generalNotesEditor->setText (String());
+    
+    //[/Constructor_pre]
+
+    addAndMakeVisible (trackNotesLabel = new Label ("trackNotesLabel",
+                                                    TRANS("Track Notes")));
+    trackNotesLabel->setFont (Font ("Arial", 48.70f, Font::plain).withTypefaceStyle ("Regular"));
+    trackNotesLabel->setJustificationType (Justification::centredTop);
+    trackNotesLabel->setEditable (false, false, false);
+    trackNotesLabel->setColour (Label::textColourId, Colours::white);
+    trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
+    trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (performersNameLabel = new Label ("performersNameLabel",
+                                                        TRANS("Performer\'s Name:")));
+    performersNameLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    performersNameLabel->setJustificationType (Justification::centredLeft);
+    performersNameLabel->setEditable (false, false, false);
+    performersNameLabel->setColour (TextEditor::textColourId, Colours::black);
+    performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (instrumentPlayedLabel = new Label ("instrumentPlayedLabel",
                                                           TRANS("Instrument Played:")));
@@ -175,14 +176,16 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+    
+    performersNameEditor = nullptr;
+    instrumentPlayedEditor = nullptr;
+    microphonesUsedEditor = nullptr;
+    generalNotesEditor = nullptr;
+    
     //[/Destructor_pre]
 
     trackNotesLabel = nullptr;
-    performersNameEditor = nullptr;
-    instrumentPlayedEditor = nullptr;
-    generalNotesEditor = nullptr;
     performersNameLabel = nullptr;
-    microphonesUsedEditor = nullptr;
     instrumentPlayedLabel = nullptr;
     microphonesUsedLabel = nullptr;
     generalNotesLabel = nullptr;
@@ -215,14 +218,16 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
 void TrackNotesAudioProcessorEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
+
+    performersNameEditor->setBounds (218, 60, 282, 30);
+    instrumentPlayedEditor->setBounds (218, 95, 282, 30);
+    microphonesUsedEditor->setBounds (218, 130, 282, 30);
+    generalNotesEditor->setBounds (0, 200, 500, 270);
+
     //[/UserPreResize]
 
     trackNotesLabel->setBounds (0, 0, 500, 50);
-    performersNameEditor->setBounds (218, 60, 282, 30);
-    instrumentPlayedEditor->setBounds (218, 95, 282, 30);
-    generalNotesEditor->setBounds (0, 200, 500, 270);
     performersNameLabel->setBounds (0, 60, 218, 30);
-    microphonesUsedEditor->setBounds (218, 130, 282, 30);
     instrumentPlayedLabel->setBounds (0, 95, 218, 30);
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
     generalNotesLabel->setBounds (0, 165, 218, 30);
@@ -241,58 +246,58 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == insertTimeStampButton)
     {
         //[UserButtonCode_insertTimeStampButton] -- add your button handler code here..
-        
+
         // Make pointer
         AudioProcessor *audioProcessorPtr = getAudioProcessor();
-        
+
         // Make struct
         AudioPlayHead::CurrentPositionInfo positionInformation;
-        
+
         // Pass struct and fill it
         audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
-        
+
         // Convert time into minutes and seconds;
         int totalSeconds = positionInformation.timeInSeconds;
         int hours        = totalSeconds / 3600;
         int minutes      = totalSeconds / 60;
         int seconds      = totalSeconds % 60;
-        
+
         String temp = generalNotesEditor->getText();
-        
+
         // Format and build timecode
         temp += "\n@ ";
-        
+
         if(hours < 10)
         {
             temp += "0";
         }
-        
+
         temp += hours;
         temp += ":";
-        
+
         if(minutes < 10)
         {
             temp += "0";
         }
-        
+
         temp += minutes;
         temp += ":";
-        
+
         if(seconds < 10)
         {
             temp += "0";
         }
-        
+
         temp += seconds;
         temp += " - ";
-        
+
         generalNotesEditor->setText(temp);
-        
+
         // Put editor into focus and then move caret to end,
         // Which is where new timestamp has been inserted
         generalNotesEditor->grabKeyboardFocus();
         generalNotesEditor->moveCaretToEnd();
-        
+
         //[/UserButtonCode_insertTimeStampButton]
     }
 
@@ -327,27 +332,11 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
          justification="12"/>
-  <TEXTEDITOR name="performersNameEditor" id="13c8f94f4dbdbdb0" memberName="performersNameEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 60 282 30" bkgcol="ff565454"
-              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
-              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="instrumentPlayedEditor" id="271d4ec88d19c39d" memberName="instrumentPlayedEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 95 282 30" bkgcol="ff565454"
-              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
-              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="generalNotesEditor" id="769d422c67fe7990" memberName="generalNotesEditor"
-              virtualName="" explicitFocusOrder="0" pos="0 200 500 270" bkgcol="ff565454"
-              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
-              retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="performersNameLabel" id="aaab96b158ed2434" memberName="performersNameLabel"
          virtualName="" explicitFocusOrder="0" pos="0 60 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="microphonesUsedEditor" id="2a589f1f2773c14f" memberName="microphonesUsedEditor"
-              virtualName="" explicitFocusOrder="0" pos="218 130 282 30" bkgcol="ff565454"
-              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
-              retKeyStartsLine="0" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
   <LABEL name="instrumentPlayedLabel" id="959979cf5ec73f4b" memberName="instrumentPlayedLabel"
          virtualName="" explicitFocusOrder="0" pos="0 95 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Instrument Played:" editableSingleClick="0"

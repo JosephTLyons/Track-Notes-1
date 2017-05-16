@@ -60,15 +60,16 @@ private:
     int fontSize;
     Array<Font> usersFontsResults;
 
+    ScopedPointer<TextEditor> performersNameEditor;
+    ScopedPointer<TextEditor> instrumentPlayedEditor;
+    ScopedPointer<TextEditor> microphonesUsedEditor;
+    ScopedPointer<TextEditor> generalNotesEditor;
+
     //[/UserVariables]
 
     //==============================================================================
     ScopedPointer<Label> trackNotesLabel;
-    ScopedPointer<TextEditor> performersNameEditor;
-    ScopedPointer<TextEditor> instrumentPlayedEditor;
-    ScopedPointer<TextEditor> generalNotesEditor;
     ScopedPointer<Label> performersNameLabel;
-    ScopedPointer<TextEditor> microphonesUsedEditor;
     ScopedPointer<Label> instrumentPlayedLabel;
     ScopedPointer<Label> microphonesUsedLabel;
     ScopedPointer<Label> generalNotesLabel;
