@@ -35,6 +35,7 @@
                                                                     //[/Comments]
 */
 class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor,
+                                        public TextEditorListener,
                                         public ButtonListener
 {
 public:
@@ -44,6 +45,9 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    
+    void textEditorTextChanged(juce::TextEditor &textEditor) override;
+    
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -59,11 +63,11 @@ private:
     String versionNumberLabelString;
     int fontSize;
     Array<Font> usersFontsResults;
-    
-    ScopedPointer<String> textForPerformersNameEditor;
-    ScopedPointer<String> textForInstrumentPlayedEditor;
-    ScopedPointer<String> textForMicrophonesUsedEditor;
-    ScopedPointer<String> textForGeneralNotesEditor;
+
+    String textForPerformersNameEditor;
+    String textForInstrumentPlayedEditor;
+    String textForMicrophonesUsedEditor;
+    String textForGeneralNotesEditor;
 
     ScopedPointer<TextEditor> performersNameEditor;
     ScopedPointer<TextEditor> instrumentPlayedEditor;
