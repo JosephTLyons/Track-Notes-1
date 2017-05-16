@@ -251,8 +251,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         // Pass struct and fill it
         audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
         
-        audioProcessorPtr->
-        
         // Convert time into minutes and seconds;
         int totalSeconds = positionInformation.timeInSeconds;
         int hours        = totalSeconds / 3600;
