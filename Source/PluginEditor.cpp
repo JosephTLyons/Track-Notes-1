@@ -33,6 +33,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 {
     //[Constructor_pre] You can add your own custom stuff here..
     
+    textForPerformersNameEditor   = p.performersNameString   = new String();
+    textForInstrumentPlayedEditor = p.instrumentPlayedString = new String();
+    textForMicrophonesUsedEditor  = p.microphonesUsedString  = new String();
+    textForGeneralNotesEditor     = p.generalNotesString     = new String();
+    
     addAndMakeVisible (performersNameEditor = new TextEditor ("performersNameEditor"));
     performersNameEditor->setMultiLine (false);
     performersNameEditor->setReturnKeyStartsNewLine (false);
@@ -43,7 +48,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    performersNameEditor->setText (String());
+    performersNameEditor->setText (*textForPerformersNameEditor);
     
     addAndMakeVisible (instrumentPlayedEditor = new TextEditor ("instrumentPlayedEditor"));
     instrumentPlayedEditor->setMultiLine (false);
@@ -55,7 +60,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    instrumentPlayedEditor->setText (String());
+    instrumentPlayedEditor->setText (*textForInstrumentPlayedEditor);
     
     addAndMakeVisible (microphonesUsedEditor = new TextEditor ("microphonesUsedEditor"));
     microphonesUsedEditor->setMultiLine (false);
@@ -67,7 +72,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    microphonesUsedEditor->setText (String());
+    microphonesUsedEditor->setText (*textForMicrophonesUsedEditor);
     
     addAndMakeVisible (generalNotesEditor = new TextEditor ("generalNotesEditor"));
     generalNotesEditor->setMultiLine (true);
@@ -79,7 +84,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    generalNotesEditor->setText (String());
+    generalNotesEditor->setText (*textForGeneralNotesEditor);
     
     //[/Constructor_pre]
 

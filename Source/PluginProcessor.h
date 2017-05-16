@@ -57,10 +57,10 @@ public:
 
     void getStuff();
     
-    ScopedPointer<String> performersNameString   = new String ();
-    ScopedPointer<String> instrumentPlayedString = new String ();
-    ScopedPointer<String> microphonesUsedString  = new String ();
-    ScopedPointer<String> generalNotesString     = new String ();
+    ScopedPointer<String> performersNameString;
+    ScopedPointer<String> instrumentPlayedString;
+    ScopedPointer<String> microphonesUsedString;
+    ScopedPointer<String> generalNotesString;
     
 private:
     

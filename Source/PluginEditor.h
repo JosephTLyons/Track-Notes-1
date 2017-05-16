@@ -59,6 +59,11 @@ private:
     String versionNumberLabelString;
     int fontSize;
     Array<Font> usersFontsResults;
+    
+    ScopedPointer<String> textForPerformersNameEditor;
+    ScopedPointer<String> textForInstrumentPlayedEditor;
+    ScopedPointer<String> textForMicrophonesUsedEditor;
+    ScopedPointer<String> textForGeneralNotesEditor;
 
     ScopedPointer<TextEditor> performersNameEditor;
     ScopedPointer<TextEditor> instrumentPlayedEditor;
