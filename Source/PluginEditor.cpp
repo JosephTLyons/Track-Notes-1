@@ -332,10 +332,25 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 void TrackNotesAudioProcessorEditor::textEditorTextChanged(juce::TextEditor &textEditor)
 {
-    *textForPerformersNameEditor   = performersNameEditor->getText();
-    *textForInstrumentPlayedEditor = instrumentPlayedEditor->getText();
-    *textForMicrophonesUsedEditor  = microphonesUsedEditor->getText();
-    *textForGeneralNotesEditor     = generalNotesEditor->getText();
+    if(textEditor.getName() == "performersNameEditor")
+    {
+        *textForPerformersNameEditor = performersNameEditor->getText();
+    }
+    
+    else if(textEditor.getName() == "instrumentPlayedEditor")
+    {
+        *textForInstrumentPlayedEditor = instrumentPlayedEditor->getText();
+    }
+    
+    else if(textEditor.getName() == "microphonesUsedEditor")
+    {
+        *textForMicrophonesUsedEditor = microphonesUsedEditor->getText();
+    }
+    
+    else if(textEditor.getName() == "generalNotesEditor")
+    {
+        *textForGeneralNotesEditor = generalNotesEditor->getText();
+    }
     
 //    microphonesUsedEditor->setText(textForMicrophonesUsedEditor);
 //    generalNotesEditor->setText(textForGeneralNotesEditor);
