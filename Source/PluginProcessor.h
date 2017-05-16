@@ -55,10 +55,12 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    String *performersNameString = new String ();
-    String *instrumentPlayedString = new String ();
-    String *microphonesUsedString = new String ();
-    String *generalNotesString = new String ();
+    void getStuff();
+    
+    ScopedPointer<String> performersNameString   = new String ();
+    ScopedPointer<String> instrumentPlayedString = new String ();
+    ScopedPointer<String> microphonesUsedString  = new String ();
+    ScopedPointer<String> generalNotesString     = new String ();
     
 private:
     

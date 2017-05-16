@@ -153,11 +153,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     //[Constructor] You can add your own custom stuff here..
 
-    performersNameEditor->setText(*p.performersNameString);
-    instrumentPlayedEditor->setText(*p.instrumentPlayedString);
-    microphonesUsedEditor->setText(*p.microphonesUsedString);
-    generalNotesEditor->setText(*p.generalNotesString);
-
     // Set up text editor font sizes
     fontSize = 20;
     performersNameEditor->setFont(fontSize);
@@ -255,6 +250,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         
         // Pass struct and fill it
         audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
+        
+        audioProcessorPtr->
         
         // Convert time into minutes and seconds;
         int totalSeconds = positionInformation.timeInSeconds;
