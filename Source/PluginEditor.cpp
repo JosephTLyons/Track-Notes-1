@@ -33,12 +33,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
-    // Link String pointers between processor and editor class by pointing each one to the same string
-
-    p.performersNameEditorPtr = new TextEditor;
+    // Point TextEditors Ptrs of processor class to actual GUI TextEditors in Editor class
+    p.performersNameEditorPtr   = new TextEditor;
     p.instrumentPlayedEditorPtr = new TextEditor;
-    p.microphonesUsedEditorPtr = new TextEditor;
-    p.generalNotesEditorPtr = new TextEditor;
+    p.microphonesUsedEditorPtr  = new TextEditor;
+    p.generalNotesEditorPtr     = new TextEditor;
     
     addAndMakeVisible (performersNameEditor = p.performersNameEditorPtr);
     performersNameEditor->setMultiLine (false);
@@ -157,11 +156,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     //[Constructor] You can add your own custom stuff here..
 
-    p.performersNameEditorPtr   = performersNameEditor;
-    p.instrumentPlayedEditorPtr = instrumentPlayedEditor;
-    p.microphonesUsedEditorPtr  = microphonesUsedEditor;
-    p.generalNotesEditorPtr     = generalNotesEditor;
-    
     // Set up text editor font sizes
     fontSize = 20;
     performersNameEditor->setFont(fontSize);
