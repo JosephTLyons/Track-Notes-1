@@ -1,8 +1,15 @@
 # Track-Notes
 A simple plugin to hold your session and track notes.
 
+## Bugs:
+### VST in Reaper:
+* Spacebar focus is being stolen
+
+### AU in Garageband
+* Insert Timestamp is broken
+* Crashes DAW on reopening a window
+
 ## Things to do before release:
-* Save info / Recall info - connect values from text editors to processor class, move string pointers to the private and use getter/setters
 * Make string pointers private
 * Rename all strings and string pointers with Ptr
 * Make setter and getter methods for processor class strings
