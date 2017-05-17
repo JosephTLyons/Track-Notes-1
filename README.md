@@ -13,6 +13,7 @@ A simple plugin to hold your session and track notes.
 * Crashes DAW on reopening a window
 
 ## Things to do before release:
+* Append pointer items with Ptr
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 

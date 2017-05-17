@@ -6,13 +6,13 @@
               buildVST="1" buildVST3="0" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" buildStandalone="1" enableIAA="0" pluginName="Track Notes"
               pluginDesc="A simple plugin to hold your session and track notes."
-              pluginManufacturer="Lyons Den" pluginManufacturerCode="Manu"
+              pluginManufacturer="The Lyons Den" pluginManufacturerCode="Manu"
               pluginCode="Tq7i" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
-              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
+              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="1"
               pluginAUExportPrefix="TrackNotesAU" pluginRTASCategory="" aaxIdentifier="com.TheLyonsDen.TrackNotes"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1"
-              companyEmail="JosephTLyons@gmail.com" companyName="TheLyonsDen"
-              pluginAUMainType="Utility">
+              companyEmail="JosephTLyons@gmail.com" companyName="The Lyons Den"
+              pluginAUMainType="">
   <MAINGROUP id="t5b0Im" name="Track Notes">
     <GROUP id="{38239DC4-010A-CAC1-0DF6-E5D31B4A25BE}" name="Source">
       <FILE id="LTSZaj" name="README.md" compile="0" resource="1" file="README.md"/>

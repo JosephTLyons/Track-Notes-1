@@ -64,6 +64,7 @@ private:
     SafePointer<TextEditor> performersNameEditor;
     SafePointer<TextEditor> instrumentPlayedEditor;
     SafePointer<TextEditor> microphonesUsedEditor;
+    SafePointer<TextEditor> timestampedNotesEditor;
     SafePointer<TextEditor> generalNotesEditor;
 
     //[/UserVariables]
@@ -73,10 +74,11 @@ private:
     ScopedPointer<Label> performersNameLabel;
     ScopedPointer<Label> instrumentPlayedLabel;
     ScopedPointer<Label> microphonesUsedLabel;
-    ScopedPointer<Label> generalNotesLabel;
+    ScopedPointer<Label> timestampedNotesLabel;
     ScopedPointer<TextButton> insertTimeStampButton;
     ScopedPointer<Label> versionNumberLabel;
     ScopedPointer<Label> theLyonsDenSoftware;
+    ScopedPointer<Label> generalNotesLabel;
 
 
     //==============================================================================

@@ -55,9 +55,15 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
+//    TextEditor getPerformersNameEditor()   { return performersNameEditor; }
+//    TextEditor getInstrumentPlayedEditor() { return instrumentPlayedEditor; }
+//    TextEditor getMicrophonesUsedEditor()  { return microphonesUsedEditor; }
+//    TextEditor getGeneralNotesEditor()     { return generalNotesEditor; }
+    
     TextEditor performersNameEditor;
     TextEditor instrumentPlayedEditor;
     TextEditor microphonesUsedEditor;
+    TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
 private:

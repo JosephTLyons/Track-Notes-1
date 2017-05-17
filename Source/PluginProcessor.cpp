@@ -150,7 +150,8 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("performersName", performersNameEditor.getText());
     xml.setAttribute ("instrumentPlayed", instrumentPlayedEditor.getText());
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
-    xml.setAttribute ("generalNotes", generalNotesEditor.getText());
+    xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
+    xml.setAttribute("generalNotes", generalNotesEditor.getText());
     
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
@@ -186,6 +187,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             performersNameEditor.setText(xmlState->getStringAttribute("performersName"));
             instrumentPlayedEditor.setText(xmlState->getStringAttribute("instrumentPlayed"));
             microphonesUsedEditor.setText(xmlState->getStringAttribute("microphonesUsed"));
+            timestampedNotesEditor.setText(xmlState->getStringAttribute("timestampedNotes"));
             generalNotesEditor.setText(xmlState->getStringAttribute("generalNotes"));
             
             // Now reload our parameters..

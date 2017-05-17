@@ -34,7 +34,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Point TextEditors Ptrs of processor class to actual GUI TextEditors in Editor class
-    
+
     addAndMakeVisible (performersNameEditor = &p.performersNameEditor);
     performersNameEditor->setMultiLine (false);
     performersNameEditor->setReturnKeyStartsNewLine (false);
@@ -45,7 +45,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    
+
 
     addAndMakeVisible (instrumentPlayedEditor = &p.instrumentPlayedEditor);
     instrumentPlayedEditor->setMultiLine (false);
@@ -69,6 +69,17 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
+    addAndMakeVisible (timestampedNotesEditor = &p.timestampedNotesEditor);
+    timestampedNotesEditor->setMultiLine (true);
+    timestampedNotesEditor->setReturnKeyStartsNewLine (true);
+    timestampedNotesEditor->setReadOnly (false);
+    timestampedNotesEditor->setScrollbarsShown (true);
+    timestampedNotesEditor->setCaretVisible (true);
+    timestampedNotesEditor->setPopupMenuEnabled (true);
+    timestampedNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    timestampedNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
+    timestampedNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+
     addAndMakeVisible (generalNotesEditor = &p.generalNotesEditor);
     generalNotesEditor->setMultiLine (true);
     generalNotesEditor->setReturnKeyStartsNewLine (true);
@@ -79,18 +90,20 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    
+
     // Set up text editor font sizes
     fontSize = 20;
     performersNameEditor->setFont(fontSize);
     instrumentPlayedEditor->setFont(fontSize);
     microphonesUsedEditor->setFont(fontSize);
+    timestampedNotesEditor->setFont(fontSize);
     generalNotesEditor->setFont(fontSize);
-    
+
     // Update TextEditors after font size change
     performersNameEditor->setText(performersNameEditor->getText());
     instrumentPlayedEditor->setText(instrumentPlayedEditor->getText());
     microphonesUsedEditor->setText(microphonesUsedEditor->getText());
+    timestampedNotesEditor->setText(timestampedNotesEditor->getText());
     generalNotesEditor->setText(generalNotesEditor->getText());
 
     //[/Constructor_pre]
@@ -128,13 +141,13 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedLabel->setColour (TextEditor::textColourId, Colours::black);
     microphonesUsedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (generalNotesLabel = new Label ("generalNotesLabel",
-                                                      TRANS("General Notes:")));
-    generalNotesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    generalNotesLabel->setJustificationType (Justification::centredLeft);
-    generalNotesLabel->setEditable (false, false, false);
-    generalNotesLabel->setColour (TextEditor::textColourId, Colours::black);
-    generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    addAndMakeVisible (timestampedNotesLabel = new Label ("timestampedNotesLabel",
+                                                          TRANS("Timestamped Notes:")));
+    timestampedNotesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    timestampedNotesLabel->setJustificationType (Justification::centredLeft);
+    timestampedNotesLabel->setEditable (false, false, false);
+    timestampedNotesLabel->setColour (TextEditor::textColourId, Colours::black);
+    timestampedNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (insertTimeStampButton = new TextButton ("insertTimeStampButton"));
     insertTimeStampButton->setButtonText (TRANS("Insert Timestamp"));
@@ -157,11 +170,19 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     theLyonsDenSoftware->setColour (TextEditor::textColourId, Colours::black);
     theLyonsDenSoftware->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    addAndMakeVisible (generalNotesLabel = new Label ("generalNotesLabel",
+                                                      TRANS("General Notes:")));
+    generalNotesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    generalNotesLabel->setJustificationType (Justification::centred);
+    generalNotesLabel->setEditable (false, false, false);
+    generalNotesLabel->setColour (TextEditor::textColourId, Colours::black);
+    generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 500);
+    setSize (500, 570);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -181,10 +202,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-    
+
     performersNameEditor = nullptr;
     instrumentPlayedEditor = nullptr;
     microphonesUsedEditor = nullptr;
+    timestampedNotesEditor = nullptr;
     generalNotesEditor = nullptr;
 
     //[/Destructor_pre]
@@ -193,14 +215,15 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     performersNameLabel = nullptr;
     instrumentPlayedLabel = nullptr;
     microphonesUsedLabel = nullptr;
-    generalNotesLabel = nullptr;
+    timestampedNotesLabel = nullptr;
     insertTimeStampButton = nullptr;
     versionNumberLabel = nullptr;
     theLyonsDenSoftware = nullptr;
+    generalNotesLabel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
-    
+
     //[/Destructor]
 }
 
@@ -228,7 +251,8 @@ void TrackNotesAudioProcessorEditor::resized()
     performersNameEditor->setBounds (218, 60, 282, 30);
     instrumentPlayedEditor->setBounds (218, 95, 282, 30);
     microphonesUsedEditor->setBounds (218, 130, 282, 30);
-    generalNotesEditor->setBounds (0, 200, 500, 270);
+    timestampedNotesEditor->setBounds (0, 200, 500, 150);
+    generalNotesEditor->setBounds (0, 390, 500, 150);
 
     //[/UserPreResize]
 
@@ -236,10 +260,11 @@ void TrackNotesAudioProcessorEditor::resized()
     performersNameLabel->setBounds (0, 60, 218, 30);
     instrumentPlayedLabel->setBounds (0, 95, 218, 30);
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
-    generalNotesLabel->setBounds (0, 165, 218, 30);
+    timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
-    versionNumberLabel->setBounds (250, 470, 250, 30);
-    theLyonsDenSoftware->setBounds (0, 470, 250, 30);
+    versionNumberLabel->setBounds (250, 540, 250, 30);
+    theLyonsDenSoftware->setBounds (0, 540, 250, 30);
+    generalNotesLabel->setBounds (0, 355, 500, 30);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -268,7 +293,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         int minutes      = totalSeconds / 60;
         int seconds      = totalSeconds % 60;
 
-        String temp = generalNotesEditor->getText();
+        String temp = timestampedNotesEditor->getText();
 
         // Format and build timecode
         temp += "\n@ ";
@@ -297,12 +322,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         temp += seconds;
         temp += " - ";
 
-        generalNotesEditor->setText(temp);
+        timestampedNotesEditor->setText(temp);
 
         // Put editor into focus and then move caret to end,
         // Which is where new timestamp has been inserted
-        generalNotesEditor->grabKeyboardFocus();
-        generalNotesEditor->moveCaretToEnd();
+        timestampedNotesEditor->grabKeyboardFocus();
+        timestampedNotesEditor->moveCaretToEnd();
 
         //[/UserButtonCode_insertTimeStampButton]
     }
@@ -331,7 +356,7 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public TextEditorListener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="500" initialHeight="500">
+                 fixedSize="1" initialWidth="500" initialHeight="570">
   <BACKGROUND backgroundColour="ff373737"/>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
@@ -354,9 +379,9 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Microphone(s) Used:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
-  <LABEL name="generalNotesLabel" id="358938facaa251fc" memberName="generalNotesLabel"
+  <LABEL name="timestampedNotesLabel" id="358938facaa251fc" memberName="timestampedNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 165 218 30" edTextCol="ff000000"
-         edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
+         edBkgCol="0" labelText="Timestamped Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="insertTimeStampButton" id="2d604f6be40451a7" memberName="insertTimeStampButton"
@@ -364,15 +389,20 @@ BEGIN_JUCER_METADATA
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"
-         virtualName="" explicitFocusOrder="0" pos="250 470 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="250 540 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="34"/>
   <LABEL name="theLyonsDenSoftware" id="d0cfddad51f6f3" memberName="theLyonsDenSoftware"
-         virtualName="" explicitFocusOrder="0" pos="0 470 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 540 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="The Lyons' Den Software" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" kerning="0" bold="0" italic="0" justification="33"/>
+  <LABEL name="generalNotesLabel" id="c170b98fbe39594f" memberName="generalNotesLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 355 500 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
