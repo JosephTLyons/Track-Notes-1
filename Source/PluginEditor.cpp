@@ -35,12 +35,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Point TextEditors Ptrs of processor class to actual GUI TextEditors in Editor class
     
-    p.performersNameEditorPtr   = new TextEditor("");
-    p.instrumentPlayedEditorPtr = new TextEditor("");
-    p.microphonesUsedEditorPtr  = new TextEditor("");
-    p.generalNotesEditorPtr     = new TextEditor("");
-    
-    addAndMakeVisible (performersNameEditor = p.performersNameEditorPtr);
+    addAndMakeVisible (performersNameEditor = &p.performersNameEditor);
     performersNameEditor->setMultiLine (false);
     performersNameEditor->setReturnKeyStartsNewLine (false);
     performersNameEditor->setReadOnly (false);
@@ -52,7 +47,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
     
 
-    addAndMakeVisible (instrumentPlayedEditor = p.instrumentPlayedEditorPtr);
+    addAndMakeVisible (instrumentPlayedEditor = &p.instrumentPlayedEditor);
     instrumentPlayedEditor->setMultiLine (false);
     instrumentPlayedEditor->setReturnKeyStartsNewLine (false);
     instrumentPlayedEditor->setReadOnly (false);
@@ -63,7 +58,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-    addAndMakeVisible (microphonesUsedEditor = p.microphonesUsedEditorPtr);
+    addAndMakeVisible (microphonesUsedEditor = &p.microphonesUsedEditor);
     microphonesUsedEditor->setMultiLine (false);
     microphonesUsedEditor->setReturnKeyStartsNewLine (false);
     microphonesUsedEditor->setReadOnly (false);
@@ -74,7 +69,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
     microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-    addAndMakeVisible (generalNotesEditor = p.generalNotesEditorPtr);
+    addAndMakeVisible (generalNotesEditor = &p.generalNotesEditor);
     generalNotesEditor->setMultiLine (true);
     generalNotesEditor->setReturnKeyStartsNewLine (true);
     generalNotesEditor->setReadOnly (false);
@@ -180,7 +175,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-
+    
     performersNameEditor = nullptr;
     instrumentPlayedEditor = nullptr;
     microphonesUsedEditor = nullptr;

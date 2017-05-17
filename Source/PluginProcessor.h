@@ -55,10 +55,10 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    TextEditor *performersNameEditorPtr;
-    TextEditor *instrumentPlayedEditorPtr;
-    TextEditor *microphonesUsedEditorPtr;
-    TextEditor *generalNotesEditorPtr;
+    TextEditor performersNameEditor;
+    TextEditor instrumentPlayedEditor;
+    TextEditor microphonesUsedEditor;
+    TextEditor generalNotesEditor;
     
 private:
     

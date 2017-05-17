@@ -162,26 +162,23 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // Here's an example of how you can use XML to make it easy and more robust:
     
-    if (performersNameEditorPtr && instrumentPlayedEditorPtr &&
-        microphonesUsedEditorPtr && generalNotesEditorPtr)
-    {
-        // Create an outer XML element..
-        XmlElement xml ("MYPLUGINSETTINGS");
-        
-        // add some attributes to it..
-        xml.setAttribute ("performersName", performersNameEditorPtr->getText());
-        xml.setAttribute ("instrumentPlayed", instrumentPlayedEditorPtr->getText());
-        xml.setAttribute ("microphonesUsed", microphonesUsedEditorPtr->getText());
-        xml.setAttribute ("generalNotes", generalNotesEditorPtr->getText());
-        
-        // Store the values of all our parameters, using their param ID as the XML attribute
-        for (int i = 0; i < getNumParameters(); ++i)
-            if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
-                xml.setAttribute (p->paramID, p->getValue());
-        
-        // then use this helper function to stuff it into the binary blob and return it..
-        copyXmlToBinary (xml, destData);
-    }
+    
+    // Create an outer XML element..
+    XmlElement xml ("MYPLUGINSETTINGS");
+    
+    // add some attributes to it..
+    xml.setAttribute ("performersName", performersNameEditor.getText());
+    xml.setAttribute ("instrumentPlayed", instrumentPlayedEditor.getText());
+    xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
+    xml.setAttribute ("generalNotes", generalNotesEditor.getText());
+    
+    // Store the values of all our parameters, using their param ID as the XML attribute
+    for (int i = 0; i < getNumParameters(); ++i)
+        if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
+            xml.setAttribute (p->paramID, p->getValue());
+    
+    // then use this helper function to stuff it into the binary blob and return it..
+    copyXmlToBinary (xml, destData);
     
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
@@ -206,10 +203,10 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
         {
             // ok, now pull our strings
             
-            performersNameEditorPtr->setText(xmlState->getStringAttribute("performersName"));
-            instrumentPlayedEditorPtr->setText(xmlState->getStringAttribute("instrumentPlayed"));
-            microphonesUsedEditorPtr->setText(xmlState->getStringAttribute("microphonesUsed"));
-            generalNotesEditorPtr->setText(xmlState->getStringAttribute("generalNotes"));
+            performersNameEditor.setText(xmlState->getStringAttribute("performersName"));
+            instrumentPlayedEditor.setText(xmlState->getStringAttribute("instrumentPlayed"));
+            microphonesUsedEditor.setText(xmlState->getStringAttribute("microphonesUsed"));
+            generalNotesEditor.setText(xmlState->getStringAttribute("generalNotes"));
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)
