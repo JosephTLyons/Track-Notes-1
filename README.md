@@ -2,6 +2,7 @@
 A simple plugin to hold your session and track notes.
 
 ![alt tag](https://github.com/JosephTLyons/Track-Notes/blob/master/Images/Track%20Notes%20GUI.png?raw=true)
+-Image is larger than the actual GUI
 
 ## Bugs:
 ### VST in Reaper:
