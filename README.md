@@ -11,7 +11,6 @@ A simple plugin to hold your session and track notes.
 
 ## Things to do before release:
 * Make string pointers private
-* Rename all strings and string pointers with Ptr
 * Make setter and getter methods for processor class strings
 
 * Set up all menu information for each plugin format (category, company name, etc).
