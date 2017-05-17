@@ -61,10 +61,10 @@ private:
     int fontSize;
     Array<Font> usersFontsResults;
 
-    ScopedPointer<TextEditor> performersNameEditor;
-    ScopedPointer<TextEditor> instrumentPlayedEditor;
-    ScopedPointer<TextEditor> microphonesUsedEditor;
-    ScopedPointer<TextEditor> generalNotesEditor;
+    SafePointer<TextEditor> performersNameEditor;
+    SafePointer<TextEditor> instrumentPlayedEditor;
+    SafePointer<TextEditor> microphonesUsedEditor;
+    SafePointer<TextEditor> generalNotesEditor;
 
     //[/UserVariables]
 

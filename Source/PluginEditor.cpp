@@ -79,6 +79,19 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    
+    // Set up text editor font sizes
+    fontSize = 20;
+    performersNameEditor->setFont(fontSize);
+    instrumentPlayedEditor->setFont(fontSize);
+    microphonesUsedEditor->setFont(fontSize);
+    generalNotesEditor->setFont(fontSize);
+    
+    // Update TextEditors after font size change
+    performersNameEditor->setText(performersNameEditor->getText());
+    instrumentPlayedEditor->setText(instrumentPlayedEditor->getText());
+    microphonesUsedEditor->setText(microphonesUsedEditor->getText());
+    generalNotesEditor->setText(generalNotesEditor->getText());
 
     //[/Constructor_pre]
 
@@ -152,13 +165,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
 
     //[Constructor] You can add your own custom stuff here..
-
-    // Set up text editor font sizes
-    fontSize = 20;
-    performersNameEditor->setFont(fontSize);
-    instrumentPlayedEditor->setFont(fontSize);
-    microphonesUsedEditor->setFont(fontSize);
-    generalNotesEditor->setFont(fontSize);
 
     // Set up version number label
     versionNumberLabelString =  ProjectInfo::projectName;
