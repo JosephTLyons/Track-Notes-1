@@ -295,8 +295,14 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         String temp = timestampedNotesEditor->getText();
 
-        // Format and build timecode
-        temp += "\n@ ";
+        // FORMAT AND BUILD TIMECODE
+        // Don't insert newline on first timestamp
+        if(!timestampedNotesEditor->isEmpty())
+        {
+            temp += "\n";
+        }
+        
+        temp += "@ ";
 
         if(hours < 10)
         {
