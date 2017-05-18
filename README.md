@@ -15,7 +15,7 @@ A simple plugin to hold your session and track notes.
 * Command+a to select all isn't working
 
 ## Things to do before release:
-* Image related - check to make sure image is loaded before trying to display - save images - handle duplicate code in both load button handler regions - will recall of the images set the names of their corresponding display buttons back to their correct names?
+* Image related - check to make sure image is loaded before trying to display - save images - handle duplicate code in both load button handler regions - will recall of the images set the names of their corresponding display buttons back to their correct names? - New windows always pop up behind current window and in the corner.
 
 * Append pointer items with Ptr
 * Make string pointers private
@@ -28,6 +28,7 @@ A simple plugin to hold your session and track notes.
 * Test other DAWs
 * Graphics overhaul - revise separation line?
 * Turn off Insert Timestamp button for standalone (doesn't really matter since I wont put out a standalone version)
+* Turn off JUCE splash screen if I close the code up
 
 Future features (after v1.0.0 release)
 * Ability to load images

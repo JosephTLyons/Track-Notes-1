@@ -47,7 +47,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
     performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-
     addAndMakeVisible (instrumentPlayedEditor = &p.instrumentPlayedEditor);
     instrumentPlayedEditor->setMultiLine (false);
     instrumentPlayedEditor->setReturnKeyStartsNewLine (false);
