@@ -12,9 +12,10 @@ A simple plugin to hold your session and track notes.
 ### AU in Garageband
 * Insert Timestamp is broken
 * Crashes DAW on reopening a window
+* Command+a to select all isn't working
 
 ## Things to do before release:
-* Image related - check to make sure image is loaded before trying to display - save images - handle duplicate code in both load button handler regions 
+* Image related - check to make sure image is loaded before trying to display - save images - handle duplicate code in both load button handler regions - will recall of the images set the names of their corresponding display buttons back to their correct names?
 
 * Append pointer items with Ptr
 * Make string pointers private
