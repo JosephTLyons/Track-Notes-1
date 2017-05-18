@@ -21,8 +21,6 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "PluginProcessor.h"
-#include "BasicWindow.cpp"
 //[/Headers]
 
 
@@ -35,67 +33,33 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor,
-                                        public TextEditorListener,
-                                        public ButtonListener
+class ImageWindow  : public Component
 {
 public:
     //==============================================================================
-    TrackNotesAudioProcessorEditor (TrackNotesAudioProcessor &p);
-    ~TrackNotesAudioProcessorEditor();
+    ImageWindow (Image &image);
+    ~ImageWindow();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-
-    void loadImage(Image &image, File &imagePath);
-    void createImageWindow(Image &image, File &imagePath);
-    
     //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
-    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-
-    TrackNotesAudioProcessor& processor;
-    String versionNumberLabelString;
-    int fontSize;
-    Array<Font> usersFontsResults;
-    File imageOnePath, imageTwoPath;
-    Image imageOne, imageTwo;
-
-    SafePointer<TextEditor> performersNameEditor;
-    SafePointer<TextEditor> instrumentPlayedEditor;
-    SafePointer<TextEditor> microphonesUsedEditor;
-    SafePointer<TextEditor> timestampedNotesEditor;
-    SafePointer<TextEditor> generalNotesEditor;
-
-    SafePointer<BasicWindow> basicWindow;
-
+    Image imageCopy;
+    
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Label> trackNotesLabel;
-    ScopedPointer<Label> performersNameLabel;
-    ScopedPointer<Label> instrumentPlayedLabel;
-    ScopedPointer<Label> microphonesUsedLabel;
-    ScopedPointer<Label> timestampedNotesLabel;
-    ScopedPointer<TextButton> insertTimeStampButton;
-    ScopedPointer<Label> versionNumberLabel;
-    ScopedPointer<Label> theLyonsDenSoftware;
-    ScopedPointer<Label> generalNotesLabel;
-    ScopedPointer<TextButton> imageOneButton;
-    ScopedPointer<TextButton> imageTwoButton;
-    ScopedPointer<TextButton> loadImageOneButton;
-    ScopedPointer<TextButton> loadImageTwoButton;
 
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TrackNotesAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ImageWindow)
 };
 
 //[EndFile] You can add extra defines here...

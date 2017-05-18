@@ -23,6 +23,9 @@
       <FILE id="qvUoCl" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="sN0gcE" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
+      <FILE id="FtXYsH" name="BasicWindow.cpp" compile="1" resource="0" file="Source/BasicWindow.cpp"/>
+      <FILE id="IT3yPP" name="ImageWindow.h" compile="0" resource="0" file="Source/ImageWindow.h"/>
+      <FILE id="Z2U2YR" name="ImageWindow.cpp" compile="1" resource="0" file="Source/ImageWindow.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
