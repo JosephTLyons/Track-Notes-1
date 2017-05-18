@@ -179,13 +179,13 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesLabel->setColour (TextEditor::textColourId, Colours::black);
     generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (imageOneButton = new TextButton ("imageOneButton"));
-    imageOneButton->setButtonText (TRANS("Image One"));
-    imageOneButton->addListener (this);
+    addAndMakeVisible (displayImageOneButton = new TextButton ("displayImageOneButton"));
+    displayImageOneButton->setButtonText (TRANS("Display Image One"));
+    displayImageOneButton->addListener (this);
 
-    addAndMakeVisible (imageTwoButton = new TextButton ("imageTwoButton"));
-    imageTwoButton->setButtonText (TRANS("Image Two"));
-    imageTwoButton->addListener (this);
+    addAndMakeVisible (displayImageTwoButton = new TextButton ("displayImageTwoButton"));
+    displayImageTwoButton->setButtonText (TRANS("Display Image Two"));
+    displayImageTwoButton->addListener (this);
 
     addAndMakeVisible (loadImageOneButton = new TextButton ("loadImageOneButton"));
     loadImageOneButton->setButtonText (TRANS("Load"));
@@ -239,8 +239,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     versionNumberLabel = nullptr;
     theLyonsDenSoftware = nullptr;
     generalNotesLabel = nullptr;
-    imageOneButton = nullptr;
-    imageTwoButton = nullptr;
+    displayImageOneButton = nullptr;
+    displayImageTwoButton = nullptr;
     loadImageOneButton = nullptr;
     loadImageTwoButton = nullptr;
 
@@ -288,8 +288,8 @@ void TrackNotesAudioProcessorEditor::resized()
     versionNumberLabel->setBounds (250, 560, 250, 30);
     theLyonsDenSoftware->setBounds (0, 560, 250, 30);
     generalNotesLabel->setBounds (0, 355, 500, 30);
-    imageOneButton->setBounds (50, 540, 200, 20);
-    imageTwoButton->setBounds (300, 540, 200, 20);
+    displayImageOneButton->setBounds (50, 540, 200, 20);
+    displayImageTwoButton->setBounds (300, 540, 200, 20);
     loadImageOneButton->setBounds (0, 540, 50, 20);
     loadImageTwoButton->setBounds (250, 540, 50, 20);
     //[UserResized] Add your own custom resize handling here..
@@ -364,27 +364,29 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_insertTimeStampButton]
     }
-    else if (buttonThatWasClicked == imageOneButton)
+    else if (buttonThatWasClicked == displayImageOneButton)
     {
-        //[UserButtonCode_imageOneButton] -- add your button handler code here..
+        //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
         
         createImageWindow(imageOne, imageOnePath);
-
-        //[/UserButtonCode_imageOneButton]
+        
+        //[/UserButtonCode_displayImageOneButton]
     }
-    else if (buttonThatWasClicked == imageTwoButton)
+    else if (buttonThatWasClicked == displayImageTwoButton)
     {
-        //[UserButtonCode_imageTwoButton] -- add your button handler code here..
+        //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
         
         createImageWindow(imageTwo, imageTwoPath);
         
-        //[/UserButtonCode_imageTwoButton]
+        //[/UserButtonCode_displayImageTwoButton]
     }
     else if (buttonThatWasClicked == loadImageOneButton)
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
         loadImage(imageOne, imageOnePath);
+        
+        displayImageOneButton->triggerClick();
 
         //[/UserButtonCode_loadImageOneButton]
     }
@@ -393,6 +395,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
         loadImage(imageTwo, imageTwoPath);
+        
+        displayImageTwoButton->triggerClick();
 
         //[/UserButtonCode_loadImageTwoButton]
     }
@@ -430,15 +434,15 @@ void TrackNotesAudioProcessorEditor::createImageWindow(Image &image, File &image
     if(basicWindow == NULL)
     {
         basicWindow = new BasicWindow(imagePath.getFileName(), Colours::grey, DocumentWindow::allButtons);
-        
+
         basicWindow->setUsingNativeTitleBar(true);
         basicWindow->setContentOwned(new ImageWindow(image), true);
-        
+
         basicWindow->setSize(image.getWidth(), image.getHeight());
         basicWindow->setTopLeftPosition(0, 0);
         basicWindow->setVisible(true);
     }
-    
+
     else
     {
         delete basicWindow;
@@ -508,11 +512,11 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
-  <TEXTBUTTON name="imageOneButton" id="a8b273a63654dd33" memberName="imageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="50 540 200 20" buttonText="Image One"
+  <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
+              virtualName="" explicitFocusOrder="0" pos="50 540 200 20" buttonText="Display Image One"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="imageTwoButton" id="49cbe3c0cc417d1e" memberName="imageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="300 540 200 20" buttonText="Image Two"
+  <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
+              virtualName="" explicitFocusOrder="0" pos="300 540 200 20" buttonText="Display Image Two"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="0 540 50 20" buttonText="Load"

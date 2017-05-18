@@ -49,7 +49,7 @@ public:
 
     void loadImage(Image &image, File &imagePath);
     void createImageWindow(Image &image, File &imagePath);
-    
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -88,8 +88,8 @@ private:
     ScopedPointer<Label> versionNumberLabel;
     ScopedPointer<Label> theLyonsDenSoftware;
     ScopedPointer<Label> generalNotesLabel;
-    ScopedPointer<TextButton> imageOneButton;
-    ScopedPointer<TextButton> imageTwoButton;
+    ScopedPointer<TextButton> displayImageOneButton;
+    ScopedPointer<TextButton> displayImageTwoButton;
     ScopedPointer<TextButton> loadImageOneButton;
     ScopedPointer<TextButton> loadImageTwoButton;
 
