@@ -13,6 +13,8 @@ A simple plugin to hold your session and track notes.
 * Crashes DAW on reopening a window
 
 ## Things to do before release:
+* Image related - check to make sure image is loaded before trying to display - save images
+
 * Append pointer items with Ptr
 * Make string pointers private
 * Make setter and getter methods for processor class strings

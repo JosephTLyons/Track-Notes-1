@@ -182,18 +182,22 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (displayImageOneButton = new TextButton ("displayImageOneButton"));
     displayImageOneButton->setButtonText (TRANS("Display Image One"));
     displayImageOneButton->addListener (this);
+    displayImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
     addAndMakeVisible (displayImageTwoButton = new TextButton ("displayImageTwoButton"));
     displayImageTwoButton->setButtonText (TRANS("Display Image Two"));
     displayImageTwoButton->addListener (this);
+    displayImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
     addAndMakeVisible (loadImageOneButton = new TextButton ("loadImageOneButton"));
     loadImageOneButton->setButtonText (TRANS("Load"));
     loadImageOneButton->addListener (this);
+    loadImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
     addAndMakeVisible (loadImageTwoButton = new TextButton ("loadImageTwoButton"));
     loadImageTwoButton->setButtonText (TRANS("Load"));
     loadImageTwoButton->addListener (this);
+    loadImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
 
     //[UserPreSize]
@@ -367,17 +371,17 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     else if (buttonThatWasClicked == displayImageOneButton)
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
-        
+
         createImageWindow(imageOne, imageOnePath);
-        
+
         //[/UserButtonCode_displayImageOneButton]
     }
     else if (buttonThatWasClicked == displayImageTwoButton)
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
-        
+
         createImageWindow(imageTwo, imageTwoPath);
-        
+
         //[/UserButtonCode_displayImageTwoButton]
     }
     else if (buttonThatWasClicked == loadImageOneButton)
@@ -385,7 +389,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
         loadImage(imageOne, imageOnePath);
-        
+
         displayImageOneButton->triggerClick();
 
         //[/UserButtonCode_loadImageOneButton]
@@ -395,7 +399,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
         loadImage(imageTwo, imageTwoPath);
-        
+
         displayImageTwoButton->triggerClick();
 
         //[/UserButtonCode_loadImageTwoButton]
@@ -513,17 +517,19 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="50 540 200 20" buttonText="Display Image One"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="50 540 200 20" bgColOff="ff393939"
+              buttonText="Display Image One" connectedEdges="0" needsCallback="1"
+              radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="300 540 200 20" buttonText="Display Image Two"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="300 540 200 20" bgColOff="ff393939"
+              buttonText="Display Image Two" connectedEdges="0" needsCallback="1"
+              radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="0 540 50 20" buttonText="Load"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="0 540 50 20" bgColOff="ff393939"
+              buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageTwoButton" id="c76f47c5a5ad9793" memberName="loadImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="250 540 50 20" buttonText="Load"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="250 540 50 20" bgColOff="ff393939"
+              buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
