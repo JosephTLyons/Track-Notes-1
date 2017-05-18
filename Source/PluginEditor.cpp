@@ -214,6 +214,10 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     versionNumberLabelString += ProjectInfo::versionString;
     versionNumberLabel->setText(versionNumberLabelString, dontSendNotification);
 
+    // Disable Display Image buttons (until images are loaded)
+    displayImageOneButton->setEnabled(false);
+    displayImageTwoButton->setEnabled(false);
+    
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
 
@@ -230,7 +234,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     timestampedNotesEditor = nullptr;
     generalNotesEditor = nullptr;
 
-    delete basicWindow;
+    delete basicWindowImageOne;
+    delete basicWindowImageTwo;
 
     //[/Destructor_pre]
 
@@ -372,7 +377,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        createImageWindow(imageOne, imageOnePath);
+        createImageWindow(basicWindowImageOne, imageOne, imageOnePath);
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -380,7 +385,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(imageTwo, imageTwoPath);
+        createImageWindow(basicWindowImageTwo, imageTwo, imageTwoPath);
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -389,8 +394,19 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
         loadImage(imageOne, imageOnePath);
-
-        displayImageOneButton->triggerClick();
+        
+        displayImageOneButton->setButtonText(imageOnePath.getFileName());
+        
+        if(!imageOne.isNull())
+        {
+            displayImageOneButton->setEnabled(true);
+            displayImageOneButton->triggerClick();
+        }
+        
+        else
+        {
+            displayImageOneButton->setEnabled(false);
+        }
 
         //[/UserButtonCode_loadImageOneButton]
     }
@@ -400,7 +416,18 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageTwo, imageTwoPath);
 
-        displayImageTwoButton->triggerClick();
+        displayImageTwoButton->setButtonText(imageTwoPath.getFileName());
+        
+        if(!imageTwo.isNull())
+        {
+            displayImageTwoButton->setEnabled(true);
+            displayImageTwoButton->triggerClick();
+        }
+        
+        else
+        {
+            displayImageTwoButton->setEnabled(false);
+        }
 
         //[/UserButtonCode_loadImageTwoButton]
     }
@@ -432,24 +459,24 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
     }
 }
 
-void TrackNotesAudioProcessorEditor::createImageWindow(Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath)
 {
     // Don't allow multiple copies of this window to be made
-    if(basicWindow == NULL)
+    if(basicWindowPtr == NULL)
     {
-        basicWindow = new BasicWindow(imagePath.getFileName(), Colours::grey, DocumentWindow::allButtons);
+        basicWindowPtr = new BasicWindow(imagePath.getFileName(), Colours::grey, DocumentWindow::allButtons);
 
-        basicWindow->setUsingNativeTitleBar(true);
-        basicWindow->setContentOwned(new ImageWindow(image), true);
+        basicWindowPtr->setUsingNativeTitleBar(true);
+        basicWindowPtr->setContentOwned(new ImageWindow(image), true);
 
-        basicWindow->setSize(image.getWidth(), image.getHeight());
-        basicWindow->setTopLeftPosition(0, 0);
-        basicWindow->setVisible(true);
+        basicWindowPtr->setSize(image.getWidth(), image.getHeight());
+        basicWindowPtr->setTopLeftPosition(0, 0);
+        basicWindowPtr->setVisible(true);
     }
 
     else
     {
-        delete basicWindow;
+        delete basicWindowPtr;
     }
 }
 

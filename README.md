@@ -4,9 +4,10 @@ A simple plugin to hold your session and track notes.
 ![alt tag](https://github.com/JosephTLyons/Track-Notes/blob/master/Images/Track%20Notes%20GUI.png?raw=true)
 -Image is larger than the actual GUI
 
-## Bugs:
+## Bugs / Known Issues:
 ### VST in Reaper:
-* Spacebar focus is being stolen
+* Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
+* Images will always pop up behind plugin window, this is Reaper behaviour and can't be changed'
 
 ### AU in Garageband
 * Insert Timestamp is broken

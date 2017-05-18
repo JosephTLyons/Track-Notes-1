@@ -48,7 +48,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
 
     void loadImage(Image &image, File &imagePath);
-    void createImageWindow(Image &image, File &imagePath);
+    void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
 
     //[/UserMethods]
 
@@ -74,7 +74,8 @@ private:
     SafePointer<TextEditor> timestampedNotesEditor;
     SafePointer<TextEditor> generalNotesEditor;
 
-    SafePointer<BasicWindow> basicWindow;
+    SafePointer<BasicWindow> basicWindowImageOne;
+    SafePointer<BasicWindow> basicWindowImageTwo;
 
     //[/UserVariables]
 
