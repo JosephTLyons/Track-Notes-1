@@ -37,7 +37,7 @@ class ImageWindow  : public Component
 {
 public:
     //==============================================================================
-    ImageWindow (Image &image);
+    ImageWindow (Image &imageSource);
     ~ImageWindow();
 
     //==============================================================================
@@ -51,8 +51,8 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    Image imageCopy;
-    
+    Image image;
+
     //[/UserVariables]
 
     //==============================================================================

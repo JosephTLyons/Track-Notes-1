@@ -27,18 +27,18 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-ImageWindow::ImageWindow (Image &image)
+ImageWindow::ImageWindow (Image &imageSource)
 {
     //[Constructor_pre] You can add your own custom stuff here..
-    
-    imageCopy = image;
+
+    image = imageSource;
     //[/Constructor_pre]
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (150, 150);
+    setSize (1, 1);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -66,7 +66,7 @@ void ImageWindow::paint (Graphics& g)
 
     //[UserPaint] Add your own custom painting code here..
 
-    g.drawImageAt(imageCopy, 0, 0, false);
+    g.drawImageAt(image, 0, 0, false);
     //[/UserPaint]
 }
 
@@ -95,9 +95,9 @@ void ImageWindow::resized()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="ImageWindow" componentName=""
-                 parentClasses="public Component" constructorParams="Image &amp;image"
+                 parentClasses="public Component" constructorParams="Image &amp;imageSource"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="1" initialWidth="150" initialHeight="150">
+                 overlayOpacity="0.330" fixedSize="1" initialWidth="1" initialHeight="1">
   <BACKGROUND backgroundColour="ff373737"/>
 </JUCER_COMPONENT>
 
