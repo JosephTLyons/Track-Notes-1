@@ -234,8 +234,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     timestampedNotesEditor = nullptr;
     generalNotesEditor = nullptr;
 
-    delete basicWindowImageOne;
-    delete basicWindowImageTwo;
+    delete basicWindowImageOnePtr;
+    delete basicWindowImageTwoPtr;
 
     //[/Destructor_pre]
 
@@ -377,7 +377,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageOne, imageOne, imageOnePath);
+        createImageWindow(basicWindowImageOnePtr, imageOne, imageOnePath);
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -385,7 +385,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageTwo, imageTwo, imageTwoPath);
+        createImageWindow(basicWindowImageTwoPtr, imageTwo, imageTwoPath);
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -473,7 +473,8 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         basicWindowPtr->setTopLeftPosition(0, 0);
         basicWindowPtr->setVisible(true);
     }
-
+    
+    // If window is open already and display button is clicked again, window will be deleted
     else
     {
         delete basicWindowPtr;

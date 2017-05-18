@@ -74,8 +74,8 @@ private:
     SafePointer<TextEditor> timestampedNotesEditor;
     SafePointer<TextEditor> generalNotesEditor;
 
-    SafePointer<BasicWindow> basicWindowImageOne;
-    SafePointer<BasicWindow> basicWindowImageTwo;
+    SafePointer<BasicWindow> basicWindowImageOnePtr;
+    SafePointer<BasicWindow> basicWindowImageTwoPtr;
 
     //[/UserVariables]
 

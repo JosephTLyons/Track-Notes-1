@@ -14,7 +14,7 @@ A simple plugin to hold your session and track notes.
 * Crashes DAW on reopening a window
 
 ## Things to do before release:
-* Image related - check to make sure image is loaded before trying to display - save images
+* Image related - check to make sure image is loaded before trying to display - save images - handle duplicate code in both load button handler regions 
 
 * Append pointer items with Ptr
 * Make string pointers private
