@@ -403,7 +403,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentOnePtr, imageOne, imageOnePath);
         
-        displayImageOneButton->setButtonText(imageOnePath.getFileName());
+        displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
         
         if(!imageOne.isNull())
         {
@@ -418,7 +418,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentTwoPtr, imageTwo, imageTwoPath);
 
-        displayImageTwoButton->setButtonText(imageTwoPath.getFileName());
+        displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
         
         if(!imageTwo.isNull())
         {
@@ -465,7 +465,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     // Don't allow multiple copies of this window to be made
     if(basicWindowPtr == NULL)
     {
-        basicWindowPtr = new BasicWindow(imagePath.getFileName(), Colours::grey, DocumentWindow::allButtons);
+        basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(), Colours::grey, DocumentWindow::allButtons);
 
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
