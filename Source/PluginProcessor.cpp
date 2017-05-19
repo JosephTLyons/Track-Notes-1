@@ -153,16 +153,25 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
     xml.setAttribute("generalNotes", generalNotesEditor.getText());
     
-    // Image one
+    // Pre image save
     MemoryOutputStream out;
     JPEGImageFormat format;
-    format.writeImageToStream (imageOne, out);
-    MemoryBlock imageDataOne (out.getData(), out.getDataSize());
-    xml.setAttribute ("imageOne", imageDataOne.toBase64Encoding());
     
-    format.writeImageToStream (imageTwo, out);
-    MemoryBlock imageDataTwo (out.getData(), out.getDataSize());
-    xml.setAttribute ("imageTwo", imageDataTwo.toBase64Encoding());
+    // Image one save
+    if(!imageComponentOne.getImage().isNull())
+    {
+        format.writeImageToStream (imageComponentOne.getImage() , out);
+        MemoryBlock imageDataOne (out.getData(), out.getDataSize());
+        xml.setAttribute ("imageOne", imageDataOne.toBase64Encoding());
+    }
+    
+    // Image two save
+    if(!imageComponentTwo.getImage().isNull())
+    {
+        format.writeImageToStream (imageComponentTwo.getImage(), out);
+        MemoryBlock imageDataTwo (out.getData(), out.getDataSize());
+        xml.setAttribute ("imageTwo", imageDataTwo.toBase64Encoding());
+    }
     
     
     // Store the values of all our parameters, using their param ID as the XML attribute

@@ -47,7 +47,7 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
 
-    void loadImage(Image &image, File &imagePath);
+    void loadImage(SafePointer<ImageComponent> &imageComponentPtr, Image &image, File &imagePath);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
 
     //[/UserMethods]
@@ -67,8 +67,9 @@ private:
     Array<Font> usersFontsResults;
     File imageOnePath, imageTwoPath;
     
-    SafePointer<Image> imageOnePtr;
-    SafePointer<Image> imageTwoPtr;
+    SafePointer<ImageComponent> imageComponentOnePtr;
+    SafePointer<ImageComponent> imageComponentTwoPtr;
+    Image imageOne, imageTwo;
 
     SafePointer<TextEditor> performersNameEditor;
     SafePointer<TextEditor> instrumentPlayedEditor;

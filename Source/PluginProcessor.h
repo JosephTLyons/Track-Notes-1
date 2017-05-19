@@ -68,8 +68,8 @@ public:
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
-    Image imageOne;
-    Image imageTwo;
+    ImageComponent imageComponentOne;
+    ImageComponent imageComponentTwo;
     
 private:
     

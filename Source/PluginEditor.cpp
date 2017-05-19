@@ -34,8 +34,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 {
     //[Constructor_pre] You can add your own custom stuff here..
     
-    imageOnePtr = &p.imageOne;
-    imageTwoPtr = &p.imageTwo;
+    // Link image pointer in editor class with image holder in processor class
+    imageComponentOnePtr = &p.imageComponentOne;
+    imageComponentTwoPtr = &p.imageComponentTwo;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditor = &p.performersNameEditor);
@@ -241,8 +242,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     
     // ScopedPointers - don't delete since the actual
     // Image object is still being used by prcoesser classs
-    imageOnePtr = nullptr;
-    imageTwoPtr = nullptr;
+    imageComponentOnePtr = nullptr;
+    imageComponentTwoPtr = nullptr;
 
     //[/Destructor_pre]
 
@@ -384,7 +385,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageOnePtr, *imageOnePtr, imageOnePath);
+        createImageWindow(basicWindowImageOnePtr, imageOne, imageOnePath);
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -392,7 +393,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, imageTwoPath);
+        createImageWindow(basicWindowImageTwoPtr, imageTwo, imageTwoPath);
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -400,19 +401,13 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(*imageOnePtr, imageOnePath);
+        loadImage(imageComponentOnePtr, imageOne, imageOnePath);
         
         displayImageOneButton->setButtonText(imageOnePath.getFileName());
         
-        if(!imageOnePtr->isNull())
+        if(!imageOne.isNull())
         {
             displayImageOneButton->setEnabled(true);
-            displayImageOneButton->triggerClick();
-        }
-        
-        else
-        {
-            displayImageOneButton->setEnabled(false);
         }
 
         //[/UserButtonCode_loadImageOneButton]
@@ -421,19 +416,13 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(*imageTwoPtr, imageTwoPath);
+        loadImage(imageComponentTwoPtr, imageTwo, imageTwoPath);
 
         displayImageTwoButton->setButtonText(imageTwoPath.getFileName());
         
-        if(!imageTwoPtr->isNull())
+        if(!imageTwo.isNull())
         {
             displayImageTwoButton->setEnabled(true);
-            displayImageTwoButton->triggerClick();
-        }
-        
-        else
-        {
-            displayImageTwoButton->setEnabled(false);
         }
 
         //[/UserButtonCode_loadImageTwoButton]
@@ -447,7 +436,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imageComponentPtr,
+                                               Image &image, File &imagePath)
 {
     FileChooser fileChooser ("Choose an image...",
                              File::getCurrentWorkingDirectory(),
@@ -463,6 +453,10 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
 
         // Get image
         image = ImageCache::getFromFile(imagePath);
+        
+        // Point main ImageComponent pointer at this image,
+        // Which sets ImageComponent of Processor class
+        imageComponentPtr->setImage(image);
     }
 }
 
