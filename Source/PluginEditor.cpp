@@ -39,75 +39,75 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageComponentTwoPtr = &p.imageComponentTwo;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
-    addAndMakeVisible (performersNameEditor = &p.performersNameEditor);
-    performersNameEditor->setMultiLine (false);
-    performersNameEditor->setReturnKeyStartsNewLine (false);
-    performersNameEditor->setReadOnly (false);
-    performersNameEditor->setScrollbarsShown (true);
-    performersNameEditor->setCaretVisible (true);
-    performersNameEditor->setPopupMenuEnabled (true);
-    performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
-    performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    addAndMakeVisible (performersNameEditorPtr = &p.performersNameEditor);
+    performersNameEditorPtr->setMultiLine (false);
+    performersNameEditorPtr->setReturnKeyStartsNewLine (false);
+    performersNameEditorPtr->setReadOnly (false);
+    performersNameEditorPtr->setScrollbarsShown (true);
+    performersNameEditorPtr->setCaretVisible (true);
+    performersNameEditorPtr->setPopupMenuEnabled (true);
+    performersNameEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    performersNameEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
+    performersNameEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-    addAndMakeVisible (instrumentPlayedEditor = &p.instrumentPlayedEditor);
-    instrumentPlayedEditor->setMultiLine (false);
-    instrumentPlayedEditor->setReturnKeyStartsNewLine (false);
-    instrumentPlayedEditor->setReadOnly (false);
-    instrumentPlayedEditor->setScrollbarsShown (true);
-    instrumentPlayedEditor->setCaretVisible (true);
-    instrumentPlayedEditor->setPopupMenuEnabled (true);
-    instrumentPlayedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    instrumentPlayedEditor->setColour (TextEditor::highlightColourId, Colours::black);
-    instrumentPlayedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    addAndMakeVisible (instrumentPlayedEditorPtr = &p.instrumentPlayedEditor);
+    instrumentPlayedEditorPtr->setMultiLine (false);
+    instrumentPlayedEditorPtr->setReturnKeyStartsNewLine (false);
+    instrumentPlayedEditorPtr->setReadOnly (false);
+    instrumentPlayedEditorPtr->setScrollbarsShown (true);
+    instrumentPlayedEditorPtr->setCaretVisible (true);
+    instrumentPlayedEditorPtr->setPopupMenuEnabled (true);
+    instrumentPlayedEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    instrumentPlayedEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
+    instrumentPlayedEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-    addAndMakeVisible (microphonesUsedEditor = &p.microphonesUsedEditor);
-    microphonesUsedEditor->setMultiLine (false);
-    microphonesUsedEditor->setReturnKeyStartsNewLine (false);
-    microphonesUsedEditor->setReadOnly (false);
-    microphonesUsedEditor->setScrollbarsShown (true);
-    microphonesUsedEditor->setCaretVisible (true);
-    microphonesUsedEditor->setPopupMenuEnabled (true);
-    microphonesUsedEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    microphonesUsedEditor->setColour (TextEditor::highlightColourId, Colours::black);
-    microphonesUsedEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    addAndMakeVisible (microphonesUsedEditorPtr = &p.microphonesUsedEditor);
+    microphonesUsedEditorPtr->setMultiLine (false);
+    microphonesUsedEditorPtr->setReturnKeyStartsNewLine (false);
+    microphonesUsedEditorPtr->setReadOnly (false);
+    microphonesUsedEditorPtr->setScrollbarsShown (true);
+    microphonesUsedEditorPtr->setCaretVisible (true);
+    microphonesUsedEditorPtr->setPopupMenuEnabled (true);
+    microphonesUsedEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    microphonesUsedEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
+    microphonesUsedEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-    addAndMakeVisible (timestampedNotesEditor = &p.timestampedNotesEditor);
-    timestampedNotesEditor->setMultiLine (true);
-    timestampedNotesEditor->setReturnKeyStartsNewLine (true);
-    timestampedNotesEditor->setReadOnly (false);
-    timestampedNotesEditor->setScrollbarsShown (true);
-    timestampedNotesEditor->setCaretVisible (true);
-    timestampedNotesEditor->setPopupMenuEnabled (true);
-    timestampedNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    timestampedNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
-    timestampedNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    addAndMakeVisible (timestampedNotesEditorPtr = &p.timestampedNotesEditor);
+    timestampedNotesEditorPtr->setMultiLine (true);
+    timestampedNotesEditorPtr->setReturnKeyStartsNewLine (true);
+    timestampedNotesEditorPtr->setReadOnly (false);
+    timestampedNotesEditorPtr->setScrollbarsShown (true);
+    timestampedNotesEditorPtr->setCaretVisible (true);
+    timestampedNotesEditorPtr->setPopupMenuEnabled (true);
+    timestampedNotesEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    timestampedNotesEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
+    timestampedNotesEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
-    addAndMakeVisible (generalNotesEditor = &p.generalNotesEditor);
-    generalNotesEditor->setMultiLine (true);
-    generalNotesEditor->setReturnKeyStartsNewLine (true);
-    generalNotesEditor->setReadOnly (false);
-    generalNotesEditor->setScrollbarsShown (true);
-    generalNotesEditor->setCaretVisible (true);
-    generalNotesEditor->setPopupMenuEnabled (true);
-    generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
-    generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    addAndMakeVisible (generalNotesEditorPtr = &p.generalNotesEditor);
+    generalNotesEditorPtr->setMultiLine (true);
+    generalNotesEditorPtr->setReturnKeyStartsNewLine (true);
+    generalNotesEditorPtr->setReadOnly (false);
+    generalNotesEditorPtr->setScrollbarsShown (true);
+    generalNotesEditorPtr->setCaretVisible (true);
+    generalNotesEditorPtr->setPopupMenuEnabled (true);
+    generalNotesEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    generalNotesEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
+    generalNotesEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
 
     // Set up text editor font sizes
     fontSize = 20;
-    performersNameEditor->setFont(fontSize);
-    instrumentPlayedEditor->setFont(fontSize);
-    microphonesUsedEditor->setFont(fontSize);
-    timestampedNotesEditor->setFont(fontSize);
-    generalNotesEditor->setFont(fontSize);
+    performersNameEditorPtr->setFont(fontSize);
+    instrumentPlayedEditorPtr->setFont(fontSize);
+    microphonesUsedEditorPtr->setFont(fontSize);
+    timestampedNotesEditorPtr->setFont(fontSize);
+    generalNotesEditorPtr->setFont(fontSize);
 
     // Update TextEditors after font size change
-    performersNameEditor->setText(performersNameEditor->getText());
-    instrumentPlayedEditor->setText(instrumentPlayedEditor->getText());
-    microphonesUsedEditor->setText(microphonesUsedEditor->getText());
-    timestampedNotesEditor->setText(timestampedNotesEditor->getText());
-    generalNotesEditor->setText(generalNotesEditor->getText());
+    performersNameEditorPtr->setText(performersNameEditorPtr->getText());
+    instrumentPlayedEditorPtr->setText(instrumentPlayedEditorPtr->getText());
+    microphonesUsedEditorPtr->setText(microphonesUsedEditorPtr->getText());
+    timestampedNotesEditorPtr->setText(timestampedNotesEditorPtr->getText());
+    generalNotesEditorPtr->setText(generalNotesEditorPtr->getText());
 
     //[/Constructor_pre]
 
@@ -238,11 +238,11 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
 
-    performersNameEditor = nullptr;
-    instrumentPlayedEditor = nullptr;
-    microphonesUsedEditor = nullptr;
-    timestampedNotesEditor = nullptr;
-    generalNotesEditor = nullptr;
+    performersNameEditorPtr = nullptr;
+    instrumentPlayedEditorPtr = nullptr;
+    microphonesUsedEditorPtr = nullptr;
+    timestampedNotesEditorPtr = nullptr;
+    generalNotesEditorPtr = nullptr;
 
     // SafePointers
     delete basicWindowImageOnePtr;
@@ -296,11 +296,11 @@ void TrackNotesAudioProcessorEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
 
-    performersNameEditor->setBounds (218, 60, 282, 30);
-    instrumentPlayedEditor->setBounds (218, 95, 282, 30);
-    microphonesUsedEditor->setBounds (218, 130, 282, 30);
-    timestampedNotesEditor->setBounds (0, 200, 500, 150);
-    generalNotesEditor->setBounds (0, 390, 500, 150);
+    performersNameEditorPtr->setBounds (218, 60, 282, 30);
+    instrumentPlayedEditorPtr->setBounds (218, 95, 282, 30);
+    microphonesUsedEditorPtr->setBounds (218, 130, 282, 30);
+    timestampedNotesEditorPtr->setBounds (0, 200, 500, 150);
+    generalNotesEditorPtr->setBounds (0, 390, 500, 150);
 
     //[/UserPreResize]
 
@@ -346,11 +346,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         int minutes      = totalSeconds / 60;
         int seconds      = totalSeconds % 60;
 
-        String temp = timestampedNotesEditor->getText();
+        String temp = timestampedNotesEditorPtr->getText();
 
         // FORMAT AND BUILD TIMECODE
         // Don't insert newline on first timestamp
-        if(!timestampedNotesEditor->isEmpty())
+        if(!timestampedNotesEditorPtr->isEmpty())
         {
             temp += "\n";
         }
@@ -381,12 +381,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         temp += seconds;
         temp += " - ";
 
-        timestampedNotesEditor->setText(temp);
+        timestampedNotesEditorPtr->setText(temp);
 
         // Put editor into focus and then move caret to end,
         // Which is where new timestamp has been inserted
-        timestampedNotesEditor->grabKeyboardFocus();
-        timestampedNotesEditor->moveCaretToEnd();
+        timestampedNotesEditorPtr->grabKeyboardFocus();
+        timestampedNotesEditorPtr->moveCaretToEnd();
 
         //[/UserButtonCode_insertTimeStampButton]
     }

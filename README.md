@@ -33,7 +33,6 @@ A simple plugin to hold your session and track notes.
 * New windows always pop up behind current window and in the corner 
 * Some images are loaded at sizes that are different from their originals
 
-* Append pointer items with Ptr
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 

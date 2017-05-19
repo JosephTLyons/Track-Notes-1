@@ -71,11 +71,11 @@ private:
     File imageOnePath, imageTwoPath;
     Image imageOne, imageTwo;
 
-    SafePointer<TextEditor> performersNameEditor;
-    SafePointer<TextEditor> instrumentPlayedEditor;
-    SafePointer<TextEditor> microphonesUsedEditor;
-    SafePointer<TextEditor> timestampedNotesEditor;
-    SafePointer<TextEditor> generalNotesEditor;
+    SafePointer<TextEditor> performersNameEditorPtr;
+    SafePointer<TextEditor> instrumentPlayedEditorPtr;
+    SafePointer<TextEditor> microphonesUsedEditorPtr;
+    SafePointer<TextEditor> timestampedNotesEditorPtr;
+    SafePointer<TextEditor> generalNotesEditorPtr;
 
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
