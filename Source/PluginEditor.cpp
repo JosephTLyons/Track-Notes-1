@@ -33,7 +33,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
-    
+
     // Link image pointer in editor class with image holder in processor class
     imageComponentOnePtr = &p.imageComponentOne;
     imageComponentTwoPtr = &p.imageComponentTwo;
@@ -182,12 +182,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (displayImageOneButton = new TextButton ("displayImageOneButton"));
-    displayImageOneButton->setButtonText (TRANS("Display Image One"));
+    displayImageOneButton->setButtonText (TRANS("Image One"));
     displayImageOneButton->addListener (this);
     displayImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
     addAndMakeVisible (displayImageTwoButton = new TextButton ("displayImageTwoButton"));
-    displayImageTwoButton->setButtonText (TRANS("Display Image Two"));
+    displayImageTwoButton->setButtonText (TRANS("Image Two"));
     displayImageTwoButton->addListener (this);
     displayImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
@@ -217,9 +217,17 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     versionNumberLabel->setText(versionNumberLabelString, dontSendNotification);
 
     // Disable Display Image buttons (until images are loaded)
-    displayImageOneButton->setEnabled(false);
-    displayImageTwoButton->setEnabled(false);
     
+    if(imageComponentOnePtr->getImage().isNull())
+    {
+        displayImageOneButton->setEnabled(false);
+    }
+    
+    if(imageComponentTwoPtr->getImage().isNull())
+    {
+        displayImageTwoButton->setEnabled(false);
+    }
+
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
 
@@ -239,7 +247,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     // SafePointers
     delete basicWindowImageOnePtr;
     delete basicWindowImageTwoPtr;
-    
+
     // ScopedPointers - don't delete since the actual
     // Image object is still being used by prcoesser classs
     imageComponentOnePtr = nullptr;
@@ -316,6 +324,7 @@ void TrackNotesAudioProcessorEditor::resized()
 void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+    
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == insertTimeStampButton)
@@ -402,9 +411,9 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
         loadImage(imageComponentOnePtr, imageOne, imageOnePath);
-        
+
         displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
-        
+
         if(!imageOne.isNull())
         {
             displayImageOneButton->setEnabled(true);
@@ -419,7 +428,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         loadImage(imageComponentTwoPtr, imageTwo, imageTwoPath);
 
         displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
-        
+
         if(!imageTwo.isNull())
         {
             displayImageTwoButton->setEnabled(true);
@@ -452,10 +461,10 @@ void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imag
         imagePath = fileChooser.getResult();
 
         // Get image
-        image = ImageCache::getFromFile(imagePath);
-        
-        // Point main ImageComponent pointer at this image,
-        // Which sets ImageComponent of Processor class
+        image = ImageCache::getFromFile(fileChooser.getResult());
+
+        // Point main imageComponentPtrat this image,
+        // Which sets ImageComponent of Processor class, since imageComponentPtr points to it
         imageComponentPtr->setImage(image);
     }
 }
@@ -469,12 +478,12 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
 
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
-
+        
         basicWindowPtr->setSize(image.getWidth(), image.getHeight());
         basicWindowPtr->setTopLeftPosition(0, 0);
         basicWindowPtr->setVisible(true);
     }
-    
+
     // If window is open already and display button is clicked again, window will be deleted
     else
     {
@@ -547,12 +556,10 @@ BEGIN_JUCER_METADATA
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="50 540 200 20" bgColOff="ff393939"
-              buttonText="Display Image One" connectedEdges="0" needsCallback="1"
-              radioGroupId="0"/>
+              buttonText="Image One" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
               virtualName="" explicitFocusOrder="0" pos="300 540 200 20" bgColOff="ff393939"
-              buttonText="Display Image Two" connectedEdges="0" needsCallback="1"
-              radioGroupId="0"/>
+              buttonText="Image Two" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="0 540 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>

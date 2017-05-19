@@ -32,13 +32,14 @@ ImageWindow::ImageWindow (Image &imageSource)
     //[Constructor_pre] You can add your own custom stuff here..
 
     image = imageSource;
+    
     //[/Constructor_pre]
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (1, 1);
+    setSize (10, 10);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -97,7 +98,7 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="ImageWindow" componentName=""
                  parentClasses="public Component" constructorParams="Image &amp;imageSource"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="1" initialWidth="1" initialHeight="1">
+                 overlayOpacity="0.330" fixedSize="1" initialWidth="10" initialHeight="10">
   <BACKGROUND backgroundColour="ff373737"/>
 </JUCER_COMPONENT>
 

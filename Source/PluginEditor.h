@@ -65,10 +65,10 @@ private:
     String versionNumberLabelString;
     int fontSize;
     Array<Font> usersFontsResults;
-    File imageOnePath, imageTwoPath;
-    
+
     SafePointer<ImageComponent> imageComponentOnePtr;
     SafePointer<ImageComponent> imageComponentTwoPtr;
+    File imageOnePath, imageTwoPath;
     Image imageOne, imageTwo;
 
     SafePointer<TextEditor> performersNameEditor;
