@@ -142,7 +142,6 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // Here's an example of how you can use XML to make it easy and more robust:
     
-    
     // Create an outer XML element..
     XmlElement xml ("MYPLUGINSETTINGS");
     
@@ -153,11 +152,11 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
     xml.setAttribute("generalNotes", generalNotesEditor.getText());
     
-    // Pre image save
+    // Pre image XML attribute
     MemoryOutputStream out;
     JPEGImageFormat format;
     
-    // Image one save
+    // Image one XML attribute
     if(!imageComponentOne.getImage().isNull())
     {
         format.writeImageToStream (imageComponentOne.getImage() , out);
@@ -165,7 +164,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
         xml.setAttribute ("imageOne", imageDataOne.toBase64Encoding());
     }
     
-    // Image two save
+    // Image two XML attribute
     if(!imageComponentTwo.getImage().isNull())
     {
         format.writeImageToStream (imageComponentTwo.getImage(), out);
