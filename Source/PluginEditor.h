@@ -66,7 +66,9 @@ private:
     int fontSize;
     Array<Font> usersFontsResults;
     File imageOnePath, imageTwoPath;
-    Image imageOne, imageTwo;
+    
+    SafePointer<Image> imageOnePtr;
+    SafePointer<Image> imageTwoPtr;
 
     SafePointer<TextEditor> performersNameEditor;
     SafePointer<TextEditor> instrumentPlayedEditor;

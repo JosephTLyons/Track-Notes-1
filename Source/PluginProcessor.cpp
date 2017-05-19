@@ -153,6 +153,18 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
     xml.setAttribute("generalNotes", generalNotesEditor.getText());
     
+    // Image one
+    MemoryOutputStream out;
+    JPEGImageFormat format;
+    format.writeImageToStream (imageOne, out);
+    MemoryBlock imageDataOne (out.getData(), out.getDataSize());
+    xml.setAttribute ("imageOne", imageDataOne.toBase64Encoding());
+    
+    format.writeImageToStream (imageTwo, out);
+    MemoryBlock imageDataTwo (out.getData(), out.getDataSize());
+    xml.setAttribute ("imageTwo", imageDataTwo.toBase64Encoding());
+    
+    
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
         if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
@@ -189,6 +201,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             microphonesUsedEditor.setText(xmlState->getStringAttribute("microphonesUsed"));
             timestampedNotesEditor.setText(xmlState->getStringAttribute("timestampedNotes"));
             generalNotesEditor.setText(xmlState->getStringAttribute("generalNotes"));
+            //imageOne = xmlState->getStringAttribute("imageOne");
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)

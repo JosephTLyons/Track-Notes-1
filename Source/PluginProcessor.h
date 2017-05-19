@@ -68,6 +68,9 @@ public:
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
+    Image imageOne;
+    Image imageTwo;
+    
 private:
     
     //==============================================================================

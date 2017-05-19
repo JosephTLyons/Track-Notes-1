@@ -33,9 +33,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
+    
+    imageOnePtr = &p.imageOne;
+    imageTwoPtr = &p.imageTwo;
 
-    // Point TextEditors Ptrs of processor class to actual GUI TextEditors in Editor class
-
+    // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditor = &p.performersNameEditor);
     performersNameEditor->setMultiLine (false);
     performersNameEditor->setReturnKeyStartsNewLine (false);
@@ -233,8 +235,14 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     timestampedNotesEditor = nullptr;
     generalNotesEditor = nullptr;
 
+    // SafePointers
     delete basicWindowImageOnePtr;
     delete basicWindowImageTwoPtr;
+    
+    // ScopedPointers - don't delete since the actual
+    // Image object is still being used by prcoesser classs
+    imageOnePtr = nullptr;
+    imageTwoPtr = nullptr;
 
     //[/Destructor_pre]
 
@@ -376,7 +384,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageOnePtr, imageOne, imageOnePath);
+        createImageWindow(basicWindowImageOnePtr, *imageOnePtr, imageOnePath);
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -384,7 +392,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageTwoPtr, imageTwo, imageTwoPath);
+        createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, imageTwoPath);
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -392,11 +400,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(imageOne, imageOnePath);
+        loadImage(*imageOnePtr, imageOnePath);
         
         displayImageOneButton->setButtonText(imageOnePath.getFileName());
         
-        if(!imageOne.isNull())
+        if(!imageOnePtr->isNull())
         {
             displayImageOneButton->setEnabled(true);
             displayImageOneButton->triggerClick();
@@ -413,11 +421,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(imageTwo, imageTwoPath);
+        loadImage(*imageTwoPtr, imageTwoPath);
 
         displayImageTwoButton->setButtonText(imageTwoPath.getFileName());
         
-        if(!imageTwo.isNull())
+        if(!imageTwoPtr->isNull())
         {
             displayImageTwoButton->setEnabled(true);
             displayImageTwoButton->triggerClick();
