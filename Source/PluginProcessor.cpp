@@ -152,10 +152,6 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
     xml.setAttribute("generalNotes", generalNotesEditor.getText());
     
-    // Pre image XML attribute
-    MemoryOutputStream out;
-    JPEGImageFormat format;
-    
     // Image one XML attribute
     if(!imageComponentOne.getImage().isNull())
     {
@@ -203,13 +199,30 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
         if (xmlState->hasTagName ("MYPLUGINSETTINGS"))
         {
             // ok, now pull our strings
-            
             performersNameEditor.setText(xmlState->getStringAttribute("performersName"));
             instrumentPlayedEditor.setText(xmlState->getStringAttribute("instrumentPlayed"));
             microphonesUsedEditor.setText(xmlState->getStringAttribute("microphonesUsed"));
             timestampedNotesEditor.setText(xmlState->getStringAttribute("timestampedNotes"));
             generalNotesEditor.setText(xmlState->getStringAttribute("generalNotes"));
-            //imageOne = xmlState->getStringAttribute("imageOne");
+            
+            imageOneMemoryBlock.fromBase64Encoding(xmlState->getStringAttribute("imageOne"));
+            imageTwoMemoryBlock.fromBase64Encoding(xmlState->getStringAttribute("imageTwo"));
+            
+            memoryInput = new MemoryInputStream(imageOneMemoryBlock.getData(),
+                                                imageOneMemoryBlock.getSize(),
+                                                true);
+            
+            Image image = ImageFileFormat::loadFrom(*memoryInput);
+            
+            imageComponentOne.setImage(image);
+            
+            delete memoryInput;
+            memoryInput = new MemoryInputStream(imageTwoMemoryBlock.getData(),
+                                                imageTwoMemoryBlock.getSize(),
+                                                true);
+            
+            imageComponentTwo.setImage(ImageFileFormat::loadFrom(*memoryInput));
+            delete memoryInput;
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)

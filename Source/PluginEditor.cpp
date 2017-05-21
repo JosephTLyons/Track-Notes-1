@@ -218,15 +218,15 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Disable Display Image buttons (until images are loaded)
     
-    if(imageComponentOnePtr->getImage().isNull())
-    {
-        displayImageOneButton->setEnabled(false);
-    }
-    
-    if(imageComponentTwoPtr->getImage().isNull())
-    {
-        displayImageTwoButton->setEnabled(false);
-    }
+//    if(imageComponentOnePtr->getImage().isNull())
+//    {
+//        displayImageOneButton->setEnabled(false);
+//    }
+//    
+//    if(imageComponentTwoPtr->getImage().isNull())
+//    {
+//        displayImageTwoButton->setEnabled(false);
+//    }
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
@@ -474,6 +474,13 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     // Don't allow multiple copies of this window to be made
     if(basicWindowPtr == NULL)
     {
+        // Get image (if image was loaded from load button, this is skipped,
+        // If image was retrieved from binary data on getState, it needs to be loaded
+        if(image.isNull())
+        {
+            image = imageComponentOnePtr->getImage();
+        }
+        
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(), Colours::grey, DocumentWindow::allButtons);
 
         basicWindowPtr->setUsingNativeTitleBar(true);
