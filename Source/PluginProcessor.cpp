@@ -207,14 +207,14 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             
             memoryInput = new MemoryInputStream(imageOneMemoryBlock.getData(),
                                                 imageOneMemoryBlock.getSize(),
-                                                true);
+                                                false);
             
             imageOne = ImageFileFormat::loadFrom(*memoryInput);
             
             delete memoryInput;
             memoryInput = new MemoryInputStream(imageTwoMemoryBlock.getData(),
                                                 imageTwoMemoryBlock.getSize(),
-                                                true);
+                                                false);
             
             imageTwo = ImageFileFormat::loadFrom(*memoryInput);
             delete memoryInput;
