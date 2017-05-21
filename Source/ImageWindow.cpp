@@ -32,14 +32,14 @@ ImageWindow::ImageWindow (Image &imageSource)
     //[Constructor_pre] You can add your own custom stuff here..
 
     image = imageSource;
-    
+
     //[/Constructor_pre]
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (10, 10);
+    setSize (200, 200);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -64,6 +64,12 @@ void ImageWindow::paint (Graphics& g)
     //[/UserPrePaint]
 
     g.fillAll (Colour (0xff373737));
+
+    g.setColour (Colours::white);
+    g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    g.drawText (TRANS("Please Load an Image"),
+                0, 0, 200, 200,
+                Justification::centred, true);
 
     //[UserPaint] Add your own custom painting code here..
 
@@ -98,8 +104,12 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="ImageWindow" componentName=""
                  parentClasses="public Component" constructorParams="Image &amp;imageSource"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="1" initialWidth="10" initialHeight="10">
-  <BACKGROUND backgroundColour="ff373737"/>
+                 overlayOpacity="0.330" fixedSize="1" initialWidth="200" initialHeight="200">
+  <BACKGROUND backgroundColour="ff373737">
+    <TEXT pos="0 0 200 200" fill="solid: ffffffff" hasStroke="0" text="Please Load an Image"
+          fontname="Default font" fontsize="15" kerning="0" bold="0" italic="0"
+          justification="36"/>
+  </BACKGROUND>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

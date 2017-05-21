@@ -218,19 +218,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     versionNumberLabelString += " v";
     versionNumberLabelString += ProjectInfo::versionString;
     versionNumberLabel->setText(versionNumberLabelString, dontSendNotification);
-
-    // Disable Display Image buttons (until images are loaded)
     
-//    if(imageComponentOnePtr->getImage().isNull())
-//    {
-//        displayImageOneButton->setEnabled(false);
-//    }
-//    
-//    if(imageComponentTwoPtr->getImage().isNull())
-//    {
-//        displayImageTwoButton->setEnabled(false);
-//    }
-
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
 
@@ -417,11 +405,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
 
-        if(!imageOnePtr->isNull())
-        {
-            displayImageOneButton->setEnabled(true);
-        }
-
         //[/UserButtonCode_loadImageOneButton]
     }
     else if (buttonThatWasClicked == loadImageTwoButton)
@@ -431,11 +414,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
 
         displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
-
-        if(!imageTwoPtr->isNull())
-        {
-            displayImageTwoButton->setEnabled(true);
-        }
 
         //[/UserButtonCode_loadImageTwoButton]
     }
@@ -482,8 +460,17 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
         
-        basicWindowPtr->setSize(image.getWidth(), image.getHeight());
-        basicWindowPtr->setTopLeftPosition(0, 0);
+        if(!image.isNull())
+        {
+            basicWindowPtr->setSize(image.getWidth(), image.getHeight());
+            basicWindowPtr->setTopLeftPosition(0, 0);
+        }
+        
+        else
+        {
+            basicWindowPtr->setSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
+        }
+        
         basicWindowPtr->setVisible(true);
     }
 
