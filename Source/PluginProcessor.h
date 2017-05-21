@@ -68,12 +68,12 @@ public:
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
-    Image one, two;
+    Image imageOne, imageTwo;
     
     ImageComponent imageComponentOne;
     ImageComponent imageComponentTwo;
     
-    MemoryOutputStream out;
+    MemoryOutputStream memoryOutput;
     JPEGImageFormat format;
     
     MemoryBlock imageOneMemoryBlock, imageTwoMemoryBlock;

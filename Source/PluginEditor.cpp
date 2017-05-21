@@ -35,8 +35,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Link image pointer in editor class with image holder in processor class
+    imageOnePtr          = &p.imageOne;
+    imageTwoPtr          = &p.imageTwo;
     imageComponentOnePtr = &p.imageComponentOne;
     imageComponentTwoPtr = &p.imageComponentTwo;
+    
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr = &p.performersNameEditor);
@@ -394,7 +397,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageOnePtr, imageOne, imageOnePath);
+        createImageWindow(basicWindowImageOnePtr, *imageOnePtr, imageOnePath);
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -402,7 +405,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageTwoPtr, imageTwo, imageTwoPath);
+        createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, imageTwoPath);
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -410,11 +413,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(imageComponentOnePtr, imageOne, imageOnePath);
+        loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
 
         displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
 
-        if(!imageOne.isNull())
+        if(!imageOnePtr->isNull())
         {
             displayImageOneButton->setEnabled(true);
         }
@@ -425,11 +428,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(imageComponentTwoPtr, imageTwo, imageTwoPath);
+        loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
 
         displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
 
-        if(!imageTwo.isNull())
+        if(!imageTwoPtr->isNull())
         {
             displayImageTwoButton->setEnabled(true);
         }
@@ -474,13 +477,6 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     // Don't allow multiple copies of this window to be made
     if(basicWindowPtr == NULL)
     {
-        // Get image (if image was loaded from load button, this is skipped,
-        // If image was retrieved from binary data on getState, it needs to be loaded
-        if(image.isNull())
-        {
-            image = imageComponentOnePtr->getImage();
-        }
-        
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(), Colours::grey, DocumentWindow::allButtons);
 
         basicWindowPtr->setUsingNativeTitleBar(true);

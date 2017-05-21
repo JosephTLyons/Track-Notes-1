@@ -155,17 +155,17 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     // Image one XML attribute
     if(!imageComponentOne.getImage().isNull())
     {
-        format.writeImageToStream (imageComponentOne.getImage() , out);
-        MemoryBlock imageDataOne (out.getData(), out.getDataSize());
-        xml.setAttribute ("imageOne", imageDataOne.toBase64Encoding());
+        format.writeImageToStream (imageComponentOne.getImage() , memoryOutput);
+        MemoryBlock imageData (memoryOutput.getData(), memoryOutput.getDataSize());
+        xml.setAttribute ("imageOne", imageData.toBase64Encoding());
     }
     
     // Image two XML attribute
     if(!imageComponentTwo.getImage().isNull())
     {
-        format.writeImageToStream (imageComponentTwo.getImage(), out);
-        MemoryBlock imageDataTwo (out.getData(), out.getDataSize());
-        xml.setAttribute ("imageTwo", imageDataTwo.toBase64Encoding());
+        format.writeImageToStream (imageComponentTwo.getImage(), memoryOutput);
+        MemoryBlock imageData (memoryOutput.getData(), memoryOutput.getDataSize());
+        xml.setAttribute ("imageTwo", imageData.toBase64Encoding());
     }
     
     
@@ -212,16 +212,14 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
                                                 imageOneMemoryBlock.getSize(),
                                                 true);
             
-            Image image = ImageFileFormat::loadFrom(*memoryInput);
-            
-            imageComponentOne.setImage(image);
+            imageOne = ImageFileFormat::loadFrom(*memoryInput);
             
             delete memoryInput;
             memoryInput = new MemoryInputStream(imageTwoMemoryBlock.getData(),
                                                 imageTwoMemoryBlock.getSize(),
                                                 true);
             
-            imageComponentTwo.setImage(ImageFileFormat::loadFrom(*memoryInput));
+            imageTwo = ImageFileFormat::loadFrom(*memoryInput);
             delete memoryInput;
             
             // Now reload our parameters..

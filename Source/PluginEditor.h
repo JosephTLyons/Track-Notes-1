@@ -69,7 +69,7 @@ private:
     SafePointer<ImageComponent> imageComponentOnePtr;
     SafePointer<ImageComponent> imageComponentTwoPtr;
     File imageOnePath, imageTwoPath;
-    Image imageOne, imageTwo;
+    Image *imageOnePtr, *imageTwoPtr;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;
