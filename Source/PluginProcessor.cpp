@@ -218,11 +218,6 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             
             imageTwo = ImageFileFormat::loadFrom(*memoryInput);
             delete memoryInput;
-            
-            // Now reload our parameters..
-            for (int i = 0; i < getNumParameters(); ++i)
-                if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
-                    p->setValue ((float) xmlState->getDoubleAttribute (p->paramID, p->getValue()));
         }
     }
 }
