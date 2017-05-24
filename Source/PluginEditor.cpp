@@ -403,7 +403,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
 
-        displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
+        if(imageOnePtr->isNull())
+        {
+            displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
+        }
 
         //[/UserButtonCode_loadImageOneButton]
     }
@@ -413,7 +416,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
 
-        displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
+        if(imageTwoPtr->isNull())
+        {
+            displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
+        }
 
         //[/UserButtonCode_loadImageTwoButton]
     }
