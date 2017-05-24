@@ -147,7 +147,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("instrumentPlayed", instrumentPlayedEditor.getText());
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
-    xml.setAttribute("generalNotes", generalNotesEditor.getText());
+    xml.setAttribute ("generalNotes", generalNotesEditor.getText());
     
     // Image one XML attribute
     if(!imageComponentOne.getImage().isNull())
@@ -167,17 +167,10 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     
     // Use this helper function to stuff it into the binary blob and return it..
     copyXmlToBinary (xml, destData);
-    
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
 }
 
 void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
-    
     // This getXmlFromBinary() helper function retrieves our XML from the binary blob..
     ScopedPointer<XmlElement> xml (getXmlFromBinary (data, sizeInBytes));
     
