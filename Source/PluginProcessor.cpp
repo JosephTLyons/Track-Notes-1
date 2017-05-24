@@ -140,7 +140,7 @@ AudioProcessorEditor* TrackNotesAudioProcessor::createEditor()
 void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // Create an outer XML element..
-    XmlElement xml ("MYPLUGINSETTINGS");
+    XmlElement xml ("TrackNotes");
     
     // add some attributes to it..
     xml.setAttribute ("performersName", performersNameEditor.getText());
@@ -184,7 +184,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
     if (xml != nullptr)
     {
         // make sure that it's actually our type of XML object..
-        if (xml->hasTagName ("MYPLUGINSETTINGS"))
+        if (xml->hasTagName ("TrackNotes"))
         {
             // ok, now pull our strings
             performersNameEditor.setText(xml->getStringAttribute("performersName"));
