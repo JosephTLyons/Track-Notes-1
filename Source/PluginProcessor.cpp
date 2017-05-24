@@ -179,22 +179,22 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
     // whose contents will have been created by the getStateInformation() call.
     
     // This getXmlFromBinary() helper function retrieves our XML from the binary blob..
-    ScopedPointer<XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+    ScopedPointer<XmlElement> xml (getXmlFromBinary (data, sizeInBytes));
     
-    if (xmlState != nullptr)
+    if (xml != nullptr)
     {
         // make sure that it's actually our type of XML object..
-        if (xmlState->hasTagName ("MYPLUGINSETTINGS"))
+        if (xml->hasTagName ("MYPLUGINSETTINGS"))
         {
             // ok, now pull our strings
-            performersNameEditor.setText(xmlState->getStringAttribute("performersName"));
-            instrumentPlayedEditor.setText(xmlState->getStringAttribute("instrumentPlayed"));
-            microphonesUsedEditor.setText(xmlState->getStringAttribute("microphonesUsed"));
-            timestampedNotesEditor.setText(xmlState->getStringAttribute("timestampedNotes"));
-            generalNotesEditor.setText(xmlState->getStringAttribute("generalNotes"));
+            performersNameEditor.setText(xml->getStringAttribute("performersName"));
+            instrumentPlayedEditor.setText(xml->getStringAttribute("instrumentPlayed"));
+            microphonesUsedEditor.setText(xml->getStringAttribute("microphonesUsed"));
+            timestampedNotesEditor.setText(xml->getStringAttribute("timestampedNotes"));
+            generalNotesEditor.setText(xml->getStringAttribute("generalNotes"));
             
-            imageOneMemoryBlock.fromBase64Encoding(xmlState->getStringAttribute("imageOne"));
-            imageTwoMemoryBlock.fromBase64Encoding(xmlState->getStringAttribute("imageTwo"));
+            imageOneMemoryBlock.fromBase64Encoding(xml->getStringAttribute("imageOne"));
+            imageTwoMemoryBlock.fromBase64Encoding(xml->getStringAttribute("imageTwo"));
             
             memoryInput = new MemoryInputStream(imageOneMemoryBlock.getData(),
                                                 imageOneMemoryBlock.getSize(),
