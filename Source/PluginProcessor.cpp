@@ -139,9 +139,6 @@ AudioProcessorEditor* TrackNotesAudioProcessor::createEditor()
 //==============================================================================
 void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // Here's an example of how you can use XML to make it easy and more robust:
-    
     // Create an outer XML element..
     XmlElement xml ("MYPLUGINSETTINGS");
     
@@ -168,13 +165,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
         xml.setAttribute ("imageTwo", imageData.toBase64Encoding());
     }
     
-    
-    // Store the values of all our parameters, using their param ID as the XML attribute
-    for (int i = 0; i < getNumParameters(); ++i)
-        if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
-            xml.setAttribute (p->paramID, p->getValue());
-    
-    // then use this helper function to stuff it into the binary blob and return it..
+    // Use this helper function to stuff it into the binary blob and return it..
     copyXmlToBinary (xml, destData);
     
     // You should use this method to store your parameters in the memory block.
