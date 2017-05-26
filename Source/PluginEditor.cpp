@@ -388,7 +388,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
 
-        if(imageOnePtr->isNull())
+        // Only display image if an image is loaded
+        if(!imageOnePtr->isNull())
         {
             displayImageOneButtonPtr->setButtonText(imageOnePath.getFileNameWithoutExtension());
         }
@@ -401,7 +402,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
 
-        if(imageTwoPtr->isNull())
+        // Only display image if an image is loaded
+        if(!imageTwoPtr->isNull())
         {
             displayImageTwoButtonPtr->setButtonText(imageTwoPath.getFileNameWithoutExtension());
         }
