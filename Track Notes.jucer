@@ -32,7 +32,8 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" aaxFolder="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Track Notes"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Track Notes"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Track Notes"
+                       osxCompatibility="10.6 SDK"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../Libraries/JUCE/modules"/>
