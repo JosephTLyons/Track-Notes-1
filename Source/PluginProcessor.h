@@ -79,9 +79,6 @@ public:
     MemoryBlock imageOneMemoryBlock, imageTwoMemoryBlock;
     MemoryInputStream *memoryInput;
     
-    TextButton displayImageOneButton;
-    TextButton displayImageTwoButton;
-    
 private:
     
     //==============================================================================

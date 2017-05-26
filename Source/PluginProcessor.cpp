@@ -148,8 +148,6 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
     xml.setAttribute ("generalNotes", generalNotesEditor.getText());
-    xml.setAttribute("displayImageOneButtonText", displayImageOneButton.getButtonText());
-    xml.setAttribute("displayImageTwoButtonText", displayImageTwoButton.getButtonText());
     
     // Image one XML attribute
     if(!imageComponentOne.getImage().isNull())
@@ -193,9 +191,6 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             microphonesUsedEditor.setText(xml->getStringAttribute("microphonesUsed"));
             timestampedNotesEditor.setText(xml->getStringAttribute("timestampedNotes"));
             generalNotesEditor.setText(xml->getStringAttribute("generalNotes"));
-            
-            displayImageOneButton.setButtonText(xml->getStringAttribute("displayImageOneButtonText"));
-            displayImageTwoButton.setButtonText(xml->getStringAttribute("displayImageTwoButtonText"));
             
             imageOneMemoryBlock.fromBase64Encoding(xml->getStringAttribute("imageOne"));
             imageTwoMemoryBlock.fromBase64Encoding(xml->getStringAttribute("imageTwo"));
