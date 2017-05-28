@@ -438,7 +438,7 @@ void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imag
                                                Image &image, File &imagePath)
 {
     FileChooser fileChooser ("Choose an image...",
-                             File::getCurrentWorkingDirectory(),
+                             File::getSpecialLocation(File::userHomeDirectory),
                              "*",
                              true);
 
@@ -467,6 +467,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
 
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
+        basicWindowPtr->setAlwaysOnTop(true);
         
         if(!image.isNull())
         {
