@@ -403,7 +403,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
 
-        // Only display image if an image is loaded
+        // Only change button text if an image is loaded
         if(!imageOnePtr->isNull())
         {
             displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
@@ -451,6 +451,13 @@ void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imag
 
         // Get image
         image = ImageCache::getFromFile(fileChooser.getResult());
+        
+        // Rescale image - turned off for now
+//        int oldWidth      = image.getWidth();
+//        int newWidth      = 500;
+//        float aspectRatio = newWidth / (float) oldWidth;
+//        image = image.rescaled(newWidth, (aspectRatio * image.getHeight()));
+        
 
         // Point main imageComponentPtrat this image,
         // Which sets ImageComponent of Processor class, since imageComponentPtr points to it
@@ -464,7 +471,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     if(basicWindowPtr == NULL)
     {
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(), Colours::grey, DocumentWindow::allButtons);
-
+        
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
         basicWindowPtr->setAlwaysOnTop(true);
