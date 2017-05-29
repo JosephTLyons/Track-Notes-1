@@ -23,7 +23,7 @@ A simple plugin to hold your session and track notes.
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
 
 ### AU in Garageband
-* Insert Timestamp does not work (DAW doesn't provide this info to to developers?)
+* Insert Timestamp does not work (DAW doesn't provide this info to developers?)
 * Command+a to select all isn't working
 
 ## Things to do before release:

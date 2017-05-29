@@ -402,6 +402,9 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
         loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
+        
+        if(!imageOnePtr->isNull())
+            displayImageOneButton->triggerClick();
 
         //[/UserButtonCode_loadImageOneButton]
     }
@@ -410,6 +413,9 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
         loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
+        
+        if(!imageTwoPtr->isNull())
+            displayImageTwoButton->triggerClick();
 
         //[/UserButtonCode_loadImageTwoButton]
     }
