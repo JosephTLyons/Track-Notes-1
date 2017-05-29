@@ -11,6 +11,9 @@ A simple plugin to hold your session and track notes.
 * Do not blind purchase.  I am brand new to developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please do not buy based on what is currently available.
 
+## Currently Supported Formats:
+* Mac 10.6+: VST, AU
+
 ## Bugs / Known Issues:
 ### Global Issues:
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window.  To combat that, I've forced the new window to always be on top.
@@ -35,7 +38,6 @@ A simple plugin to hold your session and track notes.
 
 ## Future features (after v1.0.0 release)
 * Fix bugs and known issues
-* Ability to load images
 * Resizable windows / GUI
 * User picked fonts, font sizes, and background color?
 * AAX
