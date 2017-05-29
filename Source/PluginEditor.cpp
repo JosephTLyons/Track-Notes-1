@@ -39,7 +39,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageTwoPtr          = &p.imageTwo;
     imageComponentOnePtr = &p.imageComponentOne;
     imageComponentTwoPtr = &p.imageComponentTwo;
-    
+
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr = &p.performersNameEditor);
@@ -218,7 +218,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     versionNumberLabelString += " v";
     versionNumberLabelString += ProjectInfo::versionString;
     versionNumberLabel->setText(versionNumberLabelString, dontSendNotification);
-    
+
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
 
@@ -315,7 +315,7 @@ void TrackNotesAudioProcessorEditor::resized()
 void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
-    
+
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == insertTimeStampButton)
@@ -403,12 +403,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
 
-        // Only change button text if an image is loaded
-        if(!imageOnePtr->isNull())
-        {
-            displayImageOneButton->setButtonText(imageOnePath.getFileNameWithoutExtension());
-        }
-
         //[/UserButtonCode_loadImageOneButton]
     }
     else if (buttonThatWasClicked == loadImageTwoButton)
@@ -416,12 +410,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
         loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
-
-        // Only display image if an image is loaded
-        if(!imageTwoPtr->isNull())
-        {
-            displayImageTwoButton->setButtonText(imageTwoPath.getFileNameWithoutExtension());
-        }
 
         //[/UserButtonCode_loadImageTwoButton]
     }
@@ -451,13 +439,13 @@ void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imag
 
         // Get image
         image = ImageCache::getFromFile(fileChooser.getResult());
-        
+
         // Rescale image - turned off for now
 //        int oldWidth      = image.getWidth();
 //        int newWidth      = 500;
 //        float aspectRatio = newWidth / (float) oldWidth;
 //        image = image.rescaled(newWidth, (aspectRatio * image.getHeight()));
-        
+
 
         // Point main imageComponentPtrat this image,
         // Which sets ImageComponent of Processor class, since imageComponentPtr points to it
@@ -471,22 +459,22 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     if(basicWindowPtr == NULL)
     {
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(), Colours::grey, DocumentWindow::allButtons);
-        
+
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
         basicWindowPtr->setAlwaysOnTop(true);
-        
+
         if(!image.isNull())
         {
             basicWindowPtr->setSize(image.getWidth(), image.getHeight());
             basicWindowPtr->setTopLeftPosition(0, 0);
         }
-        
+
         else
         {
             basicWindowPtr->setSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
         }
-        
+
         basicWindowPtr->setVisible(true);
     }
 

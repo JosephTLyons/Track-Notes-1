@@ -13,14 +13,14 @@ A simple plugin to hold your session and track notes.
 
 ## Bugs / Known Issues:
 ### Global Issues:
-* New image windows are stuck behind main plugin window 
+* Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window.  To combat that, I've forced the new window to always be on top.
+* Some images load and display larger than they really are
 
 ### VST in Reaper:
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
 
 ### AU in Garageband
-* Insert Timestamp is broken
-* Crashes DAW on reopening a window
+* Insert Timestamp does not work (DAW doesn't provide this info to to developers?)
 * Command+a to select all isn't working
 
 ## Things to do before release:
