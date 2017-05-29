@@ -24,28 +24,18 @@ A simple plugin to hold your session and track notes.
 * Command+a to select all isn't working
 
 ## Things to do before release:
-* Image related:
-* check to make sure image is loaded before trying to display
-* save images
-* load imates
-* handle duplicate code in both load button handler regions
-* will recall of the images set the names of their corresponding display buttons back to their correct names?
-* New windows always pop up behind current window and in the corner 
-* Some images are loaded at sizes that are different from their originals
+* save image bug fixed
 
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 
 * Set up all menu information for each plugin format (category, company name, etc).
-* Grab time in standalone crashes app (need to use an if-statement of some sort here)
-* Reaper space focus steal (Make sure "Send all keyboard input to plugin" is turned on)
-* Garageband playhead info for time grab
 * Test other DAWs
 * Graphics overhaul - revise separation line?
-* Turn off Insert Timestamp button for standalone (doesn't really matter since I wont put out a standalone version)
 * Turn off JUCE splash screen if I close the code up
 
-Future features (after v1.0.0 release)
+## Future features (after v1.0.0 release)
+* Fix bugs and known issues
 * Ability to load images
 * Resizable windows / GUI
 * User picked fonts, font sizes, and background color?
