@@ -14,7 +14,7 @@ A simple plugin to hold your session and track notes.
 ## Bugs / Known Issues:
 ### Global Issues:
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window.  To combat that, I've forced the new window to always be on top.
-* Some images load and display larger than they really are
+* Some images load and display larger than they really are.
 
 ### VST in Reaper:
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
@@ -24,16 +24,14 @@ A simple plugin to hold your session and track notes.
 * Command+a to select all isn't working
 
 ## Things to do before release:
-* save image bug fixed
-
+* Save image bug fixed
 * Make string pointers private
 * Make setter and getter methods for processor class strings
-
 * Set up all menu information for each plugin format (category, company name, etc).
 * Test other DAWs
 * Graphics overhaul - revise separation line?
 * Turn off JUCE splash screen if I open-source
-* Add new GUI to ReadMe
+* Add new GUI to ReadMe, Clean up ReadMe as well
 
 ## Future features (after v1.0.0 release)
 * Fix bugs and known issues
