@@ -33,7 +33,6 @@ A simple plugin to hold your session and track notes.
 * Set up all menu information for each plugin format (category, company name, etc).
 * Test other DAWs
 * Graphics overhaul - revise separation line?
-* Turn off JUCE splash screen if I open-source
 * Add new GUI to ReadMe, Clean up ReadMe as well
 
 ## Future features (after v1.0.0 release)

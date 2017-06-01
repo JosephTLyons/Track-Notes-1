@@ -201,13 +201,11 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             
             imageOne = ImageFileFormat::loadFrom(*memoryInput);
             
-            delete memoryInput;
             memoryInput = new MemoryInputStream(imageTwoMemoryBlock.getData(),
                                                 imageTwoMemoryBlock.getSize(),
                                                 false);
             
             imageTwo = ImageFileFormat::loadFrom(*memoryInput);
-            delete memoryInput;
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)

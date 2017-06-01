@@ -77,7 +77,7 @@ public:
     JPEGImageFormat format;
     
     MemoryBlock imageOneMemoryBlock, imageTwoMemoryBlock;
-    MemoryInputStream *memoryInput;
+    ScopedPointer<MemoryInputStream> memoryInput;
     
 private:
     
