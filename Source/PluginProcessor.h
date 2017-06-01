@@ -68,16 +68,8 @@ public:
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
+    File imageOnePath, imageTwoPath;
     Image imageOne, imageTwo;
-    
-    ImageComponent imageComponentOne;
-    ImageComponent imageComponentTwo;
-    
-    MemoryOutputStream memoryOutput;
-    JPEGImageFormat format;
-    
-    MemoryBlock imageOneMemoryBlock, imageTwoMemoryBlock;
-    ScopedPointer<MemoryInputStream> memoryInput;
     
 private:
     

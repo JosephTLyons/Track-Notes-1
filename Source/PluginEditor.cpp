@@ -35,11 +35,10 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Link image pointer in editor class with image holder in processor class
-    imageOnePtr          = &p.imageOne;
-    imageTwoPtr          = &p.imageTwo;
-    imageComponentOnePtr = &p.imageComponentOne;
-    imageComponentTwoPtr = &p.imageComponentTwo;
-
+    imageOnePtr     = &p.imageOne;
+    imageTwoPtr     = &p.imageTwo;
+    imageOnePathPtr = &p.imageOnePath;
+    imageTwoPathPtr = &p.imageTwoPath;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr = &p.performersNameEditor);
@@ -235,9 +234,15 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     timestampedNotesEditorPtr = nullptr;
     generalNotesEditorPtr = nullptr;
 
-    // SafePointers
+    // Normal C++ Pointers
     delete basicWindowImageOnePtr;
     delete basicWindowImageTwoPtr;
+    basicWindowImageOnePtr = nullptr;
+    basicWindowImageTwoPtr = nullptr;
+    
+    // Dont delete these pointers because they're objects are owned and used by processor class
+    imageOnePathPtr           = nullptr;
+    imageTwoPathPtr           = nullptr;
 
     // ScopedPointers - don't delete since the actual
     // Image object is still being used by prcoesser classs
@@ -385,7 +390,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageOnePtr, *imageOnePtr, imageOnePath);
+        createImageWindow(basicWindowImageOnePtr, *imageOnePtr, *imageOnePathPtr);
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -393,7 +398,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, imageTwoPath);
+        createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -401,7 +406,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(imageComponentOnePtr, *imageOnePtr, imageOnePath);
+        loadImage(imageComponentOnePtr, *imageOnePtr, *imageOnePathPtr);
 
         if(!imageOnePtr->isNull())
             displayImageOneButton->triggerClick();
@@ -412,7 +417,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(imageComponentTwoPtr, *imageTwoPtr, imageTwoPath);
+        loadImage(imageComponentTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
 
         if(!imageTwoPtr->isNull())
             displayImageTwoButton->triggerClick();

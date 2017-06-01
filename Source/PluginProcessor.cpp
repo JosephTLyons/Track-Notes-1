@@ -150,19 +150,15 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("generalNotes", generalNotesEditor.getText());
     
     // Image one XML attribute
-    if(!imageComponentOne.getImage().isNull())
+    if(imageOnePath.isAbsolutePath(imageOnePath.getFullPathName()))
     {
-        format.writeImageToStream (imageComponentOne.getImage() , memoryOutput);
-        MemoryBlock imageData (memoryOutput.getData(), memoryOutput.getDataSize());
-        xml.setAttribute ("imageOne", imageData.toBase64Encoding());
+        xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
     }
     
     // Image two XML attribute
-    if(!imageComponentTwo.getImage().isNull())
+    if(imageTwoPath.isAbsolutePath(imageTwoPath.getFullPathName()))
     {
-        format.writeImageToStream (imageComponentTwo.getImage(), memoryOutput);
-        MemoryBlock imageData (memoryOutput.getData(), memoryOutput.getDataSize());
-        xml.setAttribute ("imageTwo", imageData.toBase64Encoding());
+        xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
     }
     
     
@@ -191,21 +187,12 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             microphonesUsedEditor.setText(xml->getStringAttribute("microphonesUsed"));
             timestampedNotesEditor.setText(xml->getStringAttribute("timestampedNotes"));
             generalNotesEditor.setText(xml->getStringAttribute("generalNotes"));
+            imageOnePath = xml->getStringAttribute("imageOnePath");
+            imageTwoPath = xml->getStringAttribute("imageTwoPath");
             
-            imageOneMemoryBlock.fromBase64Encoding(xml->getStringAttribute("imageOne"));
-            imageTwoMemoryBlock.fromBase64Encoding(xml->getStringAttribute("imageTwo"));
-            
-            memoryInput = new MemoryInputStream(imageOneMemoryBlock.getData(),
-                                                imageOneMemoryBlock.getSize(),
-                                                false);
-            
-            imageOne = ImageFileFormat::loadFrom(*memoryInput);
-            
-            memoryInput = new MemoryInputStream(imageTwoMemoryBlock.getData(),
-                                                imageTwoMemoryBlock.getSize(),
-                                                false);
-            
-            imageTwo = ImageFileFormat::loadFrom(*memoryInput);
+            // Get image
+            imageOne = ImageCache::getFromFile(imageOnePath);
+            imageTwo = ImageCache::getFromFile(imageTwoPath);
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)

@@ -68,7 +68,7 @@ private:
 
     SafePointer<ImageComponent> imageComponentOnePtr;
     SafePointer<ImageComponent> imageComponentTwoPtr;
-    File imageOnePath, imageTwoPath;
+    File *imageOnePathPtr, *imageTwoPathPtr;
     Image *imageOnePtr, *imageTwoPtr;
 
     SafePointer<TextEditor> performersNameEditorPtr;
