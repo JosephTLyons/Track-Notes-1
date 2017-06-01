@@ -150,13 +150,13 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("generalNotes", generalNotesEditor.getText());
     
     // Image one XML attribute
-    if(imageOnePath.isAbsolutePath(imageOnePath.getFullPathName()))
+    if(imageOnePath.exists())
     {
         xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
     }
     
     // Image two XML attribute
-    if(imageTwoPath.isAbsolutePath(imageTwoPath.getFullPathName()))
+    if(imageTwoPath.exists())
     {
         xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
     }
@@ -190,9 +190,16 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             imageOnePath = xml->getStringAttribute("imageOnePath");
             imageTwoPath = xml->getStringAttribute("imageTwoPath");
             
-            // Get image
-            imageOne = ImageCache::getFromFile(imageOnePath);
-            imageTwo = ImageCache::getFromFile(imageTwoPath);
+            // Get images
+            if(imageOnePath.exists())
+            {
+                imageOne = ImageCache::getFromFile(imageOnePath);
+            }
+            
+            if(imageTwoPath.exists())
+            {
+                imageTwo = ImageCache::getFromFile(imageTwoPath);
+            }
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)
