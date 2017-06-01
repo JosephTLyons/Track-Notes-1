@@ -241,13 +241,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     basicWindowImageTwoPtr = nullptr;
     
     // Dont delete these pointers because they're objects are owned and used by processor class
-    imageOnePathPtr           = nullptr;
-    imageTwoPathPtr           = nullptr;
-
-    // ScopedPointers - don't delete since the actual
-    // Image object is still being used by prcoesser classs
-    imageComponentOnePtr = nullptr;
-    imageComponentTwoPtr = nullptr;
+    imageOnePathPtr = nullptr;
+    imageTwoPathPtr = nullptr;
 
     //[/Destructor_pre]
 
@@ -406,10 +401,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(imageComponentOnePtr, *imageOnePtr, *imageOnePathPtr);
+        loadImage(*imageOnePtr, *imageOnePathPtr);
 
         if(!imageOnePtr->isNull())
+        {
             displayImageOneButton->triggerClick();
+        }
 
         //[/UserButtonCode_loadImageOneButton]
     }
@@ -417,10 +414,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(imageComponentTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
+        loadImage(*imageTwoPtr, *imageTwoPathPtr);
 
         if(!imageTwoPtr->isNull())
+        {
             displayImageTwoButton->triggerClick();
+        }
 
         //[/UserButtonCode_loadImageTwoButton]
     }
@@ -433,8 +432,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imageComponentPtr,
-                                               Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
 {
     FileChooser fileChooser ("Choose an image...",
                              File::getSpecialLocation(File::userHomeDirectory),
@@ -456,15 +454,11 @@ void TrackNotesAudioProcessorEditor::loadImage(SafePointer<ImageComponent> &imag
 //        int newWidth      = 500;
 //        float aspectRatio = newWidth / (float) oldWidth;
 //        image = image.rescaled(newWidth, (aspectRatio * image.getHeight()));
-
-
-        // Point main imageComponentPtrat this image,
-        // Which sets ImageComponent of Processor class, since imageComponentPtr points to it
-        imageComponentPtr->setImage(image);
     }
 }
 
-void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr,
+                                                       Image &image, File &imagePath)
 {
     // Don't allow multiple copies of this window to be made
     if(basicWindowPtr == NULL)

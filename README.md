@@ -27,7 +27,8 @@ A simple plugin to hold your session and track notes.
 * Command+a to select all isn't working
 
 ## Things to do before release:
-* Save image bug fixed
+* Indicator of loaded image (error message if images aren't loaded)
+* Way to remove photo
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 * Set up all menu information for each plugin format (category, company name, etc).

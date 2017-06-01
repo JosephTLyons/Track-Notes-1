@@ -47,7 +47,7 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
 
-    void loadImage(SafePointer<ImageComponent> &imageComponentPtr, Image &image, File &imagePath);
+    void loadImage(Image &image, File &imagePath);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
 
     //[/UserMethods]
@@ -66,8 +66,8 @@ private:
     int fontSize;
     Array<Font> usersFontsResults;
 
-    SafePointer<ImageComponent> imageComponentOnePtr;
-    SafePointer<ImageComponent> imageComponentTwoPtr;
+    //SafePointer<ImageComponent> imageComponentOnePtr;
+    //SafePointer<ImageComponent> imageComponentTwoPtr;
     File *imageOnePathPtr, *imageTwoPathPtr;
     Image *imageOnePtr, *imageTwoPtr;
 
