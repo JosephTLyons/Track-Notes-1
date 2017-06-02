@@ -148,19 +148,8 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
     xml.setAttribute ("generalNotes", generalNotesEditor.getText());
-    
-    // Image one XML attribute
-    if(imageOnePath.exists())
-    {
-        xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
-    }
-    
-    // Image two XML attribute
-    if(imageTwoPath.exists())
-    {
-        xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
-    }
-    
+    xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
+    xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
     
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
@@ -190,15 +179,42 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             imageOnePath = xml->getStringAttribute("imageOnePath");
             imageTwoPath = xml->getStringAttribute("imageTwoPath");
             
-            // Get images
-            if(imageOnePath.exists())
+            // Get string containing path and check to see if its empty or not
+            if(!imageOnePath.getFullPathName().isEmpty())
             {
-                imageOne = ImageCache::getFromFile(imageOnePath);
+                // If it exists, load it
+                if(imageOnePath.exists())
+                {
+                    imageOne = ImageCache::getFromFile(imageOnePath);
+                }
+                
+                // If not, then the file has been moved and an error should display
+                else
+                {
+                    AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
+                                                  "Image Missing",
+                                                  "Image missing from original location: " +
+                                                  imageOnePath.getFullPathName());
+                }
             }
             
-            if(imageTwoPath.exists())
+            // Get string containing path and check to see if its empty or not
+            if(!imageTwoPath.getFullPathName().isEmpty())
             {
-                imageTwo = ImageCache::getFromFile(imageTwoPath);
+                // If it exists, load it
+                if(imageTwoPath.exists())
+                {
+                    imageTwo = ImageCache::getFromFile(imageTwoPath);
+                }
+                
+                // If not, then the file has been moved and an error should display
+                else
+                {
+                    AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
+                                                  "Image Missing",
+                                                  "Image missing from original location: " +
+                                                  imageTwoPath.getFullPathName());
+                }
             }
             
             // Now reload our parameters..
