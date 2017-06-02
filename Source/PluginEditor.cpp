@@ -231,14 +231,14 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
 
     //[Constructor] You can add your own custom stuff here..
-    
+
     // Reset button names to image name (this doesn't work in standalone
     // since constructor isn't called when standalone loads, because plugin is already open
     if(!imageOnePathPtr->getFullPathName().isEmpty())
     {
         displayImageOneButton->setButtonText(imageOnePathPtr->getFileNameWithoutExtension());
     }
-    
+
     if(!imageTwoPathPtr->getFullPathName().isEmpty())
     {
         displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());

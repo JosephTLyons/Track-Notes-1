@@ -29,13 +29,13 @@ A simple plugin to hold your session and track notes.
 * Insert Timestamp does not work (DAW doesn't provide this info to developers?)
 * Command+a to select all isn't working
 
-## Things to do before release:
+## Other things to do before next release:
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 * Set up all menu information for each plugin format (category, company name, etc).
 * Test other DAWs
 * Graphics overhaul - revise separation line?
-* Add new GUI to ReadMe, Clean up ReadMe as well
+* Add line between image button items
 
 ## Future features (after v1.0.0 release)
 * Fix bugs and known issues
