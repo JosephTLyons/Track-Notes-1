@@ -31,7 +31,6 @@ A simple plugin to hold your session and track notes.
 
 ## Things to do before release:
 * Indicator of loaded image
-* Way to remove photo (add clear button next to load and drop display button down below)
 * Don't close window when loading a new image over an old one
 * Make string pointers private
 * Make setter and getter methods for processor class strings

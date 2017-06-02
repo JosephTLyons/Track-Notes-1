@@ -205,6 +205,16 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     loadImageTwoButton->addListener (this);
     loadImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
+    addAndMakeVisible (removeImageOneButton = new TextButton ("removeImageOneButton"));
+    removeImageOneButton->setButtonText (TRANS("Remove"));
+    removeImageOneButton->addListener (this);
+    removeImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
+
+    addAndMakeVisible (removeImageTwoButton = new TextButton ("removeImageTwoButton"));
+    removeImageTwoButton->setButtonText (TRANS("Remove"));
+    removeImageTwoButton->addListener (this);
+    removeImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -241,7 +251,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     delete basicWindowImageTwoPtr;
     basicWindowImageOnePtr = nullptr;
     basicWindowImageTwoPtr = nullptr;
-    
+
     // Dont delete these pointers because they're objects are owned and used by processor class
     imageOnePathPtr = nullptr;
     imageTwoPathPtr = nullptr;
@@ -263,6 +273,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     displayImageTwoButton = nullptr;
     loadImageOneButton = nullptr;
     loadImageTwoButton = nullptr;
+    removeImageOneButton = nullptr;
+    removeImageTwoButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -308,10 +320,12 @@ void TrackNotesAudioProcessorEditor::resized()
     versionNumberLabel->setBounds (250, 560, 250, 30);
     theLyonsDenSoftware->setBounds (0, 560, 250, 30);
     generalNotesLabel->setBounds (0, 355, 500, 30);
-    displayImageOneButton->setBounds (50, 540, 200, 20);
-    displayImageTwoButton->setBounds (300, 540, 200, 20);
+    displayImageOneButton->setBounds (50, 540, 150, 20);
+    displayImageTwoButton->setBounds (300, 540, 150, 20);
     loadImageOneButton->setBounds (0, 540, 50, 20);
     loadImageTwoButton->setBounds (250, 540, 50, 20);
+    removeImageOneButton->setBounds (200, 540, 50, 20);
+    removeImageTwoButton->setBounds (450, 540, 50, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -388,7 +402,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     else if (buttonThatWasClicked == displayImageOneButton)
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
-        
+
         // Display error if images are missing
         if(*imageOneMissingPtr)
         {
@@ -411,7 +425,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         {
             showErrorLoadingImageWindow(imageTwoPathPtr->getFullPathName());
         }
-        
+
         else
         {
             createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
@@ -446,6 +460,27 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         }
 
         //[/UserButtonCode_loadImageTwoButton]
+    }
+    else if (buttonThatWasClicked == removeImageOneButton)
+    {
+        //[UserButtonCode_removeImageOneButton] -- add your button handler code here..
+        
+        Image blankImage;
+        
+        *imageOnePathPtr = "";
+        *imageOnePtr     = blankImage;
+        
+        //[/UserButtonCode_removeImageOneButton]
+    }
+    else if (buttonThatWasClicked == removeImageTwoButton)
+    {
+        //[UserButtonCode_removeImageTwoButton] -- add your button handler code here..
+        Image blankImage;
+        
+        *imageTwoPathPtr = "";
+        *imageTwoPtr     = blankImage;
+        
+        //[/UserButtonCode_removeImageTwoButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -578,10 +613,10 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="50 540 200 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="50 540 150 20" bgColOff="ff393939"
               buttonText="Image One" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="300 540 200 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="300 540 150 20" bgColOff="ff393939"
               buttonText="Image Two" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="0 540 50 20" bgColOff="ff393939"
@@ -589,6 +624,12 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="loadImageTwoButton" id="c76f47c5a5ad9793" memberName="loadImageTwoButton"
               virtualName="" explicitFocusOrder="0" pos="250 540 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="removeImageOneButton" id="c4e0c098ca1c7a0c" memberName="removeImageOneButton"
+              virtualName="" explicitFocusOrder="0" pos="200 540 50 20" bgColOff="ff393939"
+              buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="removeImageTwoButton" id="6b14eed5f55e2af7" memberName="removeImageTwoButton"
+              virtualName="" explicitFocusOrder="0" pos="450 540 50 20" bgColOff="ff393939"
+              buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
