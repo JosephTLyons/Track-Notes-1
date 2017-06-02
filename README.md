@@ -30,7 +30,6 @@ A simple plugin to hold your session and track notes.
 * Command+a to select all isn't working
 
 ## Things to do before release:
-* Indicator of loaded image
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 * Set up all menu information for each plugin format (category, company name, etc).

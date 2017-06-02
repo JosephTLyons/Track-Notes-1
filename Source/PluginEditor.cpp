@@ -186,12 +186,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (displayImageOneButton = new TextButton ("displayImageOneButton"));
-    displayImageOneButton->setButtonText (TRANS("Image One"));
+    displayImageOneButton->setButtonText (TRANS("Empty"));
     displayImageOneButton->addListener (this);
     displayImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
     addAndMakeVisible (displayImageTwoButton = new TextButton ("displayImageTwoButton"));
-    displayImageTwoButton->setButtonText (TRANS("Image Two"));
+    displayImageTwoButton->setButtonText (TRANS("Empty"));
     displayImageTwoButton->addListener (this);
     displayImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
@@ -231,6 +231,18 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
 
     //[Constructor] You can add your own custom stuff here..
+    
+    // Reset button names to image name (this doesn't work in standalone
+    // since constructor isn't called when standalone loads, because plugin is already open
+    if(!imageOnePathPtr->getFullPathName().isEmpty())
+    {
+        displayImageOneButton->setButtonText(imageOnePathPtr->getFileNameWithoutExtension());
+    }
+    
+    if(!imageTwoPathPtr->getFullPathName().isEmpty())
+    {
+        displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());
+    }
 
     // Set up version number label
     versionNumberLabelString =  ProjectInfo::projectName;
@@ -451,7 +463,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(!imageOnePtr->isNull())
         {
+            // Set this bool to false so that error message won't show a second time
             *imageOneMissingPtr = false;
+
+            // Set displayImage button text to file name
+            displayImageOneButton->setButtonText(imageOnePathPtr->getFileNameWithoutExtension());
 
             // Logic is, if window is open, trigger display button twice on a newly loaded image
             // This will keep the window open and reload the new image
@@ -474,7 +490,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(!imageTwoPtr->isNull())
         {
+            // Set this bool to false so that error message won't show a second time
             *imageTwoMissingPtr = false;
+
+            // Set displayImage button text to file name
+            displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());
 
             // Logic is, if window is open, trigger display button twice on a newly loaded image
             // This will keep the window open and reload the new image
@@ -497,6 +517,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         *imageOnePathPtr = "";
         *imageOnePtr     = blankImage;
+        displayImageOneButton->setButtonText("Empty");
 
         //[/UserButtonCode_removeImageOneButton]
     }
@@ -507,6 +528,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         *imageTwoPathPtr = "";
         *imageTwoPtr     = blankImage;
+        displayImageTwoButton->setButtonText("Empty");
 
         //[/UserButtonCode_removeImageTwoButton]
     }
@@ -642,10 +664,10 @@ BEGIN_JUCER_METADATA
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="50 580 150 20" bgColOff="ff393939"
-              buttonText="Image One" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
               virtualName="" explicitFocusOrder="0" pos="300 580 150 20" bgColOff="ff393939"
-              buttonText="Image Two" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="0 580 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
