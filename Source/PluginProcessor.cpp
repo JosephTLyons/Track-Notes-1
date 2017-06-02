@@ -185,16 +185,14 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
                 // If it exists, load it
                 if(imageOnePath.exists())
                 {
+                    imageOneMissing = false;
                     imageOne = ImageCache::getFromFile(imageOnePath);
                 }
                 
                 // If not, then the file has been moved and an error should display
                 else
                 {
-                    AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
-                                                  "Image Missing",
-                                                  "Image missing from original location: " +
-                                                  imageOnePath.getFullPathName());
+                    imageOneMissing = true;
                 }
             }
             
@@ -204,16 +202,14 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
                 // If it exists, load it
                 if(imageTwoPath.exists())
                 {
+                    imageTwoMissing = false;
                     imageTwo = ImageCache::getFromFile(imageTwoPath);
                 }
                 
                 // If not, then the file has been moved and an error should display
                 else
                 {
-                    AlertWindow::showOkCancelBox (AlertWindow::WarningIcon,
-                                                  "Image Missing",
-                                                  "Image missing from original location: " +
-                                                  imageTwoPath.getFullPathName());
+                    imageTwoMissing = true;
                 }
             }
             

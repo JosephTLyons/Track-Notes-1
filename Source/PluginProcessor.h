@@ -70,6 +70,7 @@ public:
     
     File imageOnePath, imageTwoPath;
     Image imageOne, imageTwo;
+    bool imageOneMissing, imageTwoMissing;
     
 private:
     

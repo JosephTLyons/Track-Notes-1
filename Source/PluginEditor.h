@@ -49,6 +49,7 @@ public:
 
     void loadImage(Image &image, File &imagePath);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
+    void errorLoadingImageWindow(const String &path);
 
     //[/UserMethods]
 
@@ -66,10 +67,9 @@ private:
     int fontSize;
     Array<Font> usersFontsResults;
 
-    //SafePointer<ImageComponent> imageComponentOnePtr;
-    //SafePointer<ImageComponent> imageComponentTwoPtr;
     File *imageOnePathPtr, *imageTwoPathPtr;
     Image *imageOnePtr, *imageTwoPtr;
+    bool *imageOneMissingPtr, *imageTwoMissingPtr;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;

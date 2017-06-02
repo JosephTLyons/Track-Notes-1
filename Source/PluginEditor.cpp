@@ -35,10 +35,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Link image pointer in editor class with image holder in processor class
-    imageOnePtr     = &p.imageOne;
-    imageTwoPtr     = &p.imageTwo;
-    imageOnePathPtr = &p.imageOnePath;
-    imageTwoPathPtr = &p.imageTwoPath;
+    imageOnePtr        = &p.imageOne;
+    imageTwoPtr        = &p.imageTwo;
+    imageOnePathPtr    = &p.imageOnePath;
+    imageTwoPathPtr    = &p.imageTwoPath;
+    imageOneMissingPtr = &p.imageOneMissing;
+    imageTwoMissingPtr = &p.imageTwoMissing;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr = &p.performersNameEditor);
@@ -243,6 +245,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     // Dont delete these pointers because they're objects are owned and used by processor class
     imageOnePathPtr = nullptr;
     imageTwoPathPtr = nullptr;
+    imageOneMissingPtr = nullptr;
+    imageTwoMissingPtr = nullptr;
 
     //[/Destructor_pre]
 
@@ -384,8 +388,17 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     else if (buttonThatWasClicked == displayImageOneButton)
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
+        
+        // Display error if images are missing
+        if(*imageOneMissingPtr)
+        {
+            errorLoadingImageWindow(imageOnePathPtr->getFullPathName());
+        }
 
-        createImageWindow(basicWindowImageOnePtr, *imageOnePtr, *imageOnePathPtr);
+        else
+        {
+            createImageWindow(basicWindowImageOnePtr, *imageOnePtr, *imageOnePathPtr);
+        }
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -393,7 +406,16 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
+        // Display error if images are missing
+        if(*imageTwoMissingPtr)
+        {
+            errorLoadingImageWindow(imageTwoPathPtr->getFullPathName());
+        }
+        
+        else
+        {
+            createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
+        }
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -405,6 +427,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(!imageOnePtr->isNull())
         {
+            *imageOneMissingPtr = false;
             displayImageOneButton->triggerClick();
         }
 
@@ -418,6 +441,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(!imageTwoPtr->isNull())
         {
+            *imageTwoMissingPtr = false;
             displayImageTwoButton->triggerClick();
         }
 
@@ -488,6 +512,12 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     {
         delete basicWindowPtr;
     }
+}
+void TrackNotesAudioProcessorEditor::errorLoadingImageWindow(const String &path)
+{
+    AlertWindow::showMessageBox (AlertWindow::WarningIcon,
+                                 "Image Missing: ",
+                                 path + "\n\nPlease load image again.");
 }
 
 //[/MiscUserCode]

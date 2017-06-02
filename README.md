@@ -11,6 +11,9 @@ A simple plugin to hold your session and track notes.
 * Do not blind purchase.  I am brand new to developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please do not buy based on what is currently available.
 
+# Notes
+* Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load then from there. 
+
 ## Currently Supported Formats:
 * Mac 10.6+: VST, AU
 
@@ -27,8 +30,9 @@ A simple plugin to hold your session and track notes.
 * Command+a to select all isn't working
 
 ## Things to do before release:
-* Indicator of loaded image (error message if images aren't loaded)
+* Indicator of loaded image
 * Way to remove photo
+* Don't close window when loading a new image over an old one
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 * Set up all menu information for each plugin format (category, company name, etc).
