@@ -392,7 +392,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         // Display error if images are missing
         if(*imageOneMissingPtr)
         {
-            errorLoadingImageWindow(imageOnePathPtr->getFullPathName());
+            showErrorLoadingImageWindow(imageOnePathPtr->getFullPathName());
         }
 
         else
@@ -409,7 +409,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         // Display error if images are missing
         if(*imageTwoMissingPtr)
         {
-            errorLoadingImageWindow(imageTwoPathPtr->getFullPathName());
+            showErrorLoadingImageWindow(imageTwoPathPtr->getFullPathName());
         }
         
         else
@@ -472,12 +472,6 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
 
         // Get image
         image = ImageCache::getFromFile(fileChooser.getResult());
-
-        // Rescale image - turned off for now
-//        int oldWidth      = image.getWidth();
-//        int newWidth      = 500;
-//        float aspectRatio = newWidth / (float) oldWidth;
-//        image = image.rescaled(newWidth, (aspectRatio * image.getHeight()));
     }
 }
 
@@ -513,7 +507,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         delete basicWindowPtr;
     }
 }
-void TrackNotesAudioProcessorEditor::errorLoadingImageWindow(const String &path)
+void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &path)
 {
     AlertWindow::showMessageBox (AlertWindow::WarningIcon,
                                  "Image Missing: ",

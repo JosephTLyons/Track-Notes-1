@@ -49,7 +49,7 @@ public:
 
     void loadImage(Image &image, File &imagePath);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
-    void errorLoadingImageWindow(const String &path);
+    void showErrorLoadingImageWindow(const String &path);
 
     //[/UserMethods]
 

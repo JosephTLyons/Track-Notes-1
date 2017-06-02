@@ -15,7 +15,7 @@ A simple plugin to hold your session and track notes.
 * Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load then from there. 
 
 ## Currently Supported Formats:
-* Mac 10.6+: VST, AU
+* 64 bit for Mac 10.6+: VST, AU
 
 ## Bugs / Known Issues:
 ### Global Issues:
@@ -31,7 +31,7 @@ A simple plugin to hold your session and track notes.
 
 ## Things to do before release:
 * Indicator of loaded image
-* Way to remove photo
+* Way to remove photo (add clear button next to load and drop display button down below)
 * Don't close window when loading a new image over an old one
 * Make string pointers private
 * Make setter and getter methods for processor class strings
