@@ -31,7 +31,6 @@ A simple plugin to hold your session and track notes.
 
 ## Things to do before release:
 * Indicator of loaded image
-* Don't close window when loading a new image over an old one
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 * Set up all menu information for each plugin format (category, company name, etc).

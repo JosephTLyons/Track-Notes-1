@@ -442,6 +442,15 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         if(!imageOnePtr->isNull())
         {
             *imageOneMissingPtr = false;
+            
+            // Logic is, if window is open, trigger display button twice on a newly loaded image
+            // This will keep the window open and reload the new image
+            // If the window is closed, only trigger display button once, which also opens it
+            if(basicWindowImageOnePtr != nullptr)
+            {
+                displayImageOneButton->triggerClick();
+            }
+            
             displayImageOneButton->triggerClick();
         }
 
@@ -456,6 +465,15 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         if(!imageTwoPtr->isNull())
         {
             *imageTwoMissingPtr = false;
+            
+            // Logic is, if window is open, trigger display button twice on a newly loaded image
+            // This will keep the window open and reload the new image
+            // If the window is closed, only trigger display button once, which also opens it
+            if(basicWindowImageTwoPtr != nullptr)
+            {
+                displayImageTwoButton->triggerClick();
+            }
+            
             displayImageTwoButton->triggerClick();
         }
 
