@@ -98,6 +98,7 @@ private:
     ScopedPointer<TextButton> loadImageTwoButton;
     ScopedPointer<TextButton> removeImageOneButton;
     ScopedPointer<TextButton> removeImageTwoButton;
+    ScopedPointer<Label> imagesLabel;
 
 
     //==============================================================================

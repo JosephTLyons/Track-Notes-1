@@ -215,11 +215,19 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     removeImageTwoButton->addListener (this);
     removeImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
+    addAndMakeVisible (imagesLabel = new Label ("imagesLabel",
+                                                TRANS("Images:")));
+    imagesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    imagesLabel->setJustificationType (Justification::centred);
+    imagesLabel->setEditable (false, false, false);
+    imagesLabel->setColour (TextEditor::textColourId, Colours::black);
+    imagesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 590);
+    setSize (500, 630);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -275,6 +283,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     loadImageTwoButton = nullptr;
     removeImageOneButton = nullptr;
     removeImageTwoButton = nullptr;
+    imagesLabel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -317,15 +326,16 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
     timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
-    versionNumberLabel->setBounds (250, 560, 250, 30);
-    theLyonsDenSoftware->setBounds (0, 560, 250, 30);
+    versionNumberLabel->setBounds (250, 600, 250, 30);
+    theLyonsDenSoftware->setBounds (0, 600, 250, 30);
     generalNotesLabel->setBounds (0, 355, 500, 30);
-    displayImageOneButton->setBounds (50, 540, 150, 20);
-    displayImageTwoButton->setBounds (300, 540, 150, 20);
-    loadImageOneButton->setBounds (0, 540, 50, 20);
-    loadImageTwoButton->setBounds (250, 540, 50, 20);
-    removeImageOneButton->setBounds (200, 540, 50, 20);
-    removeImageTwoButton->setBounds (450, 540, 50, 20);
+    displayImageOneButton->setBounds (50, 580, 150, 20);
+    displayImageTwoButton->setBounds (300, 580, 150, 20);
+    loadImageOneButton->setBounds (0, 580, 50, 20);
+    loadImageTwoButton->setBounds (250, 580, 50, 20);
+    removeImageOneButton->setBounds (200, 580, 50, 20);
+    removeImageTwoButton->setBounds (450, 580, 50, 20);
+    imagesLabel->setBounds (0, 545, 500, 30);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -442,7 +452,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         if(!imageOnePtr->isNull())
         {
             *imageOneMissingPtr = false;
-            
+
             // Logic is, if window is open, trigger display button twice on a newly loaded image
             // This will keep the window open and reload the new image
             // If the window is closed, only trigger display button once, which also opens it
@@ -450,7 +460,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             {
                 displayImageOneButton->triggerClick();
             }
-            
+
             displayImageOneButton->triggerClick();
         }
 
@@ -465,7 +475,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         if(!imageTwoPtr->isNull())
         {
             *imageTwoMissingPtr = false;
-            
+
             // Logic is, if window is open, trigger display button twice on a newly loaded image
             // This will keep the window open and reload the new image
             // If the window is closed, only trigger display button once, which also opens it
@@ -473,7 +483,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             {
                 displayImageTwoButton->triggerClick();
             }
-            
+
             displayImageTwoButton->triggerClick();
         }
 
@@ -482,22 +492,22 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     else if (buttonThatWasClicked == removeImageOneButton)
     {
         //[UserButtonCode_removeImageOneButton] -- add your button handler code here..
-        
+
         Image blankImage;
-        
+
         *imageOnePathPtr = "";
         *imageOnePtr     = blankImage;
-        
+
         //[/UserButtonCode_removeImageOneButton]
     }
     else if (buttonThatWasClicked == removeImageTwoButton)
     {
         //[UserButtonCode_removeImageTwoButton] -- add your button handler code here..
         Image blankImage;
-        
+
         *imageTwoPathPtr = "";
         *imageTwoPtr     = blankImage;
-        
+
         //[/UserButtonCode_removeImageTwoButton]
     }
 
@@ -583,7 +593,7 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public TextEditorListener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="500" initialHeight="590">
+                 fixedSize="1" initialWidth="500" initialHeight="630">
   <BACKGROUND backgroundColour="ff373737"/>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
@@ -616,12 +626,12 @@ BEGIN_JUCER_METADATA
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"
-         virtualName="" explicitFocusOrder="0" pos="250 560 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="250 600 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="34"/>
   <LABEL name="theLyonsDenSoftware" id="d0cfddad51f6f3" memberName="theLyonsDenSoftware"
-         virtualName="" explicitFocusOrder="0" pos="0 560 250 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 600 250 30" edTextCol="ff000000"
          edBkgCol="0" labelText="The Lyons' Den Software" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15" kerning="0" bold="0" italic="0" justification="33"/>
@@ -631,23 +641,28 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="50 540 150 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="50 580 150 20" bgColOff="ff393939"
               buttonText="Image One" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="300 540 150 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="300 580 150 20" bgColOff="ff393939"
               buttonText="Image Two" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="0 540 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="0 580 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageTwoButton" id="c76f47c5a5ad9793" memberName="loadImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="250 540 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="250 580 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="removeImageOneButton" id="c4e0c098ca1c7a0c" memberName="removeImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="200 540 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="200 580 50 20" bgColOff="ff393939"
               buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="removeImageTwoButton" id="6b14eed5f55e2af7" memberName="removeImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="450 540 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="450 580 50 20" bgColOff="ff393939"
               buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <LABEL name="imagesLabel" id="3f296d22943adc31" memberName="imagesLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 545 500 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Images:" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Arial" fontsize="25" kerning="0"
+         bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
