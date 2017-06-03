@@ -12,7 +12,7 @@
               pluginAUExportPrefix="TrackNotesAU" pluginRTASCategory="" aaxIdentifier="com.TheLyonsDen.TrackNotes"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.2"
               companyEmail="JosephTLyons@gmail.com" companyName="The Lyons Den"
-              pluginAUMainType="JucePlugin_AUUtility">
+              pluginAUMainType="">
   <MAINGROUP id="t5b0Im" name="Track Notes">
     <GROUP id="{38239DC4-010A-CAC1-0DF6-E5D31B4A25BE}" name="Source">
       <FILE id="LTSZaj" name="README.md" compile="0" resource="1" file="README.md"/>
@@ -29,7 +29,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" aaxFolder="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Track Notes"
                        osxCompatibility="10.6 SDK"/>

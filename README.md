@@ -15,7 +15,7 @@ A simple audio plugin to hold your session and track notes.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please do not buy based on what is currently available.
 
 # Notes
-* Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load then from there. 
+* Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there. 
 
 ## Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
