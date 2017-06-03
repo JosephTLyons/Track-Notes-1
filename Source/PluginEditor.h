@@ -64,7 +64,6 @@ private:
 
     TrackNotesAudioProcessor& processor;
     String versionNumberLabelString;
-    int fontSize;
     Array<Font> usersFontsResults;
 
     File *imageOnePathPtr, *imageTwoPathPtr;

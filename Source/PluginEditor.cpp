@@ -43,75 +43,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageTwoMissingPtr = &p.imageTwoMissing;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
-    addAndMakeVisible (performersNameEditorPtr = &p.performersNameEditor);
-    performersNameEditorPtr->setMultiLine (false);
-    performersNameEditorPtr->setReturnKeyStartsNewLine (false);
-    performersNameEditorPtr->setReadOnly (false);
-    performersNameEditorPtr->setScrollbarsShown (true);
-    performersNameEditorPtr->setCaretVisible (true);
-    performersNameEditorPtr->setPopupMenuEnabled (true);
-    performersNameEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    performersNameEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
-    performersNameEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
+    addAndMakeVisible (performersNameEditorPtr   = &p.performersNameEditor);
     addAndMakeVisible (instrumentPlayedEditorPtr = &p.instrumentPlayedEditor);
-    instrumentPlayedEditorPtr->setMultiLine (false);
-    instrumentPlayedEditorPtr->setReturnKeyStartsNewLine (false);
-    instrumentPlayedEditorPtr->setReadOnly (false);
-    instrumentPlayedEditorPtr->setScrollbarsShown (true);
-    instrumentPlayedEditorPtr->setCaretVisible (true);
-    instrumentPlayedEditorPtr->setPopupMenuEnabled (true);
-    instrumentPlayedEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    instrumentPlayedEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
-    instrumentPlayedEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
-    addAndMakeVisible (microphonesUsedEditorPtr = &p.microphonesUsedEditor);
-    microphonesUsedEditorPtr->setMultiLine (false);
-    microphonesUsedEditorPtr->setReturnKeyStartsNewLine (false);
-    microphonesUsedEditorPtr->setReadOnly (false);
-    microphonesUsedEditorPtr->setScrollbarsShown (true);
-    microphonesUsedEditorPtr->setCaretVisible (true);
-    microphonesUsedEditorPtr->setPopupMenuEnabled (true);
-    microphonesUsedEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    microphonesUsedEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
-    microphonesUsedEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
+    addAndMakeVisible (microphonesUsedEditorPtr  = &p.microphonesUsedEditor);
     addAndMakeVisible (timestampedNotesEditorPtr = &p.timestampedNotesEditor);
-    timestampedNotesEditorPtr->setMultiLine (true);
-    timestampedNotesEditorPtr->setReturnKeyStartsNewLine (true);
-    timestampedNotesEditorPtr->setReadOnly (false);
-    timestampedNotesEditorPtr->setScrollbarsShown (true);
-    timestampedNotesEditorPtr->setCaretVisible (true);
-    timestampedNotesEditorPtr->setPopupMenuEnabled (true);
-    timestampedNotesEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    timestampedNotesEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
-    timestampedNotesEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
-    addAndMakeVisible (generalNotesEditorPtr = &p.generalNotesEditor);
-    generalNotesEditorPtr->setMultiLine (true);
-    generalNotesEditorPtr->setReturnKeyStartsNewLine (true);
-    generalNotesEditorPtr->setReadOnly (false);
-    generalNotesEditorPtr->setScrollbarsShown (true);
-    generalNotesEditorPtr->setCaretVisible (true);
-    generalNotesEditorPtr->setPopupMenuEnabled (true);
-    generalNotesEditorPtr->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    generalNotesEditorPtr->setColour (TextEditor::highlightColourId, Colours::black);
-    generalNotesEditorPtr->setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
-    // Set up text editor font sizes
-    fontSize = 20;
-    performersNameEditorPtr->setFont(fontSize);
-    instrumentPlayedEditorPtr->setFont(fontSize);
-    microphonesUsedEditorPtr->setFont(fontSize);
-    timestampedNotesEditorPtr->setFont(fontSize);
-    generalNotesEditorPtr->setFont(fontSize);
-
-    // Update TextEditors after font size change
-    performersNameEditorPtr->setText(performersNameEditorPtr->getText());
-    instrumentPlayedEditorPtr->setText(instrumentPlayedEditorPtr->getText());
-    microphonesUsedEditorPtr->setText(microphonesUsedEditorPtr->getText());
-    timestampedNotesEditorPtr->setText(timestampedNotesEditorPtr->getText());
-    generalNotesEditorPtr->setText(generalNotesEditorPtr->getText());
+    addAndMakeVisible (generalNotesEditorPtr     = &p.generalNotesEditor);
 
     //[/Constructor_pre]
 

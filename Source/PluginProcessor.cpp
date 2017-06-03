@@ -25,6 +25,64 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
                        )
 #endif
 {
+    // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
+    performersNameEditor.setMultiLine (false);
+    performersNameEditor.setReturnKeyStartsNewLine (false);
+    performersNameEditor.setReadOnly (false);
+    performersNameEditor.setScrollbarsShown (true);
+    performersNameEditor.setCaretVisible (true);
+    performersNameEditor.setPopupMenuEnabled (true);
+    performersNameEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    performersNameEditor.setColour (TextEditor::highlightColourId, Colours::black);
+    performersNameEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
+
+    instrumentPlayedEditor.setMultiLine (false);
+    instrumentPlayedEditor.setReturnKeyStartsNewLine (false);
+    instrumentPlayedEditor.setReadOnly (false);
+    instrumentPlayedEditor.setScrollbarsShown (true);
+    instrumentPlayedEditor.setCaretVisible (true);
+    instrumentPlayedEditor.setPopupMenuEnabled (true);
+    instrumentPlayedEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    instrumentPlayedEditor.setColour (TextEditor::highlightColourId, Colours::black);
+    instrumentPlayedEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    
+    microphonesUsedEditor.setMultiLine (false);
+    microphonesUsedEditor.setReturnKeyStartsNewLine (false);
+    microphonesUsedEditor.setReadOnly (false);
+    microphonesUsedEditor.setScrollbarsShown (true);
+    microphonesUsedEditor.setCaretVisible (true);
+    microphonesUsedEditor.setPopupMenuEnabled (true);
+    microphonesUsedEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    microphonesUsedEditor.setColour (TextEditor::highlightColourId, Colours::black);
+    microphonesUsedEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    
+    timestampedNotesEditor.setMultiLine (true);
+    timestampedNotesEditor.setReturnKeyStartsNewLine (true);
+    timestampedNotesEditor.setReadOnly (false);
+    timestampedNotesEditor.setScrollbarsShown (true);
+    timestampedNotesEditor.setCaretVisible (true);
+    timestampedNotesEditor.setPopupMenuEnabled (true);
+    timestampedNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    timestampedNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
+    timestampedNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    
+    generalNotesEditor.setMultiLine (true);
+    generalNotesEditor.setReturnKeyStartsNewLine (true);
+    generalNotesEditor.setReadOnly (false);
+    generalNotesEditor.setScrollbarsShown (true);
+    generalNotesEditor.setCaretVisible (true);
+    generalNotesEditor.setPopupMenuEnabled (true);
+    generalNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    generalNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
+    generalNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    
+    // Set up text editor font sizes
+    int fontSize = 20;
+    performersNameEditor.setFont(fontSize);
+    instrumentPlayedEditor.setFont(fontSize);
+    microphonesUsedEditor.setFont(fontSize);
+    timestampedNotesEditor.setFont(fontSize);
+    generalNotesEditor.setFont(fontSize);
 }
 
 TrackNotesAudioProcessor::~TrackNotesAudioProcessor()
