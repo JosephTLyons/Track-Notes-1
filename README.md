@@ -12,7 +12,7 @@ A simple audio plugin to hold your session and track notes.
 * There is no piracy protection, so I will never know if you purchased or not, this is entirely based on an honors system.
 * Download the plugin and demo it as long as you like, but if you like it, please purchase it, and if you dislike it, please delete it from your system.
 * Do not blind purchase.  I am brand new to developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
-* Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please do not buy based on what is currently available.
+* Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please only purchase based on what is currently available.
 
 # Features:
 * Text fields for Performer's Name, Instrument Played, Microphone(s) Used, and General Notes
