@@ -37,7 +37,7 @@ A simple audio plugin to hold your session and track notes.
 ## Other things to do before next release:
 * Make string pointers private
 * Make setter and getter methods for processor class strings
-* Set up all menu information for each plugin format (category, company name, etc).
+* Set up plugin category information
 * Test other DAWs
 
 ## Future features (after v1.0.0 release)
