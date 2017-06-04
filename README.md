@@ -19,7 +19,7 @@ A simple audio plugin to hold your session and track notes.
 * A special text field for capturing timestamped notes, which is done through the "Insert Timestamp" button (this feature isn't available in all DAWs, only in ones that provide information about the playhead)
 * Abilty to load up to two images into the plugin.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
 
-## Currently Supported Formats:
+# Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
 
 ## Bugs / Known Issues:
