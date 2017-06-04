@@ -48,3 +48,7 @@ A simple audio plugin to hold your session and track notes.
 * User picked fonts, font sizes, and background color?
 * AAX
 * PC Versions
+
+# Contact Information
+* Emai: JosephTLyons@gmail.com
+* Like the Facebook page: https://www.facebook.com/TheLyonsDenSoftware/
