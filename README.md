@@ -39,11 +39,14 @@ A simple audio plugin to hold your session and track notes.
 * Make setter and getter methods for processor class strings
 * Set up plugin category information
 * Test other DAWs
+* Embed a cool font
 
-## Future features (after v1.0.0 release)
-* Fix bugs and known issues
-* Allow for as many images to be loaded into the plugin (not limited to 2)
-* Show image preview so user doesn't need to open external full sized image every time'
+## Future features to consider (after v1.0.0 release)
+* Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
+* Show image preview so user doesn't need to open external full sized image every time, then maybe use a clear button over the image that would be used to define the clickable area to open the full sized image.
+* Video support?
+* Option to save text to text file?
+* Option to resave the images elsewhere?
 * Resizable windows / GUI
 * User picked fonts, font sizes, and background color?
 * AAX

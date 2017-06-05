@@ -55,11 +55,6 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-//    TextEditor getPerformersNameEditor()   { return performersNameEditor; }
-//    TextEditor getInstrumentPlayedEditor() { return instrumentPlayedEditor; }
-//    TextEditor getMicrophonesUsedEditor()  { return microphonesUsedEditor; }
-//    TextEditor getGeneralNotesEditor()     { return generalNotesEditor; }
-    
     // Shouldn't be declaring these at public
     // But I'm having issues with making getter methods, oddly enough
     TextEditor performersNameEditor;
