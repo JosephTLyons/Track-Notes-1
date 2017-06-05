@@ -298,7 +298,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_insertTimeStampButton] -- add your button handler code here..
 
-        // Make pointer
+        // Make and initialize pointer
         AudioProcessor *audioProcessorPtr = getAudioProcessor();
 
         // Make struct
@@ -307,48 +307,18 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         // Pass struct and fill it
         audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
 
-        // Convert time into minutes and seconds;
+        // Convert time into hours, minutes, and seconds
         int totalSeconds = positionInformation.timeInSeconds;
         int hours        = totalSeconds / 3600;
         int minutes      = totalSeconds / 60;
         int seconds      = totalSeconds % 60;
 
-        String temp = timestampedNotesEditorPtr->getText();
+        // Copy current text
+        String tempTextEditorString = timestampedNotesEditorPtr->getText();
+        
+        tempTextEditorString += formatAndBuildTimecode(hours, minutes, seconds);
 
-        // FORMAT AND BUILD TIMECODE
-        // Don't insert newline on first timestamp
-        if(!timestampedNotesEditorPtr->isEmpty())
-        {
-            temp += "\n";
-        }
-
-        temp += "@ ";
-
-        if(hours < 10)
-        {
-            temp += "0";
-        }
-
-        temp += hours;
-        temp += ":";
-
-        if(minutes < 10)
-        {
-            temp += "0";
-        }
-
-        temp += minutes;
-        temp += ":";
-
-        if(seconds < 10)
-        {
-            temp += "0";
-        }
-
-        temp += seconds;
-        temp += " - ";
-
-        timestampedNotesEditorPtr->setText(temp);
+        timestampedNotesEditorPtr->setText(tempTextEditorString);
 
         // Put editor into focus and then move caret to end,
         // Which is where new timestamp has been inserted
@@ -533,6 +503,43 @@ void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &p
     AlertWindow::showMessageBox (AlertWindow::WarningIcon,
                                  "Image Missing: ",
                                  path + "\n\nPlease load image again.");
+}
+
+String TrackNotesAudioProcessorEditor::formatAndBuildTimecode(const int &hours,
+                                                              const int &minutes,
+                                                              const int &seconds)
+{
+    String tempString;
+    
+    // Don't insert newline on first timestamp
+    if(!timestampedNotesEditorPtr->isEmpty())
+    {
+        tempString += "\n";
+    }
+    
+    tempString += "@ ";
+    tempString += formatTimeInterval(hours);
+    tempString += ":";
+    tempString += formatTimeInterval(minutes);
+    tempString += ":";
+    tempString += formatTimeInterval(seconds);
+    tempString += " - ";
+    
+    return tempString;
+}
+
+String TrackNotesAudioProcessorEditor::formatTimeInterval(const int &timeInterval)
+{
+    String tempString;
+
+    if(timeInterval < 10)
+    {
+        tempString += "0";
+    }
+    
+    tempString += timeInterval;
+    
+    return tempString;
 }
 
 //[/MiscUserCode]
