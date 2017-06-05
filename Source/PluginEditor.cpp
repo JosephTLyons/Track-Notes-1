@@ -458,6 +458,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         if(fileChooser.browseForFileToSave(true))
         {
             File pathToSaveTextFileTo(fileChooser.getResult());
+            pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + ".txt";
 
             pathToSaveTextFileTo.appendText("Performer's Name: ");
             pathToSaveTextFileTo.appendText(performersNameEditorPtr->getText() + "\n\n");
