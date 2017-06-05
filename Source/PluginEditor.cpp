@@ -272,7 +272,7 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
     timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
-    theLyonsDenSoftwareLabel->setBounds (0, 605, 400, 30);
+    theLyonsDenSoftwareLabel->setBounds (0, 605, 300, 30);
     generalNotesLabel->setBounds (0, 355, 500, 30);
     displayImageOneButton->setBounds (50, 580, 150, 20);
     displayImageTwoButton->setBounds (300, 580, 150, 20);
@@ -438,53 +438,53 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     }
     else if (buttonThatWasClicked == exportMediaButton)
     {
-        //[UserButtonCode_exportTextButton] -- add your button handler code here..
-        
+        //[UserButtonCode_exportMediaButton] -- add your button handler code here..
+
         FileChooser fileChooser ("Export Text",
                                  File::getSpecialLocation(File::userHomeDirectory),
                                  "*",
                                  true);
-        
-        
+
+
         if(fileChooser.browseForFileToSave(true))
         {
             // Create folder
             File pathToSaveFolder(fileChooser.getResult());
             pathToSaveFolder.createDirectory();
-            
+
             // Create path to .txt file with same name as the save folder
             File pathToSaveTextFileTo = pathToSaveFolder;
             pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + "/" +
             pathToSaveTextFileTo.getFileName()     + ".txt";
-            
+
             // Save all text
             pathToSaveTextFileTo.appendText("Performer's Name: ");
             pathToSaveTextFileTo.appendText(performersNameEditorPtr->getText() + "\n\n");
-            
+
             pathToSaveTextFileTo.appendText("Instrument Played: ");
             pathToSaveTextFileTo.appendText(instrumentPlayedEditorPtr->getText() + "\n\n");
-            
+
             pathToSaveTextFileTo.appendText("Microphone(s) Used: ");
             pathToSaveTextFileTo.appendText(microphonesUsedEditorPtr->getText() + "\n\n");
-            
+
             pathToSaveTextFileTo.appendText("Timestamped Notes: \n");
             pathToSaveTextFileTo.appendText(timestampedNotesEditorPtr->getText() + "\n\n");
-            
+
             pathToSaveTextFileTo.appendText("General Notes: \n");
             pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText() + "\n\n");
-            
+
             pathToSaveTextFileTo.appendText("Image One: ");
             pathToSaveTextFileTo.appendText(imageOnePathPtr->getFullPathName() + "\n\n");
-            
+
             pathToSaveTextFileTo.appendText("Image Two: ");
             pathToSaveTextFileTo.appendText(imageTwoPathPtr->getFullPathName());
-            
+
             // Copy images into folder
             imageOnePathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageOnePathPtr->getFileName());
             imageTwoPathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageTwoPathPtr->getFileName());
         }
-        
-        //[/UserButtonCode_exportTextButton]
+
+        //[/UserButtonCode_exportMediaButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -639,7 +639,7 @@ BEGIN_JUCER_METADATA
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="theLyonsDenSoftwareLabel" id="d0cfddad51f6f3" memberName="theLyonsDenSoftwareLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 605 400 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 605 300 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>
@@ -671,7 +671,7 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Images:" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Arial" fontsize="25" kerning="0"
          bold="0" italic="0" justification="36"/>
-  <TEXTBUTTON name="exportMediaButton" id="4fbbdf4566178e61" memberName="exportMediaButton"
+  <TEXTBUTTON name="exportMediaButton" id="ab681e4541856006" memberName="exportMediaButton"
               virtualName="" explicitFocusOrder="0" pos="300 610 200 20" bgColOff="ff393939"
               buttonText="Export Media" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
