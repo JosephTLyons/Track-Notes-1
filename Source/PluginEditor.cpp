@@ -447,8 +447,53 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     }
     else if (buttonThatWasClicked == exportMediaButton)
     {
-        //[UserButtonCode_exportMediaButton] -- add your button handler code here..
-        //[/UserButtonCode_exportMediaButton]
+        //[UserButtonCode_exportTextButton] -- add your button handler code here..
+        
+        FileChooser fileChooser ("Export Text",
+                                 File::getSpecialLocation(File::userHomeDirectory),
+                                 "*",
+                                 true);
+        
+        
+        if(fileChooser.browseForFileToSave(true))
+        {
+            // Create folder
+            File pathToSaveFolder(fileChooser.getResult());
+            pathToSaveFolder.createDirectory();
+            
+            // Create path to .txt file with same name as the save folder
+            File pathToSaveTextFileTo = pathToSaveFolder;
+            pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + "/" +
+            pathToSaveTextFileTo.getFileName()     + ".txt";
+            
+            // Save all text
+            pathToSaveTextFileTo.appendText("Performer's Name: ");
+            pathToSaveTextFileTo.appendText(performersNameEditorPtr->getText() + "\n\n");
+            
+            pathToSaveTextFileTo.appendText("Instrument Played: ");
+            pathToSaveTextFileTo.appendText(instrumentPlayedEditorPtr->getText() + "\n\n");
+            
+            pathToSaveTextFileTo.appendText("Microphone(s) Used: ");
+            pathToSaveTextFileTo.appendText(microphonesUsedEditorPtr->getText() + "\n\n");
+            
+            pathToSaveTextFileTo.appendText("Timestamped Notes: \n");
+            pathToSaveTextFileTo.appendText(timestampedNotesEditorPtr->getText() + "\n\n");
+            
+            pathToSaveTextFileTo.appendText("General Notes: \n");
+            pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText() + "\n\n");
+            
+            pathToSaveTextFileTo.appendText("Image One: ");
+            pathToSaveTextFileTo.appendText(imageOnePathPtr->getFullPathName() + "\n\n");
+            
+            pathToSaveTextFileTo.appendText("Image Two: ");
+            pathToSaveTextFileTo.appendText(imageTwoPathPtr->getFullPathName());
+            
+            // Copy images into folder
+            imageOnePathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageOnePathPtr->getFileName());
+            imageTwoPathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageTwoPathPtr->getFileName());
+        }
+        
+        //[/UserButtonCode_exportTextButton]
     }
 
     //[UserbuttonClicked_Post]
