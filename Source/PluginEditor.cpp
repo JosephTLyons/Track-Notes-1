@@ -457,9 +457,16 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(fileChooser.browseForFileToSave(true))
         {
-            File pathToSaveTextFileTo(fileChooser.getResult());
-            pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + ".txt";
-
+            // Create folder
+            File pathToSaveFolder(fileChooser.getResult());
+            pathToSaveFolder.createDirectory();
+            
+            // Create path to .txt file with same name as the save folder
+            File pathToSaveTextFileTo = pathToSaveFolder;
+            pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + "/" +
+                                   pathToSaveTextFileTo.getFileName()     + ".txt";
+            
+            // Save all text
             pathToSaveTextFileTo.appendText("Performer's Name: ");
             pathToSaveTextFileTo.appendText(performersNameEditorPtr->getText() + "\n\n");
 
@@ -480,6 +487,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
             pathToSaveTextFileTo.appendText("Image Two: ");
             pathToSaveTextFileTo.appendText(imageTwoPathPtr->getFullPathName());
+            
+            // Copy images into folder
+            imageOnePathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageOnePathPtr->getFileName());
+            imageTwoPathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageTwoPathPtr->getFileName());
         }
 
         //[/UserButtonCode_exportTextButton]
