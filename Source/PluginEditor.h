@@ -67,7 +67,7 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
     TrackNotesAudioProcessor& processor;
-    String versionNumberLabelString;
+    String versionNumberString;
     Array<Font> usersFontsResults;
 
     File *imageOnePathPtr, *imageTwoPathPtr;
@@ -92,8 +92,7 @@ private:
     ScopedPointer<Label> microphonesUsedLabel;
     ScopedPointer<Label> timestampedNotesLabel;
     ScopedPointer<TextButton> insertTimeStampButton;
-    ScopedPointer<Label> versionNumberLabel;
-    ScopedPointer<Label> theLyonsDenSoftware;
+    ScopedPointer<Label> theLyonsDenSoftwareLabel;
     ScopedPointer<Label> generalNotesLabel;
     ScopedPointer<TextButton> displayImageOneButton;
     ScopedPointer<TextButton> displayImageTwoButton;

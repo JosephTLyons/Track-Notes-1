@@ -97,21 +97,13 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     insertTimeStampButton->addListener (this);
     insertTimeStampButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (versionNumberLabel = new Label ("versionNumberLabel",
-                                                       String()));
-    versionNumberLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    versionNumberLabel->setJustificationType (Justification::centredRight);
-    versionNumberLabel->setEditable (false, false, false);
-    versionNumberLabel->setColour (TextEditor::textColourId, Colours::black);
-    versionNumberLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    addAndMakeVisible (theLyonsDenSoftware = new Label ("theLyonsDenSoftware",
-                                                        TRANS("The Lyons\' Den Software")));
-    theLyonsDenSoftware->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    theLyonsDenSoftware->setJustificationType (Justification::centredLeft);
-    theLyonsDenSoftware->setEditable (false, false, false);
-    theLyonsDenSoftware->setColour (TextEditor::textColourId, Colours::black);
-    theLyonsDenSoftware->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    addAndMakeVisible (theLyonsDenSoftwareLabel = new Label ("theLyonsDenSoftwareLabel",
+                                                             String()));
+    theLyonsDenSoftwareLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    theLyonsDenSoftwareLabel->setJustificationType (Justification::centredLeft);
+    theLyonsDenSoftwareLabel->setEditable (false, false, false);
+    theLyonsDenSoftwareLabel->setColour (TextEditor::textColourId, Colours::black);
+    theLyonsDenSoftwareLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (generalNotesLabel = new Label ("generalNotesLabel",
                                                       TRANS("General Notes:")));
@@ -168,7 +160,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 665);
+    setSize (500, 635);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -186,10 +178,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     }
 
     // Set up version number label
-    versionNumberLabelString =  ProjectInfo::projectName;
-    versionNumberLabelString += " v";
-    versionNumberLabelString += ProjectInfo::versionString;
-    versionNumberLabel->setText(versionNumberLabelString, dontSendNotification);
+    versionNumberString =  " - ";
+    versionNumberString +=  ProjectInfo::projectName;
+    versionNumberString += " v";
+    versionNumberString += ProjectInfo::versionString;
+    theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
@@ -227,8 +220,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     microphonesUsedLabel = nullptr;
     timestampedNotesLabel = nullptr;
     insertTimeStampButton = nullptr;
-    versionNumberLabel = nullptr;
-    theLyonsDenSoftware = nullptr;
+    theLyonsDenSoftwareLabel = nullptr;
     generalNotesLabel = nullptr;
     displayImageOneButton = nullptr;
     displayImageTwoButton = nullptr;
@@ -280,8 +272,7 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
     timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
-    versionNumberLabel->setBounds (250, 635, 250, 30);
-    theLyonsDenSoftware->setBounds (0, 635, 250, 30);
+    theLyonsDenSoftwareLabel->setBounds (0, 605, 400, 30);
     generalNotesLabel->setBounds (0, 355, 500, 30);
     displayImageOneButton->setBounds (50, 580, 150, 20);
     displayImageTwoButton->setBounds (300, 580, 150, 20);
@@ -290,7 +281,7 @@ void TrackNotesAudioProcessorEditor::resized()
     removeImageOneButton->setBounds (200, 580, 50, 20);
     removeImageTwoButton->setBounds (450, 580, 50, 20);
     imagesLabel->setBounds (0, 545, 500, 30);
-    exportMediaButton->setBounds (0, 605, 500, 30);
+    exportMediaButton->setBounds (300, 610, 200, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -615,7 +606,7 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public TextEditorListener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="500" initialHeight="665">
+                 fixedSize="1" initialWidth="500" initialHeight="635">
   <BACKGROUND backgroundColour="ff373737"/>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
@@ -647,16 +638,11 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="218 165 282 30" bgColOff="ff393939"
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
-  <LABEL name="versionNumberLabel" id="3348cbd74595514b" memberName="versionNumberLabel"
-         virtualName="" explicitFocusOrder="0" pos="250 635 250 30" edTextCol="ff000000"
+  <LABEL name="theLyonsDenSoftwareLabel" id="d0cfddad51f6f3" memberName="theLyonsDenSoftwareLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 605 400 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         kerning="0" bold="0" italic="0" justification="34"/>
-  <LABEL name="theLyonsDenSoftware" id="d0cfddad51f6f3" memberName="theLyonsDenSoftware"
-         virtualName="" explicitFocusOrder="0" pos="0 635 250 30" edTextCol="ff000000"
-         edBkgCol="0" labelText="The Lyons' Den Software" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" kerning="0" bold="0" italic="0" justification="33"/>
+         kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="generalNotesLabel" id="c170b98fbe39594f" memberName="generalNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 355 500 30" edTextCol="ff000000"
          edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
@@ -686,7 +672,7 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Arial" fontsize="25" kerning="0"
          bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="exportMediaButton" id="4fbbdf4566178e61" memberName="exportMediaButton"
-              virtualName="" explicitFocusOrder="0" pos="0 605 500 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="300 610 200 20" bgColOff="ff393939"
               buttonText="Export Media" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
 </JUCER_COMPONENT>
