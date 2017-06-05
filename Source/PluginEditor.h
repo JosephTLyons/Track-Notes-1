@@ -102,7 +102,7 @@ private:
     ScopedPointer<TextButton> removeImageOneButton;
     ScopedPointer<TextButton> removeImageTwoButton;
     ScopedPointer<Label> imagesLabel;
-    ScopedPointer<TextButton> exportTextButton;
+    ScopedPointer<TextButton> exportMediaButton;
 
 
     //==============================================================================
