@@ -5,7 +5,7 @@ A simple audio plugin to hold your session and track notes.
 -GUI screenshot is larger than the actual GUI
 
 # License and Source Code:
-* Track Notes is under GPL-v3 licensing, you can find the code here: https://github.com/JosephTLyons/Track-Notes
+* Track Notes is open source and under GPL_v3 licensing, you can find the code here: https://github.com/JosephTLyons/Track-Notes
 
 # Purchase Information:
 * This plugin isn't free, it costs 1 USD: https://www.paypal.me/JosephTimothyLyons/1
