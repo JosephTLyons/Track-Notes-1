@@ -18,7 +18,7 @@ A simple audio plugin to hold your session and track notes.
 * Text fields for Performer's Name, Instrument Played, Microphone(s) Used, and General Notes
 * A special text field for capturing timestamped notes, which is done through the "Insert Timestamp" button (this feature isn't available in all DAWs, only in ones that provide information about the playhead)
 * Abilty to load up to two images into the plugin.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
-* Ability to export all text to .txt file
+* Ability to export media to a folder (named by the user).  The export function saves all text-based information to a .txt file and copies any loaded images from their original location on the user's comp to the export folder.
 
 # Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
