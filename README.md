@@ -36,6 +36,8 @@ A simple audio plugin to hold your session and track notes.
 * Some text editor key commands aren't picked up, such as command+a for selecting all text
 
 ## Other things to do before next release:
+* Refactor method for Exporting Contents
+* Change how image file paths are saved on export in .txt file.  Since they are now saved in the folder, maybe just save the file name?
 * Make string pointers private
 * Make setter and getter methods for processor class strings
 * Set up plugin category information

@@ -455,7 +455,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             // Create path to .txt file with same name as the save folder
             File pathToSaveTextFileTo = pathToSaveFolder;
             pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + "/" +
-            pathToSaveTextFileTo.getFileName()     + ".txt";
+            pathToSaveTextFileTo.getFileName() + ".txt";
 
             // Save all text
             pathToSaveTextFileTo.appendText("Performer's Name: ");
@@ -474,10 +474,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Image One: ");
-            pathToSaveTextFileTo.appendText(imageOnePathPtr->getFullPathName() + "\n\n");
+            pathToSaveTextFileTo.appendText(imageOnePathPtr->getFileName() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Image Two: ");
-            pathToSaveTextFileTo.appendText(imageTwoPathPtr->getFullPathName());
+            pathToSaveTextFileTo.appendText(imageTwoPathPtr->getFileName());
 
             // Copy images into folder
             imageOnePathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageOnePathPtr->getFileName());
