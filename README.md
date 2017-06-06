@@ -23,6 +23,9 @@ A simple audio plugin to hold your session and track notes.
 # Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
 
+# Note:
+* I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.  I had one user comment that Logic is working fine, but that there may be issues in Studio One.  Please let me know of your experience.
+
 ## Bugs / Known Issues:
 ### Global Issues:
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
@@ -35,15 +38,6 @@ A simple audio plugin to hold your session and track notes.
 * Insert Timestamp does not work (DAW doesn't provide this info to developers?)
 * Some text editor key commands aren't picked up, such as command+a for selecting all text
 
-## Other things to do before next release:
-* Refactor method for Exporting Contents
-* Change how image file paths are saved on export in .txt file.  Since they are now saved in the folder, maybe just save the file name?
-* Make string pointers private
-* Make setter and getter methods for processor class strings
-* Set up plugin category information
-* Test other DAWs
-* Embed a cool font
-
 ## Future features to consider (after v1.0.0 release)
 * Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
 * Show image preview so user doesn't need to open external full sized image every time, then maybe use a clear button over the image that would be used to define the clickable area to open the full sized image.
@@ -53,6 +47,14 @@ A simple audio plugin to hold your session and track notes.
 * User picked fonts, font sizes, and background color?
 * AAX
 * PC Versions
+
+## Other things to do before next release (developer notes):
+* Refactor method for Exporting Media
+* Make public data members private
+* Make setter and getter methods for processor class strings
+* Set up plugin category information
+* Test other DAWs
+* Embed a cool font
 
 # Contact Information
 * Email: JosephTLyons@gmail.com
