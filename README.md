@@ -55,5 +55,5 @@ A simple audio plugin to hold your session and track notes.
 * PC Versions
 
 # Contact Information
-* Emai: JosephTLyons@gmail.com
+* Email: JosephTLyons@gmail.com
 * Like the Facebook page: https://www.facebook.com/TheLyonsDenSoftware/
