@@ -26,6 +26,11 @@ A simple audio plugin to hold your session and track notes.
 # Note:
 * I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.  I had one user comment that Logic is working fine, but that there may be issues in Studio One.  Please let me know of your experience.
 
+## Changelog:
+
+### June 5, 2017 - v1.0.0
+* Initial Release
+
 ## Bugs / Known Issues:
 ### Global Issues:
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
@@ -34,11 +39,12 @@ A simple audio plugin to hold your session and track notes.
 ### VST in Reaper:
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
 
-### AU in Garageband
+### AU in Garageband:
 * Insert Timestamp does not work (DAW doesn't provide this info to developers?)
 * Some text editor key commands aren't picked up, such as command+a for selecting all text
 
-## Future features to consider (after v1.0.0 release)
+## Future features to consider (after v1.0.0 release):
+* Allow for first three labels to be renameable
 * Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
 * Show image preview so user doesn't need to open external full sized image every time, then maybe use a clear button over the image that would be used to define the clickable area to open the full sized image.
 * Video support?
@@ -49,6 +55,7 @@ A simple audio plugin to hold your session and track notes.
 * PC Versions
 
 ## Other things to do before next release (developer notes):
+* Installer script
 * Refactor method for Exporting Media
 * Make public data members private
 * Make setter and getter methods for processor class strings
@@ -56,6 +63,6 @@ A simple audio plugin to hold your session and track notes.
 * Test other DAWs
 * Embed a cool font
 
-# Contact Information
+# Contact Information:
 * Email: JosephTLyons@gmail.com
 * Like the Facebook page: https://www.facebook.com/TheLyonsDenSoftware/
