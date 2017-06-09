@@ -295,23 +295,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == insertTimeStampButton)
     {
         //[UserButtonCode_insertTimeStampButton] -- add your button handler code here..
+        
+        int hours, minutes, seconds;
+        
+        fillTimeIntervalValues(hours, minutes, seconds);
 
-        // Make and initialize pointer
-        AudioProcessor *audioProcessorPtr = getAudioProcessor();
-
-        // Make struct
-        AudioPlayHead::CurrentPositionInfo positionInformation;
-
-        // Pass struct and fill it
-        audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
-
-        // Convert time into hours, minutes, and seconds
-        int totalSeconds = positionInformation.timeInSeconds;
-        int hours        = totalSeconds / 3600;
-        int minutes      = totalSeconds / 60;
-        int seconds      = totalSeconds % 60;
-
-        // Copy current text
+        // Copy current text from the timestamped notes editor
         String tempTextEditorString = timestampedNotesEditorPtr->getText();
 
         tempTextEditorString += formatAndBuildTimecode(hours, minutes, seconds);
@@ -551,6 +540,39 @@ void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &p
     AlertWindow::showMessageBox (AlertWindow::WarningIcon,
                                  "Image Missing: ",
                                  path + "\n\nPlease load image again.");
+}
+
+void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &minutes, int &seconds)
+{
+    // Make and initialize pointer
+    AudioProcessor *audioProcessorPtr = getAudioProcessor();
+    
+    // Make struct
+    AudioPlayHead::CurrentPositionInfo positionInformation;
+    
+    // Pass struct and fill it
+    audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
+    
+    // Convert time into hours, minutes, and seconds
+    int totalSeconds = positionInformation.timeInSeconds;
+    
+    const int secondsPerHour   = 3600;
+    const int secondsPerMinute = 60;
+    
+    // Calculate hours
+    hours = totalSeconds / secondsPerHour;
+    
+    // Deduct hours (in seconds) from total
+    totalSeconds -= (hours * secondsPerHour);
+    
+    // Calculate minutes
+    minutes = totalSeconds / secondsPerMinute;
+    
+    // Deduct minutes (in seconds) from total
+    totalSeconds -= (minutes * secondsPerMinute);
+    
+    // Leftover is seconds
+    seconds = totalSeconds;
 }
 
 String TrackNotesAudioProcessorEditor::formatAndBuildTimecode(const int &hours,

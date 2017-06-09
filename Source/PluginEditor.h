@@ -50,9 +50,8 @@ public:
     void loadImage(Image &image, File &imagePath);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
     void showErrorLoadingImageWindow(const String &path);
-    String formatAndBuildTimecode(const int &hours,
-                                  const int &minutes,
-                                  const int &seconds);
+    void fillTimeIntervalValues(int &hours, int &minutes, int &seconds);
+    String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
     String formatTimeInterval(const int &timeInterval);
 
     //[/UserMethods]
