@@ -24,12 +24,13 @@ A simple audio plugin to hold your session and track notes.
 * 64 bit for Mac 10.6+: VST, AU
 
 # Note:
-* I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.  I had one user comment that Logic is working fine, but that there may be issues in Studio One.  Please let me know of your experience.
+* I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.
 
 ## Changelog:
 
 ### June X, 2017 - v1.0.1
-* Fixed formatting issue with timestamps that included times above 60 minutes. 
+* Fixed formatting issue with timestamps that included times above 60 minutes.
+* Images now load in the center of the screen, instead of the upper left-hand corner.
 
 ### June 5, 2017 - v1.0.0
 * Initial Release
@@ -38,12 +39,13 @@ A simple audio plugin to hold your session and track notes.
 ### Global Issues:
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
 * Some images load and display larger than they really are.
+* Insert Timestamp does not work in some AU DAWs, output may be all zeros or garbage values (GarageBand, Logic).
+* Images are locked in the upper left-hand corner for some users in Studio One 3.5
 
 ### VST in Reaper:
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
 
 ### AU in Garageband:
-* Insert Timestamp does not work (DAW doesn't provide this info to developers?)
 * Some text editor key commands aren't picked up, such as command+a for selecting all text
 
 ## Future features to consider (after v1.0.0 release):

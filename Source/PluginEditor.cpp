@@ -520,7 +520,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         if(!image.isNull())
         {
             basicWindowPtr->setSize(image.getWidth(), image.getHeight());
-            basicWindowPtr->setTopLeftPosition(0, 0);
+            basicWindowPtr->centreWithSize(image.getWidth(), image.getHeight());
         }
 
         else
