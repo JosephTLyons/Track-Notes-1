@@ -544,14 +544,11 @@ void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &p
 
 void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &minutes, int &seconds)
 {
-    // Make and initialize pointer
-    AudioProcessor *audioProcessorPtr = getAudioProcessor();
-    
     // Make struct
     AudioPlayHead::CurrentPositionInfo positionInformation;
     
     // Pass struct and fill it
-    audioProcessorPtr->getPlayHead()->getCurrentPosition(positionInformation);
+    getAudioProcessor()->getPlayHead()->getCurrentPosition(positionInformation);
     
     // Convert time into hours, minutes, and seconds
     int totalSeconds = positionInformation.timeInSeconds;
