@@ -166,7 +166,7 @@ bool TrackNotesAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
     // In this template code we only support mono or stereo.
     if (layouts.getMainOutputChannelSet() != AudioChannelSet::mono()
      && layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
-        return false;
+        return false; 
 
     // This checks if the input layout matches the output layout
    #if ! JucePlugin_IsSynth
@@ -181,6 +181,8 @@ bool TrackNotesAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 
 void TrackNotesAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
+    // Pass struct and fill it
+    getPlayHead()->getCurrentPosition(positionInformation);
 }
 
 //==============================================================================

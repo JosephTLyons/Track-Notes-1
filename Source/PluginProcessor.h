@@ -67,6 +67,8 @@ public:
     Image imageOne, imageTwo;
     bool imageOneMissing, imageTwoMissing;
     
+    AudioPlayHead::CurrentPositionInfo positionInformation;
+    
 private:
     
     //==============================================================================

@@ -35,12 +35,14 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Link image pointer in editor class with image holder in processor class
-    imageOnePtr        = &p.imageOne;
-    imageTwoPtr        = &p.imageTwo;
-    imageOnePathPtr    = &p.imageOnePath;
-    imageTwoPathPtr    = &p.imageTwoPath;
-    imageOneMissingPtr = &p.imageOneMissing;
-    imageTwoMissingPtr = &p.imageTwoMissing;
+    imageOnePtr            = &p.imageOne;
+    imageTwoPtr            = &p.imageTwo;
+    imageOnePathPtr        = &p.imageOnePath;
+    imageTwoPathPtr        = &p.imageTwoPath;
+    imageOneMissingPtr     = &p.imageOneMissing;
+    imageTwoMissingPtr     = &p.imageTwoMissing;
+    
+    positionInformationPtr = &p.positionInformation;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr   = &p.performersNameEditor);
@@ -544,14 +546,8 @@ void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &p
 
 void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &minutes, int &seconds)
 {
-    // Make struct
-    AudioPlayHead::CurrentPositionInfo positionInformation;
-    
-    // Pass struct and fill it
-    getAudioProcessor()->getPlayHead()->getCurrentPosition(positionInformation);
-    
     // Convert time into hours, minutes, and seconds
-    int totalSeconds = positionInformation.timeInSeconds;
+    int totalSeconds = positionInformationPtr->timeInSeconds;
     
     const int secondsPerHour   = 3600;
     const int secondsPerMinute = 60;

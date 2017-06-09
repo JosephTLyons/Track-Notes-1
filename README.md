@@ -29,7 +29,7 @@ A simple audio plugin to hold your session and track notes.
 ## Changelog:
 
 ### June X, 2017 - v1.0.1
-* Fixed formatting issue with timestamps that included times above 60 minutes.
+* Fixed formatting issue with timestamps that included times above 60 minutes. 
 
 ### June 5, 2017 - v1.0.0
 * Initial Release

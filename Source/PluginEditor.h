@@ -81,6 +81,8 @@ private:
 
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
+    
+    AudioPlayHead::CurrentPositionInfo *positionInformationPtr;
 
     //[/UserVariables]
 
