@@ -31,6 +31,7 @@ A simple audio plugin to hold your session and track notes.
 ### June X, 2017 - v1.0.1
 * Fixed formatting issue with timestamps that included times above 60 minutes.
 * Images now load in the center of the screen, instead of the upper left-hand corner.
+* Changed the location, in the code, of where the method that calls the timestamping is located to hopefully increase the stability of th plugin and maybe fix a some of the timestamping failures in some DAWs, but this comes with an ever-so-slight increase in CPU (Ex. 16 instances causes a 0.1 percent increase in CPU on my Macbook Pro 2.8 gHz i7 quad core).
 
 ### June 5, 2017 - v1.0.0
 * Initial Release
