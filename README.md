@@ -31,16 +31,16 @@ A simple audio plugin to hold your session and track notes.
 ### June X, 2017 - v1.0.1
 * Fixed formatting issue with timestamps that included times above 60 minutes.
 * Images now load in the center of the screen, instead of the upper left-hand corner.
-* Changed the location, in the code, of where the method that calls the timestamping is located to hopefully increase the stability of th plugin and maybe fix a some of the timestamping failures in some DAWs, but this comes with an ever-so-slight increase in CPU (Ex. 16 instances causes a 0.1 percent increase in CPU on my Macbook Pro 2.8 gHz i7 quad core).
+* Changed the location, in the code, of where the method that calls the timestamping is located to hopefully increase the stability of the plugin and maybe fix some of the timestamping failures in some DAWs, but this comes with an ever-so-slight increase in CPU (Ex. 16 instances causes a 0.1 percent increase in CPU on my Macbook Pro 2.8 gHz i7 quad core).
 
 ### June 5, 2017 - v1.0.0
 * Initial Release
 
 ## Bugs / Known Issues:
 ### Global Issues:
+* Insert Timestamp does not work in some DAWs, output may be all zeros or garbage values (GarageBand, Logic).
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
 * Some images load and display larger than they really are.
-* Insert Timestamp does not work in some AU DAWs, output may be all zeros or garbage values (GarageBand, Logic).
 * Images are locked in the upper left-hand corner for some users in Studio One 3.5
 
 ### VST in Reaper:
@@ -64,7 +64,7 @@ A simple audio plugin to hold your session and track notes.
 * Installer script
 * Refactor method for Exporting Media
 * Make public data members private
-* Make setter and getter methods for processor class strings
+* Make setter and getter methods for processor class items
 * Set up plugin category information
 * Test other DAWs
 * Embed a cool font
