@@ -27,7 +27,6 @@ A simple audio plugin to hold your session and track notes.
 * I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.
 
 ## Changelog:
-
 ### June X, 2017 - v1.0.1
 * Fixed formatting issue with timestamps that included times above 60 minutes.
 * Images now load in the center of the screen, instead of the upper left-hand corner.
