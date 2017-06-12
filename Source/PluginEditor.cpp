@@ -453,19 +453,19 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             pathToSaveTextFileTo.getFileName() + ".txt";
 
             // Save all text
-            pathToSaveTextFileTo.appendText("Performer's Name: ");
-            pathToSaveTextFileTo.appendText(performersNameEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText(performersNameLabelPtr->getText());
+            pathToSaveTextFileTo.appendText(" " + performersNameEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("Instrument Played: ");
-            pathToSaveTextFileTo.appendText(instrumentPlayedEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText(instrumentPlayedLabelPtr->getText());
+            pathToSaveTextFileTo.appendText(" " + instrumentPlayedEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("Microphone(s) Used: ");
-            pathToSaveTextFileTo.appendText(microphonesUsedEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText(microphonesUsedLabelPtr->getText());
+            pathToSaveTextFileTo.appendText(" " + microphonesUsedEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("Timestamped Notes: \n");
+            pathToSaveTextFileTo.appendText("Timestamped Notes:\n");
             pathToSaveTextFileTo.appendText(timestampedNotesEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("General Notes: \n");
+            pathToSaveTextFileTo.appendText("General Notes:\n");
             pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Image One: ");
