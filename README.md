@@ -28,7 +28,7 @@ A simple audio plugin to hold your session and track notes.
 * I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.
 
 ## Changelog:
-### June XX, 2017 - v1.0.1
+### June XX, 2017 - v1.1.0
 * Added support to allow the first three labels to be renameable
 
 ### June 11th, 2017 - v1.0.1
