@@ -68,6 +68,7 @@ public:
     bool imageOneMissing, imageTwoMissing;
     
     AudioPlayHead::CurrentPositionInfo positionInformation;
+    Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
     
 private:
     

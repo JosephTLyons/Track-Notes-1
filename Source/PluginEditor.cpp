@@ -29,27 +29,33 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioProcessor &p)
-    : AudioProcessorEditor (&p), processor (p)
+TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioProcessor &processor)
+    : AudioProcessorEditor (&processor), processor (processor)
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
     // Link image pointer in editor class with image holder in processor class
-    imageOnePtr            = &p.imageOne;
-    imageTwoPtr            = &p.imageTwo;
-    imageOnePathPtr        = &p.imageOnePath;
-    imageTwoPathPtr        = &p.imageTwoPath;
-    imageOneMissingPtr     = &p.imageOneMissing;
-    imageTwoMissingPtr     = &p.imageTwoMissing;
-    
-    positionInformationPtr = &p.positionInformation;
+    imageOnePtr        = &processor.imageOne;
+    imageTwoPtr        = &processor.imageTwo;
+    imageOnePathPtr    = &processor.imageOnePath;
+    imageTwoPathPtr    = &processor.imageTwoPath;
+    imageOneMissingPtr = &processor.imageOneMissing;
+    imageTwoMissingPtr = &processor.imageTwoMissing;
+
+    // Link playhead info struct
+    positionInformationPtr = &processor.positionInformation;
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
-    addAndMakeVisible (performersNameEditorPtr   = &p.performersNameEditor);
-    addAndMakeVisible (instrumentPlayedEditorPtr = &p.instrumentPlayedEditor);
-    addAndMakeVisible (microphonesUsedEditorPtr  = &p.microphonesUsedEditor);
-    addAndMakeVisible (timestampedNotesEditorPtr = &p.timestampedNotesEditor);
-    addAndMakeVisible (generalNotesEditorPtr     = &p.generalNotesEditor);
+    addAndMakeVisible (performersNameEditorPtr   = &processor.performersNameEditor);
+    addAndMakeVisible (instrumentPlayedEditorPtr = &processor.instrumentPlayedEditor);
+    addAndMakeVisible (microphonesUsedEditorPtr  = &processor.microphonesUsedEditor);
+    addAndMakeVisible (timestampedNotesEditorPtr = &processor.timestampedNotesEditor);
+    addAndMakeVisible (generalNotesEditorPtr     = &processor.generalNotesEditor);
+    
+    // Link labels
+    addAndMakeVisible (performersNameLabelPtr   = &processor.performersNameLabel);
+    addAndMakeVisible (instrumentPlayedLabelPtr = &processor.instrumentPlayedLabel);
+    addAndMakeVisible (microphonesUsedLabelPtr  = &processor.microphonesUsedLabel);
 
     //[/Constructor_pre]
 
@@ -61,30 +67,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     trackNotesLabel->setColour (Label::textColourId, Colours::white);
     trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
     trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    addAndMakeVisible (performersNameLabel = new Label ("performersNameLabel",
-                                                        TRANS("Performer\'s Name:")));
-    performersNameLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    performersNameLabel->setJustificationType (Justification::centredLeft);
-    performersNameLabel->setEditable (false, false, false);
-    performersNameLabel->setColour (TextEditor::textColourId, Colours::black);
-    performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    addAndMakeVisible (instrumentPlayedLabel = new Label ("instrumentPlayedLabel",
-                                                          TRANS("Instrument Played:")));
-    instrumentPlayedLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    instrumentPlayedLabel->setJustificationType (Justification::centredLeft);
-    instrumentPlayedLabel->setEditable (false, false, false);
-    instrumentPlayedLabel->setColour (TextEditor::textColourId, Colours::black);
-    instrumentPlayedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    addAndMakeVisible (microphonesUsedLabel = new Label ("microphonesUsedLabel",
-                                                         TRANS("Microphone(s) Used:")));
-    microphonesUsedLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    microphonesUsedLabel->setJustificationType (Justification::centredLeft);
-    microphonesUsedLabel->setEditable (false, false, false);
-    microphonesUsedLabel->setColour (TextEditor::textColourId, Colours::black);
-    microphonesUsedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (timestampedNotesLabel = new Label ("timestampedNotesLabel",
                                                           TRANS("Timestamped Notes:")));
@@ -188,6 +170,26 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
+    
+    // Set up labels
+    performersNameLabelPtr->setEditable(true);
+    instrumentPlayedLabelPtr->setEditable(true);
+    microphonesUsedLabelPtr->setEditable(true);
+    
+    if(performersNameLabelPtr->getText().isEmpty())
+    {
+        performersNameLabelPtr->setText("Performer's Name:", dontSendNotification);
+    }
+    
+    if(instrumentPlayedLabelPtr->getText().isEmpty())
+    {
+        instrumentPlayedLabelPtr->setText("Instrument Played:", dontSendNotification);
+    }
+    
+    if(microphonesUsedLabelPtr->getText().isEmpty())
+    {
+        microphonesUsedLabelPtr->setText("Microphone(s) Used:", dontSendNotification);
+    }
 
     //[/Constructor]
 }
@@ -201,6 +203,10 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     microphonesUsedEditorPtr = nullptr;
     timestampedNotesEditorPtr = nullptr;
     generalNotesEditorPtr = nullptr;
+    
+    performersNameLabelPtr = nullptr;
+    instrumentPlayedLabelPtr = nullptr;
+    microphonesUsedLabelPtr = nullptr;
 
     // Normal C++ Pointers
     delete basicWindowImageOnePtr;
@@ -217,9 +223,6 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     //[/Destructor_pre]
 
     trackNotesLabel = nullptr;
-    performersNameLabel = nullptr;
-    instrumentPlayedLabel = nullptr;
-    microphonesUsedLabel = nullptr;
     timestampedNotesLabel = nullptr;
     insertTimeStampButton = nullptr;
     theLyonsDenSoftwareLabel = nullptr;
@@ -265,13 +268,14 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedEditorPtr->setBounds (218, 130, 282, 30);
     timestampedNotesEditorPtr->setBounds (0, 200, 500, 150);
     generalNotesEditorPtr->setBounds (0, 390, 500, 150);
+    
+    performersNameLabelPtr->setBounds (0, 60, 218, 30);
+    instrumentPlayedLabelPtr->setBounds (0, 95, 218, 30);
+    microphonesUsedLabelPtr->setBounds (0, 130, 218, 30);
 
     //[/UserPreResize]
 
     trackNotesLabel->setBounds (0, 0, 500, 50);
-    performersNameLabel->setBounds (0, 60, 218, 30);
-    instrumentPlayedLabel->setBounds (0, 95, 218, 30);
-    microphonesUsedLabel->setBounds (0, 130, 218, 30);
     timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
     theLyonsDenSoftwareLabel->setBounds (0, 605, 300, 30);
@@ -297,9 +301,9 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     if (buttonThatWasClicked == insertTimeStampButton)
     {
         //[UserButtonCode_insertTimeStampButton] -- add your button handler code here..
-        
+
         int hours, minutes, seconds;
-        
+
         fillTimeIntervalValues(hours, minutes, seconds);
 
         // Copy current text from the timestamped notes editor
@@ -548,22 +552,22 @@ void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &min
 {
     // Convert time into hours, minutes, and seconds
     int totalSeconds = positionInformationPtr->timeInSeconds;
-    
+
     const int secondsPerHour   = 3600;
     const int secondsPerMinute = 60;
-    
+
     // Calculate hours
     hours = totalSeconds / secondsPerHour;
-    
+
     // Deduct hours (in seconds) from total
     totalSeconds -= (hours * secondsPerHour);
-    
+
     // Calculate minutes
     minutes = totalSeconds / secondsPerMinute;
-    
+
     // Deduct minutes (in seconds) from total
     totalSeconds -= (minutes * secondsPerMinute);
-    
+
     // Leftover is seconds
     seconds = totalSeconds;
 }
@@ -629,21 +633,6 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
          justification="12"/>
-  <LABEL name="performersNameLabel" id="aaab96b158ed2434" memberName="performersNameLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 60 218 30" edTextCol="ff000000"
-         edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
-  <LABEL name="instrumentPlayedLabel" id="959979cf5ec73f4b" memberName="instrumentPlayedLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 95 218 30" edTextCol="ff000000"
-         edBkgCol="0" labelText="Instrument Played:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
-  <LABEL name="microphonesUsedLabel" id="e982a8bc73696a9b" memberName="microphonesUsedLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 130 218 30" edTextCol="ff000000"
-         edBkgCol="0" labelText="Microphone(s) Used:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="timestampedNotesLabel" id="358938facaa251fc" memberName="timestampedNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 165 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Timestamped Notes:" editableSingleClick="0"

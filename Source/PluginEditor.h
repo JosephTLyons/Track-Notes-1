@@ -78,19 +78,20 @@ private:
     SafePointer<TextEditor> microphonesUsedEditorPtr;
     SafePointer<TextEditor> timestampedNotesEditorPtr;
     SafePointer<TextEditor> generalNotesEditorPtr;
+    
+    SafePointer<Label> performersNameLabelPtr;
+    SafePointer<Label> instrumentPlayedLabelPtr;
+    SafePointer<Label> microphonesUsedLabelPtr;
 
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
-    
+
     AudioPlayHead::CurrentPositionInfo *positionInformationPtr;
 
     //[/UserVariables]
 
     //==============================================================================
     ScopedPointer<Label> trackNotesLabel;
-    ScopedPointer<Label> performersNameLabel;
-    ScopedPointer<Label> instrumentPlayedLabel;
-    ScopedPointer<Label> microphonesUsedLabel;
     ScopedPointer<Label> timestampedNotesLabel;
     ScopedPointer<TextButton> insertTimeStampButton;
     ScopedPointer<Label> theLyonsDenSoftwareLabel;

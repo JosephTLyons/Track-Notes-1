@@ -25,7 +25,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
                        )
 #endif
 {
-    // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     performersNameEditor.setMultiLine (false);
     performersNameEditor.setReturnKeyStartsNewLine (false);
     performersNameEditor.setReadOnly (false);
@@ -75,6 +74,24 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     generalNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    
+    performersNameLabel.setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    performersNameLabel.setJustificationType (Justification::centredLeft);
+    performersNameLabel.setEditable (false, false, false);
+    performersNameLabel.setColour (TextEditor::textColourId, Colours::black);
+    performersNameLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    
+    instrumentPlayedLabel.setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    instrumentPlayedLabel.setJustificationType (Justification::centredLeft);
+    instrumentPlayedLabel.setEditable (false, false, false);
+    instrumentPlayedLabel.setColour (TextEditor::textColourId, Colours::black);
+    instrumentPlayedLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    
+    microphonesUsedLabel.setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    microphonesUsedLabel.setJustificationType (Justification::centredLeft);
+    microphonesUsedLabel.setEditable (false, false, false);
+    microphonesUsedLabel.setColour (TextEditor::textColourId, Colours::black);
+    microphonesUsedLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
     
     // Set up text editor font sizes
     int fontSize = 20;
@@ -210,6 +227,9 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("generalNotes", generalNotesEditor.getText());
     xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
     xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
+    xml.setAttribute("performersNameLabel", performersNameLabel.getText());
+    xml.setAttribute("instrumentPlayedLabel", instrumentPlayedLabel.getText());
+    xml.setAttribute("MicrophonesUsedLabel", microphonesUsedLabel.getText());
     
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
@@ -238,6 +258,9 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             generalNotesEditor.setText(xml->getStringAttribute("generalNotes"));
             imageOnePath = xml->getStringAttribute("imageOnePath");
             imageTwoPath = xml->getStringAttribute("imageTwoPath");
+            performersNameLabel.setText(xml->getStringAttribute("performersNameLabel"), dontSendNotification);
+            instrumentPlayedLabel.setText(xml->getStringAttribute("instrumentPlayedLabel"), dontSendNotification);
+            microphonesUsedLabel.setText(xml->getStringAttribute("MicrophonesUsedLabel"), dontSendNotification);
             
             // Get string containing path and check to see if its empty or not
             if(!imageOnePath.getFullPathName().isEmpty())
