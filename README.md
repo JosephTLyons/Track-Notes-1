@@ -30,6 +30,8 @@ A simple audio plugin to hold your session and track notes.
 ## Changelog:
 ### June XX, 2017 - v1.1.0
 * Added support to allow the first three labels to be renameable
+* The windows that house the images can no longer be maximized, in an effort to keep DAWs from crashing.  This doesn't affect anything, since the images didn't scale when the window changed sized
+* Blank image windows now load in the center of the screen, the same as windows with images in them
 
 ### June 11th, 2017 - v1.0.1
 * Fixed formatting issue with timestamps that included times above 60 minutes.
