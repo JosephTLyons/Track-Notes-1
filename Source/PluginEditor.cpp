@@ -532,7 +532,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
 
         else
         {
-            basicWindowPtr->setSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
+            basicWindowPtr->centreWithSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
         }
 
         basicWindowPtr->setVisible(true);
