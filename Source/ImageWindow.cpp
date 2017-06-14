@@ -65,11 +65,17 @@ void ImageWindow::paint (Graphics& g)
 
     g.fillAll (Colour (0xff373737));
 
-    g.setColour (Colours::white);
-    g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    g.drawText (TRANS("Please Load an Image"),
-                0, 0, 200, 200,
-                Justification::centred, true);
+    {
+        int x = 0, y = 0, width = 200, height = 200;
+        String text (TRANS("Please Load an Image"));
+        Colour fillColour = Colours::white;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
+    }
 
     //[UserPaint] Add your own custom painting code here..
 
