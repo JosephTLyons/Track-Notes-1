@@ -198,7 +198,7 @@ bool TrackNotesAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 
 void TrackNotesAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-    // Pass struct and fill it
+    // Pass struct and fill it in with playhead position information
     getPlayHead()->getCurrentPosition(positionInformation);
 }
 
