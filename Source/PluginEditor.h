@@ -78,7 +78,7 @@ private:
     SafePointer<TextEditor> microphonesUsedEditorPtr;
     SafePointer<TextEditor> timestampedNotesEditorPtr;
     SafePointer<TextEditor> generalNotesEditorPtr;
-    
+
     SafePointer<Label> performersNameLabelPtr;
     SafePointer<Label> instrumentPlayedLabelPtr;
     SafePointer<Label> microphonesUsedLabelPtr;
