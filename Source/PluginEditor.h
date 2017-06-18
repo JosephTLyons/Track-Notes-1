@@ -53,6 +53,7 @@ public:
     void fillTimeIntervalValues(int &hours, int &minutes, int &seconds);
     String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
     String formatTimeInterval(const int &timeInterval);
+    void createImagePreview();
 
     //[/UserMethods]
 
@@ -72,6 +73,8 @@ private:
     File *imageOnePathPtr, *imageTwoPathPtr;
     Image *imageOnePtr, *imageTwoPtr;
     bool *imageOneMissingPtr, *imageTwoMissingPtr;
+    
+    ImageComponent imageComponentOne;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;

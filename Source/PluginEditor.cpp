@@ -255,6 +255,10 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
     g.setColour(Colours::white);
     g.setOpacity(0.3);
     g.drawLine(30, 50, 470, 50, 1);
+    
+    Rectangle<int>(5, 5, 30, 30);
+    
+    
 
     //[/UserPaint]
 }
@@ -507,6 +511,17 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
         // Get image
         image = ImageCache::getFromFile(fileChooser.getResult());
     }
+    
+    createImagePreview();
+}
+
+void TrackNotesAudioProcessorEditor::createImagePreview()
+{
+    imageComponentOne.setVisible(false);
+    imageComponentOne.setImage(*imageOnePtr);
+    imageComponentOne.setBounds(0, 0, 100, 100);
+    imageComponentOne.setVisible(true);
+    addAndMakeVisible(imageComponentOne);
 }
 
 void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr,
