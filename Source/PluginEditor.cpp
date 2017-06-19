@@ -362,7 +362,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(*imageOnePtr, *imageOnePathPtr);
+        loadImage(*imageOnePtr, *imageOnePathPtr, true);
 
         if(!imageOnePtr->isNull())
         {
@@ -389,7 +389,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(*imageTwoPtr, *imageTwoPathPtr);
+        loadImage(*imageTwoPtr, *imageTwoPathPtr, false);
 
         if(!imageTwoPtr->isNull())
         {
@@ -494,7 +494,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, const bool &isImageOne)
 {
     FileChooser fileChooser ("Export all Text",
                              File::getSpecialLocation(File::userHomeDirectory),
@@ -512,16 +512,27 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
         image = ImageCache::getFromFile(fileChooser.getResult());
     }
     
-    createImagePreview();
+    createImagePreview(isImageOne);
 }
 
-void TrackNotesAudioProcessorEditor::createImagePreview()
+void TrackNotesAudioProcessorEditor::createImagePreview(const bool &isImageOne)
 {
-    imageComponentOne.setVisible(false);
-    imageComponentOne.setImage(*imageOnePtr);
-    imageComponentOne.setBounds(0, 0, 100, 100);
-    imageComponentOne.setVisible(true);
-    addAndMakeVisible(imageComponentOne);
+    if(isImageOne)
+    {
+        imagePreviewOne.setVisible(false);
+        imagePreviewOne.setImage(*imageOnePtr);
+        imagePreviewOne.setBounds(0, 0, 100, 100);
+        imagePreviewOne.setVisible(true);
+        addAndMakeVisible(imagePreviewOne);
+    }
+    else
+    {
+        imagePreviewTwo.setVisible(false);
+        imagePreviewTwo.setImage(*imageTwoPtr);
+        imagePreviewTwo.setBounds(100, 100, 100, 100);
+        imagePreviewTwo.setVisible(true);
+        addAndMakeVisible(imagePreviewTwo);
+    }
 }
 
 void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr,
