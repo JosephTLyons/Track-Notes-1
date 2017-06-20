@@ -551,7 +551,7 @@ void TrackNotesAudioProcessorEditor::createImagePreview(const bool &isImageOne)
     {
         imagePreviewTwo.setVisible(false);
         imagePreviewTwo.setImage(*imageTwoPtr);
-        imagePreviewTwo.setBounds(765, 130, 245, 245);
+        imagePreviewTwo.setBounds(760, 130, 245, 245);
         imagePreviewTwo.setVisible(true);
         addAndMakeVisible(imagePreviewTwo);
     }
