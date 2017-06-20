@@ -303,12 +303,12 @@ void TrackNotesAudioProcessorEditor::resized()
     insertTimeStampButton->setBounds (218, 165, 282, 30);
     theLyonsDenSoftwareLabel->setBounds (0, 590, 300, 30);
     generalNotesLabel->setBounds (0, 380, 1005, 30);
-    displayImageOneButton->setBounds (560, 95, 145, 30);
-    displayImageTwoButton->setBounds (810, 95, 145, 30);
-    loadImageOneButton->setBounds (510, 95, 50, 30);
-    loadImageTwoButton->setBounds (760, 95, 50, 30);
-    removeImageOneButton->setBounds (705, 95, 50, 30);
-    removeImageTwoButton->setBounds (955, 95, 50, 30);
+    displayImageOneButton->setBounds (560, 95, 145, 20);
+    displayImageTwoButton->setBounds (810, 95, 145, 20);
+    loadImageOneButton->setBounds (510, 95, 50, 20);
+    loadImageTwoButton->setBounds (760, 95, 50, 20);
+    removeImageOneButton->setBounds (705, 95, 50, 20);
+    removeImageTwoButton->setBounds (955, 95, 50, 20);
     imagesLabel->setBounds (510, 60, 500, 30);
     exportMediaButton->setBounds (805, 595, 200, 20);
     //[UserResized] Add your own custom resize handling here..
@@ -707,22 +707,22 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="560 95 145 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="560 95 145 20" bgColOff="ff393939"
               buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="810 95 145 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="810 95 145 20" bgColOff="ff393939"
               buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="510 95 50 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="510 95 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageTwoButton" id="c76f47c5a5ad9793" memberName="loadImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="760 95 50 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="760 95 50 20" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="removeImageOneButton" id="c4e0c098ca1c7a0c" memberName="removeImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="705 95 50 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="705 95 50 20" bgColOff="ff393939"
               buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="removeImageTwoButton" id="6b14eed5f55e2af7" memberName="removeImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="955 95 50 30" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="955 95 50 20" bgColOff="ff393939"
               buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="imagesLabel" id="3f296d22943adc31" memberName="imagesLabel"
          virtualName="" explicitFocusOrder="0" pos="510 60 500 30" edTextCol="ff000000"
