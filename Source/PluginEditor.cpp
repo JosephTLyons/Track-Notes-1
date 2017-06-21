@@ -545,8 +545,8 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     {
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(),
                                          Colours::grey,
-                                         DocumentWindow::closeButton
-                                         | DocumentWindow::minimiseButton);
+                                         DocumentWindow::closeButton | 
+                                         DocumentWindow::minimiseButton);
 
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);

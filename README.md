@@ -65,6 +65,7 @@ A simple audio plugin to hold your session and track notes.
 
 ## Other things to do before next release (developer notes):
 * Fix button size and text size of buttons
+* Try to fix image size issue
 * Installer script
 * Refactor method for Exporting Media
 * Make public data members private
