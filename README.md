@@ -29,8 +29,9 @@ A simple audio plugin to hold your session and track notes.
 
 ## Changelog:
 ### June XX, 2017 - v1.1.0
-* Added support to allow the first three labels to be renameable
-* The windows that house the images can no longer be maximized, in an effort to keep DAWs from crashing.  This doesn't affect anything, since the images didn't scale when the window changed sized
+* Reworked the entire GUI to allow for image previews.  You can still open the image in a larger window as before, but now you have "at a glance" views of either loaded image
+* Added support to allow the first three labels to be renameable by the user
+* The windows that house the images can no longer be maximized, in an effort to some keep DAWs from crashing.  This doesn't affect anything, since the images didn't previously scale when the window changed sized
 * Blank image windows now load in the center of the screen, the same as windows with images in them
 
 ### June 11th, 2017 - v1.0.1
@@ -55,7 +56,6 @@ A simple audio plugin to hold your session and track notes.
 
 ## Future features to consider (after v1.0.0 release):
 * Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
-* Show image preview so user doesn't need to open external full sized image every time, then maybe use a clear button over the image that would be used to define the clickable area to open the full sized image.
 * Video support?
 * Option to resave the images elsewhere?
 * Resizable windows / GUI
@@ -64,6 +64,7 @@ A simple audio plugin to hold your session and track notes.
 * PC Versions
 
 ## Other things to do before next release (developer notes):
+* Fix button size and text size of buttons
 * Installer script
 * Refactor method for Exporting Media
 * Make public data members private
