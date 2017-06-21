@@ -29,8 +29,8 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioProcessor &processor)
-    : AudioProcessorEditor (&processor), processor (processor)
+TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioProcessor &p)
+    : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
@@ -42,6 +42,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageOneMissingPtr = &processor.imageOneMissing;
     imageTwoMissingPtr = &processor.imageTwoMissing;
 
+    createImagePreview(true);
+    createImagePreview(false);
+
     // Link playhead info struct
     positionInformationPtr = &processor.positionInformation;
 
@@ -51,7 +54,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (microphonesUsedEditorPtr  = &processor.microphonesUsedEditor);
     addAndMakeVisible (timestampedNotesEditorPtr = &processor.timestampedNotesEditor);
     addAndMakeVisible (generalNotesEditorPtr     = &processor.generalNotesEditor);
-    
+
     // Link labels
     addAndMakeVisible (performersNameLabelPtr   = &processor.performersNameLabel);
     addAndMakeVisible (instrumentPlayedLabelPtr = &processor.instrumentPlayedLabel);
@@ -144,7 +147,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 635);
+    setSize (1005, 620);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -170,26 +173,35 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
-    
+
     // Set up labels
     performersNameLabelPtr->setEditable(true);
     instrumentPlayedLabelPtr->setEditable(true);
     microphonesUsedLabelPtr->setEditable(true);
-    
+
     if(performersNameLabelPtr->getText().isEmpty())
     {
         performersNameLabelPtr->setText("Performer's Name:", dontSendNotification);
     }
-    
+
     if(instrumentPlayedLabelPtr->getText().isEmpty())
     {
         instrumentPlayedLabelPtr->setText("Instrument Played:", dontSendNotification);
     }
-    
+
     if(microphonesUsedLabelPtr->getText().isEmpty())
     {
         microphonesUsedLabelPtr->setText("Microphone(s) Used:", dontSendNotification);
     }
+
+    // Set up static text buttons
+    staticTextSizeButton = new StaticTextSizeButton;
+    loadImageOneButton->setLookAndFeel(staticTextSizeButton);
+    displayImageOneButton->setLookAndFeel(staticTextSizeButton);
+    removeImageOneButton->setLookAndFeel(staticTextSizeButton);
+    loadImageTwoButton->setLookAndFeel(staticTextSizeButton);
+    displayImageTwoButton->setLookAndFeel(staticTextSizeButton);
+    removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
 
     //[/Constructor]
 }
@@ -203,7 +215,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     microphonesUsedEditorPtr = nullptr;
     timestampedNotesEditorPtr = nullptr;
     generalNotesEditorPtr = nullptr;
-    
+
     performersNameLabelPtr = nullptr;
     instrumentPlayedLabelPtr = nullptr;
     microphonesUsedLabelPtr = nullptr;
@@ -250,11 +262,31 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
 
     g.fillAll (Colour (0xff373737));
 
+    {
+        int x = 510, y = 130, width = 245, height = 245;
+        Colour fillColour = Colour (0xff565454);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 760, y = 130, width = 245, height = 245;
+        Colour fillColour = Colour (0xff565454);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
     //[UserPaint] Add your own custom painting code here..
 
     g.setColour(Colours::white);
     g.setOpacity(0.3);
-    g.drawLine(30, 50, 470, 50, 1);
+    g.drawLine(30, 50, 975, 50, 1);
+
+
 
     //[/UserPaint]
 }
@@ -266,28 +298,28 @@ void TrackNotesAudioProcessorEditor::resized()
     performersNameEditorPtr->setBounds (218, 60, 282, 30);
     instrumentPlayedEditorPtr->setBounds (218, 95, 282, 30);
     microphonesUsedEditorPtr->setBounds (218, 130, 282, 30);
-    timestampedNotesEditorPtr->setBounds (0, 200, 500, 150);
-    generalNotesEditorPtr->setBounds (0, 390, 500, 150);
-    
+    timestampedNotesEditorPtr->setBounds (0, 200, 500, 175);
+    generalNotesEditorPtr->setBounds (0, 415, 1010, 175);
+
     performersNameLabelPtr->setBounds (0, 60, 218, 30);
     instrumentPlayedLabelPtr->setBounds (0, 95, 218, 30);
     microphonesUsedLabelPtr->setBounds (0, 130, 218, 30);
 
     //[/UserPreResize]
 
-    trackNotesLabel->setBounds (0, 0, 500, 50);
+    trackNotesLabel->setBounds (0, 0, 1005, 50);
     timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
-    theLyonsDenSoftwareLabel->setBounds (0, 605, 300, 30);
-    generalNotesLabel->setBounds (0, 355, 500, 30);
-    displayImageOneButton->setBounds (50, 580, 150, 20);
-    displayImageTwoButton->setBounds (300, 580, 150, 20);
-    loadImageOneButton->setBounds (0, 580, 50, 20);
-    loadImageTwoButton->setBounds (250, 580, 50, 20);
-    removeImageOneButton->setBounds (200, 580, 50, 20);
-    removeImageTwoButton->setBounds (450, 580, 50, 20);
-    imagesLabel->setBounds (0, 545, 500, 30);
-    exportMediaButton->setBounds (300, 610, 200, 20);
+    theLyonsDenSoftwareLabel->setBounds (0, 590, 300, 30);
+    generalNotesLabel->setBounds (0, 380, 1005, 30);
+    displayImageOneButton->setBounds (560, 95, 145, 30);
+    displayImageTwoButton->setBounds (810, 95, 145, 30);
+    loadImageOneButton->setBounds (510, 95, 50, 30);
+    loadImageTwoButton->setBounds (760, 95, 50, 30);
+    removeImageOneButton->setBounds (705, 95, 50, 30);
+    removeImageTwoButton->setBounds (955, 95, 50, 30);
+    imagesLabel->setBounds (510, 60, 500, 30);
+    exportMediaButton->setBounds (805, 595, 200, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -358,7 +390,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(*imageOnePtr, *imageOnePathPtr);
+        loadImage(*imageOnePtr, *imageOnePathPtr, true);
 
         if(!imageOnePtr->isNull())
         {
@@ -367,16 +399,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
             // Set displayImage button text to file name
             displayImageOneButton->setButtonText(imageOnePathPtr->getFileNameWithoutExtension());
-
-            // Logic is, if window is open, trigger display button twice on a newly loaded image
-            // This will keep the window open and reload the new image
-            // If the window is closed, only trigger display button once, which also opens it
-            if(basicWindowImageOnePtr != nullptr)
-            {
-                displayImageOneButton->triggerClick();
-            }
-
-            displayImageOneButton->triggerClick();
         }
 
         //[/UserButtonCode_loadImageOneButton]
@@ -385,7 +407,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(*imageTwoPtr, *imageTwoPathPtr);
+        loadImage(*imageTwoPtr, *imageTwoPathPtr, false);
 
         if(!imageTwoPtr->isNull())
         {
@@ -394,16 +416,6 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
             // Set displayImage button text to file name
             displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());
-
-            // Logic is, if window is open, trigger display button twice on a newly loaded image
-            // This will keep the window open and reload the new image
-            // If the window is closed, only trigger display button once, which also opens it
-            if(basicWindowImageTwoPtr != nullptr)
-            {
-                displayImageTwoButton->triggerClick();
-            }
-
-            displayImageTwoButton->triggerClick();
         }
 
         //[/UserButtonCode_loadImageTwoButton]
@@ -412,8 +424,9 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_removeImageOneButton] -- add your button handler code here..
 
-        Image blankImage;
+        imagePreviewOne.setVisible(false);
 
+        Image blankImage;
         *imageOnePathPtr = "";
         *imageOnePtr     = blankImage;
         displayImageOneButton->setButtonText("Empty");
@@ -423,8 +436,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     else if (buttonThatWasClicked == removeImageTwoButton)
     {
         //[UserButtonCode_removeImageTwoButton] -- add your button handler code here..
-        Image blankImage;
 
+        imagePreviewTwo.setVisible(false);
+
+        Image blankImage;
         *imageTwoPathPtr = "";
         *imageTwoPtr     = blankImage;
         displayImageTwoButton->setButtonText("Empty");
@@ -490,7 +505,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, const bool &isImageOne)
 {
     FileChooser fileChooser ("Export all Text",
                              File::getSpecialLocation(File::userHomeDirectory),
@@ -507,6 +522,28 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath)
         // Get image
         image = ImageCache::getFromFile(fileChooser.getResult());
     }
+
+    createImagePreview(isImageOne);
+}
+
+void TrackNotesAudioProcessorEditor::createImagePreview(const bool &isImageOne)
+{
+    if(isImageOne)
+    {
+        imagePreviewOne.setVisible(false);
+        imagePreviewOne.setImage(*imageOnePtr);
+        imagePreviewOne.setBounds(510, 130, 245, 245);
+        imagePreviewOne.setVisible(true);
+        addAndMakeVisible(imagePreviewOne);
+    }
+    else
+    {
+        imagePreviewTwo.setVisible(false);
+        imagePreviewTwo.setImage(*imageTwoPtr);
+        imagePreviewTwo.setBounds(760, 130, 245, 245);
+        imagePreviewTwo.setVisible(true);
+        addAndMakeVisible(imagePreviewTwo);
+    }
 }
 
 void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr,
@@ -517,8 +554,8 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     {
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(),
                                          Colours::grey,
-                                         DocumentWindow::closeButton
-                                         | DocumentWindow::minimiseButton);
+                                         DocumentWindow::closeButton |
+                                         DocumentWindow::minimiseButton);
 
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image), true);
@@ -628,10 +665,13 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public TextEditorListener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="500" initialHeight="635">
-  <BACKGROUND backgroundColour="ff373737"/>
+                 fixedSize="1" initialWidth="1005" initialHeight="620">
+  <BACKGROUND backgroundColour="ff373737">
+    <RECT pos="510 130 245 245" fill="solid: ff565454" hasStroke="0"/>
+    <RECT pos="760 130 245 245" fill="solid: ff565454" hasStroke="0"/>
+  </BACKGROUND>
   <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 0 500 50" textCol="ffffffff"
+         virtualName="" explicitFocusOrder="0" pos="0 0 1005 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Track Notes" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
@@ -646,40 +686,40 @@ BEGIN_JUCER_METADATA
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="theLyonsDenSoftwareLabel" id="d0cfddad51f6f3" memberName="theLyonsDenSoftwareLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 605 300 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 590 300 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>
   <LABEL name="generalNotesLabel" id="c170b98fbe39594f" memberName="generalNotesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 355 500 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 380 1005 30" edTextCol="ff000000"
          edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="50 580 150 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="560 95 145 30" bgColOff="ff393939"
               buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="displayImageTwoButton" id="49cbe3c0cc417d1e" memberName="displayImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="300 580 150 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="810 95 145 30" bgColOff="ff393939"
               buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageOneButton" id="b3cf03e99303b480" memberName="loadImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="0 580 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="510 95 50 30" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="loadImageTwoButton" id="c76f47c5a5ad9793" memberName="loadImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="250 580 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="760 95 50 30" bgColOff="ff393939"
               buttonText="Load" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="removeImageOneButton" id="c4e0c098ca1c7a0c" memberName="removeImageOneButton"
-              virtualName="" explicitFocusOrder="0" pos="200 580 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="705 95 50 30" bgColOff="ff393939"
               buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="removeImageTwoButton" id="6b14eed5f55e2af7" memberName="removeImageTwoButton"
-              virtualName="" explicitFocusOrder="0" pos="450 580 50 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="955 95 50 30" bgColOff="ff393939"
               buttonText="Remove" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="imagesLabel" id="3f296d22943adc31" memberName="imagesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 545 500 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="510 60 500 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Images:" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Arial" fontsize="25" kerning="0"
          bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="exportMediaButton" id="ab681e4541856006" memberName="exportMediaButton"
-              virtualName="" explicitFocusOrder="0" pos="300 610 200 20" bgColOff="ff393939"
+              virtualName="" explicitFocusOrder="0" pos="805 595 200 20" bgColOff="ff393939"
               buttonText="Export Media" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
 </JUCER_COMPONENT>

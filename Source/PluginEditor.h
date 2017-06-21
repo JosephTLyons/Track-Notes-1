@@ -21,6 +21,7 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "StaticTextSizeButton.hpp"
 #include "PluginProcessor.h"
 #include "BasicWindow.cpp"
 //[/Headers]
@@ -47,12 +48,13 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
 
-    void loadImage(Image &image, File &imagePath);
+    void loadImage(Image &image, File &imagePath, const bool &isImageOne);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
     void showErrorLoadingImageWindow(const String &path);
     void fillTimeIntervalValues(int &hours, int &minutes, int &seconds);
     String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
     String formatTimeInterval(const int &timeInterval);
+    void createImagePreview(const bool &isImageOne);
 
     //[/UserMethods]
 
@@ -73,6 +75,8 @@ private:
     Image *imageOnePtr, *imageTwoPtr;
     bool *imageOneMissingPtr, *imageTwoMissingPtr;
 
+    ImageComponent imagePreviewOne, imagePreviewTwo;
+
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;
     SafePointer<TextEditor> microphonesUsedEditorPtr;
@@ -85,6 +89,8 @@ private:
 
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
+
+    ScopedPointer<StaticTextSizeButton> staticTextSizeButton;
 
     AudioPlayHead::CurrentPositionInfo *positionInformationPtr;
 
