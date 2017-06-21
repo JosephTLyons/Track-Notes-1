@@ -51,7 +51,8 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    Image image;
+    
+    ImageComponent imageComponent;
 
     //[/UserVariables]
 

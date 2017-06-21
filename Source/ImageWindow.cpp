@@ -31,7 +31,9 @@ ImageWindow::ImageWindow (Image &imageSource)
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
-    image = imageSource;
+    imageComponent.setImage(imageSource);
+    imageComponent.setBounds(0, 0, imageSource.getWidth(), imageSource.getHeight());
+    addAndMakeVisible(imageComponent);
 
     //[/Constructor_pre]
 
@@ -79,7 +81,6 @@ void ImageWindow::paint (Graphics& g)
 
     //[UserPaint] Add your own custom painting code here..
 
-    g.drawImageAt(image, 0, 0, false);
     //[/UserPaint]
 }
 
