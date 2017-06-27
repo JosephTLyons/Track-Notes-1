@@ -550,13 +550,14 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
     // Don't allow multiple copies of this window to be made
     if(basicWindowPtr == NULL)
     {
+        int height = image.getHeight();
+        int width  = image.getWidth();
+        scaleImageDimensionsIfTooLarge(width, height);
+        
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(),
                                          Colours::grey,
                                          DocumentWindow::closeButton |
                                          DocumentWindow::minimiseButton);
-
-        int height = image.getHeight(), width = image.getWidth();
-        scaleImageDimenionsIfTooLarge(width, height);
         
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image, width, height), true);
@@ -582,6 +583,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         delete basicWindowPtr;
     }
 }
+
 void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &path)
 {
     AlertWindow::showMessageBox (AlertWindow::WarningIcon,
@@ -650,13 +652,13 @@ String TrackNotesAudioProcessorEditor::formatTimeInterval(const int &timeInterva
     return tempString;
 }
 
-void TrackNotesAudioProcessorEditor::scaleImageDimenionsIfTooLarge(int &imageWidth, int &imageHeight)
+void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWidth, int &imageHeight)
 {
     // Get desktop dimensions
     int screenWidth  = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getWidth();
     int screenHeight = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getHeight();
     
-    // Trim vertically and horizontally to accoujnt for taskbars and whatnot
+    // Trim vertically and horizontally to account for docks, taskbars, menus, and whatnot
     screenWidth  -= 100;
     screenHeight -= 100;
     
@@ -664,30 +666,30 @@ void TrackNotesAudioProcessorEditor::scaleImageDimenionsIfTooLarge(int &imageWid
     int widthDifference  = screenWidth - imageWidth;
     int heightDifference = screenHeight - imageHeight;
     
-    // Leave function if it is smaller than screen size
+    // Leave function if image is smaller than screen size - essentially, do nothing
     if((widthDifference > 0) && (heightDifference > 0))
     {
         return;
     }
     
     // Logic is, a smaller difference means the actual image is closer to the edge of the screen
-    // So we should use the dimension that is largest (which is the one with the least difference)
+    // So we should use the dimension that is largest (which is the one with the smallest difference)
     if(widthDifference < heightDifference)
     {
         float imageAspectRatio = screenWidth / (float) imageWidth;
         
-        // set image height to screen height and scale width appropriately
+        // set image width to screen width and scale height appropriately
         imageWidth = screenWidth;
-        imageHeight  *= imageAspectRatio;
+        imageHeight *= imageAspectRatio;
     }
     
     else
     {
         float imageAspectRatio = screenHeight / (float) imageHeight;
         
-        // set image width to screen width and scale height appropriately
+        // set image height to screen height and scale width appropriately
         imageHeight = screenHeight;
-        imageWidth  *= imageAspectRatio;
+        imageWidth *= imageAspectRatio;
     }
 }
 
