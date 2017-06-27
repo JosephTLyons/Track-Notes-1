@@ -29,7 +29,7 @@ A simple audio plugin to hold your session and track notes.
 
 ## Changelog:
 ### June XX, 2017 - v1.1.0
-* Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed. '
+* Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed.
 * Reworked the entire GUI to allow for image previews.  You can still open the image in a larger window as before, but now you have "at a glance" views of either loaded image
 * Added support to allow the first three labels to be renameable by the user
 * The windows that house the images can no longer be maximized, in an effort to some keep DAWs from crashing.  This doesn't affect anything, since the images didn't previously scale when the window changed sized
@@ -57,19 +57,16 @@ A simple audio plugin to hold your session and track notes.
 ## Future features to consider (after v1.0.0 release):
 * Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
 * Video support?
-* Option to resave the images elsewhere?
 * Resizable windows / GUI
 * User picked fonts, font sizes, and background color?
 * AAX
 * PC Versions
 
 ## Other things to do before next release (developer notes):
-* Try to fix image size issue
 * Installer script
-* Refactor method for Exporting Media
+* Refactor method for Exporting Media and method for image resizing
 * Make public data members private
 * Make setter and getter methods for processor class items
-* Set up plugin category information
 * Test other DAWs
 * Embed a cool font
 
