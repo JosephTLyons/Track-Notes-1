@@ -37,11 +37,26 @@ ImageWindow::ImageWindow (const Image &imageSource, const int &width, const int 
 
     //[/Constructor_pre]
 
+    addAndMakeVisible (pleaseLoadImageLabel = new Label ("pleaseLoadImageLabel",
+                                                         TRANS("Please Load an Image")));
+    pleaseLoadImageLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    pleaseLoadImageLabel->setJustificationType (Justification::centred);
+    pleaseLoadImageLabel->setEditable (false, false, false);
+    pleaseLoadImageLabel->setColour (TextEditor::textColourId, Colours::black);
+    pleaseLoadImageLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
+
+    // Don't display "Please Load an Image" label if image exists
+    if(!imageComponent.getImage().isNull())
+    {
+        pleaseLoadImageLabel->setVisible(false);
+    }
+
     //[/UserPreSize]
 
-    setSize (200, 200);
+    setSize (150, 150);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -53,6 +68,7 @@ ImageWindow::~ImageWindow()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
+    pleaseLoadImageLabel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -67,18 +83,6 @@ void ImageWindow::paint (Graphics& g)
 
     g.fillAll (Colour (0xff373737));
 
-    {
-        int x = 0, y = 0, width = 200, height = 200;
-        String text (TRANS("Please Load an Image"));
-        Colour fillColour = Colours::white;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-        g.drawText (text, x, y, width, height,
-                    Justification::centred, true);
-    }
-
     //[UserPaint] Add your own custom painting code here..
 
     //[/UserPaint]
@@ -89,6 +93,7 @@ void ImageWindow::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
+    pleaseLoadImageLabel->setBounds (0, 0, 150, 150);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -111,12 +116,13 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="ImageWindow" componentName=""
                  parentClasses="public Component" constructorParams="const Image &amp;imageSource, const int &amp;width, const int &amp;height"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="1" initialWidth="200" initialHeight="200">
-  <BACKGROUND backgroundColour="ff373737">
-    <TEXT pos="0 0 200 200" fill="solid: ffffffff" hasStroke="0" text="Please Load an Image"
-          fontname="Default font" fontsize="15" kerning="0" bold="0" italic="0"
-          justification="36"/>
-  </BACKGROUND>
+                 overlayOpacity="0.330" fixedSize="1" initialWidth="150" initialHeight="150">
+  <BACKGROUND backgroundColour="ff373737"/>
+  <LABEL name="pleaseLoadImageLabel" id="e03244b80f680d50" memberName="pleaseLoadImageLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 0 150 150" edTextCol="ff000000"
+         edBkgCol="0" labelText="Please Load an Image" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" kerning="0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
