@@ -555,14 +555,17 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
                                          DocumentWindow::closeButton |
                                          DocumentWindow::minimiseButton);
 
+        int height = image.getHeight(), width = image.getWidth();
+        scaleImageDimenionsIfTooLarge(width, height);
+        
         basicWindowPtr->setUsingNativeTitleBar(true);
-        basicWindowPtr->setContentOwned(new ImageWindow(image), true);
+        basicWindowPtr->setContentOwned(new ImageWindow(image, width, height), true);
         basicWindowPtr->setAlwaysOnTop(true);
 
         if(!image.isNull())
         {
-            basicWindowPtr->setSize(image.getWidth(), image.getHeight());
-            basicWindowPtr->centreWithSize(image.getWidth(), image.getHeight());
+            basicWindowPtr->setSize(width, height);
+            basicWindowPtr->centreWithSize(width, height);
         }
 
         else
@@ -645,6 +648,30 @@ String TrackNotesAudioProcessorEditor::formatTimeInterval(const int &timeInterva
     tempString += timeInterval;
 
     return tempString;
+}
+
+void TrackNotesAudioProcessorEditor::scaleImageDimenionsIfTooLarge(int &imageWidth, int &imageHeight)
+{
+    // Get desktop dimensions
+    int screenWidth  = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getWidth();
+    int screenHeight = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getHeight();
+    
+    // Trim vertically and horizontally to accoujnt for taskbars and whatnot
+    screenWidth  -= 50;
+    screenHeight -= 50;
+    
+    // Get difference
+    int widthDifference  = screenWidth - imageWidth;
+    int heightDifference = screenHeight - imageHeight;
+    
+    // Leave function if it is smaller than screen size
+    if((widthDifference > 0) && (heightDifference > 0))
+    {
+        return;
+    }
+    
+    imageHeight = 50;
+    imageWidth  = 50;
 }
 
 //[/MiscUserCode]

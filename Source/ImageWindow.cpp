@@ -27,12 +27,12 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-ImageWindow::ImageWindow (Image &imageSource)
+ImageWindow::ImageWindow (const Image &imageSource, const int &width, const int &height)
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
     imageComponent.setImage(imageSource);
-    imageComponent.setBounds(0, 0, imageSource.getWidth(), imageSource.getHeight());
+    imageComponent.setBounds(0, 0, width, height);
     addAndMakeVisible(imageComponent);
 
     //[/Constructor_pre]
@@ -109,7 +109,7 @@ void ImageWindow::resized()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="ImageWindow" componentName=""
-                 parentClasses="public Component" constructorParams="Image &amp;imageSource"
+                 parentClasses="public Component" constructorParams="const Image &amp;imageSource, const int &amp;width, const int &amp;height"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.330" fixedSize="1" initialWidth="200" initialHeight="200">
   <BACKGROUND backgroundColour="ff373737">

@@ -55,6 +55,7 @@ public:
     String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
     String formatTimeInterval(const int &timeInterval);
     void createImagePreview(const bool &isImageOne);
+    void scaleImageDimenionsIfTooLarge(int &imageWidtht, int &imageHeight);
 
     //[/UserMethods]
 
