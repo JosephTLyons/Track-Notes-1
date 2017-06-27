@@ -29,6 +29,7 @@ A simple audio plugin to hold your session and track notes.
 
 ## Changelog:
 ### June XX, 2017 - v1.1.0
+* Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed. '
 * Reworked the entire GUI to allow for image previews.  You can still open the image in a larger window as before, but now you have "at a glance" views of either loaded image
 * Added support to allow the first three labels to be renameable by the user
 * The windows that house the images can no longer be maximized, in an effort to some keep DAWs from crashing.  This doesn't affect anything, since the images didn't previously scale when the window changed sized
@@ -46,7 +47,6 @@ A simple audio plugin to hold your session and track notes.
 ### Global Issues:
 * Insert Timestamp does not work in some DAWs, output may be all zeros or garbage values (GarageBand, Logic).
 * Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
-* Some images load and display larger than they really are.
 
 ### VST in Reaper:
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
