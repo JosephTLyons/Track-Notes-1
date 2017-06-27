@@ -657,8 +657,8 @@ void TrackNotesAudioProcessorEditor::scaleImageDimenionsIfTooLarge(int &imageWid
     int screenHeight = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getHeight();
     
     // Trim vertically and horizontally to accoujnt for taskbars and whatnot
-    screenWidth  -= 50;
-    screenHeight -= 50;
+    screenWidth  -= 100;
+    screenHeight -= 100;
     
     // Get difference
     int widthDifference  = screenWidth - imageWidth;
@@ -670,8 +670,25 @@ void TrackNotesAudioProcessorEditor::scaleImageDimenionsIfTooLarge(int &imageWid
         return;
     }
     
-    imageHeight = 50;
-    imageWidth  = 50;
+    // Logic is, a smaller difference means the actual image is closer to the edge of the screen
+    // So we should use the dimension that is largest (which is the one with the least difference)
+    if(widthDifference < heightDifference)
+    {
+        float imageAspectRatio = screenWidth / (float) imageWidth;
+        
+        // set image height to screen height and scale width appropriately
+        imageWidth = screenWidth;
+        imageHeight  *= imageAspectRatio;
+    }
+    
+    else
+    {
+        float imageAspectRatio = screenHeight / (float) imageHeight;
+        
+        // set image width to screen width and scale height appropriately
+        imageHeight = screenHeight;
+        imageWidth  *= imageAspectRatio;
+    }
 }
 
 //[/MiscUserCode]
