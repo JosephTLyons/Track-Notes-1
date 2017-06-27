@@ -2,7 +2,7 @@
 A simple audio plugin to hold your session and track notes.
 
 ![alt tag](https://github.com/JosephTLyons/Track-Notes/blob/master/Images/Track%20Notes%20GUI.png?raw=true)
--GUI screenshot is larger than the actual GUI
+-GUI screenshot may not be the same size as the actual GUI
 
 # License and Source Code:
 * Track Notes is open source and under GPL_v3 licensing, you can find the code here: https://github.com/JosephTLyons/Track-Notes
@@ -11,14 +11,14 @@ A simple audio plugin to hold your session and track notes.
 * This plugin isn't free, it costs 1 USD: https://www.paypal.me/JosephTimothyLyons/1
 * There is no piracy protection, so I will never know if you purchased or not, this is entirely based on an honors system.
 * Download the plugin and demo it as long as you like, but if you like it, please purchase it, and if you dislike it, please delete it from your system.
-* Do not blind purchase.  I am brand new to developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
+* Do not blind purchase.  I am brand new to audio plugin developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please only purchase based on what is currently available.
 
 # Features:
 * Text fields for Performer's Name, Instrument Played, Microphone(s) Used, Timestamped Notes, and General Notes
 * Performer's Name, Instrument Played, and Microphone(s) Used are user renameable
 * A special text field for capturing timestamped notes, which is done through the "Insert Timestamp" button (this feature isn't available in all DAWs, only in ones that provide information about the playhead)
-* Abilty to load up to two images into the plugin.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
+* Abilty to load up to two images into the plugin.  Image previews are available direclty on the main GUI, but larger versions can be loaded into their own windows by clicking the buttons above that hold the image's filename.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
 * Ability to export media to a folder (named by the user).  The export function saves all text-based information to a .txt file and copies any loaded images from their original location on the user's comp to the export folder.
 
 # Currently Supported Formats:
