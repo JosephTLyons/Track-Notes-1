@@ -202,7 +202,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     loadImageTwoButton->setLookAndFeel(staticTextSizeButton);
     displayImageTwoButton->setLookAndFeel(staticTextSizeButton);
     removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
-
+    
     //[/Constructor]
 }
 
@@ -672,13 +672,13 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
         return;
     }
     
-    // Logic is, a smaller difference means the actual image is closer to the edge of the screen
-    // So we should use the dimension that is largest (which is the one with the smallest difference)
+    // Scale the image based on whichever dimension is closer to the edge of the screen.
+    // The dimension that is closest to the edge of the screen is the one with the smallest difference.
     if(widthDifference < heightDifference)
     {
         float imageAspectRatio = screenWidth / (float) imageWidth;
         
-        // set image width to screen width and scale height appropriately
+        // Set image width to screen width and scale height appropriately
         imageWidth = screenWidth;
         imageHeight *= imageAspectRatio;
     }
@@ -687,7 +687,7 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
     {
         float imageAspectRatio = screenHeight / (float) imageHeight;
         
-        // set image height to screen height and scale width appropriately
+        // Set image height to screen height and scale width appropriately
         imageHeight = screenHeight;
         imageWidth *= imageAspectRatio;
     }

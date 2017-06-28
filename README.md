@@ -24,8 +24,9 @@ A simple audio plugin to hold your session and track notes.
 # Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
 
-# Note:
-* I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please message email me.  I'll try to obtain the DAW and figure the bugs out.
+# To Install:
+* AU: Copy AU to /Users/USERNAME/Library/Audio/Plug-Ins/Components 
+* VST: Copy VST to /Users/USERNAME/Library/Audio/Plug-Ins/VST
 
 ## Changelog:
 ### June 26th, 2017 - v1.1.0
@@ -42,6 +43,9 @@ A simple audio plugin to hold your session and track notes.
 
 ### June 5, 2017 - v1.0.0
 * Initial Release
+
+# Note:
+* I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please email me.  I'll try to obtain the DAW and figure the bugs out.
 
 ## Bugs / Known Issues:
 ### Global Issues:
