@@ -26,6 +26,8 @@
       <FILE id="FtXYsH" name="BasicWindow.cpp" compile="1" resource="0" file="Source/BasicWindow.cpp"/>
       <FILE id="IT3yPP" name="ImageWindow.h" compile="0" resource="0" file="Source/ImageWindow.h"/>
       <FILE id="Z2U2YR" name="ImageWindow.cpp" compile="1" resource="0" file="Source/ImageWindow.cpp"/>
+      <FILE id="aI7fmO" name="StaticTextSizeButton.hpp" compile="0" resource="0"
+            file="Source/StaticTextSizeButton.hpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
