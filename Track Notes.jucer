@@ -54,6 +54,29 @@
         <MODULEPATH id="juce_audio_basics" path="../../../Libraries/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
+    <VS2017 targetFolder="Builds/VisualStudio2017">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="1" optimisation="1" targetName="Track Notes"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="0" optimisation="3" targetName="Track Notes"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_basics" path="..\..\juce-huckleberry-windows\JUCE\modules"/>
+      </MODULEPATHS>
+    </VS2017>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
