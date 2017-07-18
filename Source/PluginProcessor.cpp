@@ -8,7 +8,6 @@
   ==============================================================================
 */
 
-#include <string.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -95,7 +94,7 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     microphonesUsedLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
     
     // Set up text editor font sizes
-    int fontSize = 20;
+    const int fontSize = 20;
     performersNameEditor.setFont(fontSize);
     instrumentPlayedEditor.setFont(fontSize);
     microphonesUsedEditor.setFont(fontSize);
