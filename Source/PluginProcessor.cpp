@@ -168,6 +168,7 @@ void TrackNotesAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 
+    #define DEMO_MODE 1
     #if DEMO_MODE
     if(twentyMinutesHavePassed())
     {
