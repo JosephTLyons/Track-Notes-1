@@ -55,7 +55,7 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    bool sixtyMinutesHasPassed();
+    bool twentyMinutesHavePassed();
     void eraseTextAndRemindOfDemo();
     
     // Shouldn't be declaring these at public

@@ -167,10 +167,9 @@ void TrackNotesAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    
-    #define DEMO_MODE 1
+
     #if DEMO_MODE
-    if(sixtyMinutesHasPassed())
+    if(twentyMinutesHavePassed())
     {
         eraseTextAndRemindOfDemo();
     }
@@ -240,7 +239,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
     xml.setAttribute("performersNameLabel", performersNameLabel.getText());
     xml.setAttribute("instrumentPlayedLabel", instrumentPlayedLabel.getText());
-    xml.setAttribute("MicrophonesUsedLabel", microphonesUsedLabel.getText());
+    xml.setAttribute("microphonesUsedLabel", microphonesUsedLabel.getText());
     
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
@@ -271,7 +270,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             imageTwoPath = xml->getStringAttribute("imageTwoPath");
             performersNameLabel.setText(xml->getStringAttribute("performersNameLabel"), dontSendNotification);
             instrumentPlayedLabel.setText(xml->getStringAttribute("instrumentPlayedLabel"), dontSendNotification);
-            microphonesUsedLabel.setText(xml->getStringAttribute("MicrophonesUsedLabel"), dontSendNotification);
+            microphonesUsedLabel.setText(xml->getStringAttribute("microphonesUsedLabel"), dontSendNotification);
             
             // Get string containing path and check to see if its empty or not
             if(!imageOnePath.getFullPathName().isEmpty())
@@ -322,15 +321,15 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new TrackNotesAudioProcessor();
 }
 
-bool TrackNotesAudioProcessor::sixtyMinutesHasPassed()
+#if DEMO_MODE
+bool TrackNotesAudioProcessor::twentyMinutesHavePassed()
 {
     // Convert millliseconds into hours
     timeElapsed = Time::currentTimeMillis() - startingTime;
     float seconds = timeElapsed / 1000;
     float minutes = seconds / 60;
-    float hours    = minutes / 60;
     
-    if(hours >= 1)
+    if(minutes >= 20)
     {
         // Reset the starting time to start another hour
         startingTime = Time::currentTimeMillis();
@@ -359,3 +358,4 @@ void TrackNotesAudioProcessor::eraseTextAndRemindOfDemo()
     
     textEditorArray[randomNumber.nextInt(5)]->setText(demoMessage);
 }
+#endif
