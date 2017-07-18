@@ -8,8 +8,8 @@ A simple audio plugin to hold your session and track notes.
 * Track Notes is open source and under GPL_v3 licensing, you can find the code here: https://github.com/JosephTLyons/Track-Notes
 
 # Purchase Information:
-* This plugin isn't free, it costs 1 USD: https://www.paypal.me/JosephTimothyLyons/1
-* There is no piracy protection, so I will never know if you purchased or not, this is entirely based on an honors system.
+* This plugin isn't free, it costs 4 USD: https://www.paypal.me/JosephTimothyLyons/4
+* The plugin is available as a demo.  In demo mode, Track Notes will work normally for at least 20 minutes or more (I've coded this to be a bit random).  After 20 minutes, one of the text fields will be randomly selected and overwritten with a reminder that this is a demo version.  Once a purchase is made, I will manually send you a copy of the full version to the email attached to your Paypal account.
 * Download the plugin and demo it as long as you like, but if you like it, please purchase it, and if you dislike it, please delete it from your system.
 * Do not blind purchase.  I am brand new to audio plugin developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please only purchase based on what is currently available.
