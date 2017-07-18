@@ -335,16 +335,13 @@ bool TrackNotesAudioProcessor::twentyMinutesHavePassed()
     
     if(minutes >= 20)
     {
-        // Reset the starting time to start another hour
+        // Reset the starting time
         startingTime = Time::currentTimeMillis();
         
         return true;
     }
     
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 void TrackNotesAudioProcessor::eraseTextAndRemindOfDemo()
