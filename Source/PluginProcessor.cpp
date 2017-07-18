@@ -170,7 +170,7 @@ void TrackNotesAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
     
     #define DEMO_MODE 1
     #if DEMO_MODE
-    if(sixtyMinutesHasPassed());
+    if(sixtyMinutesHasPassed())
     {
         eraseTextAndRemindOfDemo();
     }
@@ -328,14 +328,14 @@ bool TrackNotesAudioProcessor::sixtyMinutesHasPassed()
     timeElapsed = Time::currentTimeMillis() - startingTime;
     float seconds = timeElapsed / 1000;
     float minutes = seconds / 60;
-    float hour    = minutes / 60;
+    float hours    = minutes / 60;
     
-    if(hour >= 1)
+    if(hours >= 1)
     {
-        return true;
-        
         // Reset the starting time to start another hour
         startingTime = Time::currentTimeMillis();
+        
+        return true;
     }
     
     else
