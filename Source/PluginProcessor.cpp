@@ -205,15 +205,15 @@ void TrackNotesAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
     // Pass struct and fill it in with playhead position information
     getPlayHead()->getCurrentPosition(positionInformation);
     
-#define DEMO_MODE 1
-#if DEMO_MODE
-    pluginIsRunningInDemoMode = true;
+    #define DEMO_MODE 1
+    #if DEMO_MODE
+        pluginIsRunningInDemoMode = true;
     
-    if(twentyMinutesHavePassed())
-    {
-        eraseTextAndRemindOfDemo();
-    }
-#endif
+        if(twentyMinutesHavePassed())
+        {
+            eraseTextAndRemindOfDemo();
+        }
+    #endif
 }
 
 //==============================================================================
@@ -329,7 +329,7 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 bool TrackNotesAudioProcessor::twentyMinutesHavePassed()
 {
     // Convert millliseconds into hours
-    timeElapsed = Time::currentTimeMillis() - startingTime;
+    timeElapsed   = Time::currentTimeMillis() - startingTime;
     float seconds = timeElapsed / 1000;
     float minutes = seconds / 60;
     
