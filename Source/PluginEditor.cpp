@@ -42,6 +42,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageOneMissingPtr = &processor.imageOneMissing;
     imageTwoMissingPtr = &processor.imageTwoMissing;
 
+    pluginIsRunningInDemoModePtr = &processor.pluginIsRunningInDemoMode;
+
     createImagePreview(true);
     createImagePreview(false);
 
@@ -164,12 +166,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
         displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());
     }
 
-    // Set up version number label
-    versionNumberString =  " - ";
-    versionNumberString +=  ProjectInfo::projectName;
-    versionNumberString += " v";
-    versionNumberString += ProjectInfo::versionString;
-    theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
+    setupVersionNumberlabel();
 
     // Get array of fonts on user's system
     Font::findFonts(usersFontsResults);
@@ -202,7 +199,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     loadImageTwoButton->setLookAndFeel(staticTextSizeButton);
     displayImageTwoButton->setLookAndFeel(staticTextSizeButton);
     removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
-    
+
     //[/Constructor]
 }
 
@@ -310,7 +307,7 @@ void TrackNotesAudioProcessorEditor::resized()
     trackNotesLabel->setBounds (0, 0, 1005, 50);
     timestampedNotesLabel->setBounds (0, 165, 218, 30);
     insertTimeStampButton->setBounds (218, 165, 282, 30);
-    theLyonsDenSoftwareLabel->setBounds (0, 590, 300, 30);
+    theLyonsDenSoftwareLabel->setBounds (0, 590, 500, 30);
     generalNotesLabel->setBounds (0, 380, 1005, 30);
     displayImageOneButton->setBounds (560, 95, 145, 30);
     displayImageTwoButton->setBounds (810, 95, 145, 30);
@@ -505,6 +502,26 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
+void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
+{
+    versionNumberString =  " - ";
+    versionNumberString +=  ProjectInfo::projectName;
+    versionNumberString += " v";
+    versionNumberString += ProjectInfo::versionString;
+    
+    if(*pluginIsRunningInDemoModePtr)
+    {
+        versionNumberString += " - Demo Version";
+    }
+    
+    else
+    {
+        versionNumberString += " - Full Version";
+    }
+    
+    theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
+}
+
 void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, const bool &isImageOne)
 {
     FileChooser fileChooser ("Export all Text",
@@ -553,12 +570,12 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         int height = image.getHeight();
         int width  = image.getWidth();
         scaleImageDimensionsIfTooLarge(width, height);
-        
+
         basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(),
                                          Colours::grey,
                                          DocumentWindow::closeButton |
                                          DocumentWindow::minimiseButton);
-        
+
         basicWindowPtr->setUsingNativeTitleBar(true);
         basicWindowPtr->setContentOwned(new ImageWindow(image, width, height), true);
         basicWindowPtr->setAlwaysOnTop(true);
@@ -657,36 +674,36 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
     // Get desktop dimensions
     int screenWidth  = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getWidth();
     int screenHeight = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getHeight();
-    
+
     // Trim vertically and horizontally to account for docks, taskbars, menus, and whatnot
     screenWidth  -= 100;
     screenHeight -= 100;
-    
+
     // Get difference
     int widthDifference  = screenWidth - imageWidth;
     int heightDifference = screenHeight - imageHeight;
-    
+
     // Leave function if image is smaller than screen size - essentially, do nothing
     if((widthDifference > 0) && (heightDifference > 0))
     {
         return;
     }
-    
+
     // Scale the image based on whichever dimension is closer to the edge of the screen.
     // The dimension that is closest to the edge of the screen is the one with the smallest difference.
     if(widthDifference < heightDifference)
     {
         float imageAspectRatio = screenWidth / (float) imageWidth;
-        
+
         // Set image width to screen width and scale height appropriately
         imageWidth = screenWidth;
         imageHeight *= imageAspectRatio;
     }
-    
+
     else
     {
         float imageAspectRatio = screenHeight / (float) imageHeight;
-        
+
         // Set image height to screen height and scale width appropriately
         imageHeight = screenHeight;
         imageWidth *= imageAspectRatio;
@@ -730,7 +747,7 @@ BEGIN_JUCER_METADATA
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="theLyonsDenSoftwareLabel" id="d0cfddad51f6f3" memberName="theLyonsDenSoftwareLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 590 300 30" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="0 590 500 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>

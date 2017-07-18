@@ -103,6 +103,7 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     generalNotesEditor.setFont(fontSize);
     
     startingTime = Time::currentTimeMillis();
+    pluginIsRunningInDemoMode = false;
 }
 
 TrackNotesAudioProcessor::~TrackNotesAudioProcessor()
@@ -167,14 +168,6 @@ void TrackNotesAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-
-    #define DEMO_MODE 1
-    #if DEMO_MODE
-    if(twentyMinutesHavePassed())
-    {
-        eraseTextAndRemindOfDemo();
-    }
-    #endif
 }
 
 void TrackNotesAudioProcessor::releaseResources()
@@ -211,6 +204,16 @@ void TrackNotesAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
 {
     // Pass struct and fill it in with playhead position information
     getPlayHead()->getCurrentPosition(positionInformation);
+    
+#define DEMO_MODE 1
+#if DEMO_MODE
+    pluginIsRunningInDemoMode = true;
+    
+    if(twentyMinutesHavePassed())
+    {
+        eraseTextAndRemindOfDemo();
+    }
+#endif
 }
 
 //==============================================================================

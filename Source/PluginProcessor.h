@@ -74,6 +74,7 @@ public:
     Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
     
     int64 startingTime, timeElapsed;
+    bool pluginIsRunningInDemoMode;
     
 private:
     

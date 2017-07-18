@@ -48,6 +48,7 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
 
+    void setupVersionNumberlabel();
     void loadImage(Image &image, File &imagePath, const bool &isImageOne);
     void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
     void showErrorLoadingImageWindow(const String &path);
@@ -77,6 +78,8 @@ private:
     bool *imageOneMissingPtr, *imageTwoMissingPtr;
 
     ImageComponent imagePreviewOne, imagePreviewTwo;
+
+    bool *pluginIsRunningInDemoModePtr;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;
