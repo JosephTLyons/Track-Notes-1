@@ -8,6 +8,7 @@
   ==============================================================================
 */
 
+#include <string.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -100,6 +101,8 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     microphonesUsedEditor.setFont(fontSize);
     timestampedNotesEditor.setFont(fontSize);
     generalNotesEditor.setFont(fontSize);
+    
+    startingTime = Time::currentTimeMillis();
 }
 
 TrackNotesAudioProcessor::~TrackNotesAudioProcessor()
@@ -164,6 +167,14 @@ void TrackNotesAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    
+    #define DEMO_MODE 1
+    #if DEMO_MODE
+    if(sixtyMinutesHasPassed());
+    {
+        eraseTextAndRemindOfDemo();
+    }
+    #endif
 }
 
 void TrackNotesAudioProcessor::releaseResources()
@@ -309,4 +320,42 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new TrackNotesAudioProcessor();
+}
+
+bool TrackNotesAudioProcessor::sixtyMinutesHasPassed()
+{
+    // Convert millliseconds into hours
+    timeElapsed = Time::currentTimeMillis() - startingTime;
+    float seconds = timeElapsed / 1000;
+    float minutes = seconds / 60;
+    float hour    = minutes / 60;
+    
+    if(hour >= 1)
+    {
+        return true;
+        
+        // Reset the starting time to start another hour
+        startingTime = Time::currentTimeMillis();
+    }
+    
+    else
+    {
+        return false;
+    }
+}
+
+void TrackNotesAudioProcessor::eraseTextAndRemindOfDemo()
+{
+    String demoMessage = "This is just a demo, please purchase Track Notes to remove this annoyance.";
+    
+    Array<TextEditor *> textEditorArray;
+    textEditorArray.add(&performersNameEditor);
+    textEditorArray.add(&instrumentPlayedEditor);
+    textEditorArray.add(&microphonesUsedEditor);
+    textEditorArray.add(&timestampedNotesEditor);
+    textEditorArray.add(&generalNotesEditor);
+    
+    Random randomNumber(Time::currentTimeMillis());
+    
+    textEditorArray[randomNumber.nextInt(5)]->setText(demoMessage);
 }

@@ -55,6 +55,9 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
+    bool sixtyMinutesHasPassed();
+    void eraseTextAndRemindOfDemo();
+    
     // Shouldn't be declaring these at public
     // But I'm having issues with making getter methods, oddly enough
     TextEditor performersNameEditor;
@@ -69,6 +72,8 @@ public:
     
     AudioPlayHead::CurrentPositionInfo positionInformation;
     Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
+    
+    int64 startingTime, timeElapsed;
     
 private:
     
