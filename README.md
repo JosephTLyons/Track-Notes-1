@@ -9,9 +9,8 @@ A simple audio plugin to hold your session and track notes.
 
 # Purchase Information:
 * This plugin isn't free, it costs 4 USD: https://www.paypal.me/JosephTimothyLyons/4
-* The plugin is available as a demo.  In demo mode, Track Notes will work normally for at least 20 minutes or more (I've coded this to be a bit random).  After 20 minutes, one of the text fields will be randomly selected and overwritten with a reminder that this is a demo version.  Once a purchase is made, I will manually send you a copy of the full version to the email attached to your Paypal account.
-* Download the plugin and demo it as long as you like, but if you like it, please purchase it, and if you dislike it, please delete it from your system.
-* Do not blind purchase.  I am brand new to audio plugin developing and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
+* The plugin is available as a demo.  In demo mode, Track Notes will work normally for at least 20 minutes or more (I've coded this to be a bit random).  After 20 minutes, one of the text fields will be randomly selected and overwritten with a reminder that this is a demo version.  Once a purchase is made, I will manually send you a copy of the full version to the email attached to your Paypal account.  Note: If a full payment isn't received, I'll simply refund the amount paid.
+* Do not blind purchase.  I am newer to audio plugin development and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please only purchase based on what is currently available.
 
 # Features:
@@ -29,6 +28,9 @@ A simple audio plugin to hold your session and track notes.
 * VST: Copy VST to /Users/USERNAME/Library/Audio/Plug-Ins/VST
 
 ## Changelog:
+### July XXth, 2017 - v1.2.0
+* PC builds are now available in the download package
+
 ### June 26th, 2017 - v1.1.0
 * Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed.
 * Reworked the entire GUI to allow for image previews.  You can still open the image in a larger window as before, but now you have "at a glance" views of either loaded image
