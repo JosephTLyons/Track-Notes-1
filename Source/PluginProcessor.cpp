@@ -343,15 +343,15 @@ void TrackNotesAudioProcessor::eraseTextAndRemindOfDemo()
 {
     String demoMessage = "This is just a demo, please purchase Track Notes to remove this annoyance.";
     
-    Array<TextEditor *> textEditorArray;
-    textEditorArray.add(&performersNameEditor);
-    textEditorArray.add(&instrumentPlayedEditor);
-    textEditorArray.add(&microphonesUsedEditor);
-    textEditorArray.add(&timestampedNotesEditor);
-    textEditorArray.add(&generalNotesEditor);
+    Array<TextEditor *> textEditorPtrArray;
+    textEditorPtrArray.add(&performersNameEditor);
+    textEditorPtrArray.add(&instrumentPlayedEditor);
+    textEditorPtrArray.add(&microphonesUsedEditor);
+    textEditorPtrArray.add(&timestampedNotesEditor);
+    textEditorPtrArray.add(&generalNotesEditor);
     
     Random randomNumber(Time::currentTimeMillis());
     
-    textEditorArray[randomNumber.nextInt(5)]->setText(demoMessage);
+    textEditorPtrArray[randomNumber.nextInt(5)]->setText(demoMessage);
 }
 #endif
