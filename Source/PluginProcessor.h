@@ -74,10 +74,11 @@ public:
     Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
     
     int64 startingTime, timeElapsed;
-    bool pluginIsRunningInDemoMode;
     
 private:
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TrackNotesAudioProcessor)
 };
+
+#define DEMO_MODE 0

@@ -79,7 +79,7 @@ private:
 
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
-    bool *pluginIsRunningInDemoModePtr;
+    bool pluginIsRunningInDemoMode;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;

@@ -33,6 +33,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
+    
+    pluginIsRunningInDemoMode = false;
+    
+    #if DEMO_MODE
+        pluginIsRunningInDemoMode = true;
+    #endif
 
     // Link image pointer in editor class with image holder in processor class
     imageOnePtr        = &processor.imageOne;
@@ -41,8 +47,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageTwoPathPtr    = &processor.imageTwoPath;
     imageOneMissingPtr = &processor.imageOneMissing;
     imageTwoMissingPtr = &processor.imageTwoMissing;
-
-    pluginIsRunningInDemoModePtr = &processor.pluginIsRunningInDemoMode;
 
     createImagePreview(true);
     createImagePreview(false);
@@ -504,12 +508,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
 void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
 {
-    versionNumberString =  " - ";
+    versionNumberString =  ": ";
     versionNumberString +=  ProjectInfo::projectName;
     versionNumberString += " v";
     versionNumberString += ProjectInfo::versionString;
     
-    if(*pluginIsRunningInDemoModePtr)
+    if(pluginIsRunningInDemoMode)
     {
         versionNumberString += " - Demo Version";
     }
