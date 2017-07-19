@@ -25,7 +25,7 @@ void DemoTimer::setTextEditorPtrArray(Array<TextEditor *> textEditorPtrArrayInpu
 
 void DemoTimer::startDemoTimer()
 {
-    int minutes      = 1;
+    int minutes      = 20;
     int seconds      = minutes * 60;
     int milliseconds = seconds * 1000;
     
