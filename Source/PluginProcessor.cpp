@@ -166,13 +166,6 @@ void TrackNotesAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    
-    #if DEMO_MODE
-        if(twentyMinutesHavePassed())
-        {
-            eraseTextAndRemindOfDemo();
-        }
-    #endif
 }
 
 void TrackNotesAudioProcessor::releaseResources()
@@ -209,6 +202,13 @@ void TrackNotesAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
 {
     // Pass struct and fill it in with playhead position information
     getPlayHead()->getCurrentPosition(positionInformation);
+    
+    #if DEMO_MODE
+        if(twentyMinutesHavePassed())
+        {
+            eraseTextAndRemindOfDemo();
+        }
+    #endif
 }
 
 //==============================================================================
