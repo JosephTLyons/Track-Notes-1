@@ -28,6 +28,8 @@
       <FILE id="Z2U2YR" name="ImageWindow.cpp" compile="1" resource="0" file="Source/ImageWindow.cpp"/>
       <FILE id="aI7fmO" name="StaticTextSizeButton.hpp" compile="0" resource="0"
             file="Source/StaticTextSizeButton.hpp"/>
+      <FILE id="NeE8z8" name="DemoTimer.hpp" compile="0" resource="0" file="Source/DemoTimer.hpp"/>
+      <FILE id="OYmsKb" name="DemoTimer.cpp" compile="1" resource="0" file="Source/DemoTimer.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
