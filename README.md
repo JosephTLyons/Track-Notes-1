@@ -67,6 +67,7 @@ A simple audio plugin to hold your session and track notes.
 * User picked fonts, font sizes, and background color?
 * AAX
 * PC Versions
+* Give users option to hide text within an editor
 
 ## Other things to do before next release (developer notes):
 * Installer script
