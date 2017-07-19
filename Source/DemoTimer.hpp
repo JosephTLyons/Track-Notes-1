@@ -20,6 +20,7 @@ public:
     DemoTimer();
     ~DemoTimer();
     void setTextEditorPtrArray(Array<TextEditor *> textEditorPtrArrayInput);
+    void startDemoTimer();
     void timerCallback() override;
 };
 

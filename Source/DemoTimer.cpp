@@ -10,11 +10,7 @@
 
 DemoTimer::DemoTimer()
 {
-    int minutes = 20;
-    int seconds = minutes * 60;
-    int milliseconds = minutes * 1000;
     
-    startTimer(milliseconds);
 }
 
 DemoTimer::~DemoTimer()
@@ -25,6 +21,15 @@ DemoTimer::~DemoTimer()
 void DemoTimer::setTextEditorPtrArray(Array<TextEditor *> textEditorPtrArrayInput)
 {
     textEditorPtrArray = textEditorPtrArrayInput;
+}
+
+void DemoTimer::startDemoTimer()
+{
+    int minutes = 20;
+    int seconds = minutes * 60;
+    int milliseconds = minutes * 1000;
+    
+    startTimer(milliseconds);
 }
 
 void DemoTimer::timerCallback()
