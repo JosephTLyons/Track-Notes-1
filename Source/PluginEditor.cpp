@@ -513,22 +513,14 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(stealthModeToggle->getToggleState())
         {
-            String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n";
-            tempTextHolder += generalNotesEditorPtr->getText();
-            generalNotesEditorPtr->setText(tempTextHolder, dontSendNotification);
-            generalNotesEditorPtr->moveCaretToTop(false);
-            generalNotesEditorPtr->setScrollbarsShown(false);
-            generalNotesEditorPtr->setReadOnly(true);
+            activateStealthMode(*timestampedNotesEditorPtr);
+            activateStealthMode(*generalNotesEditorPtr);
         }
         
         else
         {
-            String tempTextHolder = generalNotesEditorPtr->getText();
-            tempTextHolder = tempTextHolder.trimStart();
-            generalNotesEditorPtr->setText(tempTextHolder);
-            generalNotesEditorPtr->moveCaretToTop(false);
-            generalNotesEditorPtr->setScrollbarsShown(true);
-            generalNotesEditorPtr->setReadOnly(false);
+            deactivateStealthMode(*timestampedNotesEditorPtr);
+            deactivateStealthMode(*generalNotesEditorPtr);
         }
 
 
@@ -749,6 +741,26 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
         imageHeight = screenHeight;
         imageWidth *= imageAspectRatio;
     }
+}
+
+void TrackNotesAudioProcessorEditor::activateStealthMode(TextEditor &textEditor)
+{
+    String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n";
+    tempTextHolder += textEditor.getText();
+    textEditor.setText(tempTextHolder, dontSendNotification);
+    textEditor.moveCaretToTop(false);
+    textEditor.setScrollbarsShown(false);
+    textEditor.setReadOnly(true);
+}
+
+void TrackNotesAudioProcessorEditor::deactivateStealthMode(TextEditor &textEditor)
+{
+    String tempTextHolder = textEditor.getText();
+    tempTextHolder = tempTextHolder.trimStart();
+    textEditor.setText(tempTextHolder);
+    textEditor.moveCaretToTop(false);
+    textEditor.setScrollbarsShown(true);
+    textEditor.setReadOnly(false);
 }
 
 //[/MiscUserCode]

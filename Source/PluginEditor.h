@@ -57,6 +57,9 @@ public:
     String formatTimeInterval(const int &timeInterval);
     void createImagePreview(const bool &isImageOne);
     void scaleImageDimensionsIfTooLarge(int &imageWidtht, int &imageHeight);
+    void activateStealthMode(TextEditor &textEditor);
+    void deactivateStealthMode(TextEditor &textEditor);
+    
 
     //[/UserMethods]
 
