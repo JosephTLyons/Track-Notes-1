@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "DemoTimer.hpp"
 
 
 //==============================================================================
@@ -55,9 +56,6 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    bool twentyMinutesHavePassed();
-    void eraseTextAndRemindOfDemo();
-    
     // Shouldn't be declaring these at public
     // But I'm having issues with making getter methods, oddly enough
     TextEditor performersNameEditor;
@@ -73,12 +71,14 @@ public:
     AudioPlayHead::CurrentPositionInfo positionInformation;
     Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
     
-    int64 startingTime, timeElapsed;
-    
 private:
+    
+    #define DEMO_MODE 1
+    #if DEMO_MODE
+        Array<TextEditor *> textEditorPtrArray;
+        DemoTimer demoTimer;
+    #endif
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TrackNotesAudioProcessor)
 };
-
-#define DEMO_MODE 0

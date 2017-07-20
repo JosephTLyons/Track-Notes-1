@@ -101,7 +101,18 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     timestampedNotesEditor.setFont(fontSize);
     generalNotesEditor.setFont(fontSize);
     
-    startingTime = Time::currentTimeMillis();
+    #if DEMO_MODE
+        // Add textEditors to textEditorPtrArray to be used in demo mode
+        textEditorPtrArray.add(&performersNameEditor);
+        textEditorPtrArray.add(&instrumentPlayedEditor);
+        textEditorPtrArray.add(&microphonesUsedEditor);
+        textEditorPtrArray.add(&timestampedNotesEditor);
+        textEditorPtrArray.add(&generalNotesEditor);
+        textEditorPtrArray.resize(5);
+    
+        demoTimer.setTextEditorPtrArray(textEditorPtrArray);
+        demoTimer.startDemoTimer();
+    #endif
 }
 
 TrackNotesAudioProcessor::~TrackNotesAudioProcessor()
@@ -202,13 +213,6 @@ void TrackNotesAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuff
 {
     // Pass struct and fill it in with playhead position information
     getPlayHead()->getCurrentPosition(positionInformation);
-    
-    #if DEMO_MODE
-        if(twentyMinutesHavePassed())
-        {
-            eraseTextAndRemindOfDemo();
-        }
-    #endif
 }
 
 //==============================================================================
@@ -319,39 +323,3 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new TrackNotesAudioProcessor();
 }
-
-#if DEMO_MODE
-bool TrackNotesAudioProcessor::twentyMinutesHavePassed()
-{
-    // Convert millliseconds into hours
-    timeElapsed   = Time::currentTimeMillis() - startingTime;
-    float seconds = timeElapsed / 1000;
-    float minutes = seconds / 60;
-    
-    if(minutes >= 20)
-    {
-        // Reset the starting time
-        startingTime = Time::currentTimeMillis();
-        
-        return true;
-    }
-    
-    return false;
-}
-
-void TrackNotesAudioProcessor::eraseTextAndRemindOfDemo()
-{
-    String demoMessage = "This is just a demo, please purchase Track Notes to remove this annoyance.";
-    
-    Array<TextEditor *> textEditorPtrArray;
-    textEditorPtrArray.add(&performersNameEditor);
-    textEditorPtrArray.add(&instrumentPlayedEditor);
-    textEditorPtrArray.add(&microphonesUsedEditor);
-    textEditorPtrArray.add(&timestampedNotesEditor);
-    textEditorPtrArray.add(&generalNotesEditor);
-    
-    Random randomNumber(Time::currentTimeMillis());
-    
-    textEditorPtrArray[randomNumber.nextInt(5)]->setText(demoMessage);
-}
-#endif
