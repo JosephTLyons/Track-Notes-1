@@ -33,9 +33,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
-    
+
     pluginIsRunningInDemoMode = false;
-    
+
     #if DEMO_MODE
         pluginIsRunningInDemoMode = true;
     #endif
@@ -149,6 +149,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->addListener (this);
     exportMediaButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
+    addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
+    stealthModeToggle->setButtonText (TRANS("Stealth"));
+    stealthModeToggle->addListener (this);
+    stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
+    stealthModeToggle->setColour (TextButton::textColourOnId, Colour (0xff565454));
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -204,6 +210,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     displayImageTwoButton->setLookAndFeel(staticTextSizeButton);
     removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
 
+    stealthModeToggle->setClickingTogglesState(true);
+
     //[/Constructor]
 }
 
@@ -248,6 +256,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     removeImageTwoButton = nullptr;
     imagesLabel = nullptr;
     exportMediaButton = nullptr;
+    stealthModeToggle = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -321,6 +330,7 @@ void TrackNotesAudioProcessorEditor::resized()
     removeImageTwoButton->setBounds (955, 95, 50, 30);
     imagesLabel->setBounds (510, 60, 500, 30);
     exportMediaButton->setBounds (805, 595, 200, 20);
+    stealthModeToggle->setBounds (752, 595, 48, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -497,6 +507,33 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_exportMediaButton]
     }
+    else if (buttonThatWasClicked == stealthModeToggle)
+    {
+        //[UserButtonCode_stealthModeToggle] -- add your button handler code here..
+
+        if(stealthModeToggle->getToggleState())
+        {
+            String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n";
+            tempTextHolder += generalNotesEditorPtr->getText();
+            generalNotesEditorPtr->setText(tempTextHolder, dontSendNotification);
+            generalNotesEditorPtr->moveCaretToTop(false);
+            generalNotesEditorPtr->setScrollbarsShown(false);
+            generalNotesEditorPtr->setReadOnly(true);
+        }
+        
+        else
+        {
+            String tempTextHolder = generalNotesEditorPtr->getText();
+            tempTextHolder = tempTextHolder.trimStart();
+            generalNotesEditorPtr->setText(tempTextHolder);
+            generalNotesEditorPtr->moveCaretToTop(false);
+            generalNotesEditorPtr->setScrollbarsShown(true);
+            generalNotesEditorPtr->setReadOnly(false);
+        }
+
+
+        //[/UserButtonCode_stealthModeToggle]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -512,17 +549,17 @@ void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
     versionNumberString +=  ProjectInfo::projectName;
     versionNumberString += " v";
     versionNumberString += ProjectInfo::versionString;
-    
+
     if(pluginIsRunningInDemoMode)
     {
         versionNumberString += " - Demo Version";
     }
-    
+
     else
     {
         versionNumberString += " - Full Version";
     }
-    
+
     theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
 }
 
@@ -787,6 +824,10 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="805 595 200 20" bgColOff="ff393939"
               buttonText="Export Media" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
+  <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
+              virtualName="" explicitFocusOrder="0" pos="752 595 48 20" bgColOff="ff393939"
+              textColOn="ff565454" buttonText="Stealth" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

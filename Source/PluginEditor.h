@@ -114,6 +114,7 @@ private:
     ScopedPointer<TextButton> removeImageTwoButton;
     ScopedPointer<Label> imagesLabel;
     ScopedPointer<TextButton> exportMediaButton;
+    ScopedPointer<TextButton> stealthModeToggle;
 
 
     //==============================================================================
