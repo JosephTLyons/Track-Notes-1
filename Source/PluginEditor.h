@@ -59,7 +59,7 @@ public:
     void scaleImageDimensionsIfTooLarge(int &imageWidtht, int &imageHeight);
     void activateStealthMode(TextEditor &textEditor);
     void deactivateStealthMode(TextEditor &textEditor);
-    
+
 
     //[/UserMethods]
 

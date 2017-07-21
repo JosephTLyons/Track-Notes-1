@@ -48,7 +48,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageOneMissingPtr = &processor.imageOneMissing;
     imageTwoMissingPtr = &processor.imageTwoMissing;
     stealthIsActivated = &processor.stealthIsActivated;
-    
+
 
     createImagePreview(true);
     createImagePreview(false);
@@ -150,12 +150,14 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->setButtonText (TRANS("Export Media"));
     exportMediaButton->addListener (this);
     exportMediaButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
+    exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
     addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
     stealthModeToggle->setButtonText (TRANS("Stealth"));
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
-    stealthModeToggle->setColour (TextButton::textColourOnId, Colour (0xff565454));
+    stealthModeToggle->setColour (TextButton::buttonOnColourId, Colour (0xff565454));
+    stealthModeToggle->setColour (TextButton::textColourOnId, Colours::white);
 
 
     //[UserPreSize]
@@ -525,7 +527,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             activateStealthMode(*generalNotesEditorPtr);
             *stealthIsActivated = true;
         }
-        
+
         else
         {
             deactivateStealthMode(*timestampedNotesEditorPtr);
@@ -844,12 +846,12 @@ BEGIN_JUCER_METADATA
          bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="exportMediaButton" id="ab681e4541856006" memberName="exportMediaButton"
               virtualName="" explicitFocusOrder="0" pos="805 595 200 20" bgColOff="ff393939"
-              buttonText="Export Media" connectedEdges="0" needsCallback="1"
-              radioGroupId="0"/>
+              textColOn="ffffffff" buttonText="Export Media" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
               virtualName="" explicitFocusOrder="0" pos="752 595 48 20" bgColOff="ff393939"
-              textColOn="ff565454" buttonText="Stealth" connectedEdges="0"
-              needsCallback="1" radioGroupId="0"/>
+              bgColOn="ff565454" textColOn="ffffffff" buttonText="Stealth"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
