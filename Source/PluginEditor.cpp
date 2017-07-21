@@ -49,7 +49,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageTwoMissingPtr = &processor.imageTwoMissing;
     stealthIsActivated = &processor.stealthIsActivated;
 
-
     createImagePreview(true);
     createImagePreview(false);
 
