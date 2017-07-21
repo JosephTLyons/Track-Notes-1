@@ -101,6 +101,12 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     timestampedNotesEditor.setFont(fontSize);
     generalNotesEditor.setFont(fontSize);
     
+    // Initialize to false for first use after upgrading
+    // Since XML attribute isn't present upon first opening
+    // the initalized value in unpredictable
+    // so give it false before trying to get it from XML
+    stealthIsActivated = false;
+    
     #if DEMO_MODE
         // Add textEditors to textEditorPtrArray to be used in demo mode
         textEditorPtrArray.add(&performersNameEditor);
@@ -233,16 +239,18 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     XmlElement xml ("trackNotes");
     
     // add some attributes to it..
+    // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
     xml.setAttribute ("performersName", performersNameEditor.getText());
     xml.setAttribute ("instrumentPlayed", instrumentPlayedEditor.getText());
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
-    xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText());
-    xml.setAttribute ("generalNotes", generalNotesEditor.getText());
+    xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText().trim());
+    xml.setAttribute ("generalNotes", generalNotesEditor.getText().trim());
     xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
     xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
     xml.setAttribute("performersNameLabel", performersNameLabel.getText());
     xml.setAttribute("instrumentPlayedLabel", instrumentPlayedLabel.getText());
     xml.setAttribute("microphonesUsedLabel", microphonesUsedLabel.getText());
+    xml.setAttribute("stealthIsActivated", stealthIsActivated);
     
     // Store the values of all our parameters, using their param ID as the XML attribute
     for (int i = 0; i < getNumParameters(); ++i)
@@ -274,6 +282,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             performersNameLabel.setText(xml->getStringAttribute("performersNameLabel"), dontSendNotification);
             instrumentPlayedLabel.setText(xml->getStringAttribute("instrumentPlayedLabel"), dontSendNotification);
             microphonesUsedLabel.setText(xml->getStringAttribute("microphonesUsedLabel"), dontSendNotification);
+            stealthIsActivated = xml->getIntAttribute("stealthIsActivated");
             
             // Get string containing path and check to see if its empty or not
             if(!imageOnePath.getFullPathName().isEmpty())

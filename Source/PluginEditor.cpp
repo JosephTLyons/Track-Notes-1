@@ -47,6 +47,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     imageTwoPathPtr    = &processor.imageTwoPath;
     imageOneMissingPtr = &processor.imageOneMissing;
     imageTwoMissingPtr = &processor.imageTwoMissing;
+    stealthIsActivated = &processor.stealthIsActivated;
+    
 
     createImagePreview(true);
     createImagePreview(false);
@@ -210,7 +212,12 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     displayImageTwoButton->setLookAndFeel(staticTextSizeButton);
     removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
 
+    // Set up stealth mode
     stealthModeToggle->setClickingTogglesState(true);
+    if(*stealthIsActivated)
+    {
+        stealthModeToggle->triggerClick();
+    }
 
     //[/Constructor]
 }
@@ -515,12 +522,14 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         {
             activateStealthMode(*timestampedNotesEditorPtr);
             activateStealthMode(*generalNotesEditorPtr);
+            *stealthIsActivated = true;
         }
         
         else
         {
             deactivateStealthMode(*timestampedNotesEditorPtr);
             deactivateStealthMode(*generalNotesEditorPtr);
+            *stealthIsActivated = false;
         }
 
 

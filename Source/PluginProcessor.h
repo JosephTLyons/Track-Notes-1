@@ -63,6 +63,7 @@ public:
     TextEditor microphonesUsedEditor;
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
+    bool stealthIsActivated;
     
     File imageOnePath, imageTwoPath;
     Image imageOne, imageTwo;
