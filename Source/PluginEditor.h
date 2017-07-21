@@ -79,7 +79,6 @@ private:
     File *imageOnePathPtr, *imageTwoPathPtr;
     Image *imageOnePtr, *imageTwoPtr;
     bool *imageOneMissingPtr, *imageTwoMissingPtr;
-
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
     bool pluginIsRunningInDemoMode;
