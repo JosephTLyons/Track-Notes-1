@@ -486,6 +486,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             pathToSaveTextFileTo.getFileName() + ".txt";
 
             // Save all text
+            // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
             pathToSaveTextFileTo.appendText(performersNameLabelPtr->getText());
             pathToSaveTextFileTo.appendText(" " + performersNameEditorPtr->getText() + "\n\n");
 
@@ -496,10 +497,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             pathToSaveTextFileTo.appendText(" " + microphonesUsedEditorPtr->getText() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Timestamped Notes:\n");
-            pathToSaveTextFileTo.appendText(timestampedNotesEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText(timestampedNotesEditorPtr->getText().trim() + "\n\n");
 
             pathToSaveTextFileTo.appendText("General Notes:\n");
-            pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText().trim() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Image One: ");
             pathToSaveTextFileTo.appendText(imageOnePathPtr->getFileName() + "\n\n");
