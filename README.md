@@ -8,8 +8,8 @@ A simple audio plugin to hold your session and track notes.
 * Track Notes is open source and under GPL_v3 licensing, you can find the code here: https://github.com/JosephTLyons/Track-Notes
 
 # Purchase Information:
-* This plugin isn't free, it costs 4 USD: https://www.paypal.me/JosephTimothyLyons/4
-* There is a demo version for testing.  In demo mode, Track Notes will work normally for at least 20 minutes or more (I've coded this to be a bit random).  After 20 minutes, one of the text fields will be randomly selected and overwritten with a reminder that this is a demo version.  Also, there is a ever-so-slight increase in CPU in demo mode, since it has to regularly check how much time has passed.  Once a purchase is made, I will manually send you a copy of the full version to the email associated with your Paypal account.  Note: If a full payment isn't received, I'll simply refund the amount paid.
+* This plugin isn't free, it costs 5 USD: https://www.paypal.me/JosephTimothyLyons/5
+* There is a demo version for testing.  In demo mode, Track Notes will work normally for at least 20 minutes or more.  After 20 minutes, one of the text fields will be randomly selected and overwritten with a reminder that this is a demo version.  Once a purchase is made, I will manually send you a copy of the full version to the email associated with your Paypal account, within 24 hours.  Note: If a full payment isn't received, I'll simply refund the amount paid.
 * Do not blind purchase.  I am newer to audio plugin development and expect to have bugs in my initial release.  I'm not sure how long or what sort of research I'll have to do to fix these bugs (for instance, obtaining a DAW I don't own that isn't free), so its best to just demo it first.  If there's a bug, please report it to me at JosephTLyons@gmail.com and wait for a bug fix before purchasing.
 * Do not purchase based on future features.  I have listed all the future features that I'd like to add in this README, but none of these are guaranteed.  I may not be able to implement them all due to my limited experience with programming, so please only purchase based on what is currently available.
 
@@ -17,19 +17,23 @@ A simple audio plugin to hold your session and track notes.
 * Text fields for Performer's Name, Instrument Played, Microphone(s) Used, Timestamped Notes, and General Notes
 * Performer's Name, Instrument Played, and Microphone(s) Used are user renameable
 * A special text field for capturing timestamped notes, which is done through the "Insert Timestamp" button (this feature isn't available in all DAWs, only in ones that provide information about the playhead)
-* Abilty to load up to two images into the plugin.  Image previews are available direclty on the main GUI, but larger versions can be loaded into their own windows by clicking the buttons above that hold the image's filename.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
+* Abilty to load up to two images into the plugin.  Image previews are available directly on the main GUI, but larger versions can be loaded into their own windows by clicking the buttons above that hold the image's filename.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
 * Ability to export media to a folder (named by the user).  The export function saves all text-based information to a .txt file and copies any loaded images from their original location on the user's comp to the export folder.
+* Stealth Mode: Sometimes, we don't want our clients to see the notes we've written to ourselves about certain performances, so when stealth mode is activated, text inside Timestamped Notes and General Notes will be hidden.
 
 # Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
+* 64 bit for Windows: VST
 
 # To Install:
-* AU: Copy AU to /Users/USERNAME/Library/Audio/Plug-Ins/Components 
-* VST: Copy VST to /Users/USERNAME/Library/Audio/Plug-Ins/VST
+* Mac AU: Copy AU to /Users/USERNAME/Library/Audio/Plug-Ins/Components 
+* Mac VST: Copy VST to /Users/USERNAME/Library/Audio/Plug-Ins/VST
+* Windows VST: Copy VST to C:\Program Files\Steinberg\VstPlugins or the location specified by your DAW
 
 ## Changelog:
 ### July XXth, 2017 - v1.2.0
 * PC builds are now available in the download package
+* Stealth mode feature is added
 
 ### June 26th, 2017 - v1.1.0
 * Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed.
@@ -52,7 +56,7 @@ A simple audio plugin to hold your session and track notes.
 ## Bugs / Known Issues:
 ### Global Issues:
 * Insert Timestamp does not work in some DAWs, output may be all zeros or garbage values (GarageBand, Logic).
-* Images are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
+* Image windows are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
 
 ### VST in Reaper:
 * Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
@@ -62,12 +66,10 @@ A simple audio plugin to hold your session and track notes.
 
 ## Future features to consider (after v1.0.0 release):
 * Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
-* Video support?
+* Video support
 * Resizable windows / GUI
 * User picked fonts, font sizes, and background color?
-* AAX
-* PC Versions
-* Give users option to hide text within an editor
+* AAX (Mac and Windows)
 
 ## Other things to do before next release (developer notes):
 * Installer script
