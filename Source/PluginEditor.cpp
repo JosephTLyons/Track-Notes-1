@@ -214,6 +214,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
 
     // Set up stealth mode
+    // Turn button into a toggle button
     stealthModeToggle->setClickingTogglesState(true);
     if(*stealthIsActivated)
     {
