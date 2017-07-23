@@ -217,6 +217,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     stealthModeToggle->setClickingTogglesState(true);
     if(*stealthIsActivated)
     {
+        activateStealthMode(*timestampedNotesEditorPtr);
+        activateStealthMode(*generalNotesEditorPtr);
         stealthModeToggle->triggerClick();
     }
 
