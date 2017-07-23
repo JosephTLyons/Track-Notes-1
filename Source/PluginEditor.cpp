@@ -155,8 +155,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     stealthModeToggle->setButtonText (TRANS("Stealth"));
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
-    stealthModeToggle->setColour (TextButton::buttonOnColourId, Colour (0xff565454));
-    stealthModeToggle->setColour (TextButton::textColourOnId, Colours::white);
+    stealthModeToggle->setColour (TextButton::buttonOnColourId, Colours::white);
+    stealthModeToggle->setColour (TextButton::textColourOnId, Colours::black);
 
 
     //[UserPreSize]
@@ -852,7 +852,7 @@ BEGIN_JUCER_METADATA
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
               virtualName="" explicitFocusOrder="0" pos="752 595 48 20" bgColOff="ff393939"
-              bgColOn="ff565454" textColOn="ffffffff" buttonText="Stealth"
+              bgColOn="ffffffff" textColOn="ff000000" buttonText="Stealth"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
