@@ -219,7 +219,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     {
         activateStealthMode(*timestampedNotesEditorPtr);
         activateStealthMode(*generalNotesEditorPtr);
-        stealthModeToggle->triggerClick();
+        stealthModeToggle->setToggleState(true, dontSendNotification);
     }
 
     //[/Constructor]
