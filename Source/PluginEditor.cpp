@@ -162,7 +162,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
     addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
-    stealthModeToggle->setTooltip (TRANS("This button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also turns deactivates the \"Insert Timestamp\" button."));
+    stealthModeToggle->setTooltip (TRANS("This button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the \"Insert Timestamp\" button."));
     stealthModeToggle->setButtonText (String());
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
@@ -888,7 +888,7 @@ BEGIN_JUCER_METADATA
               textColOn="ffffffff" buttonText="Export Media" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
-              virtualName="" explicitFocusOrder="0" pos="752 595 48 20" tooltip="This button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also turns deactivates the &quot;Insert Timestamp&quot; button."
+              virtualName="" explicitFocusOrder="0" pos="752 595 48 20" tooltip="This button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the &quot;Insert Timestamp&quot; button."
               bgColOff="ff393939" bgColOn="ffffffff" textColOn="ff000000" buttonText=""
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
