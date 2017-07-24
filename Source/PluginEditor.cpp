@@ -152,7 +152,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
     addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
-    stealthModeToggle->setButtonText (TRANS("Stealth"));
+    stealthModeToggle->setButtonText (String());
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
     stealthModeToggle->setColour (TextButton::buttonOnColourId, Colours::white);
@@ -341,7 +341,7 @@ void TrackNotesAudioProcessorEditor::resized()
     removeImageTwoButton->setBounds (955, 95, 50, 30);
     imagesLabel->setBounds (510, 60, 500, 30);
     exportMediaButton->setBounds (805, 595, 200, 20);
-    stealthModeToggle->setBounds (752, 595, 48, 20);
+    stealthModeToggle->setBounds (780, 595, 20, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -851,9 +851,9 @@ BEGIN_JUCER_METADATA
               textColOn="ffffffff" buttonText="Export Media" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
-              virtualName="" explicitFocusOrder="0" pos="752 595 48 20" bgColOff="ff393939"
-              bgColOn="ffffffff" textColOn="ff000000" buttonText="Stealth"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="780 595 20 20" bgColOff="ff393939"
+              bgColOn="ffffffff" textColOn="ff000000" buttonText="" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
