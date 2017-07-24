@@ -152,6 +152,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
     addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
+    stealthModeToggle->setTooltip (TRANS("This curious little button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we wrote about their performances, so when this button is engaged, Timestamped Note and General Notes are hidden."));
     stealthModeToggle->setButtonText (String());
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
@@ -851,9 +852,9 @@ BEGIN_JUCER_METADATA
               textColOn="ffffffff" buttonText="Export Media" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
-              virtualName="" explicitFocusOrder="0" pos="780 595 20 20" bgColOff="ff393939"
-              bgColOn="ffffffff" textColOn="ff000000" buttonText="" connectedEdges="0"
-              needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="780 595 20 20" tooltip="This curious little button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we wrote about their performances, so when this button is engaged, Timestamped Note and General Notes are hidden."
+              bgColOff="ff393939" bgColOn="ffffffff" textColOn="ff000000" buttonText=""
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

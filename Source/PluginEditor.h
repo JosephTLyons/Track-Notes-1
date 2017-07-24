@@ -101,6 +101,8 @@ private:
 
     AudioPlayHead::CurrentPositionInfo *positionInformationPtr;
 
+    TooltipWindow toolTipWindow;
+
     //[/UserVariables]
 
     //==============================================================================
