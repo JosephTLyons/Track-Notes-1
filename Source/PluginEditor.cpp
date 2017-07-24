@@ -152,7 +152,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
     addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
-    stealthModeToggle->setTooltip (TRANS("This curious little button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we wrote about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden."));
+    stealthModeToggle->setTooltip (TRANS("This curious little button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden."));
     stealthModeToggle->setButtonText (String());
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
