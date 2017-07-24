@@ -224,6 +224,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
         stealthModeToggle->setToggleState(true, dontSendNotification);
     }
 
+    // Add mouse listener to this to create dynamic text in button
+    stealthModeToggle->addMouseListener(this, true);
+
     //[/Constructor]
 }
 
@@ -342,7 +345,7 @@ void TrackNotesAudioProcessorEditor::resized()
     removeImageTwoButton->setBounds (955, 95, 50, 30);
     imagesLabel->setBounds (510, 60, 500, 30);
     exportMediaButton->setBounds (805, 595, 200, 20);
-    stealthModeToggle->setBounds (780, 595, 20, 20);
+    stealthModeToggle->setBounds (752, 595, 48, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -538,12 +541,26 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             *stealthIsActivated = false;
         }
 
-
         //[/UserButtonCode_stealthModeToggle]
     }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
+}
+
+void TrackNotesAudioProcessorEditor::mouseMove (const MouseEvent& e)
+{
+    //[UserCode_mouseMove] -- Add your code here...
+    if(stealthModeToggle->isMouseOver())
+    {
+        stealthModeToggle->setButtonText("Stealth");
+    }
+
+    else
+    {
+        stealthModeToggle->setButtonText("");
+    }
+    //[/UserCode_mouseMove]
 }
 
 
@@ -795,6 +812,9 @@ BEGIN_JUCER_METADATA
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="1005" initialHeight="620">
+  <METHODS>
+    <METHOD name="mouseMove (const MouseEvent&amp; e)"/>
+  </METHODS>
   <BACKGROUND backgroundColour="ff373737">
     <RECT pos="510 130 245 245" fill="solid: ff565454" hasStroke="0"/>
     <RECT pos="760 130 245 245" fill="solid: ff565454" hasStroke="0"/>
@@ -852,7 +872,7 @@ BEGIN_JUCER_METADATA
               textColOn="ffffffff" buttonText="Export Media" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
-              virtualName="" explicitFocusOrder="0" pos="780 595 20 20" tooltip="This curious little button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we wrote about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden."
+              virtualName="" explicitFocusOrder="0" pos="752 595 48 20" tooltip="This curious little button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden."
               bgColOff="ff393939" bgColOn="ffffffff" textColOn="ff000000" buttonText=""
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
