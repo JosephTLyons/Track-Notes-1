@@ -532,6 +532,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             activateStealthMode(*timestampedNotesEditorPtr);
             activateStealthMode(*generalNotesEditorPtr);
             *stealthIsActivated = true;
+            
+            insertTimeStampButton->setInterceptsMouseClicks(false, false);
         }
 
         else
@@ -539,6 +541,8 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             deactivateStealthMode(*timestampedNotesEditorPtr);
             deactivateStealthMode(*generalNotesEditorPtr);
             *stealthIsActivated = false;
+            
+            insertTimeStampButton->setInterceptsMouseClicks(true, true);
         }
 
         //[/UserButtonCode_stealthModeToggle]
@@ -783,6 +787,7 @@ void TrackNotesAudioProcessorEditor::activateStealthMode(TextEditor &textEditor)
     textEditor.moveCaretToTop(false);
     textEditor.setScrollbarsShown(false);
     textEditor.setReadOnly(true);
+    textEditor.setInterceptsMouseClicks(false, false);
 }
 
 void TrackNotesAudioProcessorEditor::deactivateStealthMode(TextEditor &textEditor)
@@ -793,6 +798,7 @@ void TrackNotesAudioProcessorEditor::deactivateStealthMode(TextEditor &textEdito
     textEditor.moveCaretToTop(false);
     textEditor.setScrollbarsShown(true);
     textEditor.setReadOnly(false);
+    textEditor.setInterceptsMouseClicks(true, true);
 }
 
 //[/MiscUserCode]
