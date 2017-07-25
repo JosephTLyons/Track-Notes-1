@@ -229,8 +229,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     stealthModeToggle->setClickingTogglesState(true);
     if(*stealthIsActivated)
     {
-        activateStealthMode(*timestampedNotesEditorPtr);
-        activateStealthMode(*generalNotesEditorPtr);
+        activateStealthMode();
         stealthModeToggle->setToggleState(true, dontSendNotification);
     }
 
@@ -539,20 +538,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         if(stealthModeToggle->getToggleState())
         {
-            activateStealthMode(*timestampedNotesEditorPtr);
-            activateStealthMode(*generalNotesEditorPtr);
-            *stealthIsActivated = true;
-            
-            insertTimeStampButton->setInterceptsMouseClicks(false, false);
+            activateStealthMode();
         }
 
         else
         {
-            deactivateStealthMode(*timestampedNotesEditorPtr);
-            deactivateStealthMode(*generalNotesEditorPtr);
-            *stealthIsActivated = false;
-            
-            insertTimeStampButton->setInterceptsMouseClicks(true, true);
+            deactivateStealthMode();
         }
 
         //[/UserButtonCode_stealthModeToggle]
@@ -789,7 +780,17 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
     }
 }
 
-void TrackNotesAudioProcessorEditor::activateStealthMode(TextEditor &textEditor)
+void TrackNotesAudioProcessorEditor::activateStealthMode()
+{
+    *stealthIsActivated = true;
+    
+    hideTextAndDisableEditor(*timestampedNotesEditorPtr);
+    hideTextAndDisableEditor(*generalNotesEditorPtr);
+    
+    insertTimeStampButton->setInterceptsMouseClicks(false, false);
+}
+
+void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor(TextEditor &textEditor)
 {
     String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n";
     tempTextHolder += textEditor.getText();
@@ -800,7 +801,17 @@ void TrackNotesAudioProcessorEditor::activateStealthMode(TextEditor &textEditor)
     textEditor.setInterceptsMouseClicks(false, false);
 }
 
-void TrackNotesAudioProcessorEditor::deactivateStealthMode(TextEditor &textEditor)
+void TrackNotesAudioProcessorEditor::deactivateStealthMode()
+{
+    *stealthIsActivated = false;
+    
+    showTextAndEnableEditor(*timestampedNotesEditorPtr);
+    showTextAndEnableEditor(*generalNotesEditorPtr);
+    
+    insertTimeStampButton->setInterceptsMouseClicks(true, true);
+}
+
+void TrackNotesAudioProcessorEditor::showTextAndEnableEditor(TextEditor &textEditor)
 {
     String tempTextHolder = textEditor.getText();
     tempTextHolder = tempTextHolder.trimStart();
