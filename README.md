@@ -31,7 +31,7 @@ A simple AU/VST plugin to hold your session and track notes.
 * Windows VST: Copy VST to C:\Program Files\Steinberg\VstPlugins or the location specified by your DAW
 
 ## Changelog:
-### July XXth, 2017 - v1.2.0
+### July 30th, 2017 - v1.2.0
 * PC VST builds are now available
 * Stealth mode feature is added
 * Corrected tabbing behaviour:  Now, when a text editor is in focus, pressing the tab key will move the focus to the next sequential text editor.
