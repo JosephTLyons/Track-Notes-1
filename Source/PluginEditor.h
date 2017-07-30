@@ -95,7 +95,7 @@ private:
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
     bool pluginIsRunningInDemoMode;
-    bool *stealthIsActivated;
+    bool *stealthIsActivatedPtr;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;

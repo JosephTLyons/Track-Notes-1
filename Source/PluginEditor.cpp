@@ -51,13 +51,13 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     #endif
 
     // Link image pointer in editor class with image holder in processor class
-    imageOnePtr        = &processor.imageOne;
-    imageTwoPtr        = &processor.imageTwo;
-    imageOnePathPtr    = &processor.imageOnePath;
-    imageTwoPathPtr    = &processor.imageTwoPath;
-    imageOneMissingPtr = &processor.imageOneMissing;
-    imageTwoMissingPtr = &processor.imageTwoMissing;
-    stealthIsActivated = &processor.stealthIsActivated;
+    imageOnePtr           = &processor.imageOne;
+    imageTwoPtr           = &processor.imageTwo;
+    imageOnePathPtr       = &processor.imageOnePath;
+    imageTwoPathPtr       = &processor.imageTwoPath;
+    imageOneMissingPtr    = &processor.imageOneMissing;
+    imageTwoMissingPtr    = &processor.imageTwoMissing;
+    stealthIsActivatedPtr = &processor.stealthIsActivated;
 
     createImagePreview(true);
     createImagePreview(false);
@@ -227,7 +227,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     // Set up stealth mode
     // Turn button into a toggle button
     stealthModeToggle->setClickingTogglesState(true);
-    if(*stealthIsActivated)
+    if(*stealthIsActivatedPtr)
     {
         activateStealthMode();
         stealthModeToggle->setToggleState(true, dontSendNotification);
@@ -803,7 +803,7 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
 
 void TrackNotesAudioProcessorEditor::activateStealthMode()
 {
-    *stealthIsActivated = true;
+    *stealthIsActivatedPtr = true;
     
     hideTextAndDisableEditor(*timestampedNotesEditorPtr);
     hideTextAndDisableEditor(*generalNotesEditorPtr);
@@ -824,7 +824,7 @@ void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor(TextEditor &textEd
 
 void TrackNotesAudioProcessorEditor::deactivateStealthMode()
 {
-    *stealthIsActivated = false;
+    *stealthIsActivatedPtr = false;
     
     showTextAndEnableEditor(*timestampedNotesEditorPtr);
     showTextAndEnableEditor(*generalNotesEditorPtr);
