@@ -1,5 +1,5 @@
 # Track Notes
-A simple audio plugin to hold your session and track notes.
+A simple AU/VST plugin to hold your session and track notes.
 
 ![alt tag](https://github.com/JosephTLyons/Track-Notes/blob/master/Images/Track%20Notes%20GUI.png?raw=true)
 -GUI screenshot may not be the same size as the actual GUI
@@ -19,7 +19,7 @@ A simple audio plugin to hold your session and track notes.
 * A special text field for capturing timestamped notes, which is done through the "Insert Timestamp" button (this feature isn't available in all DAWs, only in ones that provide information about the playhead)
 * Abilty to load up to two images into the plugin.  Image previews are available directly on the main GUI, but larger versions can be loaded into their own windows by clicking the buttons above that hold the image's filename.  Note - Images are not stored in the plugin binary data, only the pathway to the image on your system is stored.  This means that if you change the location of the image, rename the image, or move the entire session to another computer, your image links will be broken.  A good piece of advice is to copy the images you want to use into your session folders and then load them from there.
 * Ability to export media to a folder (named by the user).  The export function saves all text-based information to a .txt file and copies any loaded images from their original location on the user's comp to the export folder.
-* Stealth Mode: Sometimes, we don't want our clients to see the notes we've written to ourselves about certain performances, so when stealth mode is activated, text inside Timestamped Notes and General Notes will be hidden.
+* Stealth Mode: We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the "Insert Timestamp" button.
 
 # Currently Supported Formats:
 * 64 bit for Mac 10.6+: VST, AU
@@ -32,8 +32,10 @@ A simple audio plugin to hold your session and track notes.
 
 ## Changelog:
 ### July XXth, 2017 - v1.2.0
-* PC builds are now available in the download package
+* PC VST builds are now available
 * Stealth mode feature is added
+* Corrected tabbing behaviour:  Now, when a text editor is in focus, pressing the tab key will move the focus to the next sequential text editor.
+* Demo version now available
 
 ### June 26th, 2017 - v1.1.0
 * Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed.
