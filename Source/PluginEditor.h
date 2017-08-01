@@ -71,6 +71,7 @@ public:
     void deactivateStealthMode();
     void hideTextAndDisableEditor(TextEditor &textEditor);
     void showTextAndEnableEditor(TextEditor &textEditor);
+    void setFocusTabOrder();
 
 
     //[/UserMethods]
