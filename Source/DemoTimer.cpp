@@ -31,7 +31,7 @@
 
 DemoTimer::DemoTimer()
 {
-    
+    randomNumberGenerator.setSeed(Time::currentTimeMillis());
 }
 
 DemoTimer::~DemoTimer()
@@ -55,11 +55,6 @@ void DemoTimer::startDemoTimer()
 
 void DemoTimer::timerCallback()
 {
-    String demoMessage = "Track Notes Demo Version.";
-    
-    Random randomNumberGenerator(Time::currentTimeMillis());
-    
-    int randomNumber = randomNumberGenerator.nextInt(5);
-    
-    textEditorPtrArray[randomNumber]->setText(demoMessage);
+    randomNumber = randomNumberGenerator.nextInt(5);
+    textEditorPtrArray[randomNumber]->setText("Track Notes Demo Version.");
 }

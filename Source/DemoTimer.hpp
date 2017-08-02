@@ -36,6 +36,8 @@ class DemoTimer : private Timer
 {
 private:
     Array<TextEditor *> textEditorPtrArray;
+    Random randomNumberGenerator;
+    int randomNumber;
     
 public:
     DemoTimer();
