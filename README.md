@@ -1,7 +1,7 @@
 # Track Notes
 A simple AU/VST plugin to hold your session and track notes.
 
-![alt tag](/Images/Track Notes Gui.png)
+![alt tag](./Images/Screenshot.png)
 -GUI screenshot may not be the same size as the actual GUI
 
 # License and Source Code:
