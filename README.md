@@ -26,7 +26,7 @@ A simple AU/VST plugin to hold your session and track notes.
 * 64 bit for Windows: VST
 
 # To Install:
-* Mac AU: Copy AU to /Users/USERNAME/Library/Audio/Plug-Ins/Components 
+* Mac AU: Copy AU to /Users/USERNAME/Library/Audio/Plug-Ins/Components
 * Mac VST: Copy VST to /Users/USERNAME/Library/Audio/Plug-Ins/VST
 * Windows VST: Copy VST to C:\Program Files\Steinberg\VstPlugins or the location specified by your DAW
 
