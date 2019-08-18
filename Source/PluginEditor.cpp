@@ -1,29 +1,19 @@
 /*
   ==============================================================================
-  Copyright 2013-2017 Joseph Lyons
- 
-  This file is part of Track Notes.
- 
-  Track Notes is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
- 
-  Track Notes is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
- 
-  You should have received a copy of the GNU General Public License
-  along with Track Notes.  If not, see <http://www.gnu.org/licenses/>.
- 
-  Created with Projucer version: 5.0.2
- 
+
+  This is an automatically generated GUI class created by the Projucer!
+
+  Be careful when adding custom code to these files, as only the code within
+  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
+  and re-saved.
+
+  Created with Projucer version: 5.4.4
+
   ------------------------------------------------------------------------------
- 
-  The Projucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright (c) 2015 - ROLI Ltd.
- 
+
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
+
   ==============================================================================
 */
 
@@ -79,8 +69,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     //[/Constructor_pre]
 
-    addAndMakeVisible (trackNotesLabel = new Label ("trackNotesLabel",
-                                                    TRANS("Track Notes")));
+    trackNotesLabel.reset (new Label ("trackNotesLabel",
+                                      TRANS("Track Notes")));
+    addAndMakeVisible (trackNotesLabel.get());
     trackNotesLabel->setFont (Font ("Arial", 48.70f, Font::plain).withTypefaceStyle ("Regular"));
     trackNotesLabel->setJustificationType (Justification::centredTop);
     trackNotesLabel->setEditable (false, false, false);
@@ -88,86 +79,127 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
     trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (timestampedNotesLabel = new Label ("timestampedNotesLabel",
-                                                          TRANS("Timestamped Notes:")));
+    trackNotesLabel->setBounds (0, 0, 1005, 50);
+
+    timestampedNotesLabel.reset (new Label ("timestampedNotesLabel",
+                                            TRANS("Timestamped Notes:")));
+    addAndMakeVisible (timestampedNotesLabel.get());
     timestampedNotesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
     timestampedNotesLabel->setJustificationType (Justification::centredLeft);
     timestampedNotesLabel->setEditable (false, false, false);
     timestampedNotesLabel->setColour (TextEditor::textColourId, Colours::black);
     timestampedNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (insertTimeStampButton = new TextButton ("insertTimeStampButton"));
+    timestampedNotesLabel->setBounds (0, 165, 218, 30);
+
+    insertTimeStampButton.reset (new TextButton ("insertTimeStampButton"));
+    addAndMakeVisible (insertTimeStampButton.get());
     insertTimeStampButton->setButtonText (TRANS("Insert Timestamp"));
     insertTimeStampButton->addListener (this);
     insertTimeStampButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (theLyonsDenSoftwareLabel = new Label ("theLyonsDenSoftwareLabel",
-                                                             String()));
+    insertTimeStampButton->setBounds (218, 165, 282, 30);
+
+    theLyonsDenSoftwareLabel.reset (new Label ("theLyonsDenSoftwareLabel",
+                                               String()));
+    addAndMakeVisible (theLyonsDenSoftwareLabel.get());
     theLyonsDenSoftwareLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     theLyonsDenSoftwareLabel->setJustificationType (Justification::centredLeft);
     theLyonsDenSoftwareLabel->setEditable (false, false, false);
     theLyonsDenSoftwareLabel->setColour (TextEditor::textColourId, Colours::black);
     theLyonsDenSoftwareLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (generalNotesLabel = new Label ("generalNotesLabel",
-                                                      TRANS("General Notes:")));
+    theLyonsDenSoftwareLabel->setBounds (0, 590, 500, 30);
+
+    generalNotesLabel.reset (new Label ("generalNotesLabel",
+                                        TRANS("General Notes:")));
+    addAndMakeVisible (generalNotesLabel.get());
     generalNotesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
     generalNotesLabel->setJustificationType (Justification::centred);
     generalNotesLabel->setEditable (false, false, false);
     generalNotesLabel->setColour (TextEditor::textColourId, Colours::black);
     generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (displayImageOneButton = new TextButton ("displayImageOneButton"));
+    generalNotesLabel->setBounds (0, 380, 1005, 30);
+
+    displayImageOneButton.reset (new TextButton ("displayImageOneButton"));
+    addAndMakeVisible (displayImageOneButton.get());
     displayImageOneButton->setButtonText (TRANS("Empty"));
     displayImageOneButton->addListener (this);
     displayImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (displayImageTwoButton = new TextButton ("displayImageTwoButton"));
+    displayImageOneButton->setBounds (560, 95, 145, 30);
+
+    displayImageTwoButton.reset (new TextButton ("displayImageTwoButton"));
+    addAndMakeVisible (displayImageTwoButton.get());
     displayImageTwoButton->setButtonText (TRANS("Empty"));
     displayImageTwoButton->addListener (this);
     displayImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (loadImageOneButton = new TextButton ("loadImageOneButton"));
+    displayImageTwoButton->setBounds (810, 95, 145, 30);
+
+    loadImageOneButton.reset (new TextButton ("loadImageOneButton"));
+    addAndMakeVisible (loadImageOneButton.get());
     loadImageOneButton->setButtonText (TRANS("Load"));
     loadImageOneButton->addListener (this);
     loadImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (loadImageTwoButton = new TextButton ("loadImageTwoButton"));
+    loadImageOneButton->setBounds (510, 95, 50, 30);
+
+    loadImageTwoButton.reset (new TextButton ("loadImageTwoButton"));
+    addAndMakeVisible (loadImageTwoButton.get());
     loadImageTwoButton->setButtonText (TRANS("Load"));
     loadImageTwoButton->addListener (this);
     loadImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (removeImageOneButton = new TextButton ("removeImageOneButton"));
+    loadImageTwoButton->setBounds (760, 95, 50, 30);
+
+    removeImageOneButton.reset (new TextButton ("removeImageOneButton"));
+    addAndMakeVisible (removeImageOneButton.get());
     removeImageOneButton->setButtonText (TRANS("Remove"));
     removeImageOneButton->addListener (this);
     removeImageOneButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (removeImageTwoButton = new TextButton ("removeImageTwoButton"));
+    removeImageOneButton->setBounds (705, 95, 50, 30);
+
+    removeImageTwoButton.reset (new TextButton ("removeImageTwoButton"));
+    addAndMakeVisible (removeImageTwoButton.get());
     removeImageTwoButton->setButtonText (TRANS("Remove"));
     removeImageTwoButton->addListener (this);
     removeImageTwoButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
 
-    addAndMakeVisible (imagesLabel = new Label ("imagesLabel",
-                                                TRANS("Images:")));
+    removeImageTwoButton->setBounds (955, 95, 50, 30);
+
+    imagesLabel.reset (new Label ("imagesLabel",
+                                  TRANS("Images:")));
+    addAndMakeVisible (imagesLabel.get());
     imagesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
     imagesLabel->setJustificationType (Justification::centred);
     imagesLabel->setEditable (false, false, false);
     imagesLabel->setColour (TextEditor::textColourId, Colours::black);
     imagesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    addAndMakeVisible (exportMediaButton = new TextButton ("exportMediaButton"));
+    imagesLabel->setBounds (510, 60, 500, 30);
+
+    exportMediaButton.reset (new TextButton ("exportMediaButton"));
+    addAndMakeVisible (exportMediaButton.get());
     exportMediaButton->setButtonText (TRANS("Export Media"));
     exportMediaButton->addListener (this);
     exportMediaButton->setColour (TextButton::buttonColourId, Colour (0xff393939));
     exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
-    addAndMakeVisible (stealthModeToggle = new TextButton ("stealthModeToggle"));
+    exportMediaButton->setBounds (805, 595, 200, 20);
+
+    stealthModeToggle.reset (new TextButton ("stealthModeToggle"));
+    addAndMakeVisible (stealthModeToggle.get());
     stealthModeToggle->setTooltip (TRANS("This button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the \"Insert Timestamp\" button."));
     stealthModeToggle->setButtonText (String());
     stealthModeToggle->addListener (this);
     stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
     stealthModeToggle->setColour (TextButton::buttonOnColourId, Colours::white);
     stealthModeToggle->setColour (TextButton::textColourOnId, Colours::black);
+
+    stealthModeToggle->setBounds (752, 595, 48, 20);
 
 
     //[UserPreSize]
@@ -235,9 +267,9 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Add mouse listener to this to create dynamic text in button
     stealthModeToggle->addMouseListener(this, true);
-    
+
     setFocusTabOrder();
-    
+
     //[/Constructor]
 }
 
@@ -343,20 +375,6 @@ void TrackNotesAudioProcessorEditor::resized()
 
     //[/UserPreResize]
 
-    trackNotesLabel->setBounds (0, 0, 1005, 50);
-    timestampedNotesLabel->setBounds (0, 165, 218, 30);
-    insertTimeStampButton->setBounds (218, 165, 282, 30);
-    theLyonsDenSoftwareLabel->setBounds (0, 590, 500, 30);
-    generalNotesLabel->setBounds (0, 380, 1005, 30);
-    displayImageOneButton->setBounds (560, 95, 145, 30);
-    displayImageTwoButton->setBounds (810, 95, 145, 30);
-    loadImageOneButton->setBounds (510, 95, 50, 30);
-    loadImageTwoButton->setBounds (760, 95, 50, 30);
-    removeImageOneButton->setBounds (705, 95, 50, 30);
-    removeImageTwoButton->setBounds (955, 95, 50, 30);
-    imagesLabel->setBounds (510, 60, 500, 30);
-    exportMediaButton->setBounds (805, 595, 200, 20);
-    stealthModeToggle->setBounds (752, 595, 48, 20);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -367,7 +385,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == insertTimeStampButton)
+    if (buttonThatWasClicked == insertTimeStampButton.get())
     {
         //[UserButtonCode_insertTimeStampButton] -- add your button handler code here..
 
@@ -389,7 +407,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_insertTimeStampButton]
     }
-    else if (buttonThatWasClicked == displayImageOneButton)
+    else if (buttonThatWasClicked == displayImageOneButton.get())
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
@@ -406,7 +424,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_displayImageOneButton]
     }
-    else if (buttonThatWasClicked == displayImageTwoButton)
+    else if (buttonThatWasClicked == displayImageTwoButton.get())
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
@@ -423,7 +441,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_displayImageTwoButton]
     }
-    else if (buttonThatWasClicked == loadImageOneButton)
+    else if (buttonThatWasClicked == loadImageOneButton.get())
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
@@ -440,7 +458,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_loadImageOneButton]
     }
-    else if (buttonThatWasClicked == loadImageTwoButton)
+    else if (buttonThatWasClicked == loadImageTwoButton.get())
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
@@ -457,7 +475,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_loadImageTwoButton]
     }
-    else if (buttonThatWasClicked == removeImageOneButton)
+    else if (buttonThatWasClicked == removeImageOneButton.get())
     {
         //[UserButtonCode_removeImageOneButton] -- add your button handler code here..
 
@@ -470,7 +488,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_removeImageOneButton]
     }
-    else if (buttonThatWasClicked == removeImageTwoButton)
+    else if (buttonThatWasClicked == removeImageTwoButton.get())
     {
         //[UserButtonCode_removeImageTwoButton] -- add your button handler code here..
 
@@ -483,7 +501,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_removeImageTwoButton]
     }
-    else if (buttonThatWasClicked == exportMediaButton)
+    else if (buttonThatWasClicked == exportMediaButton.get())
     {
         //[UserButtonCode_exportMediaButton] -- add your button handler code here..
 
@@ -534,7 +552,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         //[/UserButtonCode_exportMediaButton]
     }
-    else if (buttonThatWasClicked == stealthModeToggle)
+    else if (buttonThatWasClicked == stealthModeToggle.get())
     {
         //[UserButtonCode_stealthModeToggle] -- add your button handler code here..
 
@@ -785,10 +803,10 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
 void TrackNotesAudioProcessorEditor::activateStealthMode()
 {
     *stealthIsActivatedPtr = true;
-    
+
     hideTextAndDisableEditor(*timestampedNotesEditorPtr);
     hideTextAndDisableEditor(*generalNotesEditorPtr);
-    
+
     insertTimeStampButton->setInterceptsMouseClicks(false, false);
 }
 
@@ -806,10 +824,10 @@ void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor(TextEditor &textEd
 void TrackNotesAudioProcessorEditor::deactivateStealthMode()
 {
     *stealthIsActivatedPtr = false;
-    
+
     showTextAndEnableEditor(*timestampedNotesEditorPtr);
     showTextAndEnableEditor(*generalNotesEditorPtr);
-    
+
     insertTimeStampButton->setInterceptsMouseClicks(true, true);
 }
 
@@ -835,7 +853,7 @@ void TrackNotesAudioProcessorEditor::setFocusTabOrder()
     performersNameLabelPtr->setExplicitFocusOrder(6);
     instrumentPlayedLabelPtr->setExplicitFocusOrder(7);
     microphonesUsedLabelPtr->setExplicitFocusOrder(8);
-    
+
     // Remove keyboard focus from these elements so that they are not included in tap order
     loadImageOneButton->setWantsKeyboardFocus(false);
     displayImageOneButton->setWantsKeyboardFocus(false);
@@ -876,13 +894,12 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="0 0 1005 50" textCol="ffffffff"
          edTextCol="ff000000" edBkgCol="0" labelText="Track Notes" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="48.700000000000002842" kerning="0" bold="0" italic="0"
-         justification="12"/>
+         fontsize="48.7" kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="timestampedNotesLabel" id="358938facaa251fc" memberName="timestampedNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 165 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Timestamped Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="25" kerning="0" bold="0" italic="0" justification="33"/>
+         fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="insertTimeStampButton" id="2d604f6be40451a7" memberName="insertTimeStampButton"
               virtualName="" explicitFocusOrder="0" pos="218 165 282 30" bgColOff="ff393939"
               buttonText="Insert Timestamp" connectedEdges="0" needsCallback="1"
@@ -890,13 +907,13 @@ BEGIN_JUCER_METADATA
   <LABEL name="theLyonsDenSoftwareLabel" id="d0cfddad51f6f3" memberName="theLyonsDenSoftwareLabel"
          virtualName="" explicitFocusOrder="0" pos="0 590 500 30" edTextCol="ff000000"
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         kerning="0" bold="0" italic="0" justification="33"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="generalNotesLabel" id="c170b98fbe39594f" memberName="generalNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 380 1005 30" edTextCol="ff000000"
          edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="25" kerning="0" bold="0" italic="0" justification="36"/>
+         fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="560 95 145 30" bgColOff="ff393939"
               buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
@@ -918,7 +935,7 @@ BEGIN_JUCER_METADATA
   <LABEL name="imagesLabel" id="3f296d22943adc31" memberName="imagesLabel"
          virtualName="" explicitFocusOrder="0" pos="510 60 500 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Images:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Arial" fontsize="25" kerning="0"
+         focusDiscardsChanges="0" fontname="Arial" fontsize="25.0" kerning="0.0"
          bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="exportMediaButton" id="ab681e4541856006" memberName="exportMediaButton"
               virtualName="" explicitFocusOrder="0" pos="805 595 200 20" bgColOff="ff393939"
@@ -937,3 +954,4 @@ END_JUCER_METADATA
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+

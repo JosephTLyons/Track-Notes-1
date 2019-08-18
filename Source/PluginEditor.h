@@ -1,28 +1,18 @@
 /*
   ==============================================================================
-  Copyright 2013-2017 Joseph Lyons
- 
-  This file is part of Track Notes.
- 
-  Track Notes is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
- 
-  Track Notes is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
- 
-  You should have received a copy of the GNU General Public License
-  along with Track Notes.  If not, see <http://www.gnu.org/licenses/>.
 
-  Created with Projucer version: 5.0.2
+  This is an automatically generated GUI class created by the Projucer!
+
+  Be careful when adding custom code to these files, as only the code within
+  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
+  and re-saved.
+
+  Created with Projucer version: 5.4.4
 
   ------------------------------------------------------------------------------
 
-  The Projucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright (c) 2015 - ROLI Ltd.
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -47,8 +37,8 @@
                                                                     //[/Comments]
 */
 class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor,
-                                        public TextEditorListener,
-                                        public ButtonListener
+                                        public TextEditor::Listener,
+                                        public Button::Listener
 {
 public:
     //==============================================================================
@@ -120,20 +110,20 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Label> trackNotesLabel;
-    ScopedPointer<Label> timestampedNotesLabel;
-    ScopedPointer<TextButton> insertTimeStampButton;
-    ScopedPointer<Label> theLyonsDenSoftwareLabel;
-    ScopedPointer<Label> generalNotesLabel;
-    ScopedPointer<TextButton> displayImageOneButton;
-    ScopedPointer<TextButton> displayImageTwoButton;
-    ScopedPointer<TextButton> loadImageOneButton;
-    ScopedPointer<TextButton> loadImageTwoButton;
-    ScopedPointer<TextButton> removeImageOneButton;
-    ScopedPointer<TextButton> removeImageTwoButton;
-    ScopedPointer<Label> imagesLabel;
-    ScopedPointer<TextButton> exportMediaButton;
-    ScopedPointer<TextButton> stealthModeToggle;
+    std::unique_ptr<Label> trackNotesLabel;
+    std::unique_ptr<Label> timestampedNotesLabel;
+    std::unique_ptr<TextButton> insertTimeStampButton;
+    std::unique_ptr<Label> theLyonsDenSoftwareLabel;
+    std::unique_ptr<Label> generalNotesLabel;
+    std::unique_ptr<TextButton> displayImageOneButton;
+    std::unique_ptr<TextButton> displayImageTwoButton;
+    std::unique_ptr<TextButton> loadImageOneButton;
+    std::unique_ptr<TextButton> loadImageTwoButton;
+    std::unique_ptr<TextButton> removeImageOneButton;
+    std::unique_ptr<TextButton> removeImageTwoButton;
+    std::unique_ptr<Label> imagesLabel;
+    std::unique_ptr<TextButton> exportMediaButton;
+    std::unique_ptr<TextButton> stealthModeToggle;
 
 
     //==============================================================================
@@ -142,3 +132,4 @@ private:
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+
