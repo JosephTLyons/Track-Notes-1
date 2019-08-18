@@ -589,7 +589,7 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, co
 
 
     // Launch browser window and only if they pick a image do we set the image path
-    if(fileChooser.browseForFileToOpen())
+    if (fileChooser.browseForFileToOpen())
     {
         // Set imagePath
         imagePath = fileChooser.getResult();
