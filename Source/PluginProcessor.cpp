@@ -271,16 +271,16 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
         if (xml->hasTagName ("trackNotes"))
         {
             // Ok, now pull our strings
-            performersNameEditor.setText(xml->getStringAttribute ("performersName"));
-            instrumentPlayedEditor.setText(xml->getStringAttribute ("instrumentPlayed"));
-            microphonesUsedEditor.setText(xml->getStringAttribute ("microphonesUsed"));
-            timestampedNotesEditor.setText(xml->getStringAttribute ("timestampedNotes"));
-            generalNotesEditor.setText(xml->getStringAttribute ("generalNotes"));
+            performersNameEditor.setText (xml->getStringAttribute ("performersName"));
+            instrumentPlayedEditor.setText (xml->getStringAttribute ("instrumentPlayed"));
+            microphonesUsedEditor.setText (xml->getStringAttribute ("microphonesUsed"));
+            timestampedNotesEditor.setText (xml->getStringAttribute ("timestampedNotes"));
+            generalNotesEditor.setText (xml->getStringAttribute ("generalNotes"));
             imageOnePath = xml->getStringAttribute ("imageOnePath");
             imageTwoPath = xml->getStringAttribute ("imageTwoPath");
-            performersNameLabel.setText(xml->getStringAttribute ("performersNameLabel"), dontSendNotification);
-            instrumentPlayedLabel.setText(xml->getStringAttribute ("instrumentPlayedLabel"), dontSendNotification);
-            microphonesUsedLabel.setText(xml->getStringAttribute ("microphonesUsedLabel"), dontSendNotification);
+            performersNameLabel.setText (xml->getStringAttribute ("performersNameLabel"), dontSendNotification);
+            instrumentPlayedLabel.setText (xml->getStringAttribute ("instrumentPlayedLabel"), dontSendNotification);
+            microphonesUsedLabel.setText (xml->getStringAttribute ("microphonesUsedLabel"), dontSendNotification);
             stealthIsActivated = xml->getIntAttribute ("stealthIsActivated");
             
             // Retrieve paths to images
