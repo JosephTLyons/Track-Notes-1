@@ -38,6 +38,7 @@
 */
 class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor,
                                         public TextEditor::Listener,
+                                        private Timer,
                                         public Button::Listener
 {
 public:
@@ -47,22 +48,6 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-
-    void setupVersionNumberlabel();
-    void loadImage(Image &image, File &imagePath, const bool &isImageOne);
-    void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
-    void showErrorLoadingImageWindow(const String &path);
-    void fillTimeIntervalValues(int &hours, int &minutes, int &seconds);
-    String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
-    String formatTimeInterval(const int &timeInterval);
-    void createImagePreviews();
-    void scaleImageDimensionsIfTooLarge(int &imageWidtht, int &imageHeight);
-    void activateStealthMode();
-    void deactivateStealthMode();
-    void hideTextAndDisableEditor(TextEditor &textEditor);
-    void showTextAndEnableEditor(TextEditor &textEditor);
-    void setFocusTabOrder();
-
 
     //[/UserMethods]
 
@@ -79,10 +64,8 @@ private:
     TrackNotesAudioProcessor& processor;
     String versionNumberString;
     Array<Font> usersFontsResults;
-    
-    ImageComponent imagePreviewOne, imagePreviewTwo;
 
-    bool pluginIsRunningInDemoMode;
+    ImageComponent imagePreviewOne, imagePreviewTwo;
 
     SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;
@@ -96,10 +79,36 @@ private:
 
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
-    
+
     std::unique_ptr<StaticTextSizeButton> staticTextSizeButtonPtr;
 
     TooltipWindow toolTipWindow;
+
+    #define DEMO_MODE 1
+    #if DEMO_MODE
+        Random randomNumberGenerator;
+        int randomNumber;
+        Array<TextEditor *> textEditorPtrArray;
+    #endif
+
+    // Private methods
+    void setupVersionNumberlabel();
+    void loadImage(Image &image, File &imagePath, const bool &isImageOne);
+    void createImageWindow(SafePointer<BasicWindow> &basicWindowPtr, Image &image, File &imagePath);
+    void showErrorLoadingImageWindow(const String &path);
+    void fillTimeIntervalValues(int &hours, int &minutes, int &seconds);
+    String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
+    String formatTimeInterval(const int &timeInterval);
+    void createImagePreviews();
+    void scaleImageDimensionsIfTooLarge(int &imageWidtht, int &imageHeight);
+    void activateStealthMode();
+    void deactivateStealthMode();
+    void hideTextAndDisableEditor(TextEditor &textEditor);
+    void showTextAndEnableEditor(TextEditor &textEditor);
+    void setFocusTabOrder();
+
+    void startDemoTimer();
+    void timerCallback() override;
 
     //[/UserVariables]
 

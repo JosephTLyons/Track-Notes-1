@@ -118,19 +118,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     // the initalized value in unpredictable
     // so give it false before trying to get it from XML
     stealthIsActivated = false;
-    
-    #if DEMO_MODE
-        // Add textEditors to textEditorPtrArray to be used in demo mode
-        textEditorPtrArray.add(&performersNameEditor);
-        textEditorPtrArray.add(&instrumentPlayedEditor);
-        textEditorPtrArray.add(&microphonesUsedEditor);
-        textEditorPtrArray.add(&timestampedNotesEditor);
-        textEditorPtrArray.add(&generalNotesEditor);
-        textEditorPtrArray.resize(5);
-    
-        demoTimer.setTextEditorPtrArray(textEditorPtrArray);
-        demoTimer.startDemoTimer();
-    #endif
 }
 
 TrackNotesAudioProcessor::~TrackNotesAudioProcessor()

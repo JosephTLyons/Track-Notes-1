@@ -23,7 +23,6 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "DemoTimer.hpp"
 
 
 //==============================================================================
@@ -84,12 +83,6 @@ public:
     Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
     
 private:
-    
-    #define DEMO_MODE 1
-    #if DEMO_MODE
-        Array<TextEditor *> textEditorPtrArray;
-        DemoTimer demoTimer;
-    #endif
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TrackNotesAudioProcessor)

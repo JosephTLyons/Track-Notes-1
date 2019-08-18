@@ -34,12 +34,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
-    #if DEMO_MODE
-        pluginIsRunningInDemoMode = true;
-    #else
-        pluginIsRunningInDemoMode = false;
-    #endif
-
     createImagePreviews();
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
@@ -53,6 +47,20 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (performersNameLabelPtr   = &processor.performersNameLabel);
     addAndMakeVisible (instrumentPlayedLabelPtr = &processor.instrumentPlayedLabel);
     addAndMakeVisible (microphonesUsedLabelPtr  = &processor.microphonesUsedLabel);
+
+    #if DEMO_MODE
+        randomNumberGenerator.setSeed(Time::currentTimeMillis());
+
+        // Add textEditors to textEditorPtrArray to be used in demo mode
+        textEditorPtrArray.add(performersNameEditorPtr);
+        textEditorPtrArray.add(instrumentPlayedEditorPtr);
+        textEditorPtrArray.add(microphonesUsedEditorPtr);
+        textEditorPtrArray.add(timestampedNotesEditorPtr);
+        textEditorPtrArray.add(generalNotesEditorPtr);
+        textEditorPtrArray.resize(5);
+        startDemoTimer();
+    
+    #endif
 
     //[/Constructor_pre]
 
@@ -555,11 +563,13 @@ void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
     versionNumberString += " v";
     versionNumberString += ProjectInfo::versionString;
 
-    if (pluginIsRunningInDemoMode)
+    #if DEMO_MODE
         versionNumberString += " - Demo Version";
 
-    else
+    #else
         versionNumberString += " - Full Version";
+
+    #endif
 
     theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
 }
@@ -801,6 +811,21 @@ void TrackNotesAudioProcessorEditor::setFocusTabOrder()
     insertTimeStampButton->setWantsKeyboardFocus(false);
     stealthModeToggle->setWantsKeyboardFocus(false);
     exportMediaButton->setWantsKeyboardFocus(false);
+}
+
+void TrackNotesAudioProcessorEditor::startDemoTimer()
+{
+    int minutes      = 20;
+    int seconds      = minutes * 60;
+    int milliseconds = seconds * 1000;
+
+    startTimer(milliseconds);
+}
+
+void TrackNotesAudioProcessorEditor::timerCallback()
+{
+    randomNumber = randomNumberGenerator.nextInt(5);
+    textEditorPtrArray[randomNumber]->setText("Track Notes Demo Version.");
 }
 
 //[/MiscUserCode]
