@@ -43,9 +43,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     createImagePreview(true);
     createImagePreview(false);
 
-    // Link playhead info struct
-    positionInformationPtr = &processor.positionInformation;
-
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr   = &processor.performersNameEditor);
     addAndMakeVisible (instrumentPlayedEditorPtr = &processor.instrumentPlayedEditor);
@@ -672,7 +669,7 @@ void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &p
 void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &minutes, int &seconds)
 {
     // Convert time into hours, minutes, and seconds
-    int totalSeconds = positionInformationPtr->timeInSeconds;
+    int totalSeconds = processor.positionInformation.timeInSeconds;
 
     const int secondsPerHour   = 3600;
     const int secondsPerMinute = 60;

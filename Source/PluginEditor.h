@@ -99,8 +99,6 @@ private:
     
     std::unique_ptr<StaticTextSizeButton> staticTextSizeButtonPtr;
 
-    AudioPlayHead::CurrentPositionInfo *positionInformationPtr;
-
     TooltipWindow toolTipWindow;
 
     //[/UserVariables]
