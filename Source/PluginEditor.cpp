@@ -34,10 +34,10 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
-    pluginIsRunningInDemoMode = false;
-
     #if DEMO_MODE
         pluginIsRunningInDemoMode = true;
+    #else
+        pluginIsRunningInDemoMode = false;
     #endif
 
     createImagePreviews();
