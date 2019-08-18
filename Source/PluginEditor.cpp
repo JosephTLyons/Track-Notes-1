@@ -298,7 +298,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     //[Destructor]. You can add your own custom destruction code here..
 
     staticTextSizeButtonPtr = nullptr;
-    
+
     //[/Destructor]
 }
 
@@ -392,7 +392,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
         // Display error if images are missing
-        if(processor.imageOnePath.exists())
+        if (processor.imageOnePath.exists())
             createImageWindow(basicWindowImageTwoPtr, processor.imageOne, processor.imageOnePath);
 
         else
@@ -405,7 +405,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
         // Display error if images are missing
-        if(processor.imageTwoPath.exists())
+        if (processor.imageTwoPath.exists())
             createImageWindow(basicWindowImageTwoPtr, processor.imageTwo, processor.imageTwoPath);
 
         else
@@ -419,7 +419,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(processor.imageOne, processor.imageOnePath, true);
 
-        if(! processor.imageOne.isNull())
+        if (! processor.imageOne.isNull())
         {
             // Set displayImage button text to file name
             displayImageOneButton->setButtonText(processor.imageOnePath.getFileNameWithoutExtension());
@@ -433,7 +433,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         loadImage(processor.imageTwo, processor.imageTwoPath, false);
 
-        if(! processor.imageTwo.isNull())
+        if (! processor.imageTwo.isNull())
         {
             // Set displayImage button text to file name
             displayImageTwoButton->setButtonText(processor.imageTwoPath.getFileNameWithoutExtension());
@@ -477,7 +477,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
                                  true);
 
 
-        if(fileChooser.browseForFileToSave(true))
+        if (fileChooser.browseForFileToSave(true))
         {
             // Create folder
             File pathToSaveFolder(fileChooser.getResult());
@@ -546,7 +546,7 @@ void TrackNotesAudioProcessorEditor::mouseMove (const MouseEvent& e)
 
     else
         stealthModeToggle->setButtonText("");
-    
+
     //[/UserCode_mouseMove]
 }
 
@@ -608,7 +608,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
                                                        Image &image, File &imagePath)
 {
     // Don't allow multiple copies of this window to be made
-    if(basicWindowPtr == NULL)
+    if (basicWindowPtr == NULL)
     {
         int height = image.getHeight();
         int width  = image.getWidth();
@@ -623,25 +623,21 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         basicWindowPtr->setContentOwned(new ImageWindow(image, width, height), true);
         basicWindowPtr->setAlwaysOnTop(true);
 
-        if(!image.isNull())
+        if (! image.isNull())
         {
             basicWindowPtr->setSize(width, height);
             basicWindowPtr->centreWithSize(width, height);
         }
 
         else
-        {
             basicWindowPtr->centreWithSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
-        }
 
         basicWindowPtr->setVisible(true);
     }
 
     // If window is open already and display button is clicked again, window will be deleted
     else
-    {
         delete basicWindowPtr;
-    }
 }
 
 void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &path)
@@ -682,10 +678,8 @@ String TrackNotesAudioProcessorEditor::formatAndBuildTimecode(const int &hours,
     String tempString;
 
     // Don't insert newline on first timestamp
-    if(!timestampedNotesEditorPtr->isEmpty())
-    {
+    if (! timestampedNotesEditorPtr->isEmpty())
         tempString += "\n";
-    }
 
     tempString += "@ ";
     tempString += formatTimeInterval(hours);
@@ -702,10 +696,8 @@ String TrackNotesAudioProcessorEditor::formatTimeInterval(const int &timeInterva
 {
     String tempString;
 
-    if(timeInterval < 10)
-    {
+    if (timeInterval < 10)
         tempString += "0";
-    }
 
     tempString += timeInterval;
 
@@ -727,14 +719,12 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
     int heightDifference = screenHeight - imageHeight;
 
     // Leave function if image is smaller than screen size - essentially, do nothing
-    if((widthDifference > 0) && (heightDifference > 0))
-    {
+    if ((widthDifference > 0) && (heightDifference > 0))
         return;
-    }
 
     // Scale the image based on whichever dimension is closer to the edge of the screen.
     // The dimension that is closest to the edge of the screen is the one with the smallest difference.
-    if(widthDifference < heightDifference)
+    if (widthDifference < heightDifference)
     {
         float imageAspectRatio = screenWidth / (float) imageWidth;
 
