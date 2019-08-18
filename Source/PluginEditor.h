@@ -102,7 +102,6 @@ private:
     void hideTextAndDisableEditor(TextEditor &textEditor);
     void showTextAndEnableEditor(TextEditor &textEditor);
     void setFocusTabOrder();
-
     void startDemoTimer();
     void timerCallback() override;
 
