@@ -55,7 +55,7 @@ public:
     void fillTimeIntervalValues(int &hours, int &minutes, int &seconds);
     String formatAndBuildTimecode(const int &hours, const int &minutes, const int &seconds);
     String formatTimeInterval(const int &timeInterval);
-    void createImagePreview(const bool &isImageOne);
+    void createImagePreviews();
     void scaleImageDimensionsIfTooLarge(int &imageWidtht, int &imageHeight);
     void activateStealthMode();
     void deactivateStealthMode();

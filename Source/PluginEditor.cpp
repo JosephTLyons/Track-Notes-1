@@ -40,8 +40,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
         pluginIsRunningInDemoMode = true;
     #endif
 
-    createImagePreview(true);
-    createImagePreview(false);
+    createImagePreviews();
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
     addAndMakeVisible (performersNameEditorPtr   = &processor.performersNameEditor);
@@ -597,26 +596,20 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, co
         image = ImageCache::getFromFile(fileChooser.getResult());
     }
 
-    createImagePreview(isImageOne);
+    createImagePreviews(isImageOne);
 }
 
-void TrackNotesAudioProcessorEditor::createImagePreview(const bool &isImageOne)
+void TrackNotesAudioProcessorEditor::createImagePreviews()
 {
-    if(isImageOne)
-    {
-        imagePreviewOne.setVisible(false);
-        imagePreviewOne.setImage(processor.imageOne);
-        imagePreviewOne.setBounds(510, 130, 245, 245);
-        addAndMakeVisible(imagePreviewOne);
-    }
-    
-    else
-    {
-        imagePreviewTwo.setVisible(false);
-        imagePreviewTwo.setImage(processor.imageTwo);
-        imagePreviewTwo.setBounds(760, 130, 245, 245);
-        addAndMakeVisible(imagePreviewTwo);
-    }
+    imagePreviewOne.setVisible(false);
+    imagePreviewOne.setImage(processor.imageOne);
+    imagePreviewOne.setBounds(510, 130, 245, 245);
+    addAndMakeVisible(imagePreviewOne);
+
+    imagePreviewTwo.setVisible(false);
+    imagePreviewTwo.setImage(processor.imageTwo);
+    imagePreviewTwo.setBounds(760, 130, 245, 245);
+    addAndMakeVisible(imagePreviewTwo);
 }
 
 void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr,
