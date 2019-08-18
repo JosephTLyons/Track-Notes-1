@@ -2,7 +2,7 @@
 
 1. Fix all errors
 2. Remove all deprecations
-3. Add back Legacy VST support? 
+3. Add back Legacy VST support after everything else
 4. Move Demo timer into plugin editor class and use inheritance
 5. Clean up code
     - I think instead of linking all things across the process and editor class, I can just always use processor.whatever
