@@ -40,9 +40,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
         pluginIsRunningInDemoMode = true;
     #endif
 
-    // Link image pointer in editor class with image holder in processor class
-    stealthIsActivatedPtr = &processor.stealthIsActivated;
-
     createImagePreview(true);
     createImagePreview(false);
 
@@ -250,7 +247,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     // Set up stealth mode
     // Turn button into a toggle button
     stealthModeToggle->setClickingTogglesState(true);
-    if(*stealthIsActivatedPtr)
+    if(processor.stealthIsActivated)
     {
         activateStealthMode();
         stealthModeToggle->setToggleState(true, dontSendNotification);
@@ -776,7 +773,7 @@ void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWi
 
 void TrackNotesAudioProcessorEditor::activateStealthMode()
 {
-    *stealthIsActivatedPtr = true;
+    processor.stealthIsActivated = true;
 
     hideTextAndDisableEditor(*timestampedNotesEditorPtr);
     hideTextAndDisableEditor(*generalNotesEditorPtr);
@@ -797,7 +794,7 @@ void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor(TextEditor &textEd
 
 void TrackNotesAudioProcessorEditor::deactivateStealthMode()
 {
-    *stealthIsActivatedPtr = false;
+    processor.stealthIsActivated = false;
 
     showTextAndEnableEditor(*timestampedNotesEditorPtr);
     showTextAndEnableEditor(*generalNotesEditorPtr);
