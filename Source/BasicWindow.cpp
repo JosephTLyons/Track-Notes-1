@@ -39,7 +39,6 @@ public:
     BasicWindow (const String& name, Colour backgroundColour, int buttonsNeeded)
     : DocumentWindow (name, backgroundColour, buttonsNeeded)
     {
-        
     }
     
     void closeButtonPressed() override

@@ -31,9 +31,9 @@ ImageWindow::ImageWindow (const Image &imageSource, const int &width, const int 
 {
     //[Constructor_pre] You can add your own custom stuff here..
 
-    imageComponent.setImage(imageSource);
-    imageComponent.setBounds(0, 0, width, height);
-    addAndMakeVisible(imageComponent);
+    imageComponent.setImage (imageSource);
+    imageComponent.setBounds (0, 0, width, height);
+    addAndMakeVisible (imageComponent);
 
     //[/Constructor_pre]
 
