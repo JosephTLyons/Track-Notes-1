@@ -52,7 +52,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     if (isRunningInDemoMode)
     {
-        randomNumberGenerator.setSeed(Time::currentTimeMillis());
+        randomNumberGenerator.setSeed (Time::currentTimeMillis());
         startDemoTimer();
     }
 
