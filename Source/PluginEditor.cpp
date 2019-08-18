@@ -622,6 +622,7 @@ void TrackNotesAudioProcessorEditor::createImageWindow (SafePointer<BasicWindow>
             basicWindowPtr->centreWithSize(width, height);
         }
 
+        // This should never occur, as this function is not even called when the image doesn't exist
         else
             basicWindowPtr->centreWithSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
 
