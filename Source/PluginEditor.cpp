@@ -238,13 +238,14 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     }
 
     // Set up static text buttons
-    staticTextSizeButton = new StaticTextSizeButton;
-    loadImageOneButton->setLookAndFeel(staticTextSizeButton);
-    displayImageOneButton->setLookAndFeel(staticTextSizeButton);
-    removeImageOneButton->setLookAndFeel(staticTextSizeButton);
-    loadImageTwoButton->setLookAndFeel(staticTextSizeButton);
-    displayImageTwoButton->setLookAndFeel(staticTextSizeButton);
-    removeImageTwoButton->setLookAndFeel(staticTextSizeButton);
+    staticTextSizeButtonPtr.reset(new StaticTextSizeButton);
+
+    loadImageOneButton->setLookAndFeel(staticTextSizeButtonPtr.get());
+    displayImageOneButton->setLookAndFeel(staticTextSizeButtonPtr.get());
+    removeImageOneButton->setLookAndFeel(staticTextSizeButtonPtr.get());
+    loadImageTwoButton->setLookAndFeel(staticTextSizeButtonPtr.get());
+    displayImageTwoButton->setLookAndFeel(staticTextSizeButtonPtr.get());
+    removeImageTwoButton->setLookAndFeel(staticTextSizeButtonPtr.get());
 
     // Set up stealth mode
     // Turn button into a toggle button
@@ -303,6 +304,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 
     //[Destructor]. You can add your own custom destruction code here..
 
+    staticTextSizeButtonPtr = nullptr;
+    
     //[/Destructor]
 }
 

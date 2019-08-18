@@ -97,8 +97,8 @@ private:
 
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
-
-    ScopedPointer<StaticTextSizeButton> staticTextSizeButton;
+    
+    std::unique_ptr<StaticTextSizeButton> staticTextSizeButtonPtr;
 
     AudioPlayHead::CurrentPositionInfo *positionInformationPtr;
 
