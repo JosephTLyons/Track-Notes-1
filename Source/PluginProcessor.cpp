@@ -276,7 +276,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
 void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // This getXmlFromBinary() helper function retrieves our XML from the binary blob..
-    ScopedPointer<XmlElement> xml (getXmlFromBinary (data, sizeInBytes));
+    std::unique_ptr<XmlElement> xml (getXmlFromBinary (data, sizeInBytes));
     
     if (xml != nullptr)
     {
