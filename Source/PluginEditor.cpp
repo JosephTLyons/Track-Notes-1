@@ -48,10 +48,13 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (instrumentPlayedLabelPtr = &processor.instrumentPlayedLabel);
     addAndMakeVisible (microphonesUsedLabelPtr  = &processor.microphonesUsedLabel);
 
-    #if DEMO_MODE
+    isRunningInDemoMode = true;
+
+    if (isRunningInDemoMode)
+    {
         randomNumberGenerator.setSeed(Time::currentTimeMillis());
         startDemoTimer();
-    #endif
+    }
 
     //[/Constructor_pre]
 
@@ -554,13 +557,11 @@ void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
     versionNumberString += " v";
     versionNumberString += ProjectInfo::versionString;
 
-    #if DEMO_MODE
+    if (isRunningInDemoMode)
         versionNumberString += " - Demo Version";
 
-    #else
+    else
         versionNumberString += " - Full Version";
-
-    #endif
 
     theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
 }

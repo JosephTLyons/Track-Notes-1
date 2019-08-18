@@ -84,10 +84,8 @@ private:
 
     TooltipWindow toolTipWindow;
 
-    #define DEMO_MODE 1
-    #if DEMO_MODE
-        Random randomNumberGenerator;
-    #endif
+    bool isRunningInDemoMode;
+    Random randomNumberGenerator;
 
     // Private methods
     void setupVersionNumberlabel();
