@@ -202,51 +202,51 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     // Reset button names to image name (this doesn't work in standalone
     // since constructor isn't called when standalone loads, because plugin is already open
     if (! processor.imageOnePath.getFullPathName().isEmpty())
-        displayImageOneButton->setButtonText(processor.imageOnePath.getFileNameWithoutExtension());
+        displayImageOneButton->setButtonText (processor.imageOnePath.getFileNameWithoutExtension());
 
     if (! processor.imageTwoPath.getFullPathName().isEmpty())
-        displayImageTwoButton->setButtonText(processor.imageTwoPath.getFileNameWithoutExtension());
+        displayImageTwoButton->setButtonText (processor.imageTwoPath.getFileNameWithoutExtension());
 
     setupVersionNumberlabel();
 
     // Get array of fonts on user's system
-    Font::findFonts(usersFontsResults);
+    Font::findFonts (usersFontsResults);
 
     // Set up labels
-    performersNameLabelPtr->setEditable(true);
-    instrumentPlayedLabelPtr->setEditable(true);
-    microphonesUsedLabelPtr->setEditable(true);
+    performersNameLabelPtr->setEditable (true);
+    instrumentPlayedLabelPtr->setEditable (true);
+    microphonesUsedLabelPtr->setEditable (true);
 
     if (performersNameLabelPtr->getText().isEmpty())
-        performersNameLabelPtr->setText("Performer's Name:", dontSendNotification);
+        performersNameLabelPtr->setText ("Performer's Name:", dontSendNotification);
 
     if (instrumentPlayedLabelPtr->getText().isEmpty())
-        instrumentPlayedLabelPtr->setText("Instrument Played:", dontSendNotification);
+        instrumentPlayedLabelPtr->setText ("Instrument Played:", dontSendNotification);
 
     if (microphonesUsedLabelPtr->getText().isEmpty())
-        microphonesUsedLabelPtr->setText("Microphone(s) Used:", dontSendNotification);
+        microphonesUsedLabelPtr->setText ("Microphone(s) Used:", dontSendNotification);
 
     // Set up static text buttons
-    staticTextSizeButtonPtr.reset(new StaticTextSizeButton);
+    staticTextSizeButtonPtr.reset (new StaticTextSizeButton);
 
-    loadImageOneButton->setLookAndFeel(staticTextSizeButtonPtr.get());
-    displayImageOneButton->setLookAndFeel(staticTextSizeButtonPtr.get());
-    removeImageOneButton->setLookAndFeel(staticTextSizeButtonPtr.get());
-    loadImageTwoButton->setLookAndFeel(staticTextSizeButtonPtr.get());
-    displayImageTwoButton->setLookAndFeel(staticTextSizeButtonPtr.get());
-    removeImageTwoButton->setLookAndFeel(staticTextSizeButtonPtr.get());
+    loadImageOneButton->setLookAndFeel (staticTextSizeButtonPtr.get());
+    displayImageOneButton->setLookAndFeel (staticTextSizeButtonPtr.get());
+    removeImageOneButton->setLookAndFeel (staticTextSizeButtonPtr.get());
+    loadImageTwoButton->setLookAndFeel (staticTextSizeButtonPtr.get());
+    displayImageTwoButton->setLookAndFeel (staticTextSizeButtonPtr.get());
+    removeImageTwoButton->setLookAndFeel (staticTextSizeButtonPtr.get());
 
     // Set up stealth mode
     // Turn button into a toggle button
-    stealthModeToggle->setClickingTogglesState(true);
+    stealthModeToggle->setClickingTogglesState (true);
     if (processor.stealthIsActivated)
     {
         activateStealthMode();
-        stealthModeToggle->setToggleState(true, dontSendNotification);
+        stealthModeToggle->setToggleState (true, dontSendNotification);
     }
 
     // Add mouse listener to this to create dynamic text in button
-    stealthModeToggle->addMouseListener(this, true);
+    stealthModeToggle->addMouseListener (this, true);
 
     setFocusTabOrder();
 
@@ -326,9 +326,9 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
 
     //[UserPaint] Add your own custom painting code here..
 
-    g.setColour(Colours::white);
-    g.setOpacity(0.3);
-    g.drawLine(30, 50, 975, 50, 1);
+    g.setColour (Colours::white);
+    g.setOpacity (0.3);
+    g.drawLine (30, 50, 975, 50, 1);
 
 
 
@@ -367,14 +367,14 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         int hours, minutes, seconds;
 
-        fillTimeIntervalValues(hours, minutes, seconds);
+        fillTimeIntervalValues (hours, minutes, seconds);
 
         // Copy current text from the timestamped notes editor
         String tempTextEditorString = timestampedNotesEditorPtr->getText();
 
-        tempTextEditorString += formatAndBuildTimecode(hours, minutes, seconds);
+        tempTextEditorString += formatAndBuildTimecode (hours, minutes, seconds);
 
-        timestampedNotesEditorPtr->setText(tempTextEditorString);
+        timestampedNotesEditorPtr->setText (tempTextEditorString);
 
         // Put editor into focus and then move caret to end,
         // Which is where new timestamp has been inserted
@@ -389,10 +389,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         // Display error if images are missing
         if (processor.imageOnePath.exists())
-            createImageWindow(basicWindowImageTwoPtr, processor.imageOne, processor.imageOnePath);
+            createImageWindow (basicWindowImageTwoPtr, processor.imageOne, processor.imageOnePath);
 
         else
-            showErrorLoadingImageWindow(processor.imageOnePath.getFullPathName());
+            showErrorLoadingImageWindow (processor.imageOnePath.getFullPathName());
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -402,10 +402,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
         // Display error if images are missing
         if (processor.imageTwoPath.exists())
-            createImageWindow(basicWindowImageTwoPtr, processor.imageTwo, processor.imageTwoPath);
+            createImageWindow (basicWindowImageTwoPtr, processor.imageTwo, processor.imageTwoPath);
 
         else
-            showErrorLoadingImageWindow(processor.imageTwoPath.getFullPathName());
+            showErrorLoadingImageWindow (processor.imageTwoPath.getFullPathName());
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -413,13 +413,10 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(processor.imageOne, processor.imageOnePath, true);
+        loadImage (processor.imageOne, processor.imageOnePath, true);
 
         if (! processor.imageOne.isNull())
-        {
-            // Set displayImage button text to file name
-            displayImageOneButton->setButtonText(processor.imageOnePath.getFileNameWithoutExtension());
-        }
+            displayImageOneButton->setButtonText (processor.imageOnePath.getFileNameWithoutExtension());
 
         //[/UserButtonCode_loadImageOneButton]
     }
@@ -430,10 +427,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         loadImage(processor.imageTwo, processor.imageTwoPath, false);
 
         if (! processor.imageTwo.isNull())
-        {
-            // Set displayImage button text to file name
-            displayImageTwoButton->setButtonText(processor.imageTwoPath.getFileNameWithoutExtension());
-        }
+            displayImageTwoButton->setButtonText (processor.imageTwoPath.getFileNameWithoutExtension());
 
         //[/UserButtonCode_loadImageTwoButton]
     }
@@ -441,12 +435,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_removeImageOneButton] -- add your button handler code here..
 
-        imagePreviewOne.setVisible(false);
+        imagePreviewOne.setVisible (false);
 
         Image blankImage;
         processor.imageOnePath = "";
         processor.imageOne = blankImage;
-        displayImageOneButton->setButtonText("Empty");
+        displayImageOneButton->setButtonText ("Empty");
 
         //[/UserButtonCode_removeImageOneButton]
     }
@@ -454,12 +448,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_removeImageTwoButton] -- add your button handler code here..
 
-        imagePreviewTwo.setVisible(false);
+        imagePreviewTwo.setVisible (false);
 
         Image blankImage;
         processor.imageTwoPath = "";
         processor.imageTwo = blankImage;
-        displayImageTwoButton->setButtonText("Empty");
+        displayImageTwoButton->setButtonText ("Empty");
 
         //[/UserButtonCode_removeImageTwoButton]
     }
@@ -473,7 +467,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
                                  true);
 
 
-        if (fileChooser.browseForFileToSave(true))
+        if (fileChooser.browseForFileToSave (true))
         {
             // Create folder
             File pathToSaveFolder(fileChooser.getResult());
@@ -486,32 +480,32 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
             // Save all text
             // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
-            pathToSaveTextFileTo.appendText(performersNameLabelPtr->getText());
-            pathToSaveTextFileTo.appendText(" " + performersNameEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText (performersNameLabelPtr->getText());
+            pathToSaveTextFileTo.appendText (" " + performersNameEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText(instrumentPlayedLabelPtr->getText());
-            pathToSaveTextFileTo.appendText(" " + instrumentPlayedEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText (instrumentPlayedLabelPtr->getText());
+            pathToSaveTextFileTo.appendText (" " + instrumentPlayedEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText(microphonesUsedLabelPtr->getText());
-            pathToSaveTextFileTo.appendText(" " + microphonesUsedEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText (microphonesUsedLabelPtr->getText());
+            pathToSaveTextFileTo.appendText (" " + microphonesUsedEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("Timestamped Notes:\n");
-            pathToSaveTextFileTo.appendText(timestampedNotesEditorPtr->getText().trim() + "\n\n");
+            pathToSaveTextFileTo.appendText ("Timestamped Notes:\n");
+            pathToSaveTextFileTo.appendText (timestampedNotesEditorPtr->getText().trim() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("General Notes:\n");
-            pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText().trim() + "\n\n");
+            pathToSaveTextFileTo.appendText ("General Notes:\n");
+            pathToSaveTextFileTo.appendText (generalNotesEditorPtr->getText().trim() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("Image One: ");
-            pathToSaveTextFileTo.appendText(processor.imageOnePath.getFileName() + "\n\n");
+            pathToSaveTextFileTo.appendText ("Image One: ");
+            pathToSaveTextFileTo.appendText (processor.imageOnePath.getFileName() + "\n\n");
 
-            pathToSaveTextFileTo.appendText("Image Two: ");
-            pathToSaveTextFileTo.appendText(processor.imageTwoPath.getFileName());
+            pathToSaveTextFileTo.appendText ("Image Two: ");
+            pathToSaveTextFileTo.appendText (processor.imageTwoPath.getFileName());
 
             // Copy images into folder
-            processor.imageOnePath.copyFileTo(pathToSaveFolder.getFullPathName() + "/" +
-                                              processor.imageOnePath.getFileName());
-            processor.imageTwoPath.copyFileTo(pathToSaveFolder.getFullPathName() + "/" +
-                                              processor.imageTwoPath.getFileName());
+            processor.imageOnePath.copyFileTo (pathToSaveFolder.getFullPathName() + "/" +
+                                               processor.imageOnePath.getFileName());
+            processor.imageTwoPath.copyFileTo (pathToSaveFolder.getFullPathName() + "/" +
+                                               processor.imageTwoPath.getFileName());
         }
 
         //[/UserButtonCode_exportMediaButton]
@@ -538,10 +532,10 @@ void TrackNotesAudioProcessorEditor::mouseMove (const MouseEvent& e)
     //[UserCode_mouseMove] -- Add your code here...
 
     if (stealthModeToggle->isMouseOver())
-        stealthModeToggle->setButtonText("Stealth");
+        stealthModeToggle->setButtonText ("Stealth");
 
     else
-        stealthModeToggle->setButtonText("");
+        stealthModeToggle->setButtonText ("");
 
     //[/UserCode_mouseMove]
 }
@@ -563,10 +557,11 @@ void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
     else
         versionNumberString += " - Full Version";
 
-    theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
+    theLyonsDenSoftwareLabel->setText ("The Lyons' Den Software" + versionNumberString,
+                                       dontSendNotification);
 }
 
-void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, const bool &isImageOne)
+void TrackNotesAudioProcessorEditor::loadImage (Image &image, File &imagePath, const bool &isImageOne)
 {
     FileChooser fileChooser ("Export all Text",
                              File::getSpecialLocation(File::userHomeDirectory),
@@ -581,7 +576,7 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, co
         imagePath = fileChooser.getResult();
 
         // Get image
-        image = ImageCache::getFromFile(fileChooser.getResult());
+        image = ImageCache::getFromFile (fileChooser.getResult());
     }
 
     createImagePreviews();
@@ -600,8 +595,8 @@ void TrackNotesAudioProcessorEditor::createImagePreviews()
     addAndMakeVisible(imagePreviewTwo);
 }
 
-void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> &basicWindowPtr,
-                                                       Image &image, File &imagePath)
+void TrackNotesAudioProcessorEditor::createImageWindow (SafePointer<BasicWindow> &basicWindowPtr,
+                                                        Image &image, File &imagePath)
 {
     // Don't allow multiple copies of this window to be made
     if (basicWindowPtr == NULL)
@@ -636,14 +631,14 @@ void TrackNotesAudioProcessorEditor::createImageWindow(SafePointer<BasicWindow> 
         delete basicWindowPtr;
 }
 
-void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow(const String &path)
+void TrackNotesAudioProcessorEditor::showErrorLoadingImageWindow (const String &path)
 {
     AlertWindow::showMessageBox (AlertWindow::WarningIcon,
                                  "Image Missing: ",
                                  path + "\n\nPlease load image again.");
 }
 
-void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &minutes, int &seconds)
+void TrackNotesAudioProcessorEditor::fillTimeIntervalValues (int &hours, int &minutes, int &seconds)
 {
     // Convert time into hours, minutes, and seconds
     int totalSeconds = processor.positionInformation.timeInSeconds;
@@ -667,9 +662,9 @@ void TrackNotesAudioProcessorEditor::fillTimeIntervalValues(int &hours, int &min
     seconds = totalSeconds;
 }
 
-String TrackNotesAudioProcessorEditor::formatAndBuildTimecode(const int &hours,
-                                                              const int &minutes,
-                                                              const int &seconds)
+String TrackNotesAudioProcessorEditor::formatAndBuildTimecode (const int &hours,
+                                                               const int &minutes,
+                                                               const int &seconds)
 {
     String tempString;
 
@@ -688,7 +683,7 @@ String TrackNotesAudioProcessorEditor::formatAndBuildTimecode(const int &hours,
     return tempString;
 }
 
-String TrackNotesAudioProcessorEditor::formatTimeInterval(const int &timeInterval)
+String TrackNotesAudioProcessorEditor::formatTimeInterval (const int &timeInterval)
 {
     String tempString;
 
@@ -700,7 +695,8 @@ String TrackNotesAudioProcessorEditor::formatTimeInterval(const int &timeInterva
     return tempString;
 }
 
-void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge(int &imageWidth, int &imageHeight)
+void TrackNotesAudioProcessorEditor::scaleImageDimensionsIfTooLarge (int &imageWidth,
+                                                                     int &imageHeight)
 {
     // Get desktop dimensions
     int screenWidth  = Desktop::getInstance().getDisplays().getMainDisplay().totalArea.getWidth();
@@ -743,13 +739,13 @@ void TrackNotesAudioProcessorEditor::activateStealthMode()
 {
     processor.stealthIsActivated = true;
 
-    hideTextAndDisableEditor(*timestampedNotesEditorPtr);
-    hideTextAndDisableEditor(*generalNotesEditorPtr);
+    hideTextAndDisableEditor (*timestampedNotesEditorPtr);
+    hideTextAndDisableEditor (*generalNotesEditorPtr);
 
-    insertTimeStampButton->setInterceptsMouseClicks(false, false);
+    insertTimeStampButton->setInterceptsMouseClicks (false, false);
 }
 
-void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor(TextEditor &textEditor)
+void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor (TextEditor &textEditor)
 {
     String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n";
     tempTextHolder += textEditor.getText();
@@ -764,13 +760,13 @@ void TrackNotesAudioProcessorEditor::deactivateStealthMode()
 {
     processor.stealthIsActivated = false;
 
-    showTextAndEnableEditor(*timestampedNotesEditorPtr);
-    showTextAndEnableEditor(*generalNotesEditorPtr);
+    showTextAndEnableEditor (*timestampedNotesEditorPtr);
+    showTextAndEnableEditor (*generalNotesEditorPtr);
 
-    insertTimeStampButton->setInterceptsMouseClicks(true, true);
+    insertTimeStampButton->setInterceptsMouseClicks (true, true);
 }
 
-void TrackNotesAudioProcessorEditor::showTextAndEnableEditor(TextEditor &textEditor)
+void TrackNotesAudioProcessorEditor::showTextAndEnableEditor (TextEditor &textEditor)
 {
     String tempTextHolder = textEditor.getText();
     tempTextHolder = tempTextHolder.trimStart();
