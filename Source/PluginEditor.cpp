@@ -448,6 +448,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         imagePreviewOne.setVisible(false);
 
         Image blankImage;
+        processor.imageOnePath = "";
         processor.imageOne = blankImage;
         displayImageOneButton->setButtonText("Empty");
 
@@ -460,6 +461,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         imagePreviewTwo.setVisible(false);
 
         Image blankImage;
+        processor.imageTwoPath = "";
         processor.imageTwo = blankImage;
         displayImageTwoButton->setButtonText("Empty");
 
