@@ -41,12 +41,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     #endif
 
     // Link image pointer in editor class with image holder in processor class
-    imageOnePtr           = &processor.imageOne;
-    imageTwoPtr           = &processor.imageTwo;
-    imageOnePathPtr       = &processor.imageOnePath;
-    imageTwoPathPtr       = &processor.imageTwoPath;
-    imageOneMissingPtr    = &processor.imageOneMissing;
-    imageTwoMissingPtr    = &processor.imageTwoMissing;
     stealthIsActivatedPtr = &processor.stealthIsActivated;
 
     createImagePreview(true);
@@ -212,15 +206,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Reset button names to image name (this doesn't work in standalone
     // since constructor isn't called when standalone loads, because plugin is already open
-    if(!imageOnePathPtr->getFullPathName().isEmpty())
-    {
-        displayImageOneButton->setButtonText(imageOnePathPtr->getFileNameWithoutExtension());
-    }
+    if (! processor.imageOnePath.getFullPathName().isEmpty())
+        displayImageOneButton->setButtonText(processor.imageOnePath.getFileNameWithoutExtension());
 
-    if(!imageTwoPathPtr->getFullPathName().isEmpty())
-    {
-        displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());
-    }
+    if (! processor.imageTwoPath.getFullPathName().isEmpty())
+        displayImageTwoButton->setButtonText(processor.imageTwoPath.getFileNameWithoutExtension());
 
     setupVersionNumberlabel();
 
@@ -292,12 +282,6 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     delete basicWindowImageTwoPtr;
     basicWindowImageOnePtr = nullptr;
     basicWindowImageTwoPtr = nullptr;
-
-    // Dont delete these pointers because they're objects are owned and used by processor class
-    imageOnePathPtr = nullptr;
-    imageTwoPathPtr = nullptr;
-    imageOneMissingPtr = nullptr;
-    imageTwoMissingPtr = nullptr;
 
     //[/Destructor_pre]
 
@@ -412,15 +396,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
         // Display error if images are missing
-        if(*imageOneMissingPtr)
-        {
-            showErrorLoadingImageWindow(imageOnePathPtr->getFullPathName());
-        }
+        if(processor.imageOnePath.exists())
+            createImageWindow(basicWindowImageTwoPtr, processor.imageOne, processor.imageOnePath);
 
         else
-        {
-            createImageWindow(basicWindowImageOnePtr, *imageOnePtr, *imageOnePathPtr);
-        }
+            showErrorLoadingImageWindow(processor.imageOnePath.getFullPathName());
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -429,15 +409,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
         // Display error if images are missing
-        if(*imageTwoMissingPtr)
-        {
-            showErrorLoadingImageWindow(imageTwoPathPtr->getFullPathName());
-        }
+        if(processor.imageTwoPath.exists())
+            createImageWindow(basicWindowImageTwoPtr, processor.imageTwo, processor.imageTwoPath);
 
         else
-        {
-            createImageWindow(basicWindowImageTwoPtr, *imageTwoPtr, *imageTwoPathPtr);
-        }
+            showErrorLoadingImageWindow(processor.imageTwoPath.getFullPathName());
 
         //[/UserButtonCode_displayImageTwoButton]
     }
@@ -445,15 +421,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageOneButton] -- add your button handler code here..
 
-        loadImage(*imageOnePtr, *imageOnePathPtr, true);
+        loadImage(processor.imageOne, processor.imageOnePath, true);
 
-        if(!imageOnePtr->isNull())
+        if(! processor.imageOne.isNull())
         {
-            // Set this bool to false so that error message won't show a second time
-            *imageOneMissingPtr = false;
-
             // Set displayImage button text to file name
-            displayImageOneButton->setButtonText(imageOnePathPtr->getFileNameWithoutExtension());
+            displayImageOneButton->setButtonText(processor.imageOnePath.getFileNameWithoutExtension());
         }
 
         //[/UserButtonCode_loadImageOneButton]
@@ -462,15 +435,12 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(*imageTwoPtr, *imageTwoPathPtr, false);
+        loadImage(processor.imageTwo, processor.imageTwoPath, false);
 
-        if(!imageTwoPtr->isNull())
+        if(! processor.imageTwo.isNull())
         {
-            // Set this bool to false so that error message won't show a second time
-            *imageTwoMissingPtr = false;
-
             // Set displayImage button text to file name
-            displayImageTwoButton->setButtonText(imageTwoPathPtr->getFileNameWithoutExtension());
+            displayImageTwoButton->setButtonText(processor.imageTwoPath.getFileNameWithoutExtension());
         }
 
         //[/UserButtonCode_loadImageTwoButton]
@@ -482,8 +452,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         imagePreviewOne.setVisible(false);
 
         Image blankImage;
-        *imageOnePathPtr = "";
-        *imageOnePtr     = blankImage;
+        processor.imageOne = blankImage;
         displayImageOneButton->setButtonText("Empty");
 
         //[/UserButtonCode_removeImageOneButton]
@@ -495,8 +464,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
         imagePreviewTwo.setVisible(false);
 
         Image blankImage;
-        *imageTwoPathPtr = "";
-        *imageTwoPtr     = blankImage;
+        processor.imageTwo = blankImage;
         displayImageTwoButton->setButtonText("Empty");
 
         //[/UserButtonCode_removeImageTwoButton]
@@ -540,14 +508,16 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             pathToSaveTextFileTo.appendText(generalNotesEditorPtr->getText().trim() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Image One: ");
-            pathToSaveTextFileTo.appendText(imageOnePathPtr->getFileName() + "\n\n");
+            pathToSaveTextFileTo.appendText(processor.imageOnePath.getFileName() + "\n\n");
 
             pathToSaveTextFileTo.appendText("Image Two: ");
-            pathToSaveTextFileTo.appendText(imageTwoPathPtr->getFileName());
+            pathToSaveTextFileTo.appendText(processor.imageTwoPath.getFileName());
 
             // Copy images into folder
-            imageOnePathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageOnePathPtr->getFileName());
-            imageTwoPathPtr->copyFileTo(pathToSaveFolder.getFullPathName() + "/" + imageTwoPathPtr->getFileName());
+            processor.imageOnePath.copyFileTo(pathToSaveFolder.getFullPathName() + "/" +
+                                              processor.imageOnePath.getFileName());
+            processor.imageTwoPath.copyFileTo(pathToSaveFolder.getFullPathName() + "/" +
+                                              processor.imageTwoPath.getFileName());
         }
 
         //[/UserButtonCode_exportMediaButton]
@@ -638,14 +608,15 @@ void TrackNotesAudioProcessorEditor::createImagePreview(const bool &isImageOne)
     if(isImageOne)
     {
         imagePreviewOne.setVisible(false);
-        imagePreviewOne.setImage(*imageOnePtr);
+        imagePreviewOne.setImage(processor.imageOne);
         imagePreviewOne.setBounds(510, 130, 245, 245);
         addAndMakeVisible(imagePreviewOne);
     }
+    
     else
     {
         imagePreviewTwo.setVisible(false);
-        imagePreviewTwo.setImage(*imageTwoPtr);
+        imagePreviewTwo.setImage(processor.imageTwo);
         imagePreviewTwo.setBounds(760, 130, 245, 245);
         addAndMakeVisible(imagePreviewTwo);
     }

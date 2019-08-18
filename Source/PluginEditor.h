@@ -79,10 +79,7 @@ private:
     TrackNotesAudioProcessor& processor;
     String versionNumberString;
     Array<Font> usersFontsResults;
-
-    File *imageOnePathPtr, *imageTwoPathPtr;
-    Image *imageOnePtr, *imageTwoPtr;
-    bool *imageOneMissingPtr, *imageTwoMissingPtr;
+    
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
     bool pluginIsRunningInDemoMode;

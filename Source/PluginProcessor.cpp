@@ -280,10 +280,10 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
     
     if (xml != nullptr)
     {
-        // make sure that it's actually our type of XML object..
+        // Make sure that it's actually our type of XML object..
         if (xml->hasTagName ("trackNotes"))
         {
-            // ok, now pull our strings
+            // Ok, now pull our strings
             performersNameEditor.setText(xml->getStringAttribute("performersName"));
             instrumentPlayedEditor.setText(xml->getStringAttribute("instrumentPlayed"));
             microphonesUsedEditor.setText(xml->getStringAttribute("microphonesUsed"));
@@ -296,38 +296,17 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             microphonesUsedLabel.setText(xml->getStringAttribute("microphonesUsedLabel"), dontSendNotification);
             stealthIsActivated = xml->getIntAttribute("stealthIsActivated");
             
-            // Get string containing path and check to see if its empty or not
-            if(!imageOnePath.getFullPathName().isEmpty())
+            // Retrieve paths to images
+            if(! imageOnePath.getFullPathName().isEmpty())
             {
-                // If it exists, load it
                 if(imageOnePath.exists())
-                {
-                    imageOneMissing = false;
                     imageOne = ImageCache::getFromFile(imageOnePath);
-                }
-                
-                // If not, then the file has been moved and an error should display
-                else
-                {
-                    imageOneMissing = true;
-                }
             }
-            
-            // Get string containing path and check to see if its empty or not
-            if(!imageTwoPath.getFullPathName().isEmpty())
+
+            if(! imageTwoPath.getFullPathName().isEmpty())
             {
-                // If it exists, load it
                 if(imageTwoPath.exists())
-                {
-                    imageTwoMissing = false;
                     imageTwo = ImageCache::getFromFile(imageTwoPath);
-                }
-                
-                // If not, then the file has been moved and an error should display
-                else
-                {
-                    imageTwoMissing = true;
-                }
             }
             
             // Now reload our parameters..

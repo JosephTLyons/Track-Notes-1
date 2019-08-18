@@ -79,7 +79,6 @@ public:
     
     File imageOnePath, imageTwoPath;
     Image imageOne, imageTwo;
-    bool imageOneMissing, imageTwoMissing;
     
     AudioPlayHead::CurrentPositionInfo positionInformation;
     Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
