@@ -9,3 +9,6 @@
 4. Just launch a modal error when trying to open an image window with no images
 5. Clean up README.md
 6. What all can I remove from processor public entirely (can I access editor from processor?)
+
+SIGN VST SDK?
+FOLLOW TUTORIALS FOR SAVING AND FETCHING PLUGIN STATE
