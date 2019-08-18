@@ -330,8 +330,6 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
     g.setOpacity (0.3);
     g.drawLine (30, 50, 975, 50, 1);
 
-
-
     //[/UserPaint]
 }
 
@@ -673,11 +671,11 @@ String TrackNotesAudioProcessorEditor::formatAndBuildTimecode (const int &hours,
         tempString += "\n";
 
     tempString += "@ ";
-    tempString += formatTimeInterval(hours);
+    tempString += formatTimeInterval (hours);
     tempString += ":";
-    tempString += formatTimeInterval(minutes);
+    tempString += formatTimeInterval (minutes);
     tempString += ":";
-    tempString += formatTimeInterval(seconds);
+    tempString += formatTimeInterval (seconds);
     tempString += " - ";
 
     return tempString;
@@ -747,13 +745,13 @@ void TrackNotesAudioProcessorEditor::activateStealthMode()
 
 void TrackNotesAudioProcessorEditor::hideTextAndDisableEditor (TextEditor &textEditor)
 {
-    String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n";
-    tempTextHolder += textEditor.getText();
-    textEditor.setText(tempTextHolder, dontSendNotification);
-    textEditor.moveCaretToTop(false);
-    textEditor.setScrollbarsShown(false);
-    textEditor.setReadOnly(true);
-    textEditor.setInterceptsMouseClicks(false, false);
+    String tempTextHolder = "\n\n\n\n\n\n\n\n\n\n" + textEditor.getText();
+
+    textEditor.setText (tempTextHolder, dontSendNotification);
+    textEditor.moveCaretToTop (false);
+    textEditor.setScrollbarsShown (false);
+    textEditor.setReadOnly (true);
+    textEditor.setInterceptsMouseClicks (false, false);
 }
 
 void TrackNotesAudioProcessorEditor::deactivateStealthMode()
@@ -768,8 +766,8 @@ void TrackNotesAudioProcessorEditor::deactivateStealthMode()
 
 void TrackNotesAudioProcessorEditor::showTextAndEnableEditor (TextEditor &textEditor)
 {
-    String tempTextHolder = textEditor.getText();
-    tempTextHolder = tempTextHolder.trimStart();
+    String tempTextHolder = textEditor.getText().trimStart();
+
     textEditor.setText(tempTextHolder);
     textEditor.moveCaretToTop(false);
     textEditor.setScrollbarsShown(true);
