@@ -297,17 +297,13 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             stealthIsActivated = xml->getIntAttribute("stealthIsActivated");
             
             // Retrieve paths to images
-            if(! imageOnePath.getFullPathName().isEmpty())
-            {
-                if(imageOnePath.exists())
+            if (! imageOnePath.getFullPathName().isEmpty())
+                if (imageOnePath.exists())
                     imageOne = ImageCache::getFromFile(imageOnePath);
-            }
 
-            if(! imageTwoPath.getFullPathName().isEmpty())
-            {
-                if(imageTwoPath.exists())
+            if (! imageTwoPath.getFullPathName().isEmpty())
+                if (imageTwoPath.exists())
                     imageTwo = ImageCache::getFromFile(imageTwoPath);
-            }
             
             // Now reload our parameters..
             for (int i = 0; i < getNumParameters(); ++i)
