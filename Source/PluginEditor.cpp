@@ -784,25 +784,25 @@ void TrackNotesAudioProcessorEditor::showTextAndEnableEditor(TextEditor &textEdi
 void TrackNotesAudioProcessorEditor::setFocusTabOrder()
 {
     // Set up tap order
-    performersNameEditorPtr->setExplicitFocusOrder(1);
-    instrumentPlayedEditorPtr->setExplicitFocusOrder(2);
-    microphonesUsedEditorPtr->setExplicitFocusOrder(3);
-    timestampedNotesEditorPtr->setExplicitFocusOrder(4);
-    generalNotesEditorPtr->setExplicitFocusOrder(5);
-    performersNameLabelPtr->setExplicitFocusOrder(6);
-    instrumentPlayedLabelPtr->setExplicitFocusOrder(7);
-    microphonesUsedLabelPtr->setExplicitFocusOrder(8);
+    performersNameEditorPtr->setExplicitFocusOrder (1);
+    instrumentPlayedEditorPtr->setExplicitFocusOrder (2);
+    microphonesUsedEditorPtr->setExplicitFocusOrder (3);
+    timestampedNotesEditorPtr->setExplicitFocusOrder (4);
+    generalNotesEditorPtr->setExplicitFocusOrder (5);
+    performersNameLabelPtr->setExplicitFocusOrder (6);
+    instrumentPlayedLabelPtr->setExplicitFocusOrder (7);
+    microphonesUsedLabelPtr->setExplicitFocusOrder (8);
 
     // Remove keyboard focus from these elements so that they are not included in tap order
-    loadImageOneButton->setWantsKeyboardFocus(false);
-    displayImageOneButton->setWantsKeyboardFocus(false);
-    removeImageOneButton->setWantsKeyboardFocus(false);
-    loadImageTwoButton->setWantsKeyboardFocus(false);
-    displayImageTwoButton->setWantsKeyboardFocus(false);
-    removeImageTwoButton->setWantsKeyboardFocus(false);
-    insertTimeStampButton->setWantsKeyboardFocus(false);
-    stealthModeToggle->setWantsKeyboardFocus(false);
-    exportMediaButton->setWantsKeyboardFocus(false);
+    loadImageOneButton->setWantsKeyboardFocus (false);
+    displayImageOneButton->setWantsKeyboardFocus (false);
+    removeImageOneButton->setWantsKeyboardFocus (false);
+    loadImageTwoButton->setWantsKeyboardFocus (false);
+    displayImageTwoButton->setWantsKeyboardFocus (false);
+    removeImageTwoButton->setWantsKeyboardFocus (false);
+    insertTimeStampButton->setWantsKeyboardFocus (false);
+    stealthModeToggle->setWantsKeyboardFocus (false);
+    exportMediaButton->setWantsKeyboardFocus (false);
 }
 
 void TrackNotesAudioProcessorEditor::startDemoTimer()
