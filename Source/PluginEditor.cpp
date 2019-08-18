@@ -50,16 +50,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     #if DEMO_MODE
         randomNumberGenerator.setSeed(Time::currentTimeMillis());
-
-        // Add textEditors to textEditorPtrArray to be used in demo mode
-        textEditorPtrArray.add(performersNameEditorPtr);
-        textEditorPtrArray.add(instrumentPlayedEditorPtr);
-        textEditorPtrArray.add(microphonesUsedEditorPtr);
-        textEditorPtrArray.add(timestampedNotesEditorPtr);
-        textEditorPtrArray.add(generalNotesEditorPtr);
-        textEditorPtrArray.resize(5);
         startDemoTimer();
-    
     #endif
 
     //[/Constructor_pre]
@@ -824,8 +815,23 @@ void TrackNotesAudioProcessorEditor::startDemoTimer()
 
 void TrackNotesAudioProcessorEditor::timerCallback()
 {
-    randomNumber = randomNumberGenerator.nextInt(5);
-    textEditorPtrArray[randomNumber]->setText("Track Notes Demo Version.");
+    int randomNumber = randomNumberGenerator.nextInt(5);
+    String demoText = "Track Notes Demo Version.";
+
+    if (randomNumber == 0)
+        performersNameEditorPtr->setText (demoText);
+
+    else if (randomNumber == 1)
+        instrumentPlayedEditorPtr->setText (demoText);
+
+    else if (randomNumber == 2)
+        microphonesUsedEditorPtr->setText (demoText);
+
+    else if (randomNumber == 3)
+        timestampedNotesEditorPtr->setText (demoText);
+
+    else
+        generalNotesEditorPtr->setText (demoText);
 }
 
 //[/MiscUserCode]

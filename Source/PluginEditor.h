@@ -87,8 +87,6 @@ private:
     #define DEMO_MODE 1
     #if DEMO_MODE
         Random randomNumberGenerator;
-        int randomNumber;
-        Array<TextEditor *> textEditorPtrArray;
     #endif
 
     // Private methods
