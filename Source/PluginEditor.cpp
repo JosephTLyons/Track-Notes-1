@@ -201,10 +201,10 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     // Reset button names to image name (this doesn't work in standalone
     // since constructor isn't called when standalone loads, because plugin is already open
-    if (! processor.imageOnePath.getFullPathName().isEmpty())
+    if (processor.imageOnePath.getFullPathName().isNotEmpty())
         displayImageOneButton->setButtonText (processor.imageOnePath.getFileNameWithoutExtension());
 
-    if (! processor.imageTwoPath.getFullPathName().isEmpty())
+    if (processor.imageTwoPath.getFullPathName().isNotEmpty())
         displayImageTwoButton->setButtonText (processor.imageTwoPath.getFileNameWithoutExtension());
 
     setupVersionNumberlabel();
