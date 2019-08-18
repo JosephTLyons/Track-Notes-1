@@ -426,7 +426,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_loadImageTwoButton] -- add your button handler code here..
 
-        loadImage(processor.imageTwo, processor.imageTwoPath, false);
+        loadImage (processor.imageTwo, processor.imageTwoPath, false);
 
         if (! processor.imageTwo.isNull())
             displayImageTwoButton->setButtonText (processor.imageTwoPath.getFileNameWithoutExtension());
@@ -605,28 +605,28 @@ void TrackNotesAudioProcessorEditor::createImageWindow (SafePointer<BasicWindow>
     {
         int height = image.getHeight();
         int width  = image.getWidth();
-        scaleImageDimensionsIfTooLarge(width, height);
+        scaleImageDimensionsIfTooLarge (width, height);
 
-        basicWindowPtr = new BasicWindow(imagePath.getFileNameWithoutExtension(),
-                                         Colours::grey,
-                                         DocumentWindow::closeButton |
-                                         DocumentWindow::minimiseButton);
+        basicWindowPtr = new BasicWindow (imagePath.getFileNameWithoutExtension(),
+                                          Colours::grey,
+                                          DocumentWindow::closeButton |
+                                          DocumentWindow::minimiseButton);
 
-        basicWindowPtr->setUsingNativeTitleBar(true);
-        basicWindowPtr->setContentOwned(new ImageWindow(image, width, height), true);
-        basicWindowPtr->setAlwaysOnTop(true);
+        basicWindowPtr->setUsingNativeTitleBar (true);
+        basicWindowPtr->setContentOwned (new ImageWindow (image, width, height), true);
+        basicWindowPtr->setAlwaysOnTop (true);
 
         if (! image.isNull())
         {
-            basicWindowPtr->setSize(width, height);
-            basicWindowPtr->centreWithSize(width, height);
+            basicWindowPtr->setSize (width, height);
+            basicWindowPtr->centreWithSize (width, height);
         }
 
         // This should never occur, as this function is not even called when the image doesn't exist
         else
-            basicWindowPtr->centreWithSize(basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
+            basicWindowPtr->centreWithSize (basicWindowPtr->getWidth(), basicWindowPtr->getHeight());
 
-        basicWindowPtr->setVisible(true);
+        basicWindowPtr->setVisible (true);
     }
 
     // If window is open already and display button is clicked again, window will be deleted
