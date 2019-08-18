@@ -385,12 +385,14 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageOneButton] -- add your button handler code here..
 
-        // Display error if images are missing
-        if (processor.imageOnePath.exists())
-            createImageWindow (basicWindowImageTwoPtr, processor.imageOne, processor.imageOnePath);
+        if (processor.imageOnePath.getFullPathName().isNotEmpty())
+        {
+            if (! processor.imageOnePath.exists())
+                showErrorLoadingImageWindow (processor.imageOnePath.getFullPathName());
 
-        else
-            showErrorLoadingImageWindow (processor.imageOnePath.getFullPathName());
+            else
+                createImageWindow (basicWindowImageOnePtr, processor.imageOne, processor.imageOnePath);
+        }
 
         //[/UserButtonCode_displayImageOneButton]
     }
@@ -398,12 +400,14 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_displayImageTwoButton] -- add your button handler code here..
 
-        // Display error if images are missing
-        if (processor.imageTwoPath.exists())
-            createImageWindow (basicWindowImageTwoPtr, processor.imageTwo, processor.imageTwoPath);
+        if (processor.imageTwoPath.getFullPathName().isNotEmpty())
+        {
+            if (! processor.imageTwoPath.exists())
+                showErrorLoadingImageWindow (processor.imageTwoPath.getFullPathName());
 
-        else
-            showErrorLoadingImageWindow (processor.imageTwoPath.getFullPathName());
+            else
+                createImageWindow (basicWindowImageTwoPtr, processor.imageTwo, processor.imageTwoPath);
+        }
 
         //[/UserButtonCode_displayImageTwoButton]
     }
