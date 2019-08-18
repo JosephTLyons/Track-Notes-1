@@ -810,7 +810,7 @@ void TrackNotesAudioProcessorEditor::startDemoTimer()
     int seconds      = minutes * 60;
     int milliseconds = seconds * 1000;
 
-    startTimer(milliseconds);
+    startTimer (milliseconds);
 }
 
 void TrackNotesAudioProcessorEditor::timerCallback()
