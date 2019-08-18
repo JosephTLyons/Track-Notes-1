@@ -1,29 +1,19 @@
 /*
   ==============================================================================
-  Copyright 2013-2017 Joseph Lyons
- 
-  This file is part of Track Notes.
- 
-  Track Notes is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
- 
-  Track Notes is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
- 
-  You should have received a copy of the GNU General Public License
-  along with Track Notes.  If not, see <http://www.gnu.org/licenses/>.
- 
-  Created with Projucer version: 5.0.2
- 
+
+  This is an automatically generated GUI class created by the Projucer!
+
+  Be careful when adding custom code to these files, as only the code within
+  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
+  and re-saved.
+
+  Created with Projucer version: 5.4.4
+
   ------------------------------------------------------------------------------
- 
-  The Projucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright (c) 2015 - ROLI Ltd.
- 
+
+  The Projucer is part of the JUCE library.
+  Copyright (c) 2017 - ROLI Ltd.
+
   ==============================================================================
 */
 
@@ -47,22 +37,23 @@ ImageWindow::ImageWindow (const Image &imageSource, const int &width, const int 
 
     //[/Constructor_pre]
 
-    addAndMakeVisible (pleaseLoadImageLabel = new Label ("pleaseLoadImageLabel",
-                                                         TRANS("Please Load an Image")));
+    pleaseLoadImageLabel.reset (new Label ("pleaseLoadImageLabel",
+                                           TRANS("Please Load an Image")));
+    addAndMakeVisible (pleaseLoadImageLabel.get());
     pleaseLoadImageLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     pleaseLoadImageLabel->setJustificationType (Justification::centred);
     pleaseLoadImageLabel->setEditable (false, false, false);
     pleaseLoadImageLabel->setColour (TextEditor::textColourId, Colours::black);
     pleaseLoadImageLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    pleaseLoadImageLabel->setBounds (0, 0, 150, 150);
+
 
     //[UserPreSize]
 
     // Don't display "Please Load an Image" label if image exists
     if(!imageComponent.getImage().isNull())
-    {
         pleaseLoadImageLabel->setVisible(false);
-    }
 
     //[/UserPreSize]
 
@@ -103,7 +94,6 @@ void ImageWindow::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    pleaseLoadImageLabel->setBounds (0, 0, 150, 150);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -132,7 +122,7 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="0 0 150 150" edTextCol="ff000000"
          edBkgCol="0" labelText="Please Load an Image" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" kerning="0" bold="0" italic="0" justification="36"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
@@ -142,3 +132,4 @@ END_JUCER_METADATA
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+
