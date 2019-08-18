@@ -524,15 +524,11 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_stealthModeToggle] -- add your button handler code here..
 
-        if(stealthModeToggle->getToggleState())
-        {
+        if (stealthModeToggle->getToggleState())
             activateStealthMode();
-        }
 
         else
-        {
             deactivateStealthMode();
-        }
 
         //[/UserButtonCode_stealthModeToggle]
     }
@@ -544,15 +540,13 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 void TrackNotesAudioProcessorEditor::mouseMove (const MouseEvent& e)
 {
     //[UserCode_mouseMove] -- Add your code here...
-    if(stealthModeToggle->isMouseOver())
-    {
+
+    if (stealthModeToggle->isMouseOver())
         stealthModeToggle->setButtonText("Stealth");
-    }
 
     else
-    {
         stealthModeToggle->setButtonText("");
-    }
+    
     //[/UserCode_mouseMove]
 }
 
@@ -567,7 +561,7 @@ void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
     versionNumberString += " v";
     versionNumberString += ProjectInfo::versionString;
 
-    if(pluginIsRunningInDemoMode)
+    if (pluginIsRunningInDemoMode)
         versionNumberString += " - Demo Version";
 
     else
