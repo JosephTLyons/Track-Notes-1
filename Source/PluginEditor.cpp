@@ -215,20 +215,14 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedLabelPtr->setEditable(true);
     microphonesUsedLabelPtr->setEditable(true);
 
-    if(performersNameLabelPtr->getText().isEmpty())
-    {
+    if (performersNameLabelPtr->getText().isEmpty())
         performersNameLabelPtr->setText("Performer's Name:", dontSendNotification);
-    }
 
-    if(instrumentPlayedLabelPtr->getText().isEmpty())
-    {
+    if (instrumentPlayedLabelPtr->getText().isEmpty())
         instrumentPlayedLabelPtr->setText("Instrument Played:", dontSendNotification);
-    }
 
-    if(microphonesUsedLabelPtr->getText().isEmpty())
-    {
+    if (microphonesUsedLabelPtr->getText().isEmpty())
         microphonesUsedLabelPtr->setText("Microphone(s) Used:", dontSendNotification);
-    }
 
     // Set up static text buttons
     staticTextSizeButtonPtr.reset(new StaticTextSizeButton);
@@ -243,7 +237,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     // Set up stealth mode
     // Turn button into a toggle button
     stealthModeToggle->setClickingTogglesState(true);
-    if(processor.stealthIsActivated)
+    if (processor.stealthIsActivated)
     {
         activateStealthMode();
         stealthModeToggle->setToggleState(true, dontSendNotification);
