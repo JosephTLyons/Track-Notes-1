@@ -568,14 +568,10 @@ void TrackNotesAudioProcessorEditor::setupVersionNumberlabel()
     versionNumberString += ProjectInfo::versionString;
 
     if(pluginIsRunningInDemoMode)
-    {
         versionNumberString += " - Demo Version";
-    }
 
     else
-    {
         versionNumberString += " - Full Version";
-    }
 
     theLyonsDenSoftwareLabel->setText("The Lyons' Den Software" + versionNumberString, dontSendNotification);
 }
