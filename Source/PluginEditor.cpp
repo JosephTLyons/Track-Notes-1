@@ -598,7 +598,7 @@ void TrackNotesAudioProcessorEditor::loadImage(Image &image, File &imagePath, co
         image = ImageCache::getFromFile(fileChooser.getResult());
     }
 
-    createImagePreviews(isImageOne);
+    createImagePreviews();
 }
 
 void TrackNotesAudioProcessorEditor::createImagePreviews()
