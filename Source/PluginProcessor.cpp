@@ -250,12 +250,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("instrumentPlayedLabel", instrumentPlayedLabel.getText());
     xml.setAttribute ("microphonesUsedLabel", microphonesUsedLabel.getText());
     xml.setAttribute ("stealthIsActivated", stealthIsActivated);
-    
-    // Store the values of all our parameters, using their param ID as the XML attribute
-    for (int i = 0; i < getNumParameters(); ++i)
-        if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
-            xml.setAttribute (p->paramID, p->getValue());
-    
+
     // Use this helper function to stuff it into the binary blob and return it..
     copyXmlToBinary (xml, destData);
 }
@@ -289,11 +284,6 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
 
             if (imageTwoPath.exists())
                 imageTwo = ImageCache::getFromFile (imageTwoPath);
-            
-            // Now reload our parameters..
-            for (int i = 0; i < getNumParameters(); ++i)
-                if (AudioProcessorParameterWithID* p = dynamic_cast<AudioProcessorParameterWithID*> (getParameters().getUnchecked(i)))
-                    p->setValue ((float) xml->getDoubleAttribute (p->paramID, p->getValue()));
         }
     }
 }
