@@ -7,6 +7,7 @@
     - Do I need to create entire editors in the processor just to save the contents are can it be created in editor and only store strings in processor
 3. Clean up README.md
 4. What all can I remove from processor public entirely (can I access editor from processor?)
+5. Increment version number and add actual features outside of code fixes / cleanup?
 
 SIGN VST SDK LICENSES FOR VST2 and VST3?
 FOLLOW TUTORIALS FOR SAVING AND FETCHING PLUGIN STATE
