@@ -262,10 +262,10 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
     
     if (xml != nullptr)
     {
-        // Make sure that it's actually our type of XML object..
+        // Make sure that it's the correct XML file
         if (xml->hasTagName ("trackNotes"))
         {
-            // Ok, now pull our strings
+            // Retrieve editor strings
             performersNameEditor.setText (xml->getStringAttribute ("performersName"));
             instrumentPlayedEditor.setText (xml->getStringAttribute ("instrumentPlayed"));
             microphonesUsedEditor.setText (xml->getStringAttribute ("microphonesUsed"));
