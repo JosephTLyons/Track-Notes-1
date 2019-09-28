@@ -273,9 +273,12 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             generalNotesEditor.setText (xml->getStringAttribute ("generalNotes"));
             imageOnePath = xml->getStringAttribute ("imageOnePath");
             imageTwoPath = xml->getStringAttribute ("imageTwoPath");
-            performersNameLabel.setText (xml->getStringAttribute ("performersNameLabel"), dontSendNotification);
-            instrumentPlayedLabel.setText (xml->getStringAttribute ("instrumentPlayedLabel"), dontSendNotification);
-            microphonesUsedLabel.setText (xml->getStringAttribute ("microphonesUsedLabel"), dontSendNotification);
+            performersNameLabel.setText (xml->getStringAttribute ("performersNameLabel"),
+                                         dontSendNotification);
+            instrumentPlayedLabel.setText (xml->getStringAttribute ("instrumentPlayedLabel"),
+                                           dontSendNotification);
+            microphonesUsedLabel.setText (xml->getStringAttribute ("microphonesUsedLabel"),
+                                          dontSendNotification);
             stealthIsActivated = xml->getIntAttribute ("stealthIsActivated");
             
             // Retrieve paths to images
