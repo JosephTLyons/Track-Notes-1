@@ -773,11 +773,11 @@ void TrackNotesAudioProcessorEditor::showTextAndEnableEditor (TextEditor &textEd
 {
     String tempTextHolder = textEditor.getText().trimStart();
 
-    textEditor.setText(tempTextHolder);
-    textEditor.moveCaretToTop(false);
-    textEditor.setScrollbarsShown(true);
-    textEditor.setReadOnly(false);
-    textEditor.setInterceptsMouseClicks(true, true);
+    textEditor.setText (tempTextHolder);
+    textEditor.moveCaretToTop (false);
+    textEditor.setScrollbarsShown (true);
+    textEditor.setReadOnly (false);
+    textEditor.setInterceptsMouseClicks (true, true);
 }
 
 void TrackNotesAudioProcessorEditor::setFocusTabOrder()
