@@ -1,7 +1,6 @@
 #  TODO.md
 
-1. Remove all deprecations
-2. Clean up code
+1. Clean up code
     - I think instead of linking all things across the process and editor class,
       I can just always use processor.whatever
         - After removing as much linked code as possible, I can probably move
@@ -19,10 +18,10 @@
                the user stops typing
             3. Just save the data to the strings in the proc in the editors
                destructor
-3. Clean up README.md
-4. What all can I remove from processor public entirely (can I access editor
+2. Clean up README.md
+3. What all can I remove from processor public entirely (can I access editor
    from processor?)
-5. Increment version number and add actual features outside of code fixes /
+4. Increment version number and add actual features outside of code fixes /
    cleanup?
 
 SIGN VST SDK LICENSES FOR VST2 and VST3?
