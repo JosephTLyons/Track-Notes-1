@@ -30,62 +30,8 @@ A simple AU/VST plugin to hold your session and track notes.
 * Mac VST: Copy VST to /Users/USERNAME/Library/Audio/Plug-Ins/VST
 * Windows VST: Copy VST to C:\Program Files\Steinberg\VstPlugins or the location specified by your DAW
 
-## Changelog:
-### XXX - v?
-* Updated to the newest JUCE framework
-* Massive code refresh
-* Erasing the custom text in a label will automatically default back to its original value without having to close and
-  open the plugin
-
-### July 30th, 2017 - v1.2.0
-* PC VST builds are now available
-* Stealth mode feature is added
-* Corrected tabbing behaviour:  Now, when a text editor is in focus, pressing the tab key will move the focus to the next sequential text editor.
-* Demo version now available
-
-### June 26th, 2017 - v1.1.0
-* Bug fix: Some images load and display larger than they really are.  Images that have dimensions that exceed those of the screen you are using will be scaled down (only the copy of the image loaded into the application is changed, not the original).  This is sort of guesswork, as its hard to know the exact dimensions of the docks/taskbars/etc, but it SHOULD work.  Also, images that don't exceed the desktop dimensions are not changed.
-* Reworked the entire GUI to allow for image previews.  You can still open the image in a larger window as before, but now you have "at a glance" views of either loaded image
-* Added support to allow the first three labels to be renameable by the user
-* The windows that house the images can no longer be maximized, in an effort to some keep DAWs from crashing.  This doesn't affect anything, since the images didn't previously scale when the window changed sized
-* Blank image windows now load in the center of the screen, the same as windows with images in them
-
-### June 11th, 2017 - v1.0.1
-* Fixed formatting issue with timestamps that included times above 60 minutes.
-* Images now load in the center of the screen, instead of the upper left-hand corner, this fixes the "locked images" bug some users reported
-* Changed the location, in the code, of where the method that calls the timestamping is located to hopefully increase the stability of the plugin and maybe fix some of the timestamping failures in some DAWs, but this comes with an ever-so-slight increase in CPU (Ex. 16 instances causes a 0.1 percent increase in CPU on my Macbook Pro 2.8 gHz i7 quad core).
-
-### June 5, 2017 - v1.0.0
-* Initial Release
-
 # Note:
 * I've only been able to test in GarageBand, Reaper, and Mixbus.  I've documented the known issues below in those DAWs.  Outside of those DAWs, I can't guarantee Track Notes will work properly.  If you encounter an issue, please email me.  I'll try to obtain the DAW and figure the bugs out.
-
-## Bugs / Known Issues:
-### Global Issues:
-* Insert Timestamp does not work in some DAWs, output may be all zeros or garbage values (GarageBand, Logic).
-* Image windows are always on top.  This is a "hack" because the main plugin window always tries to gain focus and cover up the image window (in most DAWs).  To combat that, I've forced the new window to always be on top.
-
-### VST in Reaper:
-* Spacebar focus is being stolen - User needs to engage FX menu setting "Send all keyboard input to plug - in"
-
-### AU in Garageband:
-* Some text editor key commands aren't picked up, such as command+a for selecting all text
-
-## Future features to consider (after v1.0.0 release):
-* Allow for many more images to be saved (maybe 16?) instead of just 2 - using a File Array to hold the paths
-* Video support
-* Resizable windows / GUI
-* User picked fonts, font sizes, and background color?
-* AAX (Mac and Windows)
-
-## Other things to do before next release (developer notes):
-* Installer script
-* Refactor method for Exporting Media and method for image resizing
-* Make public data members private
-* Make setter and getter methods for processor class items
-* Test other DAWs
-* Embed a cool font
 
 # Contact Information:
 * Email: JosephTLyons@gmail.com
