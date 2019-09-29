@@ -86,25 +86,7 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     generalNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    
-    performersNameLabel.setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    performersNameLabel.setJustificationType (Justification::centredLeft);
-    performersNameLabel.setEditable (false, false, false);
-    performersNameLabel.setColour (TextEditor::textColourId, Colours::black);
-    performersNameLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-    
-    instrumentPlayedLabel.setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    instrumentPlayedLabel.setJustificationType (Justification::centredLeft);
-    instrumentPlayedLabel.setEditable (false, false, false);
-    instrumentPlayedLabel.setColour (TextEditor::textColourId, Colours::black);
-    instrumentPlayedLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-    
-    microphonesUsedLabel.setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    microphonesUsedLabel.setJustificationType (Justification::centredLeft);
-    microphonesUsedLabel.setEditable (false, false, false);
-    microphonesUsedLabel.setColour (TextEditor::textColourId, Colours::black);
-    microphonesUsedLabel.setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-    
+
     // Set up text editor font sizes
     const int fontSize = 20;
     performersNameEditor.setFont (fontSize);
@@ -244,11 +226,14 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText().trim());
     xml.setAttribute ("generalNotes", generalNotesEditor.getText().trim());
+
     xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
     xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
-    xml.setAttribute ("performersNameLabel", performersNameLabel.getText());
-    xml.setAttribute ("instrumentPlayedLabel", instrumentPlayedLabel.getText());
-    xml.setAttribute ("microphonesUsedLabel", microphonesUsedLabel.getText());
+
+    xml.setAttribute ("performersNameLabel", performersNameLabelString);
+    xml.setAttribute ("instrumentPlayedLabel", instrumentPlayedLabelString);
+    xml.setAttribute ("microphonesUsedLabel", microphonesUsedLabelString);
+
     xml.setAttribute ("stealthIsActivated", stealthIsActivated);
 
     // Use this helper function to stuff it into the binary blob and return it..
@@ -271,14 +256,14 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             microphonesUsedEditor.setText (xml->getStringAttribute ("microphonesUsed"));
             timestampedNotesEditor.setText (xml->getStringAttribute ("timestampedNotes"));
             generalNotesEditor.setText (xml->getStringAttribute ("generalNotes"));
+
             imageOnePath = xml->getStringAttribute ("imageOnePath");
             imageTwoPath = xml->getStringAttribute ("imageTwoPath");
-            performersNameLabel.setText (xml->getStringAttribute ("performersNameLabel"),
-                                         dontSendNotification);
-            instrumentPlayedLabel.setText (xml->getStringAttribute ("instrumentPlayedLabel"),
-                                           dontSendNotification);
-            microphonesUsedLabel.setText (xml->getStringAttribute ("microphonesUsedLabel"),
-                                          dontSendNotification);
+
+            performersNameLabelString = xml->getStringAttribute ("performersNameLabel");
+            instrumentPlayedLabelString = xml->getStringAttribute ("instrumentPlayedLabel");
+            microphonesUsedLabelString = xml->getStringAttribute ("microphonesUsedLabel");
+            
             stealthIsActivated = xml->getIntAttribute ("stealthIsActivated");
             
             // Retrieve paths to images

@@ -43,11 +43,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     addAndMakeVisible (timestampedNotesEditorPtr = &processor.timestampedNotesEditor);
     addAndMakeVisible (generalNotesEditorPtr     = &processor.generalNotesEditor);
 
-    // Link labels
-    addAndMakeVisible (performersNameLabelPtr   = &processor.performersNameLabel);
-    addAndMakeVisible (instrumentPlayedLabelPtr = &processor.instrumentPlayedLabel);
-    addAndMakeVisible (microphonesUsedLabelPtr  = &processor.microphonesUsedLabel);
-
     isRunningInDemoMode = true;
 
     if (isRunningInDemoMode)
@@ -190,6 +185,39 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     stealthModeToggle->setBounds (752, 595, 48, 20);
 
+    performersNameLabel.reset (new Label ("performersNameLabel",
+                                          TRANS("Performer\'s Name:")));
+    addAndMakeVisible (performersNameLabel.get());
+    performersNameLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    performersNameLabel->setJustificationType (Justification::centredLeft);
+    performersNameLabel->setEditable (false, false, false);
+    performersNameLabel->setColour (TextEditor::textColourId, Colours::black);
+    performersNameLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    performersNameLabel->setBounds (0, 60, 218, 30);
+
+    instrumentPlayedLabel.reset (new Label ("instrumentPlayedLabel",
+                                            TRANS("Instrument Played:")));
+    addAndMakeVisible (instrumentPlayedLabel.get());
+    instrumentPlayedLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    instrumentPlayedLabel->setJustificationType (Justification::centredLeft);
+    instrumentPlayedLabel->setEditable (false, false, false);
+    instrumentPlayedLabel->setColour (TextEditor::textColourId, Colours::black);
+    instrumentPlayedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    instrumentPlayedLabel->setBounds (0, 95, 218, 30);
+
+    microphonesUsedLabel.reset (new Label ("microphonesUsedLabel",
+                                           TRANS("Microphone(s) Used:")));
+    addAndMakeVisible (microphonesUsedLabel.get());
+    microphonesUsedLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
+    microphonesUsedLabel->setJustificationType (Justification::centredLeft);
+    microphonesUsedLabel->setEditable (false, false, false);
+    microphonesUsedLabel->setColour (TextEditor::textColourId, Colours::black);
+    microphonesUsedLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    microphonesUsedLabel->setBounds (0, 130, 218, 30);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -198,6 +226,11 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
 
     //[Constructor] You can add your own custom stuff here..
+
+    // Set label text
+    performersNameLabel->setText (processor.performersNameLabelString, dontSendNotification);
+    instrumentPlayedLabel->setText (processor.instrumentPlayedLabelString, dontSendNotification);
+    microphonesUsedLabel->setText (processor.microphonesUsedLabelString, dontSendNotification);
 
     // Reset button names to image name (this doesn't work in standalone
     // since constructor isn't called when standalone loads, because plugin is already open
@@ -213,18 +246,18 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     Font::findFonts (usersFontsResults);
 
     // Set up labels
-    performersNameLabelPtr->setEditable (true);
-    instrumentPlayedLabelPtr->setEditable (true);
-    microphonesUsedLabelPtr->setEditable (true);
+    performersNameLabel->setEditable (true);
+    instrumentPlayedLabel->setEditable (true);
+    microphonesUsedLabel->setEditable (true);
 
-    if (performersNameLabelPtr->getText().isEmpty())
-        performersNameLabelPtr->setText ("Performer's Name:", dontSendNotification);
+    if (performersNameLabel->getText().isEmpty())
+        performersNameLabel->setText ("Performer's Name:", dontSendNotification);
 
-    if (instrumentPlayedLabelPtr->getText().isEmpty())
-        instrumentPlayedLabelPtr->setText ("Instrument Played:", dontSendNotification);
+    if (instrumentPlayedLabel->getText().isEmpty())
+        instrumentPlayedLabel->setText ("Instrument Played:", dontSendNotification);
 
-    if (microphonesUsedLabelPtr->getText().isEmpty())
-        microphonesUsedLabelPtr->setText ("Microphone(s) Used:", dontSendNotification);
+    if (microphonesUsedLabel->getText().isEmpty())
+        microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
 
     // Set up static text buttons
     staticTextSizeButtonPtr.reset (new StaticTextSizeButton);
@@ -257,15 +290,13 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
 
+    saveDataToProcessor();
+
     performersNameEditorPtr = nullptr;
     instrumentPlayedEditorPtr = nullptr;
     microphonesUsedEditorPtr = nullptr;
     timestampedNotesEditorPtr = nullptr;
     generalNotesEditorPtr = nullptr;
-
-    performersNameLabelPtr = nullptr;
-    instrumentPlayedLabelPtr = nullptr;
-    microphonesUsedLabelPtr = nullptr;
 
     // Normal C++ Pointers
     delete basicWindowImageOnePtr;
@@ -289,6 +320,9 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     imagesLabel = nullptr;
     exportMediaButton = nullptr;
     stealthModeToggle = nullptr;
+    performersNameLabel = nullptr;
+    instrumentPlayedLabel = nullptr;
+    microphonesUsedLabel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -342,10 +376,6 @@ void TrackNotesAudioProcessorEditor::resized()
     microphonesUsedEditorPtr->setBounds (218, 130, 282, 30);
     timestampedNotesEditorPtr->setBounds (0, 200, 500, 175);
     generalNotesEditorPtr->setBounds (0, 415, 1010, 175);
-
-    performersNameLabelPtr->setBounds (0, 60, 218, 30);
-    instrumentPlayedLabelPtr->setBounds (0, 95, 218, 30);
-    microphonesUsedLabelPtr->setBounds (0, 130, 218, 30);
 
     //[/UserPreResize]
 
@@ -482,13 +512,13 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
 
             // Save all text
             // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
-            pathToSaveTextFileTo.appendText (performersNameLabelPtr->getText());
+            pathToSaveTextFileTo.appendText (performersNameLabel->getText());
             pathToSaveTextFileTo.appendText (" " + performersNameEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText (instrumentPlayedLabelPtr->getText());
+            pathToSaveTextFileTo.appendText (instrumentPlayedLabel->getText());
             pathToSaveTextFileTo.appendText (" " + instrumentPlayedEditorPtr->getText() + "\n\n");
 
-            pathToSaveTextFileTo.appendText (microphonesUsedLabelPtr->getText());
+            pathToSaveTextFileTo.appendText (microphonesUsedLabel->getText());
             pathToSaveTextFileTo.appendText (" " + microphonesUsedEditorPtr->getText() + "\n\n");
 
             pathToSaveTextFileTo.appendText ("Timestamped Notes:\n");
@@ -788,9 +818,9 @@ void TrackNotesAudioProcessorEditor::setFocusTabOrder()
     microphonesUsedEditorPtr->setExplicitFocusOrder (3);
     timestampedNotesEditorPtr->setExplicitFocusOrder (4);
     generalNotesEditorPtr->setExplicitFocusOrder (5);
-    performersNameLabelPtr->setExplicitFocusOrder (6);
-    instrumentPlayedLabelPtr->setExplicitFocusOrder (7);
-    microphonesUsedLabelPtr->setExplicitFocusOrder (8);
+    performersNameLabel->setExplicitFocusOrder (6);
+    instrumentPlayedLabel->setExplicitFocusOrder (7);
+    microphonesUsedLabel->setExplicitFocusOrder (8);
 
     // Remove keyboard focus from these elements so that they are not included in tap order
     loadImageOneButton->setWantsKeyboardFocus (false);
@@ -834,6 +864,22 @@ void TrackNotesAudioProcessorEditor::timerCallback()
         generalNotesEditorPtr->setText (demoText);
 }
 
+void TrackNotesAudioProcessorEditor::saveDataToProcessor()
+{
+    // Editors
+
+    // Labels
+    performersNameLabel->hideEditor (false);
+    instrumentPlayedLabel->hideEditor (false);
+    microphonesUsedLabel->hideEditor (false);
+
+    processor.performersNameLabelString = performersNameLabel->getText();
+    processor.instrumentPlayedLabelString = instrumentPlayedLabel->getText();
+    processor.microphonesUsedLabelString = microphonesUsedLabel->getText();
+
+    // Bools
+}
+
 //[/MiscUserCode]
 
 
@@ -847,7 +893,7 @@ void TrackNotesAudioProcessorEditor::timerCallback()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="TrackNotesAudioProcessorEditor"
-                 componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer"
+                 componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer, public Label::Listener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="1005" initialHeight="620">
@@ -913,6 +959,21 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="752 595 48 20" tooltip="This button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the &quot;Insert Timestamp&quot; button."
               bgColOff="ff393939" bgColOn="ffffffff" textColOn="ff000000" buttonText=""
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <LABEL name="performersNameLabel" id="9c159bdc4788e13" memberName="performersNameLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 60 218 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <LABEL name="instrumentPlayedLabel" id="a34ed068d9f5ac5d" memberName="instrumentPlayedLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 95 218 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Instrument Played:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <LABEL name="microphonesUsedLabel" id="4e0c2b779c94a1e9" memberName="microphonesUsedLabel"
+         virtualName="" explicitFocusOrder="0" pos="0 130 218 30" edTextCol="ff000000"
+         edBkgCol="0" labelText="Microphone(s) Used:" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
+         fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

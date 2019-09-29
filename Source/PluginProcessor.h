@@ -74,13 +74,23 @@ public:
     TextEditor microphonesUsedEditor;
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
-    bool stealthIsActivated;
-    
-    File imageOnePath, imageTwoPath;
-    Image imageOne, imageTwo;
     
     AudioPlayHead::CurrentPositionInfo positionInformation;
-    Label performersNameLabel, instrumentPlayedLabel, microphonesUsedLabel;
+
+    String performersNameString;
+    String instrumentPlayedString;
+    String microphonesUsedString;
+    String timestampedNotesString;
+    String generalNotesString;
+
+    File imageOnePath, imageTwoPath;
+    Image imageOne, imageTwo;
+
+    String performersNameLabelString;
+    String instrumentPlayedLabelString;
+    String microphonesUsedLabelString;
+
+    bool stealthIsActivated;
     
 private:
     

@@ -73,10 +73,6 @@ private:
     SafePointer<TextEditor> timestampedNotesEditorPtr;
     SafePointer<TextEditor> generalNotesEditorPtr;
 
-    SafePointer<Label> performersNameLabelPtr;
-    SafePointer<Label> instrumentPlayedLabelPtr;
-    SafePointer<Label> microphonesUsedLabelPtr;
-
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
 
@@ -104,6 +100,7 @@ private:
     void setFocusTabOrder();
     void startDemoTimer();
     void timerCallback() override;
+    void saveDataToProcessor();
 
     //[/UserVariables]
 
@@ -122,6 +119,9 @@ private:
     std::unique_ptr<Label> imagesLabel;
     std::unique_ptr<TextButton> exportMediaButton;
     std::unique_ptr<TextButton> stealthModeToggle;
+    std::unique_ptr<Label> performersNameLabel;
+    std::unique_ptr<Label> instrumentPlayedLabel;
+    std::unique_ptr<Label> microphonesUsedLabel;
 
 
     //==============================================================================
