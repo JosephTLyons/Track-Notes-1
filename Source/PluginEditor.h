@@ -101,7 +101,7 @@ private:
     void timerCallback() override;
     void getDataFromProcessor();
     void saveDataToProcessor();
-    void labelTextChanged (Label* labelThatHasChanged);
+    void labelTextChanged (Label* labelThatHasChanged) override;
 
     //[/UserVariables]
 
