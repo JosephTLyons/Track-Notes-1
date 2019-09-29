@@ -342,6 +342,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     // Set up stealth mode
     // Turn button into a toggle button
     stealthModeToggle->setClickingTogglesState (true);
+
     if (processor.stealthIsActivated)
     {
         activateStealthMode();
