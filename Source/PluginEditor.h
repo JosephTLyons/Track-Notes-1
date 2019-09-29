@@ -68,7 +68,6 @@ private:
 
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
-    SafePointer<TextEditor> microphonesUsedEditorPtr;
     SafePointer<TextEditor> timestampedNotesEditorPtr;
     SafePointer<TextEditor> generalNotesEditorPtr;
 
@@ -125,6 +124,7 @@ private:
     std::unique_ptr<Label> microphonesUsedLabel;
     std::unique_ptr<TextEditor> performersNameEditor;
     std::unique_ptr<TextEditor> instrumentPlayedEditor;
+    std::unique_ptr<TextEditor> microphonesUsedEditor;
 
 
     //==============================================================================

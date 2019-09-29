@@ -37,16 +37,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
                        )
 #endif
 {
-    microphonesUsedEditor.setMultiLine (false);
-    microphonesUsedEditor.setReturnKeyStartsNewLine (false);
-    microphonesUsedEditor.setReadOnly (false);
-    microphonesUsedEditor.setScrollbarsShown (true);
-    microphonesUsedEditor.setCaretVisible (true);
-    microphonesUsedEditor.setPopupMenuEnabled (true);
-    microphonesUsedEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    microphonesUsedEditor.setColour (TextEditor::highlightColourId, Colours::black);
-    microphonesUsedEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    
     timestampedNotesEditor.setMultiLine (true);
     timestampedNotesEditor.setReturnKeyStartsNewLine (true);
     timestampedNotesEditor.setReadOnly (false);
@@ -195,7 +185,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
     xml.setAttribute ("performersName", performersNameString);
     xml.setAttribute ("instrumentPlayed", instrumentPlayedString);
-    xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
+    xml.setAttribute ("microphonesUsed", microphonesUsedString);
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText().trim());
     xml.setAttribute ("generalNotes", generalNotesEditor.getText().trim());
 
@@ -225,7 +215,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             // Retrieve editor strings
             performersNameString = xml->getStringAttribute ("performersName");
             instrumentPlayedString = xml->getStringAttribute ("instrumentPlayed");
-            microphonesUsedEditor.setText (xml->getStringAttribute ("microphonesUsed"));
+            microphonesUsedString = xml->getStringAttribute ("microphonesUsed");
             timestampedNotesEditor.setText (xml->getStringAttribute ("timestampedNotes"));
             generalNotesEditor.setText (xml->getStringAttribute ("generalNotes"));
 

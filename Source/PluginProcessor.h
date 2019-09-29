@@ -69,7 +69,6 @@ public:
     
     // Shouldn't be declaring these at public
     // But I'm having issues with making getter methods, oddly enough
-    TextEditor microphonesUsedEditor;
     TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
