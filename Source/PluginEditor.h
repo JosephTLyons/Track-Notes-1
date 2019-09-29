@@ -39,6 +39,7 @@
 class TrackNotesAudioProcessorEditor  : public AudioProcessorEditor,
                                         public TextEditor::Listener,
                                         private Timer,
+                                        public Label::Listener,
                                         public Button::Listener
 {
 public:
@@ -100,6 +101,7 @@ private:
     void timerCallback() override;
     void getDataFromProcessor();
     void saveDataToProcessor();
+    void labelTextChanged (Label* labelThatHasChanged);
 
     //[/UserVariables]
 

@@ -284,14 +284,10 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedLabel->setEditable (true);
     microphonesUsedLabel->setEditable (true);
 
-    if (performersNameLabel->getText().isEmpty())
-        performersNameLabel->setText ("Performer's Name:", dontSendNotification);
-
-    if (instrumentPlayedLabel->getText().isEmpty())
-        instrumentPlayedLabel->setText ("Instrument Played:", dontSendNotification);
-
-    if (microphonesUsedLabel->getText().isEmpty())
-        microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
+    // Add label listeners
+    performersNameLabel->addListener (this);
+    instrumentPlayedLabel->addListener (this);
+    microphonesUsedLabel->addListener (this);
 
     // Set up static text buttons
     staticTextSizeButtonPtr.reset (new StaticTextSizeButton);
@@ -928,6 +924,27 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
     // Buttons
 }
 
+void TrackNotesAudioProcessorEditor::labelTextChanged (Label* labelThatHasChanged)
+{
+    if (labelThatHasChanged == performersNameLabel.get())
+    {
+        if (performersNameLabel->getText().isEmpty())
+            performersNameLabel->setText ("Performer's Name:", dontSendNotification);
+    }
+
+    else if (labelThatHasChanged == instrumentPlayedLabel.get())
+    {
+        if (instrumentPlayedLabel->getText().isEmpty())
+            instrumentPlayedLabel->setText ("Instrument Played:", dontSendNotification);
+    }
+
+    else
+    {
+        if (microphonesUsedLabel->getText().isEmpty())
+            microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
+    }
+}
+
 //[/MiscUserCode]
 
 
@@ -941,7 +958,7 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="TrackNotesAudioProcessorEditor"
-                 componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer"
+                 componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer, public Label::Listener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="1005" initialHeight="620">
