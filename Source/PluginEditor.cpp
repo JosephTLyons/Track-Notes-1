@@ -926,21 +926,15 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
 
 void TrackNotesAudioProcessorEditor::labelTextChanged (Label* labelThatHasChanged)
 {
-    if (labelThatHasChanged == performersNameLabel.get())
+    if (labelThatHasChanged->getText().isEmpty())
     {
-        if (performersNameLabel->getText().isEmpty())
+        if (labelThatHasChanged == performersNameLabel.get())
             performersNameLabel->setText ("Performer's Name:", dontSendNotification);
-    }
 
-    else if (labelThatHasChanged == instrumentPlayedLabel.get())
-    {
-        if (instrumentPlayedLabel->getText().isEmpty())
+        else if (labelThatHasChanged == instrumentPlayedLabel.get())
             instrumentPlayedLabel->setText ("Instrument Played:", dontSendNotification);
-    }
 
-    else
-    {
-        if (microphonesUsedLabel->getText().isEmpty())
+        else
             microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
     }
 }
