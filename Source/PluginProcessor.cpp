@@ -37,16 +37,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
                        )
 #endif
 {
-    generalNotesEditor.setMultiLine (true);
-    generalNotesEditor.setReturnKeyStartsNewLine (true);
-    generalNotesEditor.setReadOnly (false);
-    generalNotesEditor.setScrollbarsShown (true);
-    generalNotesEditor.setCaretVisible (true);
-    generalNotesEditor.setPopupMenuEnabled (true);
-    generalNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    generalNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
-    generalNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    
     // Initialize to false for first use after upgrading
     // Since XML attribute isn't present upon first opening
     // the initalized value in unpredictable
@@ -177,7 +167,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("instrumentPlayed", instrumentPlayedString);
     xml.setAttribute ("microphonesUsed", microphonesUsedString);
     xml.setAttribute ("timestampedNotes", timestampedNotesString.trim());
-    xml.setAttribute ("generalNotes", generalNotesEditor.getText().trim());
+    xml.setAttribute ("generalNotes", generalNotesString.trim());
 
     xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
     xml.setAttribute ("imageTwoPath", imageTwoPath.getFullPathName());
@@ -207,7 +197,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             instrumentPlayedString = xml->getStringAttribute ("instrumentPlayed");
             microphonesUsedString = xml->getStringAttribute ("microphonesUsed");
             timestampedNotesString = xml->getStringAttribute ("timestampedNotes");
-            generalNotesEditor.setText (xml->getStringAttribute ("generalNotes"));
+            generalNotesString = xml->getStringAttribute ("generalNotes");
 
             imageOnePath = xml->getStringAttribute ("imageOnePath");
             imageTwoPath = xml->getStringAttribute ("imageTwoPath");

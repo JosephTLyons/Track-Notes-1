@@ -68,8 +68,6 @@ private:
 
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
-    SafePointer<TextEditor> generalNotesEditorPtr;
-
     SafePointer<BasicWindow> basicWindowImageOnePtr;
     SafePointer<BasicWindow> basicWindowImageTwoPtr;
 
@@ -125,6 +123,7 @@ private:
     std::unique_ptr<TextEditor> instrumentPlayedEditor;
     std::unique_ptr<TextEditor> microphonesUsedEditor;
     std::unique_ptr<TextEditor> timestampedNotesEditor;
+    std::unique_ptr<TextEditor> generalNotesEditor;
 
 
     //==============================================================================

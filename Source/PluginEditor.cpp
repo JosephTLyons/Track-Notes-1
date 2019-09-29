@@ -36,8 +36,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     createImagePreviews();
 
-    addAndMakeVisible (generalNotesEditorPtr     = &processor.generalNotesEditor);
-
     isRunningInDemoMode = true;
 
     if (isRunningInDemoMode)
@@ -273,6 +271,21 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     timestampedNotesEditor->setBounds (0, 200, 500, 175);
 
+    generalNotesEditor.reset (new TextEditor ("generalNotesEditor"));
+    addAndMakeVisible (generalNotesEditor.get());
+    generalNotesEditor->setMultiLine (true);
+    generalNotesEditor->setReturnKeyStartsNewLine (true);
+    generalNotesEditor->setReadOnly (false);
+    generalNotesEditor->setScrollbarsShown (true);
+    generalNotesEditor->setCaretVisible (true);
+    generalNotesEditor->setPopupMenuEnabled (true);
+    generalNotesEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    generalNotesEditor->setColour (TextEditor::highlightColourId, Colours::black);
+    generalNotesEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    generalNotesEditor->setText (String());
+
+    generalNotesEditor->setBounds (0, 415, 1010, 175);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -289,7 +302,7 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedEditor->setFont (fontSize);
     microphonesUsedEditor->setFont (fontSize);
     timestampedNotesEditor->setFont (fontSize);
-    generalNotesEditorPtr->setFont (fontSize);
+    generalNotesEditor->setFont (fontSize);
 
     getDataFromProcessor();
 
@@ -378,6 +391,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     instrumentPlayedEditor = nullptr;
     microphonesUsedEditor = nullptr;
     timestampedNotesEditor = nullptr;
+    generalNotesEditor = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -425,9 +439,6 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
 void TrackNotesAudioProcessorEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
-
-    generalNotesEditorPtr->setBounds (0, 415, 1010, 175);
-
     //[/UserPreResize]
 
     //[UserResized] Add your own custom resize handling here..
@@ -576,7 +587,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             pathToSaveTextFileTo.appendText (timestampedNotesEditor->getText().trim() + "\n\n");
 
             pathToSaveTextFileTo.appendText ("General Notes:\n");
-            pathToSaveTextFileTo.appendText (generalNotesEditorPtr->getText().trim() + "\n\n");
+            pathToSaveTextFileTo.appendText (generalNotesEditor->getText().trim() + "\n\n");
 
             pathToSaveTextFileTo.appendText ("Image One: ");
             pathToSaveTextFileTo.appendText (processor.imageOnePath.getFileName() + "\n\n");
@@ -824,7 +835,7 @@ void TrackNotesAudioProcessorEditor::activateStealthMode()
     processor.stealthIsActivated = true;
 
     hideTextAndDisableEditor (*timestampedNotesEditor);
-    hideTextAndDisableEditor (*generalNotesEditorPtr);
+    hideTextAndDisableEditor (*generalNotesEditor);
 
     insertTimeStampButton->setInterceptsMouseClicks (false, false);
 }
@@ -845,7 +856,7 @@ void TrackNotesAudioProcessorEditor::deactivateStealthMode()
     processor.stealthIsActivated = false;
 
     showTextAndEnableEditor (*timestampedNotesEditor);
-    showTextAndEnableEditor (*generalNotesEditorPtr);
+    showTextAndEnableEditor (*generalNotesEditor);
 
     insertTimeStampButton->setInterceptsMouseClicks (true, true);
 }
@@ -868,7 +879,7 @@ void TrackNotesAudioProcessorEditor::setFocusTabOrder()
     instrumentPlayedEditor->setExplicitFocusOrder (2);
     microphonesUsedEditor->setExplicitFocusOrder (3);
     timestampedNotesEditor->setExplicitFocusOrder (4);
-    generalNotesEditorPtr->setExplicitFocusOrder (5);
+    generalNotesEditor->setExplicitFocusOrder (5);
     performersNameLabel->setExplicitFocusOrder (6);
     instrumentPlayedLabel->setExplicitFocusOrder (7);
     microphonesUsedLabel->setExplicitFocusOrder (8);
@@ -912,7 +923,7 @@ void TrackNotesAudioProcessorEditor::timerCallback()
         timestampedNotesEditor->setText (demoText);
 
     else
-        generalNotesEditorPtr->setText (demoText);
+        generalNotesEditor->setText (demoText);
 }
 
 void TrackNotesAudioProcessorEditor::getDataFromProcessor()
@@ -923,6 +934,7 @@ void TrackNotesAudioProcessorEditor::getDataFromProcessor()
     microphonesUsedEditor->setText (processor.microphonesUsedString);
 
     timestampedNotesEditor->setText (processor.timestampedNotesString);
+    generalNotesEditor->setText (processor.generalNotesString);
 
     // Label
     performersNameLabel->setText (processor.performersNameLabelString, dontSendNotification);
@@ -940,6 +952,7 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
     processor.microphonesUsedString = microphonesUsedEditor->getText();
 
     processor.timestampedNotesString = timestampedNotesEditor->getText();
+    processor.generalNotesString = generalNotesEditor->getText();
 
     // Labels
     performersNameLabel->hideEditor (false);
@@ -1076,6 +1089,10 @@ BEGIN_JUCER_METADATA
               retKeyStartsLine="0" readonly="0" scrollbars="0" caret="1" popupmenu="1"/>
   <TEXTEDITOR name="timestampedNotesEditor" id="6efb7ce94469d9b7" memberName="timestampedNotesEditor"
               virtualName="" explicitFocusOrder="0" pos="0 200 500 175" bkgcol="ff565454"
+              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
+              retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
+  <TEXTEDITOR name="generalNotesEditor" id="fa606d1bbdb35fb6" memberName="generalNotesEditor"
+              virtualName="" explicitFocusOrder="0" pos="0 415 1010 175" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
 </JUCER_COMPONENT>
