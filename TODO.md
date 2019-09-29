@@ -19,5 +19,5 @@ FOLLOW TUTORIALS FOR SAVING AND FETCHING PLUGIN STATE?
 
 # Other things to do before next release (developer notes):
 * Installer script
-* Refactor method for Exporting Media and method for image resizing
+* Refactor method for image resizing
 * Test other DAWs

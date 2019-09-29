@@ -99,6 +99,7 @@ private:
     void saveDataToProcessor();
     void labelTextChanged (Label* labelThatHasChanged) override;
     void setDefaultLabelText();
+    void exportMedia();
 
     //[/UserVariables]
 

@@ -558,52 +558,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
     {
         //[UserButtonCode_exportMediaButton] -- add your button handler code here..
 
-        FileChooser fileChooser ("Export Text",
-                                 File::getSpecialLocation(File::userHomeDirectory),
-                                 "*",
-                                 true);
-
-
-        if (fileChooser.browseForFileToSave (true))
-        {
-            // Create folder
-            File pathToSaveFolder(fileChooser.getResult());
-            pathToSaveFolder.createDirectory();
-
-            // Create path to .txt file with same name as the save folder
-            File pathToSaveTextFileTo = pathToSaveFolder;
-            pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName() + "/" +
-            pathToSaveTextFileTo.getFileName() + ".txt";
-
-            // Save all text
-            // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
-            pathToSaveTextFileTo.appendText (performersNameLabel->getText());
-            pathToSaveTextFileTo.appendText (" " + performersNameEditor->getText() + "\n\n");
-
-            pathToSaveTextFileTo.appendText (instrumentPlayedLabel->getText());
-            pathToSaveTextFileTo.appendText (" " + instrumentPlayedEditor->getText() + "\n\n");
-
-            pathToSaveTextFileTo.appendText (microphonesUsedLabel->getText());
-            pathToSaveTextFileTo.appendText (" " + microphonesUsedEditor->getText() + "\n\n");
-
-            pathToSaveTextFileTo.appendText ("Timestamped Notes:\n");
-            pathToSaveTextFileTo.appendText (timestampedNotesEditor->getText().trim() + "\n\n");
-
-            pathToSaveTextFileTo.appendText ("General Notes:\n");
-            pathToSaveTextFileTo.appendText (generalNotesEditor->getText().trim() + "\n\n");
-
-            pathToSaveTextFileTo.appendText ("Image One: ");
-            pathToSaveTextFileTo.appendText (processor.imageOnePath.getFileName() + "\n\n");
-
-            pathToSaveTextFileTo.appendText ("Image Two: ");
-            pathToSaveTextFileTo.appendText (processor.imageTwoPath.getFileName());
-
-            // Copy images into folder
-            processor.imageOnePath.copyFileTo (pathToSaveFolder.getFullPathName() + "/" +
-                                               processor.imageOnePath.getFileName());
-            processor.imageTwoPath.copyFileTo (pathToSaveFolder.getFullPathName() + "/" +
-                                               processor.imageTwoPath.getFileName());
-        }
+        exportMedia();
 
         //[/UserButtonCode_exportMediaButton]
     }
@@ -984,6 +939,57 @@ void TrackNotesAudioProcessorEditor::setDefaultLabelText()
 
     if (microphonesUsedLabel->getText().isEmpty())
         microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
+}
+
+void TrackNotesAudioProcessorEditor::exportMedia()
+{
+    FileChooser fileChooser ("Export Text",
+                             File::getSpecialLocation (File::userHomeDirectory),
+                             "*",
+                             true);
+
+    if (fileChooser.browseForFileToSave (true))
+    {
+        // Create folder
+        File pathToSaveFolder (fileChooser.getResult());
+        pathToSaveFolder.createDirectory();
+
+        // Create path to .txt file with same name as the save folder
+        File pathToSaveTextFileTo = pathToSaveFolder;
+        pathToSaveTextFileTo = pathToSaveTextFileTo.getFullPathName()
+                             + "/"
+                             + pathToSaveTextFileTo.getFileName()
+                             + ".txt";
+
+        // Save all text and trim text of editors to keep from saving newlines that may be added
+        // during stealth mode
+        pathToSaveTextFileTo.appendText (performersNameLabel->getText());
+        pathToSaveTextFileTo.appendText (" " + performersNameEditor->getText() + "\n\n");
+
+        pathToSaveTextFileTo.appendText (instrumentPlayedLabel->getText());
+        pathToSaveTextFileTo.appendText (" " + instrumentPlayedEditor->getText() + "\n\n");
+
+        pathToSaveTextFileTo.appendText (microphonesUsedLabel->getText());
+        pathToSaveTextFileTo.appendText (" " + microphonesUsedEditor->getText() + "\n\n");
+
+        pathToSaveTextFileTo.appendText ("Timestamped Notes:\n");
+        pathToSaveTextFileTo.appendText (timestampedNotesEditor->getText().trim() + "\n\n");
+
+        pathToSaveTextFileTo.appendText ("General Notes:\n");
+        pathToSaveTextFileTo.appendText (generalNotesEditor->getText().trim() + "\n\n");
+
+        pathToSaveTextFileTo.appendText ("Image One: ");
+        pathToSaveTextFileTo.appendText (processor.imageOnePath.getFileName() + "\n\n");
+
+        pathToSaveTextFileTo.appendText ("Image Two: ");
+        pathToSaveTextFileTo.appendText (processor.imageTwoPath.getFileName());
+
+        // Copy images into folder
+        processor.imageOnePath.copyFileTo (pathToSaveFolder.getFullPathName() + "/" +
+                                           processor.imageOnePath.getFileName());
+        processor.imageTwoPath.copyFileTo (pathToSaveFolder.getFullPathName() + "/" +
+                                           processor.imageTwoPath.getFileName());
+    }
 }
 
 //[/MiscUserCode]
