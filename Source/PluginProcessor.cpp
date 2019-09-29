@@ -37,16 +37,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
                        )
 #endif
 {
-    timestampedNotesEditor.setMultiLine (true);
-    timestampedNotesEditor.setReturnKeyStartsNewLine (true);
-    timestampedNotesEditor.setReadOnly (false);
-    timestampedNotesEditor.setScrollbarsShown (true);
-    timestampedNotesEditor.setCaretVisible (true);
-    timestampedNotesEditor.setPopupMenuEnabled (true);
-    timestampedNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    timestampedNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
-    timestampedNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
-    
     generalNotesEditor.setMultiLine (true);
     generalNotesEditor.setReturnKeyStartsNewLine (true);
     generalNotesEditor.setReadOnly (false);
@@ -186,7 +176,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     xml.setAttribute ("performersName", performersNameString);
     xml.setAttribute ("instrumentPlayed", instrumentPlayedString);
     xml.setAttribute ("microphonesUsed", microphonesUsedString);
-    xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText().trim());
+    xml.setAttribute ("timestampedNotes", timestampedNotesString.trim());
     xml.setAttribute ("generalNotes", generalNotesEditor.getText().trim());
 
     xml.setAttribute ("imageOnePath", imageOnePath.getFullPathName());
@@ -216,7 +206,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
             performersNameString = xml->getStringAttribute ("performersName");
             instrumentPlayedString = xml->getStringAttribute ("instrumentPlayed");
             microphonesUsedString = xml->getStringAttribute ("microphonesUsed");
-            timestampedNotesEditor.setText (xml->getStringAttribute ("timestampedNotes"));
+            timestampedNotesString = xml->getStringAttribute ("timestampedNotes");
             generalNotesEditor.setText (xml->getStringAttribute ("generalNotes"));
 
             imageOnePath = xml->getStringAttribute ("imageOnePath");

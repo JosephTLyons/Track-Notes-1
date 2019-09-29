@@ -67,9 +67,6 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    // Shouldn't be declaring these at public
-    // But I'm having issues with making getter methods, oddly enough
-    TextEditor timestampedNotesEditor;
     TextEditor generalNotesEditor;
     
     AudioPlayHead::CurrentPositionInfo positionInformation;
