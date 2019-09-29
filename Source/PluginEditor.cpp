@@ -893,7 +893,7 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="TrackNotesAudioProcessorEditor"
-                 componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer, public Label::Listener"
+                 componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="1005" initialHeight="620">
