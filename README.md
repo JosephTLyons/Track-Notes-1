@@ -31,6 +31,12 @@ A simple AU/VST plugin to hold your session and track notes.
 * Windows VST: Copy VST to C:\Program Files\Steinberg\VstPlugins or the location specified by your DAW
 
 ## Changelog:
+### XXX - v?
+* Updated to the newest JUCE framework
+* Massive code refresh
+* Erasing the custom text in a label will automatically default back to its original value without having to close and
+  open the plugin
+
 ### July 30th, 2017 - v1.2.0
 * PC VST builds are now available
 * Stealth mode feature is added
