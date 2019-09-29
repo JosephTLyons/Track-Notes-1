@@ -67,7 +67,6 @@ private:
 
     ImageComponent imagePreviewOne, imagePreviewTwo;
 
-    SafePointer<TextEditor> performersNameEditorPtr;
     SafePointer<TextEditor> instrumentPlayedEditorPtr;
     SafePointer<TextEditor> microphonesUsedEditorPtr;
     SafePointer<TextEditor> timestampedNotesEditorPtr;
@@ -100,6 +99,7 @@ private:
     void setFocusTabOrder();
     void startDemoTimer();
     void timerCallback() override;
+    void getDataFromProcessor();
     void saveDataToProcessor();
 
     //[/UserVariables]
@@ -122,6 +122,7 @@ private:
     std::unique_ptr<Label> performersNameLabel;
     std::unique_ptr<Label> instrumentPlayedLabel;
     std::unique_ptr<Label> microphonesUsedLabel;
+    std::unique_ptr<TextEditor> performersNameEditor;
 
 
     //==============================================================================

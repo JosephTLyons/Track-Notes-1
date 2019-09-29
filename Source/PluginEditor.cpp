@@ -37,7 +37,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     createImagePreviews();
 
     // Point TextEditors Ptrs of editor class to actual GUI TextEditors in processor class
-    addAndMakeVisible (performersNameEditorPtr   = &processor.performersNameEditor);
     addAndMakeVisible (instrumentPlayedEditorPtr = &processor.instrumentPlayedEditor);
     addAndMakeVisible (microphonesUsedEditorPtr  = &processor.microphonesUsedEditor);
     addAndMakeVisible (timestampedNotesEditorPtr = &processor.timestampedNotesEditor);
@@ -218,6 +217,21 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     microphonesUsedLabel->setBounds (0, 130, 218, 30);
 
+    performersNameEditor.reset (new TextEditor ("performersNameEditor"));
+    addAndMakeVisible (performersNameEditor.get());
+    performersNameEditor->setMultiLine (false);
+    performersNameEditor->setReturnKeyStartsNewLine (false);
+    performersNameEditor->setReadOnly (false);
+    performersNameEditor->setScrollbarsShown (false);
+    performersNameEditor->setCaretVisible (true);
+    performersNameEditor->setPopupMenuEnabled (true);
+    performersNameEditor->setColour (TextEditor::backgroundColourId, Colour (0xff565454));
+    performersNameEditor->setColour (TextEditor::highlightColourId, Colours::black);
+    performersNameEditor->setColour (TextEditor::outlineColourId, Colour (0xff565454));
+    performersNameEditor->setText (String());
+
+    performersNameEditor->setBounds (218, 60, 282, 30);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -227,10 +241,16 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     //[Constructor] You can add your own custom stuff here..
 
-    // Set label text
-    performersNameLabel->setText (processor.performersNameLabelString, dontSendNotification);
-    instrumentPlayedLabel->setText (processor.instrumentPlayedLabelString, dontSendNotification);
-    microphonesUsedLabel->setText (processor.microphonesUsedLabelString, dontSendNotification);
+        // Set up text editor font sizes
+    const int fontSize = 20;
+
+    performersNameEditor->setFont (fontSize);
+    instrumentPlayedEditorPtr->setFont (fontSize);
+    microphonesUsedEditorPtr->setFont (fontSize);
+    timestampedNotesEditorPtr->setFont (fontSize);
+    generalNotesEditorPtr->setFont (fontSize);
+
+    getDataFromProcessor();
 
     // Reset button names to image name (this doesn't work in standalone
     // since constructor isn't called when standalone loads, because plugin is already open
@@ -292,7 +312,6 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 
     saveDataToProcessor();
 
-    performersNameEditorPtr = nullptr;
     instrumentPlayedEditorPtr = nullptr;
     microphonesUsedEditorPtr = nullptr;
     timestampedNotesEditorPtr = nullptr;
@@ -323,6 +342,7 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     performersNameLabel = nullptr;
     instrumentPlayedLabel = nullptr;
     microphonesUsedLabel = nullptr;
+    performersNameEditor = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -371,7 +391,6 @@ void TrackNotesAudioProcessorEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
 
-    performersNameEditorPtr->setBounds (218, 60, 282, 30);
     instrumentPlayedEditorPtr->setBounds (218, 95, 282, 30);
     microphonesUsedEditorPtr->setBounds (218, 130, 282, 30);
     timestampedNotesEditorPtr->setBounds (0, 200, 500, 175);
@@ -513,7 +532,7 @@ void TrackNotesAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked
             // Save all text
             // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
             pathToSaveTextFileTo.appendText (performersNameLabel->getText());
-            pathToSaveTextFileTo.appendText (" " + performersNameEditorPtr->getText() + "\n\n");
+            pathToSaveTextFileTo.appendText (" " + performersNameEditor->getText() + "\n\n");
 
             pathToSaveTextFileTo.appendText (instrumentPlayedLabel->getText());
             pathToSaveTextFileTo.appendText (" " + instrumentPlayedEditorPtr->getText() + "\n\n");
@@ -813,7 +832,7 @@ void TrackNotesAudioProcessorEditor::showTextAndEnableEditor (TextEditor &textEd
 void TrackNotesAudioProcessorEditor::setFocusTabOrder()
 {
     // Set up tap order
-    performersNameEditorPtr->setExplicitFocusOrder (1);
+    performersNameEditor->setExplicitFocusOrder (1);
     instrumentPlayedEditorPtr->setExplicitFocusOrder (2);
     microphonesUsedEditorPtr->setExplicitFocusOrder (3);
     timestampedNotesEditorPtr->setExplicitFocusOrder (4);
@@ -849,7 +868,7 @@ void TrackNotesAudioProcessorEditor::timerCallback()
     String demoText = "Track Notes Demo Version.";
 
     if (randomNumber == 0)
-        performersNameEditorPtr->setText (demoText);
+        performersNameEditor->setText (demoText);
 
     else if (randomNumber == 1)
         instrumentPlayedEditorPtr->setText (demoText);
@@ -864,9 +883,23 @@ void TrackNotesAudioProcessorEditor::timerCallback()
         generalNotesEditorPtr->setText (demoText);
 }
 
+void TrackNotesAudioProcessorEditor::getDataFromProcessor()
+{
+    // Editors
+    performersNameEditor->setText (processor.performersNameString, dontSendNotification);
+
+    // Label
+    performersNameLabel->setText (processor.performersNameLabelString, dontSendNotification);
+    instrumentPlayedLabel->setText (processor.instrumentPlayedLabelString, dontSendNotification);
+    microphonesUsedLabel->setText (processor.microphonesUsedLabelString, dontSendNotification);
+
+    // Buttons
+}
+
 void TrackNotesAudioProcessorEditor::saveDataToProcessor()
 {
     // Editors
+    processor.performersNameString = performersNameEditor->getText();
 
     // Labels
     performersNameLabel->hideEditor (false);
@@ -877,7 +910,7 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
     processor.instrumentPlayedLabelString = instrumentPlayedLabel->getText();
     processor.microphonesUsedLabelString = microphonesUsedLabel->getText();
 
-    // Bools
+    // Buttons
 }
 
 //[/MiscUserCode]
@@ -974,6 +1007,10 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Microphone(s) Used:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
          fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <TEXTEDITOR name="performersNameEditor" id="81adb7f84cfa442" memberName="performersNameEditor"
+              virtualName="" explicitFocusOrder="0" pos="218 60 282 30" bkgcol="ff565454"
+              hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="0"
+              retKeyStartsLine="0" readonly="0" scrollbars="0" caret="1" popupmenu="1"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

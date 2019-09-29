@@ -37,16 +37,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
                        )
 #endif
 {
-    performersNameEditor.setMultiLine (false);
-    performersNameEditor.setReturnKeyStartsNewLine (false);
-    performersNameEditor.setReadOnly (false);
-    performersNameEditor.setScrollbarsShown (true);
-    performersNameEditor.setCaretVisible (true);
-    performersNameEditor.setPopupMenuEnabled (true);
-    performersNameEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
-    performersNameEditor.setColour (TextEditor::highlightColourId, Colours::black);
-    performersNameEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
     instrumentPlayedEditor.setMultiLine (false);
     instrumentPlayedEditor.setReturnKeyStartsNewLine (false);
     instrumentPlayedEditor.setReadOnly (false);
@@ -86,14 +76,6 @@ TrackNotesAudioProcessor::TrackNotesAudioProcessor()
     generalNotesEditor.setColour (TextEditor::backgroundColourId, Colour (0xff565454));
     generalNotesEditor.setColour (TextEditor::highlightColourId, Colours::black);
     generalNotesEditor.setColour (TextEditor::outlineColourId, Colour (0xff565454));
-
-    // Set up text editor font sizes
-    const int fontSize = 20;
-    performersNameEditor.setFont (fontSize);
-    instrumentPlayedEditor.setFont (fontSize);
-    microphonesUsedEditor.setFont (fontSize);
-    timestampedNotesEditor.setFont (fontSize);
-    generalNotesEditor.setFont (fontSize);
     
     // Initialize to false for first use after upgrading
     // Since XML attribute isn't present upon first opening
@@ -221,7 +203,7 @@ void TrackNotesAudioProcessor::getStateInformation (MemoryBlock& destData)
     
     // add some attributes to it..
     // Also, trim text of editors to keep from saving newlines that may be added during stealth mode
-    xml.setAttribute ("performersName", performersNameEditor.getText());
+    xml.setAttribute ("performersName", performersNameString);
     xml.setAttribute ("instrumentPlayed", instrumentPlayedEditor.getText());
     xml.setAttribute ("microphonesUsed", microphonesUsedEditor.getText());
     xml.setAttribute ("timestampedNotes", timestampedNotesEditor.getText().trim());
@@ -251,7 +233,7 @@ void TrackNotesAudioProcessor::setStateInformation (const void* data, int sizeIn
         if (xml->hasTagName ("trackNotes"))
         {
             // Retrieve editor strings
-            performersNameEditor.setText (xml->getStringAttribute ("performersName"));
+            performersNameString = xml->getStringAttribute ("performersName");
             instrumentPlayedEditor.setText (xml->getStringAttribute ("instrumentPlayed"));
             microphonesUsedEditor.setText (xml->getStringAttribute ("microphonesUsed"));
             timestampedNotesEditor.setText (xml->getStringAttribute ("timestampedNotes"));
