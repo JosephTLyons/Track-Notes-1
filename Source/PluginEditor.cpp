@@ -329,6 +329,8 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     instrumentPlayedLabel->addListener (this);
     microphonesUsedLabel->addListener (this);
 
+    setDefaultLabelText();
+
     // Set up static text buttons
     staticTextSizeButtonPtr.reset (new StaticTextSizeButton);
 
@@ -969,17 +971,19 @@ void TrackNotesAudioProcessorEditor::saveDataToProcessor()
 
 void TrackNotesAudioProcessorEditor::labelTextChanged (Label* labelThatHasChanged)
 {
-    if (labelThatHasChanged->getText().isEmpty())
-    {
-        if (labelThatHasChanged == performersNameLabel.get())
-            performersNameLabel->setText ("Performer's Name:", dontSendNotification);
+    setDefaultLabelText();
+}
 
-        else if (labelThatHasChanged == instrumentPlayedLabel.get())
-            instrumentPlayedLabel->setText ("Instrument Played:", dontSendNotification);
+void TrackNotesAudioProcessorEditor::setDefaultLabelText()
+{
+    if (performersNameLabel->getText().isEmpty())
+        performersNameLabel->setText ("Performer's Name:", dontSendNotification);
 
-        else
-            microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
-    }
+    if (instrumentPlayedLabel->getText().isEmpty())
+        instrumentPlayedLabel->setText ("Instrument Played:", dontSendNotification);
+
+    if (microphonesUsedLabel->getText().isEmpty())
+        microphonesUsedLabel->setText ("Microphone(s) Used:", dontSendNotification);
 }
 
 //[/MiscUserCode]

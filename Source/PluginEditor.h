@@ -98,6 +98,7 @@ private:
     void getDataFromProcessor();
     void saveDataToProcessor();
     void labelTextChanged (Label* labelThatHasChanged) override;
+    void setDefaultLabelText();
 
     //[/UserVariables]
 
