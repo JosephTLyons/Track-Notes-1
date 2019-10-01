@@ -14,6 +14,50 @@
               companyName="The Lyons Den" pluginFormats="buildAU,buildAUv3,buildVST,buildVST3"
               pluginCharacteristicsValue="pluginEditorRequiresKeys">
   <MAINGROUP id="t5b0Im" name="Track Notes">
+    <GROUP id="{8FA41447-19A7-4990-86F3-A236BC96DA81}" name="Track Notes 2.0.0 UI">
+      <FILE id="a62Fce" name="TrackNotes-01.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-01.png"/>
+      <FILE id="dV0B7d" name="TrackNotes-02.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-02.png"/>
+      <FILE id="hNjlma" name="TrackNotes-03.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-03.png"/>
+      <FILE id="MT0vsg" name="TrackNotes-04.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-04.png"/>
+      <FILE id="aQvh7V" name="TrackNotes-05.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-05.png"/>
+      <FILE id="bFITI3" name="TrackNotes-06.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-06.png"/>
+      <FILE id="c6LM3a" name="TrackNotes-07.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-07.png"/>
+      <FILE id="ssGNzJ" name="TrackNotes-08.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-08.png"/>
+      <FILE id="sOFklW" name="TrackNotes-09.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-09.png"/>
+      <FILE id="M3lvLg" name="TrackNotes-10.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-10.png"/>
+      <FILE id="gNsH8g" name="TrackNotes-11.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-11.png"/>
+      <FILE id="ZtKye6" name="TrackNotes-12.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-12.png"/>
+      <FILE id="eQHQI1" name="TrackNotes-13.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-13.png"/>
+      <FILE id="Mpbiru" name="TrackNotes-14.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-14.png"/>
+      <FILE id="RVEYfH" name="TrackNotes-15.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-15.png"/>
+      <FILE id="k4uvk8" name="TrackNotes-16.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-16.png"/>
+      <FILE id="HT2jS8" name="TrackNotes-17.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-17.png"/>
+      <FILE id="sD0WEa" name="TrackNotes-18.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-18.png"/>
+      <FILE id="d6x30W" name="TrackNotes-19.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-19.png"/>
+      <FILE id="X1ZUUH" name="TrackNotes-20.png" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotes-20.png"/>
+      <FILE id="z3zUXP" name="TrackNotesJoe.ai" compile="0" resource="1"
+            file="Track Notes 2.0.0 UI/TrackNotesJoe.ai"/>
+    </GROUP>
     <FILE id="tOBFgD" name="TODO.md" compile="0" resource="1" file="TODO.md"/>
     <FILE id="LTSZaj" name="README.md" compile="0" resource="1" file="README.md"/>
     <GROUP id="{38239DC4-010A-CAC1-0DF6-E5D31B4A25BE}" name="Source">

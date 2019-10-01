@@ -1,11 +1,11 @@
 #  TODO.md
 
-1. Increment version number and add actual features outside of code fixes /
-   cleanup?
-2. Custom Font
-3. GUI Upgrade
-4. Features
-5. Bug Fixes
+1. Increment version number to 2.0.0
+2. Implement Susan's UI and add embedded font
+3. Features
+4. Bug Fixes
+5. Increment version number to 2.0.0
+6. Credit susan
 
 SIGN VST SDK LICENSES AGREEMENT FOR VST2 and VST3?
 FOLLOW TUTORIALS FOR SAVING AND FETCHING PLUGIN STATE?
