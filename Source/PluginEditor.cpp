@@ -46,18 +46,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     //[/Constructor_pre]
 
-    trackNotesLabel.reset (new Label ("trackNotesLabel",
-                                      TRANS("Track Notes")));
-    addAndMakeVisible (trackNotesLabel.get());
-    trackNotesLabel->setFont (Font ("Arial", 48.70f, Font::plain).withTypefaceStyle ("Regular"));
-    trackNotesLabel->setJustificationType (Justification::centredTop);
-    trackNotesLabel->setEditable (false, false, false);
-    trackNotesLabel->setColour (Label::textColourId, Colours::white);
-    trackNotesLabel->setColour (TextEditor::textColourId, Colours::black);
-    trackNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    trackNotesLabel->setBounds (0, 0, 1005, 50);
-
     timestampedNotesLabel.reset (new Label ("timestampedNotesLabel",
                                             TRANS("Timestamped Notes:")));
     addAndMakeVisible (timestampedNotesLabel.get());
@@ -87,17 +75,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     theLyonsDenSoftwareLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     theLyonsDenSoftwareLabel->setBounds (0, 590, 500, 30);
-
-    generalNotesLabel.reset (new Label ("generalNotesLabel",
-                                        TRANS("General Notes:")));
-    addAndMakeVisible (generalNotesLabel.get());
-    generalNotesLabel->setFont (Font ("Arial", 25.00f, Font::plain).withTypefaceStyle ("Regular"));
-    generalNotesLabel->setJustificationType (Justification::centred);
-    generalNotesLabel->setEditable (false, false, false);
-    generalNotesLabel->setColour (TextEditor::textColourId, Colours::black);
-    generalNotesLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    generalNotesLabel->setBounds (0, 380, 1005, 30);
 
     displayImageOneButton.reset (new TextButton ("displayImageOneButton"));
     addAndMakeVisible (displayImageOneButton.get());
@@ -166,17 +143,6 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
     exportMediaButton->setColour (TextButton::textColourOnId, Colours::white);
 
     exportMediaButton->setBounds (805, 595, 200, 20);
-
-    stealthModeToggle.reset (new TextButton ("stealthModeToggle"));
-    addAndMakeVisible (stealthModeToggle.get());
-    stealthModeToggle->setTooltip (TRANS("This button activates \"Stealth Mode.\"  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the \"Insert Timestamp\" button."));
-    stealthModeToggle->setButtonText (String());
-    stealthModeToggle->addListener (this);
-    stealthModeToggle->setColour (TextButton::buttonColourId, Colour (0xff393939));
-    stealthModeToggle->setColour (TextButton::buttonOnColourId, Colours::white);
-    stealthModeToggle->setColour (TextButton::textColourOnId, Colours::black);
-
-    stealthModeToggle->setBounds (752, 595, 48, 20);
 
     performersNameLabel.reset (new Label ("performersNameLabel",
                                           TRANS("Performer\'s Name:")));
@@ -286,11 +252,23 @@ TrackNotesAudioProcessorEditor::TrackNotesAudioProcessorEditor (TrackNotesAudioP
 
     generalNotesEditor->setBounds (0, 415, 1010, 175);
 
+    stealthModeToggle.reset (new ImageButton ("stealthModeToggle"));
+    addAndMakeVisible (stealthModeToggle.get());
+    stealthModeToggle->setButtonText (TRANS("new button"));
+    stealthModeToggle->addListener (this);
+
+    stealthModeToggle->setImages (false, true, true,
+                                  ImageCache::getFromMemory (BinaryData::Stealth_Button_png, BinaryData::Stealth_Button_pngSize), 1.000f, Colour (0x00000000),
+                                  ImageCache::getFromMemory (BinaryData::Stealth_Button_Hover_png, BinaryData::Stealth_Button_Hover_pngSize), 1.000f, Colour (0x00000000),
+                                  ImageCache::getFromMemory (BinaryData::Stealth_Button_Activated_png, BinaryData::Stealth_Button_Activated_pngSize), 1.000f, Colour (0x00000000));
+    stealthModeToggle->setBounds (664, 592, 128, 24);
+
+    drawable1 = Drawable::createFromImageData (BinaryData::Background_png, BinaryData::Background_pngSize);
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (1005, 620);
+    setSize (1000, 753);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -373,11 +351,9 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
 
     //[/Destructor_pre]
 
-    trackNotesLabel = nullptr;
     timestampedNotesLabel = nullptr;
     insertTimeStampButton = nullptr;
     theLyonsDenSoftwareLabel = nullptr;
-    generalNotesLabel = nullptr;
     displayImageOneButton = nullptr;
     displayImageTwoButton = nullptr;
     loadImageOneButton = nullptr;
@@ -386,7 +362,6 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     removeImageTwoButton = nullptr;
     imagesLabel = nullptr;
     exportMediaButton = nullptr;
-    stealthModeToggle = nullptr;
     performersNameLabel = nullptr;
     instrumentPlayedLabel = nullptr;
     microphonesUsedLabel = nullptr;
@@ -395,6 +370,8 @@ TrackNotesAudioProcessorEditor::~TrackNotesAudioProcessorEditor()
     microphonesUsedEditor = nullptr;
     timestampedNotesEditor = nullptr;
     generalNotesEditor = nullptr;
+    stealthModeToggle = nullptr;
+    drawable1 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -410,24 +387,17 @@ void TrackNotesAudioProcessorEditor::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colour (0xff373737));
+    g.fillAll (Colours::white);
 
     {
-        int x = 510, y = 130, width = 245, height = 245;
-        Colour fillColour = Colour (0xff565454);
+        int x = 0, y = 0, width = 1000, height = 753;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 760, y = 130, width = 245, height = 245;
-        Colour fillColour = Colour (0xff565454);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
+        g.setColour (Colours::black);
+        jassert (drawable1 != 0);
+        if (drawable1 != 0)
+            drawable1->drawWithin (g, Rectangle<float> (x, y, width, height),
+                                   RectanglePlacement::centred, 1.000f);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -1008,19 +978,14 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public TextEditor::Listener, private Timer, public Label::Listener"
                  constructorParams="TrackNotesAudioProcessor &amp;p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="1005" initialHeight="620">
+                 fixedSize="1" initialWidth="1000" initialHeight="753">
   <METHODS>
     <METHOD name="mouseMove (const MouseEvent&amp; e)"/>
   </METHODS>
-  <BACKGROUND backgroundColour="ff373737">
-    <RECT pos="510 130 245 245" fill="solid: ff565454" hasStroke="0"/>
-    <RECT pos="760 130 245 245" fill="solid: ff565454" hasStroke="0"/>
+  <BACKGROUND backgroundColour="ffffffff">
+    <IMAGE pos="0 0 1000 753" resource="BinaryData::Background_png" opacity="1.0"
+           mode="1"/>
   </BACKGROUND>
-  <LABEL name="trackNotesLabel" id="92aa8337c9826f3e" memberName="trackNotesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 0 1005 50" textCol="ffffffff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Track Notes" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="48.7" kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="timestampedNotesLabel" id="358938facaa251fc" memberName="timestampedNotesLabel"
          virtualName="" explicitFocusOrder="0" pos="0 165 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Timestamped Notes:" editableSingleClick="0"
@@ -1035,11 +1000,6 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
-  <LABEL name="generalNotesLabel" id="c170b98fbe39594f" memberName="generalNotesLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 380 1005 30" edTextCol="ff000000"
-         edBkgCol="0" labelText="General Notes:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Arial"
-         fontsize="25.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="displayImageOneButton" id="a8b273a63654dd33" memberName="displayImageOneButton"
               virtualName="" explicitFocusOrder="0" pos="560 95 145 30" bgColOff="ff393939"
               buttonText="Empty" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
@@ -1067,10 +1027,6 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="805 595 200 20" bgColOff="ff393939"
               textColOn="ffffffff" buttonText="Export Media" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="stealthModeToggle" id="7779c3978e827c01" memberName="stealthModeToggle"
-              virtualName="" explicitFocusOrder="0" pos="752 595 48 20" tooltip="This button activates &quot;Stealth Mode.&quot;  We may not always want to show the clients the notes we write about their performances, so when this button is engaged, Timestamped Notes and General Notes are hidden.  Additionally, it also deactivates the &quot;Insert Timestamp&quot; button."
-              bgColOff="ff393939" bgColOn="ffffffff" textColOn="ff000000" buttonText=""
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="performersNameLabel" id="9c159bdc4788e13" memberName="performersNameLabel"
          virtualName="" explicitFocusOrder="0" pos="0 60 218 30" edTextCol="ff000000"
          edBkgCol="0" labelText="Performer's Name:" editableSingleClick="0"
@@ -1106,6 +1062,13 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="0 415 1010 175" bkgcol="ff565454"
               hilitecol="ff000000" outlinecol="ff565454" initialText="" multiline="1"
               retKeyStartsLine="1" readonly="0" scrollbars="1" caret="1" popupmenu="1"/>
+  <IMAGEBUTTON name="stealthModeToggle" id="9b348894bdcdee2f" memberName="stealthModeToggle"
+               virtualName="" explicitFocusOrder="0" pos="664 592 128 24" buttonText="new button"
+               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="BinaryData::Stealth_Button_png" opacityNormal="1.0"
+               colourNormal="0" resourceOver="BinaryData::Stealth_Button_Hover_png"
+               opacityOver="1.0" colourOver="0" resourceDown="BinaryData::Stealth_Button_Activated_png"
+               opacityDown="1.0" colourDown="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

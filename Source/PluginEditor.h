@@ -104,11 +104,9 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    std::unique_ptr<Label> trackNotesLabel;
     std::unique_ptr<Label> timestampedNotesLabel;
     std::unique_ptr<TextButton> insertTimeStampButton;
     std::unique_ptr<Label> theLyonsDenSoftwareLabel;
-    std::unique_ptr<Label> generalNotesLabel;
     std::unique_ptr<TextButton> displayImageOneButton;
     std::unique_ptr<TextButton> displayImageTwoButton;
     std::unique_ptr<TextButton> loadImageOneButton;
@@ -117,7 +115,6 @@ private:
     std::unique_ptr<TextButton> removeImageTwoButton;
     std::unique_ptr<Label> imagesLabel;
     std::unique_ptr<TextButton> exportMediaButton;
-    std::unique_ptr<TextButton> stealthModeToggle;
     std::unique_ptr<Label> performersNameLabel;
     std::unique_ptr<Label> instrumentPlayedLabel;
     std::unique_ptr<Label> microphonesUsedLabel;
@@ -126,6 +123,8 @@ private:
     std::unique_ptr<TextEditor> microphonesUsedEditor;
     std::unique_ptr<TextEditor> timestampedNotesEditor;
     std::unique_ptr<TextEditor> generalNotesEditor;
+    std::unique_ptr<ImageButton> stealthModeToggle;
+    std::unique_ptr<Drawable> drawable1;
 
 
     //==============================================================================
