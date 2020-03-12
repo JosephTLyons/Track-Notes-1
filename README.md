@@ -1,4 +1,8 @@
 # Track Notes
+Track Notes versions 1.0.0 to 1.2.0 are being archived.  This repository will continue to be open source, to keep in
+compliance with the GNU GPL license.  Track Notes 2.0.0 is being actively developed and the source code is not
+open source.  Existing Track Notes owners will have a free upgrade to Track Notes 2.0.0.  Thank you.
+
 A simple AU/VST plugin to hold your session and track notes.
 
 ![alt tag](https://github.com/JosephTLyons/Track-Notes/blob/master/Images/Track%20Notes%20GUI.png?raw=true)
